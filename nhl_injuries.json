@@ -1,0 +1,551 @@
+[
+  {
+    "teamName": "Anaheim Ducks",
+    "injuries": []
+  },
+  {
+    "teamName": "Boston Bruins",
+    "injuries": [
+      [
+        "Hampus Lindholm",
+        "D",
+        "Feb 22",
+        "Injured Reserve",
+        "Feb 3: Lindholm (lower body) is not expected back prior to the 4 Nations Face-Off, Fluto Shinzawa of The Athletic reports."
+      ]
+    ]
+  },
+  {
+    "teamName": "Buffalo Sabres",
+    "injuries": [
+      [
+        "Jordan Greenway",
+        "LW",
+        "Feb 22",
+        "Injured Reserve",
+        "Feb 18: Greenway (undisclosed) is \"ready\" to suit up versus the Rangers on Saturday, Lance Lysowski of The Buffalo News reports."
+      ],
+      [
+        "Felix Sandstrom",
+        "G",
+        "Mar 17",
+        "Out",
+        ""
+      ],
+      [
+        "Beck Malenstyn",
+        "LW",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "Calgary Flames",
+    "injuries": [
+      [
+        "Kevin Bahl",
+        "D",
+        "Feb 23",
+        "Injured Reserve",
+        ""
+      ],
+      [
+        "Justin Kirkland",
+        "C",
+        "Sep 15",
+        "Injured Reserve",
+        "Dec 4: Kirkland underwent ACL surgery Wednesday and will miss the rest of the 2024-25 campaign."
+      ],
+      [
+        "Anthony Mantha",
+        "RW",
+        "Sep 15",
+        "Injured Reserve",
+        "Nov 11: Mantha will undergo season-ending ACL surgery on his knee Thursday."
+      ]
+    ]
+  },
+  {
+    "teamName": "Carolina Hurricanes",
+    "injuries": [
+      [
+        "William Carrier",
+        "LW",
+        "Mar 25",
+        "Out",
+        "Jan 24: Head coach Rod Brind'Amour said Friday that Carrier (lower body) has undergone surgery and is facing a long-term absence, Chip Alexander of The Raleigh News &amp; Observer reports."
+      ],
+      [
+        "Jesper Fast",
+        "RW",
+        "Sep 15",
+        "Injured Reserve",
+        "Oct 9: Fast (neck) was shifted to long-term injured reserve Wednesday, per PuckPedia."
+      ]
+    ]
+  },
+  {
+    "teamName": "Chicago Blackhawks",
+    "injuries": [
+      [
+        "Laurent Brossoit",
+        "G",
+        "Apr 2",
+        "Injured Reserve",
+        "Jan 27: General manager Kyle Davidson said Monday that he's hopeful that Brossoit (knee) will be able to return at some point this season, Charlie Roumeliotis of WGN Radio reports."
+      ]
+    ]
+  },
+  {
+    "teamName": "Colorado Avalanche",
+    "injuries": [
+      [
+        "Valeri Nichushkin",
+        "RW",
+        "Feb 26",
+        "Injured Reserve",
+        "Feb 21: Nichushkin (lower body) will not travel with the Avalanche during their upcoming two-game road trip that starts Saturday in Nashville, according to Evan Rawal of the Denver Gazette."
+      ],
+      [
+        "Scott Wedgewood",
+        "G",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ],
+      [
+        "Sean Behrens",
+        "D",
+        "Sep 15",
+        "Out",
+        ""
+      ],
+      [
+        "Tucker Poolman",
+        "D",
+        "Sep 15",
+        "Injured Reserve",
+        "Oct 6: Colorado received Poolman (head) and a 2025 fourth-round draft pick from Vancouver on Sunday in exchange for Erik Brannstrom."
+      ]
+    ]
+  },
+  {
+    "teamName": "Columbus Blue Jackets",
+    "injuries": [
+      [
+        "Kevin Labanc",
+        "RW",
+        "Sep 20",
+        "Injured Reserve",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "Dallas Stars",
+    "injuries": [
+      [
+        "Miro Heiskanen",
+        "D",
+        "Mar 31",
+        "Injured Reserve",
+        "Feb 4: Heiskanen underwent successful knee surgery in New York on Tuesday and is being labeled month-to-month, Stars radio analyst Bruce LeVine reports."
+      ],
+      [
+        "Tyler Seguin",
+        "C",
+        "Apr 3",
+        "Injured Reserve",
+        "Feb 1: The Stars put Seguin (leg/hip) on long-term injured reserve Saturday, according to Stars radio analyst Bruce LeVine."
+      ],
+      [
+        "Nils Lundkvist",
+        "D",
+        "Sep 21",
+        "Injured Reserve",
+        "Feb 1: Lundkvist underwent surgery to repair his shoulder Friday and will miss the remainder of the season."
+      ]
+    ]
+  },
+  {
+    "teamName": "Edmonton Oilers",
+    "injuries": []
+  },
+  {
+    "teamName": "Florida Panthers",
+    "injuries": []
+  },
+  {
+    "teamName": "Los Angeles Kings",
+    "injuries": []
+  },
+  {
+    "teamName": "Minnesota Wild",
+    "injuries": [
+      [
+        "Kirill Kaprizov",
+        "LW",
+        "Mar 2",
+        "Injured Reserve",
+        "Feb 2: Kaprizov (lower body) was placed on long-term injured reserve Sunday."
+      ],
+      [
+        "Troy Grosenick",
+        "G",
+        "Sep 15",
+        "Injured Reserve",
+        "Oct 7: ir-nr"
+      ]
+    ]
+  },
+  {
+    "teamName": "Montreal Canadiens",
+    "injuries": []
+  },
+  {
+    "teamName": "Nashville Predators",
+    "injuries": [
+      [
+        "Zachary L'Heureux",
+        "LW",
+        "Mar 4",
+        "Injured Reserve",
+        ""
+      ],
+      [
+        "Luke Evangelista",
+        "RW",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ],
+      [
+        "Austin Roest",
+        "RW",
+        "Feb 22",
+        "Injured Reserve",
+        "Sep 29: ir-nr"
+      ]
+    ]
+  },
+  {
+    "teamName": "New Jersey Devils",
+    "injuries": [
+      [
+        "Nico Hischier",
+        "C",
+        "Feb 22",
+        "Injured Reserve",
+        "Feb 18: Hischier (upper body) participated in Tuesday's practice and hopes to play versus Dallas on Saturday, Mike Morreale of NHL.com reports."
+      ],
+      [
+        "Jacob Markstrom",
+        "G",
+        "Mar 7",
+        "Injured Reserve",
+        "Feb 18: Markstrom (knee) was placed on injured reserve Tuesday."
+      ]
+    ]
+  },
+  {
+    "teamName": "New York Islanders",
+    "injuries": [
+      [
+        "Scott Mayfield",
+        "D",
+        "Feb 23",
+        "Injured Reserve",
+        "Feb 18: Mayfield (lower body) told reporters he is hoping to be available for Sunday's matchup with Dallas, per Andrew Gross of Newsday."
+      ],
+      [
+        "Mathew Barzal",
+        "C",
+        "Mar 20",
+        "Injured Reserve",
+        "Feb 8: Barzal had a procedure done on his kneecap Thursday and is expected to miss about six weeks, Pierre LeBrun of TSN reports Saturday."
+      ],
+      [
+        "Marcus Hogberg",
+        "G",
+        "Feb 23",
+        "Injured Reserve",
+        "Feb 1: Hogberg (upper body) will have his status assessed after the 4 Nations Face-Off, GM Lou Lamoriello announced Saturday."
+      ],
+      [
+        "Semyon Varlamov",
+        "G",
+        "Feb 23",
+        "Injured Reserve",
+        "Feb 1: Varlamov (lower body) is out indefinitely, GM Lou Lamoriello announced Saturday."
+      ],
+      [
+        "Noah Dobson",
+        "D",
+        "Feb 25",
+        "Injured Reserve",
+        "Jan 26: Dobson (lower body) was placed on long-term injured reserve Saturday, per PuckPedia."
+      ]
+    ]
+  },
+  {
+    "teamName": "New York Rangers",
+    "injuries": [
+      [
+        "Mika Zibanejad",
+        "C",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ],
+      [
+        "Adam Edstrom",
+        "C",
+        "Apr 17",
+        "Injured Reserve",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "Ottawa Senators",
+    "injuries": [
+      [
+        "Josh Norris",
+        "C",
+        "Feb 26",
+        "Out",
+        "Feb 21: Norris (undisclosed) will miss Saturday's clash against Montreal, per Bruce Garrioch of Postmedia on Friday."
+      ],
+      [
+        "Noah Gregor",
+        "LW",
+        "Feb 22",
+        "Injured Reserve",
+        "Feb 18: Gregor (lower body) practiced Tuesday and could return to the lineup against Montreal on Saturday, according to TSN 1200 Ottawa."
+      ],
+      [
+        "Linus Ullmark",
+        "G",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ],
+      [
+        "Jacob Bernard-Docker",
+        "D",
+        "Feb 22",
+        "Injured Reserve",
+        "Feb 2: Bernard-Docker (ankle) was transferred to long-term injured reserve Sunday, according to PuckPedia."
+      ],
+      [
+        "Nick Cousins",
+        "C",
+        "Apr 1",
+        "Out",
+        "Feb 1: Cousins underwent knee surgery and is expected to miss at least a couple of months, Julian McKenzie of The Athletic reports."
+      ]
+    ]
+  },
+  {
+    "teamName": "Philadelphia Flyers",
+    "injuries": []
+  },
+  {
+    "teamName": "Pittsburgh Penguins",
+    "injuries": [
+      [
+        "Rickard Rakell",
+        "RW",
+        "Feb 22",
+        "Day-To-Day",
+        "Feb 17: Rakell (illness) will not suit up for Team Sweden against Team USA on Monday, Elliotte Friedman of Sportsnet relays."
+      ],
+      [
+        "Bokondji Imama",
+        "LW",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "San Jose Sharks",
+    "injuries": [
+      [
+        "Jan Rutta",
+        "D",
+        "Mar 8",
+        "Injured Reserve",
+        "Feb 18: Rutta (lower body) is healing slower than anticipated and is not expected back soon, Max Miller of NHL.com reports."
+      ],
+      [
+        "Nikolai Kovalenko",
+        "RW",
+        "Mar 1",
+        "Injured Reserve",
+        "Feb 18: Kovalenko (upper body) could return during the middle of the Sharks' seven game road trip, Max Miller of NHL.com reports."
+      ],
+      [
+        "Nico Sturm",
+        "C",
+        "Feb 23",
+        "Injured Reserve",
+        "Feb 18: Sturm (lower body) is expected to be back in action Sunday versus the Flames, Max Miller of NHL.com reports."
+      ],
+      [
+        "Logan Couture",
+        "C",
+        "Mar 1",
+        "Injured Reserve",
+        "Nov 2: Couture (groin) has not resumed skating and remains without a timeline to return, Sheng Peng of San Jose Hockey Now reported Friday."
+      ]
+    ]
+  },
+  {
+    "teamName": "Seattle Kraken",
+    "injuries": [
+      [
+        "Brandon Montour",
+        "D",
+        "Feb 22",
+        "Day-To-Day",
+        "Feb 19: Montour (upper body) is with the Kraken for the start of their three-game road trip, Kate Shefte of The Seattle Times reports."
+      ],
+      [
+        "Jordan Eberle",
+        "RW",
+        "Feb 25",
+        "Injured Reserve",
+        "Feb 17: Eberle (pelvis) was recalled from his conditioning assignment with AHL Coachella Valley on Monday."
+      ],
+      [
+        "Ryker Evans",
+        "D",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "St. Louis Blues",
+    "injuries": [
+      [
+        "Tyler Tucker",
+        "D",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ],
+      [
+        "Torey Krug",
+        "D",
+        "Sep 15",
+        "Injured Reserve",
+        "Oct 8: Krug (ankle) was moved to long-term injured reserve Tuesday, per PuckPedia."
+      ]
+    ]
+  },
+  {
+    "teamName": "Tampa Bay Lightning",
+    "injuries": [
+      [
+        "Nikita Kucherov",
+        "RW",
+        "Feb 23",
+        "Day-To-Day",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "Toronto Maple Leafs",
+    "injuries": [
+      [
+        "Conor Timmins",
+        "D",
+        "Feb 22",
+        "Day-To-Day",
+        ""
+      ],
+      [
+        "Jani Hakanpaa",
+        "D",
+        "Feb 22",
+        "Injured Reserve",
+        "Feb 1: Hakanpaa (knee) won't participate in the upcoming 4 Nations Face-Off."
+      ],
+      [
+        "Connor Dewar",
+        "C",
+        "Feb 22",
+        "Injured Reserve",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "Utah Hockey Club",
+    "injuries": [
+      [
+        "Tij Iginla",
+        "C",
+        "Sep 15",
+        "Out",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "Vancouver Canucks",
+    "injuries": [
+      [
+        "Elias Pettersson",
+        "C",
+        "Feb 23",
+        "Out",
+        ""
+      ],
+      [
+        "Noah Juulsen",
+        "D",
+        "Mar 5",
+        "Out",
+        ""
+      ],
+      [
+        "Thatcher Demko",
+        "G",
+        "Mar 5",
+        "Out",
+        ""
+      ]
+    ]
+  },
+  {
+    "teamName": "Vegas Golden Knights",
+    "injuries": []
+  },
+  {
+    "teamName": "Winnipeg Jets",
+    "injuries": [
+      [
+        "Josh Morrissey",
+        "D",
+        "Feb 24",
+        "Out",
+        "Feb 21: Morrissey (illness) will miss Saturday's clash against St. Louis, per Mike McIntyre of the Winnipeg Free Press on Friday."
+      ],
+      [
+        "Morgan Barron",
+        "C",
+        "Feb 22",
+        "Injured Reserve",
+        "Jan 30: Barron (undisclosed) is considered week-to-week according to head coach Scott Arniel on Thursday, per Mitchell Clinton of the Jets' official site."
+      ]
+    ]
+  }
+]
