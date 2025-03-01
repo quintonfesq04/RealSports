@@ -1,7 +1,8 @@
 import pandas as pd
 import os
+import re
 
-# Define stat categories for NBA, CBB, and NHL
+# Define stat categories for NBA, CBB, NHL, and MLB
 STAT_CATEGORIES_NBA = {
     "PPG": "PTS",
     "APG": "AST",
@@ -23,18 +24,60 @@ STAT_CATEGORIES_NHL = {
     "S": "shotsPerGame"
 }
 
+# For MLB we expect the cleaned CSV to include these desired columns.
+DESIRED_MLB_COLS = ["PLAYER", "TEAM", "G", "AB", "R", "H", "RBI", "AVG", "OBP", "OPS"]
+STAT_CATEGORIES_MLB = {
+    "RBI": "RBI",
+    "G": "G",
+    "AB": "AB",
+    "R": "R",
+    "H": "H",
+    "AVG": "AVG",
+    "OBP": "OBP",
+    "OPS": "OPS"
+}
+
+def clean_header(header):
+    """
+    Cleans a header string by removing duplicate text and then checking for desired abbreviations.
+    For example, if header is "PLAYERPLAYER", returns "PLAYER". If the header contains "RBI"
+    (even within extra text), returns "RBI".
+    """
+    header = header.strip()
+    if header.isupper() and len(header) % 2 == 0:
+        mid = len(header) // 2
+        if header[:mid] == header[mid:]:
+            header = header[:mid]
+    keys = sorted(["PLAYER", "TEAM", "RBI", "AVG", "OBP", "OPS", "AB", "R", "H", "G"], key=len, reverse=True)
+    for key in keys:
+        if key.lower() in header.lower():
+            return key
+    return header
+
+def fix_mlb_player_name(name):
+    """
+    Fixes concatenated MLB player names.
+    Removes digits and extra characters then extracts words that start with a capital letter.
+    Returns the first and last word (assumed to be first and last name).
+    For example, "278CadeC BunnellBunnell3B26" becomes "Cade Bunnell".
+    """
+    name = re.sub(r'\d+', '', name).strip()
+    parts = re.findall(r'[A-ZÀ-ÖØ-Ý][a-zà-öø-ÿ]+', name)
+    if parts and len(parts) >= 2:
+        return f"{parts[0]} {parts[-1]}"
+    elif parts:
+        return parts[0]
+    return name
+
 def categorize_players(df, stat_choice, target_value, player_col, team_col):
     """Categorize players based on success rate and assign a category."""
     if df.empty:
         print("❌ DataFrame is empty. Check if the team abbreviations and CSV data are correct.")
         return pd.DataFrame()
 
-    # Compute success rate as a percentage.
     df["Success_Rate"] = ((df[stat_choice] / target_value) * 100).round(1)
     
-    # Special branch for CBB 3PM when target value is 1
     if stat_choice == "3PM" and target_value == 1:
-        # For college basketball: assign Best Bet for nonzero 3PM, Underdog for 0.
         df.loc[df[stat_choice] > 0, "Category"] = "🟢 Best Bet"
         df.loc[df[stat_choice] == 0, "Category"] = "🔴 Underdog"
     elif stat_choice == "FG3M" and target_value == 1:
@@ -79,7 +122,7 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col):
 def analyze_teams(df, stat_categories, player_col, team_col):
     """Analyze player performance based on input teams and selected stat."""
     while True:
-        teams = input("\nEnter team names separated by commas (or 'exit' to return): ").replace(" ", "").upper()
+        teams = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
         if teams.lower() == 'exit':
             break
 
@@ -116,8 +159,50 @@ def analyze_teams(df, stat_categories, player_col, team_col):
             print("🟡 " + ", ".join(yellow_players[:3]))
             print("🔴 " + ", ".join(red_players[:3]))
 
+def analyze_mlb_by_team(df):
+    """
+    For MLB, filter by team names and then display the top 9 RBI leaders.
+    Player names are fixed using fix_mlb_player_name().
+    Only the columns PLAYER, TEAM, RBI, AVG, OBP, and OPS are displayed.
+    The top 3 are labeled as "🟢", the next 3 as "🟡", and the final 3 as "🔴".
+    This function now remains in MLB mode until the user types 'exit'.
+    """
+    while True:
+        teams = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
+        if teams.lower() == 'exit':
+            break
+        team_list = teams.split(",")
+        try:
+            filtered_df = df[df["TEAM"].isin(team_list)].copy()
+        except Exception as e:
+            print("Error filtering by TEAM:", e)
+            continue
+        if filtered_df.empty:
+            print("❌ No matching teams found. Please check the team names.")
+            continue
+        try:
+            filtered_df["RBI"] = pd.to_numeric(filtered_df["RBI"], errors='coerce')
+        except Exception as e:
+            print("Error converting RBI to numeric:", e)
+            continue
+        sorted_df = filtered_df.sort_values(by="RBI", ascending=False)
+        top9 = sorted_df.head(9)
+        # Keep only desired columns for MLB poll
+        display_cols = ["PLAYER", "TEAM", "RBI", "AVG", "OBP", "OPS"]
+        top9 = top9[display_cols]
+        # Split top9 into three groups (top 3, next 3, last 3)
+        green = top9.iloc[:3]
+        yellow = top9.iloc[3:6]
+        red = top9.iloc[6:9]
+        
+        print("\nMLB Top 9 RBI Leaders for teams (" + ", ".join(team_list) + "):")
+        print(top9.to_string(index=False))
+        print("\n🟢 " + ", ".join(green["PLAYER"].tolist()))
+        print("🟡 " + ", ".join(yellow["PLAYER"].tolist()))
+        print("🔴 " + ", ".join(red["PLAYER"].tolist()))
+
 def load_player_stats():
-    # Attempt to load the CBB CSV; adjust the path if needed.
+    # Load College Basketball stats
     file_path = "/Users/Q/Documents/Documents/RealSports/CBB/cbb_players_stats.csv"
     if not os.path.exists(file_path):
         print(f"Error: File '{file_path}' not found. Please ensure the CSV exists or update the path.")
@@ -149,23 +234,52 @@ def load_nhl_injury_data(file_path):
     return pd.read_csv(file_path)
 
 def integrate_nhl_data(player_stats_file, injury_data_file):
-    stats_df = load_nhl_player_stats(player_stats_file)
-    injuries_df = load_nhl_injury_data(injury_data_file)
+    stats_df = load_nhl_player_stats(file_path=player_stats_file)
+    injuries_df = load_nhl_injury_data(file_path=injury_data_file)
     integrated_data = pd.merge(stats_df, injuries_df, how='left', left_on='Player', right_on='player')
     integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
     return integrated_data
 
+def load_and_clean_mlb_stats():
+    """
+    Loads and cleans MLB stats from mlb_stats.csv.
+    This function removes extra descriptive text from headers and forces a desired header mapping.
+    The resulting DataFrame will have the columns:
+       ["PLAYER", "TEAM", "G", "AB", "R", "H", "RBI", "AVG", "OBP", "OPS"]
+    """
+    file_path = "mlb_stats.csv"
+    try:
+        df = pd.read_csv(file_path)
+    except Exception as e:
+        print(f"Error loading MLB stats from {file_path}: {e}")
+        return pd.DataFrame()
+    raw_cols = [clean_header(col) for col in df.columns]
+    df.columns = raw_cols
+    df = df.loc[:, ~df.columns.duplicated()]
+    df = df.reindex(columns=DESIRED_MLB_COLS)
+    df["PLAYER"] = df["PLAYER"].apply(fix_mlb_player_name)
+    return df
+
+def analyze_mlb_stats(df, stat_choice, target_value):
+    try:
+        df[stat_choice] = pd.to_numeric(df[stat_choice], errors='coerce')
+    except Exception as e:
+        print("Error converting stat column to numeric:", e)
+        return df
+    df["Success_Rate"] = ((df[stat_choice] / target_value) * 100).round(1)
+    sorted_df = df.sort_values(by="Success_Rate", ascending=False)
+    return sorted_df
+
 def main():
     print("✅ Files loaded successfully")
-
     while True:
         print("\nSelect Sport:")
         print("1️⃣ College Basketball (CBB)")
         print("2️⃣ NBA")
         print("3️⃣ NHL")
-        print("4️⃣ Exit")
-        choice = input("Choose an option (1/2/3/4): ").strip()
-
+        print("4️⃣ MLB")
+        print("5️⃣ Exit")
+        choice = input("Choose an option (1/2/3/4/5): ").strip()
         if choice == '1':
             print("\n📊 Selected: College Basketball (CBB)")
             df_cbb = load_player_stats()
@@ -183,11 +297,18 @@ def main():
             df_nhl = integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
             analyze_teams(df_nhl, STAT_CATEGORIES_NHL, "Player", "Team")
         elif choice == '4':
+            print("\n📊 Selected: MLB")
+            df_mlb = load_and_clean_mlb_stats()
+            if df_mlb.empty:
+                print("MLB stats CSV not found or empty.")
+                continue
+            # Enter MLB mode and remain here until the user types "exit"
+            analyze_mlb_by_team(df_mlb)
+        elif choice == '5':
             print("👋 Exiting... Goodbye!")
             break
         else:
-            print("❌ Invalid choice. Please select 1, 2, 3, or 4.")
+            print("❌ Invalid choice. Please select 1, 2, 3, 4, or 5.")
 
 if __name__ == "__main__":
-    import os
     main()
