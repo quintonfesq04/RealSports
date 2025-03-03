@@ -281,25 +281,20 @@ def analyze_sport(df, stat_categories, player_col, team_col):
 def analyze_nhl_flow(df):
     """
     Analyze NHL data for a given set of teams.
-    Prompts for team names and analysis mode (Games vs PSPs).
-    In PSPs mode, for stat "S" (shots) or "POINTS", the code calculates the per-game stat (if needed),
-    sorts the DataFrame by that value in descending order, and then slices fixed index ranges
-    to produce leader groups without prompting for a target value.
+    - If exactly 2 teams are entered, use "Games Mode" which ranks the sorted players as:
+      • Yellow: ranks 1–3
+      • Green: ranks 4–6
+      • Red: ranks 15–17
+    - If more than 2 teams are entered, use fixed ranking slices (PSP Mode).
     """
     while True:
         teams = input("\nEnter NHL team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
         if teams.lower() == "exit":
             break
         team_list = teams.split(",")
-        # Use the column name as stored in your CSV; here we assume it's "Team"
         filtered_df = df[df["Team"].isin(team_list)].copy()
         if filtered_df.empty:
             print("❌ No matching teams found. Please check the team names.")
-            continue
-
-        mode = input("\nEnter analysis mode: (1) Games or (2) PSPs: ").strip()
-        if mode not in ["1", "2"]:
-            print("❌ Invalid mode. Please enter 1 or 2.")
             continue
 
         print("\nAvailable NHL stats to analyze:")
@@ -310,31 +305,39 @@ def analyze_nhl_flow(df):
             print("❌ Invalid NHL stat choice.")
             continue
 
-        # For stats that require per-game calculation, update the data accordingly.
-        # Here, we assume for ASSISTS and S, and POINTS we want per-game values.
+        # For stats that need per-game calculation, update the data.
         if stat_choice in ["ASSISTS", "POINTS", "S"]:
             df_mode = calculate_nhl_per_game_stats(filtered_df.copy())
         else:
             df_mode = filtered_df.copy()
 
-        # PSPs Mode: fixed slicing for leaders (no target value prompt)
-        if mode == "2":
+        mapped_stat = STAT_CATEGORIES_NHL[stat_choice]
+        try:
+            df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
+        except Exception as e:
+            print("Error converting stat column to numeric:", e)
+            continue
+
+        # Decide ranking method based on number of teams entered.
+        if len(team_list) == 2:
+            # Games Mode using your ranking system:
+            sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
+            yellow = sorted_df.iloc[0:3]
+            green = sorted_df.iloc[3:6]
+            red = sorted_df.iloc[14:17]
+            print(f"\nNHL {stat_choice} Analysis (Games Mode) for teams {', '.join(team_list)}:")
+            print("🟢 " + ", ".join(green["Player"].tolist()))
+            print("\n🟡 " + ", ".join(yellow["Player"].tolist()))
+            print("🔴 " + ", ".join(red["Player"].tolist()))
+        else:
+            # Fixed Ranking Mode for more than 2 teams.
             if stat_choice == "S":
-                # Calculate shots per game if not already done.
                 if "GP" in df_mode.columns and "S" in df_mode.columns:
                     df_mode = df_mode.assign(shotsPerGame = pd.to_numeric(df_mode["S"], errors="coerce") / pd.to_numeric(df_mode["GP"], errors="coerce"))
+                    sorted_df = df_mode.sort_values(by="shotsPerGame", ascending=False)
                 else:
                     print("Required raw data for shots per game is missing.")
                     continue
-                sorted_df = df_mode.sort_values(by="shotsPerGame", ascending=False)
-                # Fixed slices: adjust these indices if needed.
-                yellow = sorted_df.iloc[:3]
-                green = sorted_df.iloc[7:10]
-                red = sorted_df.iloc[22:25]
-                print("\nNHL Shots Per Game Analysis (PSPs Mode):")
-                print("\n🟢 " + ", ".join(green["Player"].tolist()))
-                print("🟡 " + ", ".join(yellow["Player"].tolist()))
-                print("🔴 " + ", ".join(red["Player"].tolist()))
             elif stat_choice == "POINTS":
                 try:
                     df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors="coerce")
@@ -342,28 +345,74 @@ def analyze_nhl_flow(df):
                     print("Error converting points to numeric:", e)
                     continue
                 sorted_df = df_mode.sort_values(by="PTS", ascending=False)
-                # Fixed slices: adjust these indices if needed.
-                yellow = sorted_df.iloc[:3]
-                green = sorted_df.iloc[7:10]
-                red = sorted_df.iloc[22:25]
-                print("\nNHL Points Per Game Analysis (PSPs Mode):")
-                print("\n🟢 " + ", ".join(green["Player"].tolist()))
-                print("🟡 " + ", ".join(yellow["Player"].tolist()))
-                print("🔴 " + ", ".join(red["Player"].tolist()))
             else:
-                # For other stats in PSPs mode, you can continue to prompt for target value.
+                sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
+            
+            yellow = sorted_df.iloc[:3]
+            green = sorted_df.iloc[7:10]
+            red = sorted_df.iloc[22:25]
+            print(f"\nNHL {stat_choice} Analysis (Fixed Ranking) for teams {', '.join(team_list)}:")
+            print("\n🟢 " + ", ".join(green["Player"].tolist()))
+            print("🟡 " + ", ".join(yellow["Player"].tolist()))
+            print("🔴 " + ", ".join(red["Player"].tolist()))
+
+# --------------------------------------------------
+# MLB Analysis Function (Using Green/Yellow/Red)
+# --------------------------------------------------
+def analyze_nhl_flow(df):
+    """
+    Analyze NHL data for a given set of teams.
+    - If exactly 2 teams are entered (Games Mode):
+        • If the chosen stat is "S" (shots), prompt for a target value and use the target to calculate picks.
+        • Otherwise, use your ranking system: 
+            - Yellow: ranks 1–3
+            - Green: ranks 4–6
+            - Red: ranks 15–17
+    - If more than 2 teams are entered, use fixed ranking slices.
+    """
+    while True:
+        teams = input("\nEnter NHL team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
+        if teams.lower() == "exit":
+            break
+        team_list = teams.split(",")
+        filtered_df = df[df["Team"].isin(team_list)].copy()
+        if filtered_df.empty:
+            print("❌ No matching teams found. Please check the team names.")
+            continue
+
+        print("\nAvailable NHL stats to analyze:")
+        for key in STAT_CATEGORIES_NHL:
+            print(f"- {key}")
+        stat_choice = input("\nEnter NHL stat to analyze (choose from above): ").strip().upper()
+        if stat_choice not in STAT_CATEGORIES_NHL:
+            print("❌ Invalid NHL stat choice.")
+            continue
+
+        # For stats requiring per-game calculations, update the DataFrame.
+        if stat_choice in ["ASSISTS", "POINTS", "S"]:
+            df_mode = calculate_nhl_per_game_stats(filtered_df.copy())
+        else:
+            df_mode = filtered_df.copy()
+
+        mapped_stat = STAT_CATEGORIES_NHL[stat_choice]
+        try:
+            df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
+        except Exception as e:
+            print("Error converting stat column to numeric:", e)
+            continue
+
+        # Decide mode based on the number of teams entered.
+        if len(team_list) == 2:
+            # Games Mode for exactly 2 teams.
+            sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
+            if stat_choice == "S":
+                # For Shots, prompt for a target value.
                 target_value = float(input(f"\nEnter target {stat_choice} value (per game): "))
-                mapped_stat = STAT_CATEGORIES_NHL[stat_choice]
-                try:
-                    df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
-                except Exception as e:
-                    print("Error converting stat column to numeric:", e)
-                    continue
                 result_df = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team")
                 if result_df.empty:
                     print("❌ No players found for the given criteria.")
                 else:
-                    print(f"\nNHL {stat_choice} Analysis (PSPs Mode) based on target {target_value}:")
+                    print(f"\nNHL {stat_choice} Analysis (Games Mode) based on target {target_value}:")
                     print(result_df[["Player", "Team", mapped_stat, "Success_Rate", "Category"]].to_string(index=False))
                     green_players = result_df[result_df["Category"] == "🟢 Best Bet"]["Player"].tolist()
                     yellow_players = result_df[result_df["Category"] == "🟡 Favorite"]["Player"].tolist()
@@ -371,63 +420,41 @@ def analyze_nhl_flow(df):
                     print("\n🟢 " + ", ".join(green_players))
                     print("🟡 " + ", ".join(yellow_players))
                     print("🔴 " + ", ".join(red_players))
-        else:
-            # Games Mode: prompt for a target value.
-            target_value = float(input(f"\nEnter target {stat_choice} value (per game): "))
-            mapped_stat = STAT_CATEGORIES_NHL[stat_choice]
-            try:
-                df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
-            except Exception as e:
-                print("Error converting stat column to numeric:", e)
-                continue
-            result_df = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team")
-            if result_df.empty:
-                print("❌ No players found for the given criteria.")
             else:
-                print(f"\nNHL {stat_choice} Analysis (Games Mode) based on target {target_value}:")
-                print(result_df[["Player", "Team", mapped_stat, "Success_Rate", "Category"]].to_string(index=False))
-                green_players = result_df[result_df["Category"] == "🟢 Best Bet"]["Player"].tolist()
-                yellow_players = result_df[result_df["Category"] == "🟡 Favorite"]["Player"].tolist()
-                red_players = result_df[result_df["Category"] == "🔴 Underdog"]["Player"].tolist()
-                print("\n🟢 " + ", ".join(green_players))
-                print("🟡 " + ", ".join(yellow_players))
-                print("🔴 " + ", ".join(red_players))
-
-# --------------------------------------------------
-# MLB Analysis Function (Using Green/Yellow/Red)
-# --------------------------------------------------
-def analyze_mlb_by_team(df):
-    while True:
-        teams = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
-        if teams.lower() == 'exit':
-            break
-        team_list = teams.split(",")
-        try:
-            filtered_df = df[df["TEAM"].isin(team_list)].copy()
-        except Exception as e:
-            print("Error filtering by TEAM:", e)
-            continue
-        if filtered_df.empty:
-            print("❌ No matching teams found. Please check the team names.")
-            continue
-        try:
-            filtered_df["RBI"] = pd.to_numeric(filtered_df["RBI"], errors='coerce')
-        except Exception as e:
-            print("Error converting RBI to numeric:", e)
-            continue
-        sorted_df = filtered_df.sort_values(by="RBI", ascending=False)
-        top9 = sorted_df.head(9)
-        display_cols = ["PLAYER", "TEAM", "RBI", "AVG", "OBP", "OPS"]
-        top9 = top9[display_cols]
-        green = top9.iloc[3:6]
-        yellow = top9.iloc[:3]
-        red = top9.iloc[6:9]
-        
-        print("\nMLB Top 9 RBI Leaders for teams (" + ", ".join(team_list) + "):")
-        print("\n🟢 " + ", ".join(green["PLAYER"].tolist()))
-        print("🟡 " + ", ".join(yellow["PLAYER"].tolist()))
-        print("🔴 " + ", ".join(red["PLAYER"].tolist()))
-
+                # For all other stats, use your ranking slices.
+                yellow = sorted_df.iloc[0:3]
+                green = sorted_df.iloc[3:6]
+                red = sorted_df.iloc[14:17]
+                print(f"\nNHL {stat_choice} Analysis (Games Mode) for teams {', '.join(team_list)}:")
+                print("\n🟢 " + ", ".join(green["Player"].tolist()))
+                print("🟡 " + ", ".join(yellow["Player"].tolist()))
+                print("🔴 " + ", ".join(red["Player"].tolist()))
+        else:
+            # Fixed Ranking Mode for more than 2 teams.
+            if stat_choice == "S":
+                if "GP" in df_mode.columns and "S" in df_mode.columns:
+                    df_mode = df_mode.assign(shotsPerGame = pd.to_numeric(df_mode["S"], errors="coerce") / pd.to_numeric(df_mode["GP"], errors="coerce"))
+                    sorted_df = df_mode.sort_values(by="shotsPerGame", ascending=False)
+                else:
+                    print("Required raw data for shots per game is missing.")
+                    continue
+            elif stat_choice == "POINTS":
+                try:
+                    df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors="coerce")
+                except Exception as e:
+                    print("Error converting points to numeric:", e)
+                    continue
+                sorted_df = df_mode.sort_values(by="PTS", ascending=False)
+            else:
+                sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
+            
+            yellow = sorted_df.iloc[:3]
+            green = sorted_df.iloc[7:10]
+            red = sorted_df.iloc[22:25]
+            print(f"\nNHL {stat_choice} Analysis (Fixed Ranking) for teams {', '.join(team_list)}:")
+            print("\n🟢 " + ", ".join(green["Player"].tolist()))
+            print("🟡 " + ", ".join(yellow["Player"].tolist()))
+            print("🔴 " + ", ".join(red["Player"].tolist()))
 # --------------------------------------------------
 # Data Loading Functions for Other Sports
 # --------------------------------------------------

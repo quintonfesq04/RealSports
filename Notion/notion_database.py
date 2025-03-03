@@ -8,8 +8,8 @@ import time
 # CONFIGURATION
 # ---------------
 NOTION_TOKEN = "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"
-DATABASE_ID = "1aa71b1c663e8035bc89fb1e84a2d919"  # Your inline database ID
-POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"  # Replace with your actual poll page ID
+DATABASE_ID = "1aa71b1c663e8035bc89fb1e84a2d919"  
+POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
 client = Client(auth=NOTION_TOKEN)
 
@@ -22,98 +22,138 @@ sports_mapping = {
 }
 
 # ---------------
-# SPLIT TEXT HELPER
-# ---------------
-def split_text(text, max_length=2000):
-    """
-    Split a long text into a list of strings, each of maximum max_length characters.
-    Splits at newline boundaries if possible.
-    """
-    if len(text) <= max_length:
-        return [text]
-    lines = text.splitlines()
-    chunks = []
-    current_chunk = ""
-    for line in lines:
-        if len(current_chunk) + len(line) + 1 > max_length:
-            chunks.append(current_chunk)
-            current_chunk = line
-        else:
-            if current_chunk:
-                current_chunk += "\n" + line
-            else:
-                current_chunk = line
-    if current_chunk:
-        chunks.append(current_chunk)
-    return chunks
-
-# ---------------
 # RUN UNIVERSAL SPORTS ANALYZER VIA PEXPECT (SIMULATED INTERACTIVE INPUT)
 # ---------------
 def run_universal_sports_analyzer(team1, team2, sport, stat, target):
-    """
-    Uses pexpect to simulate interactive input for Universal_Sports_Analyzer.py.
-    
-    For MLB, the expected interactive flow is:
-      1. When prompted "Choose an option ..." send the sport number (e.g. "4").
-      2. When prompted "Enter team names ..." send the team names (e.g. "NYY, ATL").
-      3. Wait for the next "team names" prompt—which indicates the output (the picks) has been printed—and capture that output.
-      4. Then send "exit" to quit that loop.
-      5. Optionally, send "5" to exit the main menu.
-      
-    A 5‑second delay is inserted before each send.
-    """
     sports_num = sports_mapping.get(sport.upper(), "5")
     teams = f"{team1}, {team2}"
     
     try:
         child = pexpect.spawn("python Universal_Sports_Analyzer.py", encoding="utf-8", timeout=30)
-        # Log output for debugging.
-        child.logfile = sys.stdout
+        child.logfile = sys.stdout  # for debugging
         
-        # 1. Wait for the "Choose an option" prompt and send the sport number.
+        # Common start: select sport and send team names.
         child.expect(r"Choose an option", timeout=30)
-        time.sleep(5)
+        time.sleep(0.05)
         child.sendline(sports_num)
         
-        # 2. Wait for the prompt that mentions "team names" and send the team names.
         child.expect(r"team names", timeout=30)
-        time.sleep(5)
+        time.sleep(0.05)
         child.sendline(teams)
         
-        # 3. Wait for the next occurrence of the "team names" prompt.
-        child.expect(r"team names", timeout=30)
-        # Capture the output produced before this prompt (this should contain the pick lines).
-        result_output = child.before
-        time.sleep(5)
-        child.sendline("exit")
+        # Branch by sport.
+        if sport.upper() == "MLB":
+            # MLB flow: after teams, wait for a second team names prompt then exit.
+            child.expect(r"team names", timeout=30)
+            time.sleep(0.05)
+            child.sendline("exit")
+            child.expect(r"Choose an option", timeout=30)
+            time.sleep(0.05)
+            child.sendline("5")
+            
+        elif sport.upper() == "NHL":
+            # NHL flow: after teams, the analyzer asks for stat.
+            child.expect(r"stat", timeout=30)
+            time.sleep(0.05)
+            child.sendline(stat)
+            # NHL does not use a target value.
+            child.expect(r"team names", timeout=30)
+            time.sleep(0.05)
+            child.sendline("exit")
+            child.expect(r"Choose an option", timeout=30)
+            time.sleep(0.05)
+            child.sendline("5")
+                
+        elif sport.upper() == "NBA":
+            # NBA flow: after sending team names, the analyzer asks for a stat.
+            child.expect(r"stat", timeout=30)
+            time.sleep(0.05)
+            child.sendline(stat)
+            
+            # For NBA, use expect_exact if the prompt is predictable:
+            if target.strip():
+                prompt = f"Enter target {stat} value (per game):"
+                try:
+                    child.expect_exact(prompt, timeout=30)
+                except pexpect.TIMEOUT:
+                    print(f"Timeout waiting for NBA target prompt: {prompt}")
+                    # Optionally, you can decide to send a default value:
+                    child.sendline("0")
+                else:
+                    time.sleep(0.05)
+                    child.sendline(target)
+            else:
+                # If no target was provided, send a default (e.g. 0)
+                child.expect_exact(f"Enter target {stat} value (per game):", timeout=30)
+                time.sleep(0.05)
+                child.sendline("0")
+            
+            # Wait for the analysis output by matching one of the pick emojis.
+            child.expect([r"🟢", r"🟡", r"🔴"], timeout=30)
+            time.sleep(0.05)
+            
+            # Once the analysis is printed, exit the input loop.
+            child.expect(r"team names", timeout=30)
+            time.sleep(0.05)
+            child.sendline("exit")
+            
+            # Exit the main menu.
+            child.expect(r"Choose an option", timeout=30)
+            time.sleep(0.05)
+            child.sendline("5")
+            
+        elif sport.upper() == "CBB":
+            # College Basketball flow: similar logic using expect_exact.
+            child.expect(r"stat", timeout=30)
+            time.sleep(0.05)
+            child.sendline(stat)
+            
+            # Build the exact prompt string.
+            prompt = f"Enter target {stat} value (per game):"
+            try:
+                child.expect_exact(prompt, timeout=30)
+            except pexpect.TIMEOUT:
+                print(f"Timeout waiting for CBB target prompt: {prompt}")
+                # Optionally send a default value.
+                child.sendline("0")
+            else:
+                time.sleep(0.05)
+                child.sendline(target if target.strip() else "0")
+            
+            # Wait for the next expected prompt (for example, team names) to know the analyzer is done.
+            child.expect(r"team names", timeout=30)
+            time.sleep(0.05)
+            child.sendline("exit")
+            
+            # Exit the main menu.
+            child.expect(r"Choose an option", timeout=30)
+            time.sleep(0.05)
+            child.sendline("5")
+            
+        else:
+            # Default fallback flow.
+            child.expect(r"team names", timeout=30)
+            time.sleep(0.05)
+            child.sendline("exit")
+            child.expect(r"Choose an option", timeout=30)
+            time.sleep(0.05)
+            child.sendline("exit")
         
-        # 4. Optionally, wait for a "Choose an option" prompt and send "5" to exit.
-        child.expect(r"Choose an option", timeout=30)
-        time.sleep(5)
-        child.sendline("5")
-        
-        # 5. Wait for EOF.
         child.expect(pexpect.EOF, timeout=30)
-        
     except pexpect.exceptions.TIMEOUT as te:
         print("Universal_Sports_Analyzer.py timed out:", te)
-        return "", "", ""
+        return ""
     except pexpect.exceptions.EOF as eof:
         print("Unexpected EOF:", eof)
-        return "", "", ""
+        return ""
     
-    # Parse the captured result_output for lines starting with the pick emojis.
-    green, yellow, red = "", "", ""
-    for line in result_output.splitlines():
+    # Capture only the lines that start with one of the pick emojis.
+    result_lines = []
+    for line in child.before.splitlines():
         stripped = line.strip()
-        if stripped.startswith("🟢"):
-            green = stripped[len("🟢"):].strip()
-        elif stripped.startswith("🟡"):
-            yellow = stripped[len("🟡"):].strip()
-        elif stripped.startswith("🔴"):
-            red = stripped[len("🔴"):].strip()
-    return green, yellow, red
+        if stripped.startswith("🟢") or stripped.startswith("🟡") or stripped.startswith("🔴"):
+            result_lines.append(stripped)
+    return "\n".join(result_lines)
 
 # ---------------
 # FETCH UNPROCESSED ROWS FROM NOTION DATABASE
@@ -121,13 +161,15 @@ def run_universal_sports_analyzer(team1, team2, sport, stat, target):
 def fetch_unprocessed_rows():
     """
     Query the inline database for rows where the Processed property (select) equals "no".
-    Assumes your database has the following properties:
+    Assumes your database has:
       - Team 1 (rich_text or title)
       - Team 2 (rich_text)
       - Sport (select)
       - Stat (rich_text or select)
       - Target (rich_text)
       - Processed (select) with options "yes" and "no"
+      
+    Also extracts the created_time so we can sort the rows from top to bottom.
     """
     try:
         response = client.databases.query(
@@ -144,6 +186,7 @@ def fetch_unprocessed_rows():
     rows = []
     for result in response.get("results", []):
         page_id = result["id"]
+        created_time = result.get("created_time", "")
         props = result.get("properties", {})
         
         # Extract "Team 1"
@@ -182,58 +225,58 @@ def fetch_unprocessed_rows():
             "team2": team2,
             "sport": sport,
             "stat": stat_value,
-            "target": target_value
+            "target": target_value,
+            "created_time": created_time
         })
     
+    # Sort rows in ascending order by created_time (top-to-bottom).
+    rows.sort(key=lambda x: x["created_time"])
     return rows
 
 # ---------------
-# APPEND POLL TEXT TO A DESIGNATED NOTION PAGE (CHUNKED)
+# APPEND POLL ENTRIES TO THE POLL PAGE AS SEPARATE BLOCKS
 # ---------------
-def append_poll_text_to_page(poll_text):
+def append_poll_entries_to_page(entries):
     """
-    Append the poll text to the designated poll page.
-    If poll_text is longer than 2000 characters, split it into chunks.
+    Append each poll entry as two separate blocks:
+      - One block for the game title.
+      - One block for the overall output (the picks).
+    A divider block is added between games.
     """
-    def split_text(text, max_length=2000):
-        if len(text) <= max_length:
-            return [text]
-        lines = text.splitlines()
-        chunks = []
-        current_chunk = ""
-        for line in lines:
-            if len(current_chunk) + len(line) + 1 > max_length:
-                chunks.append(current_chunk)
-                current_chunk = line
-            else:
-                if current_chunk:
-                    current_chunk += "\n" + line
-                else:
-                    current_chunk = line
-        if current_chunk:
-            chunks.append(current_chunk)
-        return chunks
-
-    chunks = split_text(poll_text, 2000)
-    responses = []
-    for chunk in chunks:
-        try:
-            response = client.blocks.children.append(
-                block_id=POLL_PAGE_ID,
-                children=[
-                    {
-                        "object": "block",
-                        "type": "paragraph",
-                        "paragraph": {
-                            "rich_text": [{"type": "text", "text": {"content": chunk}}]
-                        }
-                    }
-                ]
-            )
-            responses.append(response)
-        except Exception as e:
-            print(f"Error updating poll page for chunk: {e}")
-    return responses
+    blocks = []
+    for entry in entries:
+        # Title block.
+        blocks.append({
+            "object": "block",
+            "type": "paragraph",
+            "paragraph": {
+                "rich_text": [{"type": "text", "text": {"content": entry["title"]}}]
+            }
+        })
+        # Output block.
+        blocks.append({
+            "object": "block",
+            "type": "paragraph",
+            "paragraph": {
+                "rich_text": [{"type": "text", "text": {"content": entry["output"]}}]
+            }
+        })
+        # Divider block.
+        blocks.append({
+            "object": "block",
+            "type": "divider",
+            "divider": {}
+        })
+    
+    try:
+        response = client.blocks.children.append(
+            block_id=POLL_PAGE_ID,
+            children=blocks
+        )
+        return response
+    except Exception as e:
+        print(f"Error updating poll page with entries: {e}")
+        return None
 
 # ---------------
 # UPDATE ROW TO MARK AS PROCESSED (OPTIONAL)
@@ -261,7 +304,7 @@ def main():
         print("No unprocessed rows found.")
         return
     
-    poll_lines = []
+    poll_entries = []
     for row in rows:
         page_id = row["page_id"]
         team1 = row["team1"]
@@ -270,23 +313,25 @@ def main():
         stat = row["stat"]
         target = row["target"]
         
-        green_picks, yellow_picks, red_picks = run_universal_sports_analyzer(team1, team2, sport, stat, target)
+        picks_output = run_universal_sports_analyzer(team1, team2, sport, stat, target)
+        title = f"Game: {team1} vs {team2} ({sport}, {stat}, Target: {target})"
+        overall_output = picks_output
         
-        poll_entry = (f"{team1} vs {team2} ({sport}, {stat}, Target: {target}):\n"
-                      f"  🟢 {green_picks}\n"
-                      f"  🟡 {yellow_picks}\n"
-                      f"  🔴 {red_picks}\n")
-        poll_lines.append(poll_entry)
+        poll_entries.append({
+            "title": title,
+            "output": overall_output
+        })
         
         mark_row_as_processed(page_id)
         print(f"Processed row for {team1} vs {team2} ({sport}, {stat})")
     
-    poll_text = "\n".join(poll_lines)
-    print("Poll Text to Append:")
-    print(poll_text)
-    
-    responses = append_poll_text_to_page(poll_text)
-    if responses:
+    response = append_poll_entries_to_page(poll_entries)
+    print("Poll Entries:")
+    for entry in poll_entries:
+        print(entry["title"])
+        print(entry["output"])
+        print("-----")
+    if response:
         print("Poll page updated successfully.")
     else:
         print("Failed to update poll page.")
