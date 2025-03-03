@@ -1,140 +1,230 @@
-import time
-from bs4 import BeautifulSoup
+import sys
 import pandas as pd
-from selenium import webdriver
-import requests
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
+from notion_client import Client
+import time
+import test as USA
 
-# URL for the NHL Stats
-base_stats_url = "https://www.nhl.com/stats/skaters?reportName=summary&reportType=season&sort=points,a_gamesPlayed&seasonFrom=20242025&seasonTo=20242025&gameType=2"
-injury_url = "https://www.cbssports.com/nhl/injuries/"
+# ---------------
+# CONFIGURATION
+# ---------------
+NOTION_TOKEN = "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"
+DATABASE_ID = "1aa71b1c663e8035bc89fb1e84a2d919"  
+POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
-def fetch_nhl_player_stats():
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')  # Enable headless mode
-    driver = webdriver.Chrome(options=options)
+client = Client(auth=NOTION_TOKEN)
 
-    all_rows = []
-    page = 1
+# ---------------
+# RUN UNIVERSAL SPORTS ANALYZER (Programmatic Mode)
+# ---------------
+def run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target):
+    sport_upper = sport.upper()
+    teams = [team1.strip().upper(), team2.strip().upper()]
+    
+    if sport_upper == "NBA":
+        df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
+        used_stat = stat.upper() if stat.strip() else "PPG"
+        used_target = float(target) if target.strip() else 0
+        result = USA.analyze_sport_noninteractive(
+            df, USA.STAT_CATEGORIES_NBA, "PLAYER", "TEAM", teams, used_stat, used_target
+        )
+    elif sport_upper == "CBB":
+        df = USA.load_player_stats()
+        used_stat = stat.upper() if stat.strip() else "PPG"
+        used_target = float(target) if target.strip() else 0
+        result = USA.analyze_sport_noninteractive(
+            df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, used_target
+        )
+    elif sport_upper == "MLB":
+        df = USA.integrate_mlb_data()
+        # For MLB, we ignore target and simply return the top 9 players.
+        result = USA.analyze_mlb_by_team(df)
+    elif sport_upper == "NHL":
+        df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
+        if stat.strip():
+            nhl_stat = stat.upper()
+        else:
+            nhl_stat = "GOALS"
+        if nhl_stat == "S":
+            used_target = float(target) if target.strip() else None
+            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, used_target)
+        else:
+            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, None)
+    else:
+        result = "Sport not recognized."
+    return result
+
+# ---------------
+# FETCH UNPROCESSED ROWS FROM NOTION DATABASE
+# ---------------
+def fetch_unprocessed_rows():
+    """
+    Query the database for rows where the Processed property equals "no".
+    Expects properties: Team 1, Team 2, Sport, Stat, Target.
+    """
     try:
-        driver.get(base_stats_url)
+        response = client.databases.query(
+            database_id=DATABASE_ID,
+            filter={
+                "property": "Processed",
+                "select": {"equals": "no"}
+            }
+        )
+    except Exception as e:
+        print("Error querying database. Ensure your inline database has a select property named 'Processed' with an option 'no'.", e)
+        return []
+    
+    rows = []
+    for result in response.get("results", []):
+        page_id = result["id"]
+        created_time = result.get("created_time", "")
+        props = result.get("properties", {})
         
-        while True:
-            # Wait for the table to load
-            table = WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "rt-table"))
+        # Extract "Team 1"
+        team1_data = props.get("Team 1", {})
+        if team1_data.get("type") == "title":
+            team1_parts = team1_data.get("title", [])
+        else:
+            team1_parts = team1_data.get("rich_text", [])
+        team1 = "".join(part.get("plain_text", "") for part in team1_parts)
+        
+        # Extract "Team 2"
+        team2_parts = props.get("Team 2", {}).get("rich_text", [])
+        team2 = "".join(part.get("plain_text", "") for part in team2_parts)
+        
+        # Extract "Sport"
+        sport_select = props.get("Sport", {}).get("select", {})
+        sport = sport_select.get("name", "") if sport_select else ""
+        
+        # Extract "Stat"
+        stat_value = ""
+        stat_prop = props.get("Stat", {})
+        if "select" in stat_prop:
+            stat_select = stat_prop.get("select")
+            stat_value = stat_select.get("name", "") if stat_select else ""
+        elif "rich_text" in stat_prop:
+            stat_rich = stat_prop.get("rich_text", [])
+            stat_value = "".join(part.get("plain_text", "") for part in stat_rich)
+        
+        # Extract "Target"
+        target_parts = props.get("Target", {}).get("rich_text", [])
+        target_value = "".join(part.get("plain_text", "") for part in target_parts)
+        
+        rows.append({
+            "page_id": page_id,
+            "team1": team1,
+            "team2": team2,
+            "sport": sport,
+            "stat": stat_value,
+            "target": target_value,
+            "created_time": created_time
+        })
+    
+    rows.sort(key=lambda x: x["created_time"])
+    return rows
+
+# ---------------
+# APPEND POLL ENTRIES TO THE POLL PAGE AS SEPARATE BLOCKS
+# ---------------
+def append_poll_entries_to_page(entries):
+    """
+    Append each poll entry as three separate blocks:
+      - Title block (game title)
+      - Output block (analysis/picks)
+      - Divider block
+    If total blocks exceed 100, split into chunks.
+    """
+    blocks = []
+    for entry in entries:
+        blocks.append({
+            "object": "block",
+            "type": "paragraph",
+            "paragraph": {
+                "rich_text": [{"type": "text", "text": {"content": entry["title"]}}]
+            }
+        })
+        blocks.append({
+            "object": "block",
+            "type": "paragraph",
+            "paragraph": {
+                "rich_text": [{"type": "text", "text": {"content": entry["output"]}}]
+            }
+        })
+        blocks.append({
+            "object": "block",
+            "type": "divider",
+            "divider": {}
+        })
+    
+    max_blocks = 100
+    def chunk_list(lst, n):
+        for i in range(0, len(lst), n):
+            yield lst[i:i+n]
+    
+    responses = []
+    for block_chunk in chunk_list(blocks, max_blocks):
+        try:
+            response = client.blocks.children.append(
+                block_id=POLL_PAGE_ID,
+                children=block_chunk
             )
+            responses.append(response)
+        except Exception as e:
+            print(f"Error updating poll page with a block chunk: {e}")
+            return None
+    return responses
 
-            # Extract table headers (only from the first page)
-            if page == 1:
-                headers = [th.text.strip() for th in table.find_element(By.TAG_NAME, 'thead').find_elements(By.TAG_NAME, 'th')]
-
-            # Extract table rows
-            tbody = table.find_element(By.TAG_NAME, 'tbody')
-            for tr in tbody.find_elements(By.TAG_NAME, 'tr'):
-                cells = [td.text.strip() for td in tr.find_elements(By.TAG_NAME, 'td')]
-                all_rows.append(cells)
-
-            # Locate pagination controls
-            pagination_element = WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "d3-l-wrap"))
-            )
-            
-            # Check if the "Next" button exists and is enabled
-            try:
-                next_button = pagination_element.find_element(By.XPATH, ".//*[contains(text(), 'Next')]")
-                if not next_button.is_enabled():
-                    break
-                
-                # Scroll the button into view
-                driver.execute_script("arguments[0].scrollIntoView();", next_button)
-                # Try to click the button
-                try:
-                    next_button.click()
-                except ElementClickInterceptedException:
-                    # If the click is intercepted, use JavaScript to click
-                    driver.execute_script("arguments[0].click();", next_button)
-                # Wait for the next page to load
-                WebDriverWait(driver, 20).until(
-                    EC.presence_of_element_located((By.CLASS_NAME, "rt-table"))
-                )
-                page += 1
-            except NoSuchElementException:
-                break
-
-        # Save data to CSV
-        df = pd.DataFrame(all_rows, columns=headers)
-        output_file = "nhl_player_stats.csv"
-        df.to_csv(output_file, index=False)
-        print(f"💾 Saved player stats to {output_file}")
-
-    except TimeoutException:
-        print("Timeout: Table did not load within the specified time.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        driver.quit()
-
-def extract_nhl_injury_data(url):
+# ---------------
+# UPDATE ROW TO MARK AS PROCESSED (OPTIONAL)
+# ---------------
+def mark_row_as_processed(page_id):
     try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an exception for bad status codes
-
-        soup = BeautifulSoup(response.content, 'html.parser')
-        table_shadows_divs = soup.find_all('div', class_='TableBase-shadows')
-
-        if not table_shadows_divs:
-            print("TableBase-shadows divs not found.")
-            return pd.DataFrame()
-
-        data = []
-
-        for table_shadows_div in table_shadows_divs:
-            # Get the team name from the previous sibling h4 element
-            team_name_element = table_shadows_div.find_previous_sibling('h4', class_='TableBase-title')
-            team_name = team_name_element.get_text(strip=True) if team_name_element else 'Unknown'
-
-            # Extract injury data from the table
-            rows = table_shadows_div.find_all('tr')
-            for row in rows[1:]:  # Skip the header row
-                cols = row.find_all('td')
-                if len(cols) >= 5:
-                    player_name = cols[0].find('span', class_='CellPlayerName--long').get_text(strip=True) if cols[0].find('span', class_='CellPlayerName--long') else cols[0].get_text(strip=True)
-                    position = cols[1].get_text(strip=True)
-                    updated = cols[2].get_text(strip=True)
-                    injury = cols[3].get_text(strip=True)
-                    injury_status = cols[4].get_text(strip=True)
-                    data.append({
-                        'teamName': team_name,
-                        'playerName': player_name,
-                        'position': position,
-                        'updated': updated,
-                        'injury': injury,
-                        'injuryStatus': injury_status
-                    })
-
-        return pd.DataFrame(data)
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error during request: {e}")
-        return pd.DataFrame()
+        client.pages.update(
+            page_id=page_id,
+            properties={
+                "Processed": {"select": {"name": "Yes"}}
+            }
+        )
     except Exception as e:
-        print(f"An error occurred: {e}")
-        return pd.DataFrame()
+        print(f"Error marking row {page_id} as processed: {e}")
+
+# ---------------
+# MAIN WORKFLOW
+# ---------------
+def main():
+    rows = fetch_unprocessed_rows()
+    if not rows:
+        print("No unprocessed rows found.")
+        return
+    
+    poll_entries = []
+    for row in rows:
+        page_id = row["page_id"]
+        team1 = row["team1"]
+        team2 = row["team2"]
+        sport = row["sport"]
+        stat = row["stat"]
+        target = row["target"]
+        
+        picks_output = run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target)
+        title = f"Game: {team1} vs {team2} ({sport}, {stat}, Target: {target})"
+        poll_entries.append({
+            "title": title,
+            "output": picks_output
+        })
+        
+        mark_row_as_processed(page_id)
+        print(f"Processed row for {team1} vs {team2} ({sport}, {stat})")
+    
+    response = append_poll_entries_to_page(poll_entries)
+    print("Poll Entries:")
+    for entry in poll_entries:
+        print(entry["title"])
+        print(entry["output"])
+        print("-----")
+    if response:
+        print("Poll page updated successfully.")
+    else:
+        print("Failed to update poll page.")
 
 if __name__ == "__main__":
-    try:
-        fetch_nhl_player_stats()
-        df_injuries = extract_nhl_injury_data(injury_url)
-        if not df_injuries.empty:
-            df_injuries.to_csv("nhl_injuries.csv", index=False)
-            print("💾 Saved NHL injury report data")
-        else:
-            print("No injury data to save.")
-    except KeyboardInterrupt:
-        print("Script interrupted by user.")
-    finally:
-        print("Script finished.")
+    main()
