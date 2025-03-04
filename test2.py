@@ -3,13 +3,14 @@ import pandas as pd
 from notion_client import Client
 import time
 from datetime import datetime
+import asyncio
 import test as USA  # Import our analyzer module
 
 # ---------------
 # CONFIGURATION
 # ---------------
 NOTION_TOKEN = "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"
-DATABASE_ID = "1aa71b1c663e8035bc89fb1e84a2d919"  
+DATABASE_ID = "1aa71b1c663e8035bc89fb1e84a2d919"
 POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
 client = Client(auth=NOTION_TOKEN)
@@ -78,18 +79,11 @@ def fetch_unprocessed_rows():
             "created_time": created_time
         })
     
-    # The query sorts by Order, but if the returned order is the reverse of what you expect,
-    # you can reverse the list:
+    # If needed, reverse the list (if Notion returns in the opposite order)
     rows = list(reversed(rows))
-    
-    # Optionally, if you want to verify by created_time (comment out if not needed):
-    # try:
-    #     rows.sort(key=lambda x: datetime.fromisoformat(x["created_time"].replace("Z", "+00:00")))
-    # except Exception as e:
-    #     print("Error sorting rows by created_time:", e)
     return rows
 
-def append_poll_entries_to_page(entries):
+async def append_poll_entries_to_page(entries):
     blocks = []
     for entry in entries:
         blocks.append({
@@ -120,24 +114,21 @@ def append_poll_entries_to_page(entries):
     responses = []
     for block_chunk in chunk_list(blocks, max_blocks):
         try:
-            response = client.blocks.children.append(
-                block_id=POLL_PAGE_ID,
-                children=block_chunk
-            )
+            # Wrap the blocking call in asyncio.to_thread to run concurrently.
+            response = await asyncio.to_thread(client.blocks.children.append,
+                                               block_id=POLL_PAGE_ID,
+                                               children=block_chunk)
             responses.append(response)
         except Exception as e:
             print(f"Error updating poll page with a block chunk: {e}")
             return None
     return responses
 
-def mark_row_as_processed(page_id):
+async def mark_row_as_processed(page_id):
     try:
-        client.pages.update(
-            page_id=page_id,
-            properties={
-                "Processed": {"select": {"name": "Yes"}}
-            }
-        )
+        await asyncio.to_thread(client.pages.update,
+                                page_id=page_id,
+                                properties={"Processed": {"select": {"name": "Yes"}}})
     except Exception as e:
         print(f"Error marking row {page_id} as processed: {e}")
 
@@ -192,13 +183,14 @@ def run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target
         result = "Sport not recognized."
     return result
 
-def main():
+async def process_rows():
     rows = fetch_unprocessed_rows()
     if not rows:
         print("No unprocessed rows found.")
         return
     
     poll_entries = []
+    # Process each row sequentially (or you could use asyncio.gather for concurrent processing of independent rows)
     for row in rows:
         page_id = row["page_id"]
         team1 = row["team1"]
@@ -213,20 +205,23 @@ def main():
             "title": title,
             "output": picks_output
         })
-        
-        mark_row_as_processed(page_id)
+        # Mark each row as processed asynchronously
+        await mark_row_as_processed(page_id)
         print(f"Processed row for {team1} vs {team2} ({sport}, {stat})")
     
-    response = append_poll_entries_to_page(poll_entries)
+    responses = await append_poll_entries_to_page(poll_entries)
     print("Poll Entries:")
     for entry in poll_entries:
         print(entry["title"])
         print(entry["output"])
         print("-----")
-    if response:
+    if responses:
         print("Poll page updated successfully.")
     else:
         print("Failed to update poll page.")
+
+def main():
+    asyncio.run(process_rows())
 
 if __name__ == "__main__":
     main()

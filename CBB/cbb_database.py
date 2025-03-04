@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import time
+import os
 
 # ESPN API URL
 BASE_URL = "https://site.web.api.espn.com/apis/common/v3/sports/basketball/mens-college-basketball/statistics/byathlete"
@@ -73,8 +74,13 @@ def fetch_players():
     # Convert to DataFrame and save
     if players:
         df = pd.DataFrame(players, columns=["Player", "Team", "PPG", "APG", "RPG", "3PM", "Games"])
-        df.to_csv("CBB/cbb_players_stats.csv", index=False)
-        print("✅ Player stats saved successfully to 'cbb_player_stats.xlsx'!")
+        # Ensure the output directory exists
+        output_dir = "CBB"
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        # Save the CSV file in the output directory
+        df.to_csv(os.path.join(output_dir, "cbb_players_stats.csv"), index=False)
+        print("✅ Player stats saved successfully to 'CBB/cbb_players_stats.csv'!")
     else:
         print("⚠️ No player data collected.")
 
