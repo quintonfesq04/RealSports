@@ -2,7 +2,8 @@ import sys
 import pandas as pd
 from notion_client import Client
 import time
-import test as USA
+from datetime import datetime
+import test as USA  # Import our analyzer module
 
 # ---------------
 # CONFIGURATION
@@ -13,64 +14,21 @@ POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
 client = Client(auth=NOTION_TOKEN)
 
-# ---------------
-# RUN UNIVERSAL SPORTS ANALYZER (Programmatic Mode)
-# ---------------
-def run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target):
-    sport_upper = sport.upper()
-    teams = [team1.strip().upper(), team2.strip().upper()]
-    
-    if sport_upper == "NBA":
-        df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
-        used_stat = stat.upper() if stat.strip() else "PPG"
-        used_target = float(target) if target.strip() else 0
-        result = USA.analyze_sport_noninteractive(
-            df, USA.STAT_CATEGORIES_NBA, "PLAYER", "TEAM", teams, used_stat, used_target
-        )
-    elif sport_upper == "CBB":
-        df = USA.load_player_stats()
-        used_stat = stat.upper() if stat.strip() else "PPG"
-        used_target = float(target) if target.strip() else 0
-        result = USA.analyze_sport_noninteractive(
-            df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, used_target
-        )
-    elif sport_upper == "MLB":
-        df = USA.integrate_mlb_data()
-        # For MLB, we ignore target and simply return the top 9 players.
-        result = USA.analyze_mlb_by_team(df)
-    elif sport_upper == "NHL":
-        df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
-        if stat.strip():
-            nhl_stat = stat.upper()
-        else:
-            nhl_stat = "GOALS"
-        if nhl_stat == "S":
-            used_target = float(target) if target.strip() else None
-            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, used_target)
-        else:
-            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, None)
-    else:
-        result = "Sport not recognized."
-    return result
-
-# ---------------
-# FETCH UNPROCESSED ROWS FROM NOTION DATABASE
-# ---------------
 def fetch_unprocessed_rows():
-    """
-    Query the database for rows where the Processed property equals "no".
-    Expects properties: Team 1, Team 2, Sport, Stat, Target.
-    """
     try:
         response = client.databases.query(
             database_id=DATABASE_ID,
             filter={
                 "property": "Processed",
                 "select": {"equals": "no"}
-            }
+            },
+            sort=[{
+                "property": "Order",    # Sorting by your custom "Order" property
+                "direction": "ascending"
+            }]
         )
     except Exception as e:
-        print("Error querying database. Ensure your inline database has a select property named 'Processed' with an option 'no'.", e)
+        print("Error querying database:", e)
         return []
     
     rows = []
@@ -79,7 +37,6 @@ def fetch_unprocessed_rows():
         created_time = result.get("created_time", "")
         props = result.get("properties", {})
         
-        # Extract "Team 1"
         team1_data = props.get("Team 1", {})
         if team1_data.get("type") == "title":
             team1_parts = team1_data.get("title", [])
@@ -87,27 +44,29 @@ def fetch_unprocessed_rows():
             team1_parts = team1_data.get("rich_text", [])
         team1 = "".join(part.get("plain_text", "") for part in team1_parts)
         
-        # Extract "Team 2"
         team2_parts = props.get("Team 2", {}).get("rich_text", [])
         team2 = "".join(part.get("plain_text", "") for part in team2_parts)
         
-        # Extract "Sport"
         sport_select = props.get("Sport", {}).get("select", {})
         sport = sport_select.get("name", "") if sport_select else ""
         
-        # Extract "Stat"
         stat_value = ""
         stat_prop = props.get("Stat", {})
-        if "select" in stat_prop:
+        if stat_prop.get("type") == "select":
             stat_select = stat_prop.get("select")
             stat_value = stat_select.get("name", "") if stat_select else ""
-        elif "rich_text" in stat_prop:
+        elif stat_prop.get("type") == "rich_text":
             stat_rich = stat_prop.get("rich_text", [])
             stat_value = "".join(part.get("plain_text", "") for part in stat_rich)
         
-        # Extract "Target"
-        target_parts = props.get("Target", {}).get("rich_text", [])
-        target_value = "".join(part.get("plain_text", "") for part in target_parts)
+        target_prop = props.get("Target", {})
+        if target_prop.get("type") == "number":
+            target_value = str(target_prop.get("number", ""))
+        elif target_prop.get("type") == "rich_text":
+            target_rich = target_prop.get("rich_text", [])
+            target_value = "".join(part.get("plain_text", "") for part in target_rich)
+        else:
+            target_value = ""
         
         rows.append({
             "page_id": page_id,
@@ -119,20 +78,18 @@ def fetch_unprocessed_rows():
             "created_time": created_time
         })
     
-    rows.sort(key=lambda x: x["created_time"])
+    # The query sorts by Order, but if the returned order is the reverse of what you expect,
+    # you can reverse the list:
+    rows = list(reversed(rows))
+    
+    # Optionally, if you want to verify by created_time (comment out if not needed):
+    # try:
+    #     rows.sort(key=lambda x: datetime.fromisoformat(x["created_time"].replace("Z", "+00:00")))
+    # except Exception as e:
+    #     print("Error sorting rows by created_time:", e)
     return rows
 
-# ---------------
-# APPEND POLL ENTRIES TO THE POLL PAGE AS SEPARATE BLOCKS
-# ---------------
 def append_poll_entries_to_page(entries):
-    """
-    Append each poll entry as three separate blocks:
-      - Title block (game title)
-      - Output block (analysis/picks)
-      - Divider block
-    If total blocks exceed 100, split into chunks.
-    """
     blocks = []
     for entry in entries:
         blocks.append({
@@ -173,9 +130,6 @@ def append_poll_entries_to_page(entries):
             return None
     return responses
 
-# ---------------
-# UPDATE ROW TO MARK AS PROCESSED (OPTIONAL)
-# ---------------
 def mark_row_as_processed(page_id):
     try:
         client.pages.update(
@@ -187,9 +141,57 @@ def mark_row_as_processed(page_id):
     except Exception as e:
         print(f"Error marking row {page_id} as processed: {e}")
 
-# ---------------
-# MAIN WORKFLOW
-# ---------------
+def run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target):
+    sport_upper = sport.upper()
+    teams = [team1.strip().upper(), team2.strip().upper()]
+    
+    def parse_target(target):
+        t = target.strip().lower()
+        if t in ["", "none"]:
+            return None
+        try:
+            return float(t)
+        except Exception:
+            return None
+
+    if sport_upper == "NBA":
+        df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
+        used_stat = stat.upper() if stat.strip() else "PPG"
+        used_target = parse_target(target)
+        result = USA.analyze_sport_noninteractive(
+            df, USA.STAT_CATEGORIES_NBA, "PLAYER", "TEAM", teams, used_stat, used_target
+        )
+    elif sport_upper == "CBB":
+        df = USA.load_player_stats()
+        used_stat = stat.upper() if stat.strip() else "PPG"
+        used_target = parse_target(target)
+        result = USA.analyze_sport_noninteractive(
+            df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, used_target
+        )
+    elif sport_upper == "MLB":
+        df = USA.integrate_mlb_data()
+        used_stat = stat.upper() if stat.strip() else "RBI"
+        if parse_target(target) is not None:
+            result = USA.analyze_sport_noninteractive(
+                df, USA.STAT_CATEGORIES_MLB, "PLAYER", "TEAM", teams, used_stat, parse_target(target)
+            )
+        else:
+            result = USA.analyze_mlb_noninteractive(df, teams, used_stat)
+    elif sport_upper == "NHL":
+        df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
+        if stat.strip():
+            nhl_stat = stat.upper()
+        else:
+            nhl_stat = "GOALS"
+        if nhl_stat == "S":
+            used_target = parse_target(target)
+            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, used_target)
+        else:
+            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, None)
+    else:
+        result = "Sport not recognized."
+    return result
+
 def main():
     rows = fetch_unprocessed_rows()
     if not rows:

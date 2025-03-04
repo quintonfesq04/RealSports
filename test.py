@@ -19,15 +19,15 @@ STAT_CATEGORIES_CBB = {
     "3PM": "3PM"
 }
 
-# For NHL, we include total Goals (G) and per-game values for Assists, Points, and Shots.
+# For NHL, include totals and per-game stats.
 STAT_CATEGORIES_NHL = {
     "GOALS": "G",
-    "ASSISTS": "A",   # We'll convert A to per-game value
-    "POINTS": "PTS",   # We'll convert P to per-game value
-    "S": "shotsPerGame"  # Custom stat: shots per game
+    "ASSISTS": "A",   # to be converted to per-game
+    "POINTS": "PTS",   # to be converted to per-game
+    "S": "shotsPerGame"  # shots per game
 }
 
-# For MLB, we expect the cleaned CSV to include these desired columns.
+# For MLB, desired columns.
 DESIRED_MLB_COLS = ["PLAYER", "TEAM", "G", "AB", "R", "H", "RBI", "AVG", "OBP", "OPS"]
 STAT_CATEGORIES_MLB = {
     "RBI": "RBI",
@@ -68,7 +68,6 @@ def fix_mlb_player_name(name):
 # NHL Per-Game Stat Calculation Functions
 # --------------------------------------------------
 def calculate_per_game_stat(df, raw_stat, new_stat_name, games_column="GP"):
-    """Calculate a per-game statistic by dividing the raw stat by games played."""
     if games_column in df.columns:
         games = pd.to_numeric(df[games_column], errors='coerce')
     elif "G" in df.columns:
@@ -80,7 +79,6 @@ def calculate_per_game_stat(df, raw_stat, new_stat_name, games_column="GP"):
     return df
 
 def calculate_nhl_per_game_stats(df):
-    # Calculate per-game assists ("A"), points ("PTS"), and shots per game ("shotsPerGame")
     df = calculate_per_game_stat(df, "A", "A")
     df = calculate_per_game_stat(df, "P", "PTS")
     df = calculate_per_game_stat(df, "S", "shotsPerGame")
@@ -98,13 +96,11 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col):
     except Exception as e:
         print("Error converting stat column to numeric:", e)
         return df
-    # If no target is provided, set success rate to 100 (i.e. no scaling)
-    if target_value is None:
-        df["Success_Rate"] = 100
-    else:
-        df["Success_Rate"] = ((df[stat_choice] / target_value) * 100).round(1)
+    # For NBA/CBB, a valid nonzero target is required.
+    if target_value is None or target_value == 0:
+        return pd.DataFrame()  # Or return an error message.
+    df["Success_Rate"] = ((df[stat_choice] / target_value) * 100).round(1)
     
-    # Generic thresholds:
     df.loc[df["Success_Rate"] >= 110, "Category"] = "🟡 Favorite"
     df.loc[(df["Success_Rate"] >= 85) & (df["Success_Rate"] < 110), "Category"] = "🟢 Best Bet"
     df.loc[df["Success_Rate"] < 85, "Category"] = "🔴 Underdog"
@@ -133,14 +129,18 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col):
     green_list = final_df[final_df["Category"] == "🟢 Best Bet"][player_col].tolist()
     yellow_list = final_df[final_df["Category"] == "🟡 Favorite"][player_col].tolist()
     red_list = final_df[final_df["Category"] == "🔴 Underdog"][player_col].tolist()
-    output = f"Analysis based on target {target_value if target_value is not None else 'N/A'} for {stat_choice}:\n"
-    output += "🟢 " + ", ".join(green_list) + "\n"
-    output += "🟡 " + ", ".join(yellow_list) + "\n"
-    output += "🔴 " + ", ".join(red_list)
+    
+    green_output = ", ".join(green_list) if green_list else "No Green Plays"
+    yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
+    red_output = ", ".join(red_list) if red_list else "No Red Plays"
+    
+    output = f"🟢 {green_output}\n"
+    output += f"🟡 {yellow_output}\n"
+    output += f"🔴 {red_output}"
     return output
 
 # --------------------------------------------------
-# NHL Integration: Stats, Injury Filtering, and Per-Game Calculations
+# NHL Integration Functions
 # --------------------------------------------------
 def load_nhl_player_stats(file_path):
     return pd.read_csv(file_path)
@@ -151,7 +151,6 @@ def load_nhl_injury_data(file_path):
 def integrate_nhl_data(player_stats_file, injury_data_file):
     stats_df = load_nhl_player_stats(player_stats_file)
     injuries_df = load_nhl_injury_data(injury_data_file)
-    # Rename if needed so the merge key matches
     if "playerName" in injuries_df.columns:
         injuries_df.rename(columns={"playerName": "Player"}, inplace=True)
     try:
@@ -159,9 +158,7 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
     except Exception as e:
         print("Merge error for NHL data:", e)
         return stats_df
-    # Filter out injured players
     integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
-    # If "Team" is missing, restore it from the original stats DataFrame
     if "Team" not in integrated_data.columns:
         integrated_data["Team"] = stats_df["Team"]
     integrated_data = calculate_nhl_per_game_stats(integrated_data)
@@ -175,7 +172,7 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
     return integrated_data
 
 # --------------------------------------------------
-# MLB Integration: Stats and Injury Filtering
+# MLB Integration Functions
 # --------------------------------------------------
 def load_and_clean_mlb_stats():
     file_path = "mlb_stats.csv"
@@ -212,7 +209,36 @@ def integrate_mlb_data():
     return healthy_df[DESIRED_MLB_COLS]
 
 # --------------------------------------------------
-# Non-interactive (Programmatic) Interfaces
+# MLB Noninteractive Analysis (Ranking Slices)
+# --------------------------------------------------
+def analyze_mlb_noninteractive(df, teams, stat_choice):
+    # Filter MLB data by team(s) if provided.
+    if teams:
+        filtered_df = df[df["TEAM"].isin(teams)].copy()
+    else:
+        filtered_df = df.copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    mapped_stat = STAT_CATEGORIES_MLB.get(stat_choice)
+    if mapped_stat is None:
+        return "❌ Invalid stat choice."
+    try:
+        filtered_df[mapped_stat] = pd.to_numeric(filtered_df[mapped_stat], errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    sorted_df = filtered_df.sort_values(by=mapped_stat, ascending=False)
+    # Define ranking slices:
+    # Yellow: rows 0-2, Green: rows 3-5, Red: rows 6-8.
+    yellow = sorted_df.iloc[0:3]
+    green = sorted_df.iloc[3:6]
+    red = sorted_df.iloc[6:9]
+    output = "🟢 " + ", ".join(green["PLAYER"].tolist()) + "\n"
+    output += "🟡 " + ", ".join(yellow["PLAYER"].tolist()) + "\n"
+    output += "🔴 " + ", ".join(red["PLAYER"].tolist())
+    return output
+
+# --------------------------------------------------
+# Non-interactive (Programmatic) Interfaces for NBA/CBB and NHL
 # --------------------------------------------------
 def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value):
     filtered_df = df[df[team_col].isin(teams)].copy()
@@ -227,13 +253,11 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
     except Exception as e:
         return f"Error converting stat column: {e}"
     
-    if target_value is None:
-        # No target provided, so we bypass scaling
-        df_mode["Success_Rate"] = 100
-    else:
-        df_mode["Success_Rate"] = ((df_mode[mapped_stat] / target_value) * 100).round(1)
+    if target_value is None or target_value == 0:
+        return "Target value required and must be nonzero."
     
-    # Set thresholds:
+    df_mode["Success_Rate"] = ((df_mode[mapped_stat] / target_value) * 100).round(1)
+    
     df_mode.loc[df_mode["Success_Rate"] >= 110, "Category"] = "🟡 Favorite"
     df_mode.loc[(df_mode["Success_Rate"] >= 85) & (df_mode["Success_Rate"] < 110), "Category"] = "🟢 Best Bet"
     df_mode.loc[df_mode["Success_Rate"] < 85, "Category"] = "🔴 Underdog"
@@ -262,10 +286,14 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
     green_list = final_df[final_df["Category"] == "🟢 Best Bet"][player_col].tolist()
     yellow_list = final_df[final_df["Category"] == "🟡 Favorite"][player_col].tolist()
     red_list = final_df[final_df["Category"] == "🔴 Underdog"][player_col].tolist()
-    output = f"Analysis based on target {target_value if target_value is not None else 'N/A'} for {stat_choice}:\n"
-    output += "🟢 " + ", ".join(green_list) + "\n"
-    output += "🟡 " + ", ".join(yellow_list) + "\n"
-    output += "🔴 " + ", ".join(red_list)
+    
+    green_output = ", ".join(green_list) if green_list else "No Green Plays"
+    yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
+    red_output = ", ".join(red_list) if red_list else "No Red Plays"
+    
+    output = f"🟢 {green_output}\n"
+    output += f"🟡 {yellow_output}\n"
+    output += f"🔴 {red_output}"
     return output
 
 def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
@@ -287,7 +315,7 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
         if target_value is None:
             return "Target value required for Shots analysis."
         result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team")
-        return f"NHL {stat_choice} Analysis (Games Mode) based on target {target_value}:\n{result}"
+        return f"{result}"
     else:
         if stat_choice == "S":
             if "GP" in df_mode.columns and "S" in df_mode.columns:
@@ -307,32 +335,15 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
         yellow = sorted_df.iloc[:3]
         green = sorted_df.iloc[7:10]
         red = sorted_df.iloc[22:25]
-        output = f"NHL {stat_choice} Analysis (Fixed Ranking) for teams {', '.join(teams)}:\n"
-        output += "🟢 " + ", ".join(green["Player"].tolist()) + "\n"
+        output = "🟢 " + ", ".join(green["Player"].tolist()) + "\n"
         output += "🟡 " + ", ".join(yellow["Player"].tolist()) + "\n"
         output += "🔴 " + ", ".join(red["Player"].tolist())
         return output
 
-def analyze_mlb_by_team(df):
-    """
-    For MLB, simply return the top 9 players from the cleaned MLB dataframe.
-    """
-    if df.empty:
-        return "MLB stats data is empty."
-    top9 = df.head(9)
-    output_lines = []
-    for idx, row in top9.iterrows():
-        output_lines.append(f"{row['PLAYER']} ({row['TEAM']})")
-    return "\n".join(output_lines)
-
 # --------------------------------------------------
-# Interactive Functions (Original Main Menu and Flows)
+# Interactive Functions
 # --------------------------------------------------
 def analyze_sport(df, stat_categories, player_col, team_col):
-    """
-    Interactive analysis for NBA/CBB.
-    Prompts for team names, stat choice, and target value.
-    """
     while True:
         teams = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
         if teams.lower() == 'exit':
@@ -352,23 +363,27 @@ def analyze_sport(df, stat_categories, player_col, team_col):
         
         mapped_stat = stat_categories[stat_choice]
         df_mode = filtered_df.copy()
-        
         try:
             df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
         except Exception as e:
             print("Error converting stat column to numeric:", e)
             continue
         
-        target_value = float(input(f"\nEnter target {stat_choice} value (per game): "))
+        target_value = input(f"\nEnter target {stat_choice} value (per game): ").strip()
+        if not target_value:
+            print("❌ Target value is required.")
+            continue
+        try:
+            target_value = float(target_value)
+        except Exception as e:
+            print("❌ Invalid target value.", e)
+            continue
+        
         result = categorize_players(df_mode, mapped_stat, target_value, player_col, team_col)
         print(f"\nPlayer Performance Based on Target {target_value} {stat_choice}:")
         print(result)
 
 def analyze_nhl_flow(df):
-    """
-    Interactive NHL analysis.
-    Two modes: Games Mode (for exactly 2 teams) and Fixed Ranking for more than 2 teams.
-    """
     while True:
         teams = input("\nEnter NHL team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
         if teams.lower() == "exit":
@@ -402,15 +417,21 @@ def analyze_nhl_flow(df):
         if len(team_list) == 2:
             sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
             if stat_choice == "S":
-                target_value = float(input(f"\nEnter target {stat_choice} value (per game): "))
+                target_value = input(f"\nEnter target {stat_choice} value (per game): ").strip()
+                if not target_value:
+                    print("❌ Target value is required for Shots.")
+                    continue
+                try:
+                    target_value = float(target_value)
+                except Exception as e:
+                    print("❌ Invalid target value.", e)
+                    continue
                 result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team")
-                print(f"\nNHL {stat_choice} Analysis (Games Mode) based on target {target_value}:")
                 print(result)
             else:
                 yellow = sorted_df.iloc[0:3]
                 green = sorted_df.iloc[3:6]
                 red = sorted_df.iloc[14:17]
-                print(f"\nNHL {stat_choice} Analysis (Games Mode) for teams {', '.join(team_list)}:")
                 print("🟢 " + ", ".join(green["Player"].tolist()))
                 print("🟡 " + ", ".join(yellow["Player"].tolist()))
                 print("🔴 " + ", ".join(red["Player"].tolist()))
@@ -435,27 +456,59 @@ def analyze_nhl_flow(df):
             yellow = sorted_df.iloc[:3]
             green = sorted_df.iloc[7:10]
             red = sorted_df.iloc[22:25]
-            print(f"\nNHL {stat_choice} Analysis (Fixed Ranking) for teams {', '.join(team_list)}:")
             print("🟢 " + ", ".join(green["Player"].tolist()))
             print("🟡 " + ", ".join(yellow["Player"].tolist()))
             print("🔴 " + ", ".join(red["Player"].tolist()))
 
 def analyze_mlb_by_team_interactive(df):
-    """
-    Interactive MLB analysis.
-    Simply prints the top 9 players from the cleaned MLB dataframe.
-    """
     if df.empty:
         print("MLB stats CSV not found or empty.")
         return
     print("Available MLB columns:", df.columns.tolist())
-    print("\nTop 9 MLB Players:")
-    top9 = df.head(9)
-    for idx, row in top9.iterrows():
-        print(f"{row['PLAYER']} ({row['TEAM']})")
+    print("\nTop MLB Players (filtered by team if provided):")
+    teams_input = input("Enter MLB team names separated by commas (or press Enter to show all): ").strip().upper()
+    if teams_input:
+        team_list = [x.strip() for x in teams_input.split(",")]
+        filtered_df = df[df["TEAM"].isin(team_list)]
+    else:
+        filtered_df = df
+    if filtered_df.empty:
+        print("❌ No matching teams found.")
+    else:
+        top9 = filtered_df.head(9)
+        for idx, row in top9.iterrows():
+            print(f"{row['PLAYER']} ({row['TEAM']})")
+
+def load_player_stats():
+    file_path = "/Users/Q/Documents/Documents/RealSports/CBB/cbb_players_stats.csv"
+    if not os.path.exists(file_path):
+        print(f"Error: File '{file_path}' not found. Please update the path.")
+        return pd.DataFrame()
+    return pd.read_csv(file_path)
 
 # --------------------------------------------------
-# Main Menu and Sport Selection
+# NBA Integration Functions
+# --------------------------------------------------
+def integrate_nba_data(player_stats_file, injury_report_file):
+    stats_df = load_nba_player_stats(player_stats_file)
+    injuries_df = load_nba_injury_report(injury_report_file)
+    return merge_nba_stats_with_injuries(stats_df, injuries_df)
+
+def load_nba_player_stats(file_path):
+    return pd.read_csv(file_path)
+
+def load_nba_injury_report(file_path):
+    return pd.read_csv(file_path)
+
+def merge_nba_stats_with_injuries(stats_df, injuries_df):
+    stats_df['PLAYER'] = stats_df['PLAYER'].str.strip()
+    injuries_df['playerName'] = injuries_df['playerName'].str.strip()
+    merged_df = pd.merge(stats_df, injuries_df, left_on='PLAYER', right_on='playerName', how='left')
+    healthy_players_df = merged_df[merged_df['injury'].isnull()]
+    return healthy_players_df
+
+# --------------------------------------------------
+# Main Menu (Interactive)
 # --------------------------------------------------
 def main():
     print("✅ Files loaded successfully")

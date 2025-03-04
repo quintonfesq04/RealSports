@@ -1,8 +1,9 @@
 import sys
 import pandas as pd
 from notion_client import Client
-import pexpect
 import time
+from datetime import datetime
+import Universal_Sports_Analyzer as USA  # Import our analyzer module
 
 # ---------------
 # CONFIGURATION
@@ -13,174 +14,21 @@ POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
 client = Client(auth=NOTION_TOKEN)
 
-# Mapping from Sport name to expected sport number.
-sports_mapping = {
-    "CBB": "1",
-    "NBA": "2",
-    "NHL": "3",
-    "MLB": "4"
-}
-
-# ---------------
-# RUN UNIVERSAL SPORTS ANALYZER VIA PEXPECT (SIMULATED INTERACTIVE INPUT)
-# ---------------
-def run_universal_sports_analyzer(team1, team2, sport, stat, target):
-    sports_num = sports_mapping.get(sport.upper(), "5")
-    teams = f"{team1}, {team2}"
-    
-    try:
-        child = pexpect.spawn("python Universal_Sports_Analyzer.py", encoding="utf-8", timeout=30)
-        child.logfile = sys.stdout  # for debugging
-        
-        # Common start: select sport and send team names.
-        child.expect(r"Choose an option", timeout=30)
-        time.sleep(0.05)
-        child.sendline(sports_num)
-        
-        child.expect(r"team names", timeout=30)
-        time.sleep(0.05)
-        child.sendline(teams)
-        
-        # Branch by sport.
-        if sport.upper() == "MLB":
-            # MLB flow: after teams, wait for a second team names prompt then exit.
-            child.expect(r"team names", timeout=30)
-            time.sleep(0.05)
-            child.sendline("exit")
-            child.expect(r"Choose an option", timeout=30)
-            time.sleep(0.05)
-            child.sendline("5")
-            
-        elif sport.upper() == "NHL":
-            # NHL flow: after teams, the analyzer asks for stat.
-            child.expect(r"stat", timeout=30)
-            time.sleep(0.05)
-            child.sendline(stat)
-            # NHL does not use a target value.
-            child.expect(r"team names", timeout=30)
-            time.sleep(0.05)
-            child.sendline("exit")
-            child.expect(r"Choose an option", timeout=30)
-            time.sleep(0.05)
-            child.sendline("5")
-                
-        elif sport.upper() == "NBA":
-            # NBA flow: after sending team names, the analyzer asks for a stat.
-            child.expect(r"stat", timeout=30)
-            time.sleep(0.05)
-            child.sendline(stat)
-            
-            # For NBA, use expect_exact if the prompt is predictable:
-            if target.strip():
-                prompt = f"Enter target {stat} value (per game):"
-                try:
-                    child.expect_exact(prompt, timeout=30)
-                except pexpect.TIMEOUT:
-                    print(f"Timeout waiting for NBA target prompt: {prompt}")
-                    # Optionally, you can decide to send a default value:
-                    child.sendline("0")
-                else:
-                    time.sleep(0.05)
-                    child.sendline(target)
-            else:
-                # If no target was provided, send a default (e.g. 0)
-                child.expect_exact(f"Enter target {stat} value (per game):", timeout=30)
-                time.sleep(0.05)
-                child.sendline("0")
-            
-            # Wait for the analysis output by matching one of the pick emojis.
-            child.expect([r"🟢", r"🟡", r"🔴"], timeout=30)
-            time.sleep(0.05)
-            
-            # Once the analysis is printed, exit the input loop.
-            child.expect(r"team names", timeout=30)
-            time.sleep(0.05)
-            child.sendline("exit")
-            
-            # Exit the main menu.
-            child.expect(r"Choose an option", timeout=30)
-            time.sleep(0.05)
-            child.sendline("5")
-            
-        elif sport.upper() == "CBB":
-            # College Basketball flow: similar logic using expect_exact.
-            child.expect(r"stat", timeout=30)
-            time.sleep(0.05)
-            child.sendline(stat)
-            
-            # Build the exact prompt string.
-            prompt = f"Enter target {stat} value (per game):"
-            try:
-                child.expect_exact(prompt, timeout=30)
-            except pexpect.TIMEOUT:
-                print(f"Timeout waiting for CBB target prompt: {prompt}")
-                # Optionally send a default value.
-                child.sendline("0")
-            else:
-                time.sleep(0.05)
-                child.sendline(target if target.strip() else "0")
-            
-            # Wait for the next expected prompt (for example, team names) to know the analyzer is done.
-            child.expect(r"team names", timeout=30)
-            time.sleep(0.05)
-            child.sendline("exit")
-            
-            # Exit the main menu.
-            child.expect(r"Choose an option", timeout=30)
-            time.sleep(0.05)
-            child.sendline("5")
-            
-        else:
-            # Default fallback flow.
-            child.expect(r"team names", timeout=30)
-            time.sleep(0.05)
-            child.sendline("exit")
-            child.expect(r"Choose an option", timeout=30)
-            time.sleep(0.05)
-            child.sendline("exit")
-        
-        child.expect(pexpect.EOF, timeout=30)
-    except pexpect.exceptions.TIMEOUT as te:
-        print("Universal_Sports_Analyzer.py timed out:", te)
-        return ""
-    except pexpect.exceptions.EOF as eof:
-        print("Unexpected EOF:", eof)
-        return ""
-    
-    # Capture only the lines that start with one of the pick emojis.
-    result_lines = []
-    for line in child.before.splitlines():
-        stripped = line.strip()
-        if stripped.startswith("🟢") or stripped.startswith("🟡") or stripped.startswith("🔴"):
-            result_lines.append(stripped)
-    return "\n".join(result_lines)
-
-# ---------------
-# FETCH UNPROCESSED ROWS FROM NOTION DATABASE
-# ---------------
 def fetch_unprocessed_rows():
-    """
-    Query the inline database for rows where the Processed property (select) equals "no".
-    Assumes your database has:
-      - Team 1 (rich_text or title)
-      - Team 2 (rich_text)
-      - Sport (select)
-      - Stat (rich_text or select)
-      - Target (rich_text)
-      - Processed (select) with options "yes" and "no"
-      
-    Also extracts the created_time so we can sort the rows from top to bottom.
-    """
     try:
         response = client.databases.query(
             database_id=DATABASE_ID,
             filter={
                 "property": "Processed",
                 "select": {"equals": "no"}
-            }
+            },
+            sort=[{
+                "property": "Order",    # Sorting by your custom "Order" property
+                "direction": "ascending"
+            }]
         )
     except Exception as e:
-        print("Error querying database. Ensure your inline database has a select property named 'Processed' with an option 'no'.", e)
+        print("Error querying database:", e)
         return []
     
     rows = []
@@ -189,7 +37,6 @@ def fetch_unprocessed_rows():
         created_time = result.get("created_time", "")
         props = result.get("properties", {})
         
-        # Extract "Team 1"
         team1_data = props.get("Team 1", {})
         if team1_data.get("type") == "title":
             team1_parts = team1_data.get("title", [])
@@ -197,27 +44,29 @@ def fetch_unprocessed_rows():
             team1_parts = team1_data.get("rich_text", [])
         team1 = "".join(part.get("plain_text", "") for part in team1_parts)
         
-        # Extract "Team 2"
         team2_parts = props.get("Team 2", {}).get("rich_text", [])
         team2 = "".join(part.get("plain_text", "") for part in team2_parts)
         
-        # Extract "Sport" (select)
         sport_select = props.get("Sport", {}).get("select", {})
         sport = sport_select.get("name", "") if sport_select else ""
         
-        # Extract "Stat" (select or rich_text)
         stat_value = ""
         stat_prop = props.get("Stat", {})
-        if "select" in stat_prop:
+        if stat_prop.get("type") == "select":
             stat_select = stat_prop.get("select")
             stat_value = stat_select.get("name", "") if stat_select else ""
-        elif "rich_text" in stat_prop:
+        elif stat_prop.get("type") == "rich_text":
             stat_rich = stat_prop.get("rich_text", [])
             stat_value = "".join(part.get("plain_text", "") for part in stat_rich)
         
-        # Extract "Target" (rich_text)
-        target_parts = props.get("Target", {}).get("rich_text", [])
-        target_value = "".join(part.get("plain_text", "") for part in target_parts)
+        target_prop = props.get("Target", {})
+        if target_prop.get("type") == "number":
+            target_value = str(target_prop.get("number", ""))
+        elif target_prop.get("type") == "rich_text":
+            target_rich = target_prop.get("rich_text", [])
+            target_value = "".join(part.get("plain_text", "") for part in target_rich)
+        else:
+            target_value = ""
         
         rows.append({
             "page_id": page_id,
@@ -229,23 +78,20 @@ def fetch_unprocessed_rows():
             "created_time": created_time
         })
     
-    # Sort rows in ascending order by created_time (top-to-bottom).
-    rows.sort(key=lambda x: x["created_time"])
+    # The query sorts by Order, but if the returned order is the reverse of what you expect,
+    # you can reverse the list:
+    rows = list(reversed(rows))
+    
+    # Optionally, if you want to verify by created_time (comment out if not needed):
+    # try:
+    #     rows.sort(key=lambda x: datetime.fromisoformat(x["created_time"].replace("Z", "+00:00")))
+    # except Exception as e:
+    #     print("Error sorting rows by created_time:", e)
     return rows
 
-# ---------------
-# APPEND POLL ENTRIES TO THE POLL PAGE AS SEPARATE BLOCKS
-# ---------------
 def append_poll_entries_to_page(entries):
-    """
-    Append each poll entry as two separate blocks:
-      - One block for the game title.
-      - One block for the overall output (the picks).
-    A divider block is added between games.
-    """
     blocks = []
     for entry in entries:
-        # Title block.
         blocks.append({
             "object": "block",
             "type": "paragraph",
@@ -253,7 +99,6 @@ def append_poll_entries_to_page(entries):
                 "rich_text": [{"type": "text", "text": {"content": entry["title"]}}]
             }
         })
-        # Output block.
         blocks.append({
             "object": "block",
             "type": "paragraph",
@@ -261,30 +106,31 @@ def append_poll_entries_to_page(entries):
                 "rich_text": [{"type": "text", "text": {"content": entry["output"]}}]
             }
         })
-        # Divider block.
         blocks.append({
             "object": "block",
             "type": "divider",
             "divider": {}
         })
     
-    try:
-        response = client.blocks.children.append(
-            block_id=POLL_PAGE_ID,
-            children=blocks
-        )
-        return response
-    except Exception as e:
-        print(f"Error updating poll page with entries: {e}")
-        return None
+    max_blocks = 100
+    def chunk_list(lst, n):
+        for i in range(0, len(lst), n):
+            yield lst[i:i+n]
+    
+    responses = []
+    for block_chunk in chunk_list(blocks, max_blocks):
+        try:
+            response = client.blocks.children.append(
+                block_id=POLL_PAGE_ID,
+                children=block_chunk
+            )
+            responses.append(response)
+        except Exception as e:
+            print(f"Error updating poll page with a block chunk: {e}")
+            return None
+    return responses
 
-# ---------------
-# UPDATE ROW TO MARK AS PROCESSED (OPTIONAL)
-# ---------------
 def mark_row_as_processed(page_id):
-    """
-    Update the row to mark it as processed by setting the Processed property to "Yes".
-    """
     try:
         client.pages.update(
             page_id=page_id,
@@ -295,9 +141,57 @@ def mark_row_as_processed(page_id):
     except Exception as e:
         print(f"Error marking row {page_id} as processed: {e}")
 
-# ---------------
-# MAIN WORKFLOW
-# ---------------
+def run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target):
+    sport_upper = sport.upper()
+    teams = [team1.strip().upper(), team2.strip().upper()]
+    
+    def parse_target(target):
+        t = target.strip().lower()
+        if t in ["", "none"]:
+            return None
+        try:
+            return float(t)
+        except Exception:
+            return None
+
+    if sport_upper == "NBA":
+        df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
+        used_stat = stat.upper() if stat.strip() else "PPG"
+        used_target = parse_target(target)
+        result = USA.analyze_sport_noninteractive(
+            df, USA.STAT_CATEGORIES_NBA, "PLAYER", "TEAM", teams, used_stat, used_target
+        )
+    elif sport_upper == "CBB":
+        df = USA.load_player_stats()
+        used_stat = stat.upper() if stat.strip() else "PPG"
+        used_target = parse_target(target)
+        result = USA.analyze_sport_noninteractive(
+            df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, used_target
+        )
+    elif sport_upper == "MLB":
+        df = USA.integrate_mlb_data()
+        used_stat = stat.upper() if stat.strip() else "RBI"
+        if parse_target(target) is not None:
+            result = USA.analyze_sport_noninteractive(
+                df, USA.STAT_CATEGORIES_MLB, "PLAYER", "TEAM", teams, used_stat, parse_target(target)
+            )
+        else:
+            result = USA.analyze_mlb_noninteractive(df, teams, used_stat)
+    elif sport_upper == "NHL":
+        df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
+        if stat.strip():
+            nhl_stat = stat.upper()
+        else:
+            nhl_stat = "GOALS"
+        if nhl_stat == "S":
+            used_target = parse_target(target)
+            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, used_target)
+        else:
+            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, None)
+    else:
+        result = "Sport not recognized."
+    return result
+
 def main():
     rows = fetch_unprocessed_rows()
     if not rows:
@@ -313,13 +207,11 @@ def main():
         stat = row["stat"]
         target = row["target"]
         
-        picks_output = run_universal_sports_analyzer(team1, team2, sport, stat, target)
+        picks_output = run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target)
         title = f"Game: {team1} vs {team2} ({sport}, {stat}, Target: {target})"
-        overall_output = picks_output
-        
         poll_entries.append({
             "title": title,
-            "output": overall_output
+            "output": picks_output
         })
         
         mark_row_as_processed(page_id)
