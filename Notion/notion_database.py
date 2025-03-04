@@ -1,10 +1,11 @@
-import sys
 import pandas as pd
 from notion_client import Client
 import time
 from datetime import datetime
 import asyncio
-import Universal_Sports_Analyzer as USA  # Import our analyzer module
+import sys
+sys.path.append("/Users/Q/Documents/Documents/RealSports")
+import Universal_Sports_Analyzer as USA
 
 # ---------------
 # CONFIGURATION
