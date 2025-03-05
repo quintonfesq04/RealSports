@@ -4978,3 +4978,953 @@ Total stats rows fetched: 1076
 💾 Fetched MLB injury data with 168 rows.
 💾 Saved mlb_injuries.csv.
 MLB data scraping complete.
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Error loading stats page 2 Message: timeout: Timed out receiving message from renderer: 17.529
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001053102d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000105308934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x0000000104e69f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x0000000104e5430c cxxbridge1$string$len + 4140
+4   chromedriver                        0x0000000104e54084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000104e51d9c chromedriver + 187804
+6   chromedriver                        0x0000000104e529f4 chromedriver + 190964
+7   chromedriver                        0x0000000104e60848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x0000000104e760a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x0000000104e53028 chromedriver + 192552
+10  chromedriver                        0x0000000104e75e84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x0000000104ef215c cxxbridge1$string$len + 650876
+12  chromedriver                        0x0000000104ea5060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x00000001052d8c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x00000001052dbf58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x00000001052be578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x00000001052dc818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x00000001052aef2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x00000001052f8a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x00000001052f8be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001053085a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x000000018ad202e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000018ad1b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Error loading stats page 5 Message: timeout: Timed out receiving message from renderer: 17.275
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001053102d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000105308934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x0000000104e69f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x0000000104e5430c cxxbridge1$string$len + 4140
+4   chromedriver                        0x0000000104e54084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000104e51d9c chromedriver + 187804
+6   chromedriver                        0x0000000104e529f4 chromedriver + 190964
+7   chromedriver                        0x0000000104e60848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x0000000104e760a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x0000000104e53028 chromedriver + 192552
+10  chromedriver                        0x0000000104e75e84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x0000000104ef215c cxxbridge1$string$len + 650876
+12  chromedriver                        0x0000000104ea5060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x00000001052d8c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x00000001052dbf58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x00000001052be578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x00000001052dc818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x00000001052aef2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x00000001052f8a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x00000001052f8be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001053085a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x000000018ad202e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000018ad1b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1126
+💾 Saved mlb_stats.csv with raw stats data.
+💾 Fetched MLB injury data with 168 rows.
+💾 Saved mlb_injuries.csv.
+MLB data scraping complete.
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+💾 Saved mlb_stats.csv with raw stats data.
+💾 Fetched MLB injury data with 166 rows.
+💾 Saved mlb_injuries.csv.
+MLB data scraping complete.
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Error loading stats page 5 Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001044daed8 chromedriver + 192216
+4   chromedriver                        0x00000001044fe520 cxxbridge1$string$len + 143936
+5   chromedriver                        0x000000010456101c cxxbridge1$string$len + 548156
+6   chromedriver                        0x0000000104579994 cxxbridge1$string$len + 648884
+7   chromedriver                        0x000000010452d060 cxxbridge1$string$len + 335232
+8   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+9   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+10  chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+11  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+12  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+13  chromedriver                        0x0000000104980a60 cxxbridge1$str$ptr + 2643464
+14  chromedriver                        0x0000000104980be8 cxxbridge1$str$ptr + 2643856
+15  chromedriver                        0x00000001049905a8 cxxbridge1$str$ptr + 2707792
+16  libsystem_pthread.dylib             0x00000001915842e4 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000019157f0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Error loading stats page 6 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Error loading stats page 7 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Error loading stats page 8 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Error loading stats page 9 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Error loading stats page 10 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Error loading stats page 11 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Error loading stats page 12 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Error loading stats page 13 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Error loading stats page 14 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Error loading stats page 15 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Error loading stats page 16 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Error loading stats page 17 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Error loading stats page 18 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Error loading stats page 19 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Error loading stats page 20 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Error loading stats page 21 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Error loading stats page 22 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Error loading stats page 23 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Error loading stats page 24 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Error loading stats page 25 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Error loading stats page 26 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Error loading stats page 27 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Error loading stats page 28 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Error loading stats page 29 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Error loading stats page 30 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Error loading stats page 31 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Error loading stats page 32 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Error loading stats page 33 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Error loading stats page 34 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Error loading stats page 35 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Error loading stats page 36 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Error loading stats page 37 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Error loading stats page 38 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Error loading stats page 39 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Error loading stats page 40 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Error loading stats page 41 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Error loading stats page 42 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Error loading stats page 43 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Error loading stats page 44 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Error loading stats page 45 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Error loading stats page 46 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Error loading stats page 47 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x00000001049982d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104990934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001044f1e04 cxxbridge1$string$len + 92964
+3   chromedriver                        0x000000010452c3d8 cxxbridge1$string$len + 332024
+4   chromedriver                        0x0000000104554a84 cxxbridge1$string$len + 497572
+5   chromedriver                        0x0000000104553d84 cxxbridge1$string$len + 494244
+6   chromedriver                        0x00000001044c1cd0 chromedriver + 89296
+7   chromedriver                        0x0000000104960c38 cxxbridge1$str$ptr + 2512864
+8   chromedriver                        0x0000000104963f58 cxxbridge1$str$ptr + 2525952
+9   chromedriver                        0x0000000104946578 cxxbridge1$str$ptr + 2404640
+10  chromedriver                        0x0000000104964818 cxxbridge1$str$ptr + 2528192
+11  chromedriver                        0x0000000104936f2c cxxbridge1$str$ptr + 2341588
+12  chromedriver                        0x00000001044c06d0 chromedriver + 83664
+13  dyld                                0x0000000191204274 start + 2840
+
+Total stats rows fetched: 101
+💾 Saved mlb_stats.csv with raw stats data.
+💾 Fetched MLB injury data with 165 rows.
+💾 Saved mlb_injuries.csv.
+MLB data scraping complete.

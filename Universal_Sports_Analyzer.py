@@ -40,6 +40,23 @@ STAT_CATEGORIES_MLB = {
     "OPS": "OPS"
 }
 
+# Define a dictionary mapping alternate names to the canonical name.
+TEAM_ALIASES = {
+    "QUOC": "QUOC",            # Canonical name remains the same.
+    "QUOCAPP": "QUOC",         # Alternate name for QUOC.
+    "LIP": "LIP",
+    "LIPALPHA": "LIP",         # Alternate name for LIP.
+    # Add additional aliases as needed.
+}
+
+def normalize_team_name(team):
+    """
+    Convert the input team name to its canonical form using TEAM_ALIASES.
+    The function strips whitespace and uppercases the name.
+    """
+    team_clean = team.strip().upper()
+    return TEAM_ALIASES.get(team_clean, team_clean)
+
 # --------------------------------------------------
 # Utility Functions: Header Cleaning and MLB Name Fixing
 # --------------------------------------------------
@@ -353,11 +370,12 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
 # --------------------------------------------------
 def analyze_sport(df, stat_categories, player_col, team_col):
     while True:
-        teams = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ").replace(" ", "").upper()
-        if teams.lower() == 'exit':
+        teams_input = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ")
+        if teams_input.lower() == 'exit':
             break
-        team_list = teams.split(",")
-        filtered_df = df[df[team_col].isin(team_list)].copy()
+        # Instead of removing all spaces, split by commas and normalize each team name.
+        team_list = [normalize_team_name(t) for t in teams_input.split(",") if t.strip()]
+        filtered_df = df[df[team_col].apply(lambda x: normalize_team_name(x)) .isin(team_list)].copy()
         if filtered_df.empty:
             print("❌ No matching teams found. Please check the team names.")
             continue

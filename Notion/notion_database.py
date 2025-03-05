@@ -249,7 +249,7 @@ def run_universal_sports_analyzer_programmatic(row):
                 df.columns = [col.upper() for col in df.columns]
             except Exception as e:
                 return f"Error reading PSP CSV: {e}"
-            sorted_df = df.sort_values(by=USA.STAT_CATEGORIES_NBA[stat_key], ascending=False)
+            sorted_df = df.sort_values(by=stat_key, ascending=False)
             yellow = sorted_df.iloc[0:3]
             green = sorted_df.iloc[3:6]
             red = sorted_df.iloc[9:12]
