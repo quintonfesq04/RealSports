@@ -40,22 +40,19 @@ STAT_CATEGORIES_MLB = {
     "OPS": "OPS"
 }
 
+# --------------------------------------------------
+# Team Name Normalization
+# --------------------------------------------------
 # Define a dictionary mapping alternate names to the canonical name.
 TEAM_ALIASES = {
-    "QUOC": "QUOC",            # Canonical name remains the same.
-    "QUOCAPP": "QUOC",         # Alternate name for QUOC.
-    "LIP": "LIP",
-    "LIPALPHA": "LIP",         # Alternate name for LIP.
-    # Add additional aliases as needed.
+    "QUC": "QUOC",
+    "AZ": "ARI",
+    "ARZ": "ARI"
 }
 
 def normalize_team_name(team):
-    """
-    Convert the input team name to its canonical form using TEAM_ALIASES.
-    The function strips whitespace and uppercases the name.
-    """
-    team_clean = team.strip().upper()
-    return TEAM_ALIASES.get(team_clean, team_clean)
+    team = team.strip().upper()
+    return TEAM_ALIASES.get(team, team)
 
 # --------------------------------------------------
 # Utility Functions: Header Cleaning and MLB Name Fixing
@@ -77,13 +74,10 @@ def fix_mlb_player_name(name):
     Fix an MLB player name by:
       1. Removing any digits.
       2. Removing extra spaces.
-      3. If the name ends with an extra letter followed by a period (e.g. "Nathan MacKinnonN."), remove the extra letter.
+      3. Removing an extra trailing letter if present.
     """
-    # Remove digits.
     name = re.sub(r'\d+', '', name).strip()
-    # Remove extra spaces.
     name = re.sub(r'\s+', ' ', name)
-    # Check for a pattern like "FirstName LastNameX." and remove the extra letter.
     match = re.match(r"^(.*[A-Za-z])([A-Za-z])\.$", name)
     if match:
         name = match.group(2).strip()
@@ -121,9 +115,8 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col):
     except Exception as e:
         print("Error converting stat column to numeric:", e)
         return df
-    # For NBA/CBB, a valid nonzero target is required.
     if target_value is None or target_value == 0:
-        return pd.DataFrame()  # Or return an error message.
+        return pd.DataFrame()
     df["Success_Rate"] = ((df[stat_choice] / target_value) * 100).round(1)
     
     df.loc[df["Success_Rate"] >= 110, "Category"] = "🟡 Favorite"
@@ -237,9 +230,11 @@ def integrate_mlb_data():
 # MLB Noninteractive Analysis (Ranking Slices)
 # --------------------------------------------------
 def analyze_mlb_noninteractive(df, teams, stat_choice):
-    # Filter MLB data by team(s) if provided.
     if teams:
-        filtered_df = df[df["TEAM"].isin(teams)].copy()
+        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()] if isinstance(teams, str) else [normalize_team_name(t) for t in teams]
+        print("Normalized CSV team names:", df["TEAM"].astype(str).apply(normalize_team_name).unique())
+        print("Team list from input:", team_list)
+        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     else:
         filtered_df = df.copy()
     if filtered_df.empty:
@@ -252,8 +247,6 @@ def analyze_mlb_noninteractive(df, teams, stat_choice):
     except Exception as e:
         return f"Error converting stat column: {e}"
     sorted_df = filtered_df.sort_values(by=mapped_stat, ascending=False)
-    # Define ranking slices:
-    # Yellow: rows 0-2, Green: rows 3-5, Red: rows 6-8.
     yellow = sorted_df.iloc[0:3]
     green = sorted_df.iloc[3:6]
     red = sorted_df.iloc[6:9]
@@ -266,7 +259,15 @@ def analyze_mlb_noninteractive(df, teams, stat_choice):
 # Non-interactive (Programmatic) Interfaces for NBA/CBB and NHL
 # --------------------------------------------------
 def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value):
-    filtered_df = df[df[team_col].isin(teams)].copy()
+    if isinstance(teams, str):
+        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
+    else:
+        team_list = [normalize_team_name(t) for t in teams]
+    
+    print("Normalized CSV team names:", df[team_col].astype(str).apply(normalize_team_name).unique())
+    print("Team list from input:", team_list)
+    
+    filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     if filtered_df.empty:
         return "❌ No matching teams found."
     mapped_stat = stat_categories.get(stat_choice)
@@ -277,16 +278,12 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
         df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
     except Exception as e:
         return f"Error converting stat column: {e}"
-    
     if target_value is None or target_value == 0:
         return "Target value required and must be nonzero."
-    
     df_mode["Success_Rate"] = ((df_mode[mapped_stat] / target_value) * 100).round(1)
-    
     df_mode.loc[df_mode["Success_Rate"] >= 110, "Category"] = "🟡 Favorite"
     df_mode.loc[(df_mode["Success_Rate"] >= 85) & (df_mode["Success_Rate"] < 110), "Category"] = "🟢 Best Bet"
     df_mode.loc[df_mode["Success_Rate"] < 85, "Category"] = "🔴 Underdog"
-
     df_mode = df_mode.drop_duplicates(subset=[player_col, team_col])
     red_players = df_mode[df_mode["Category"] == "🔴 Underdog"].nlargest(3, "Success_Rate")
     if len(red_players) < 3:
@@ -350,7 +347,7 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
                 return "Required raw data for shots per game is missing."
         elif stat_choice == "POINTS":
             try:
-                df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors="coerce")
+                df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors='coerce')
             except Exception as e:
                 return f"Error converting points: {e}"
             sorted_df = df_mode.sort_values(by="PTS", ascending=False)
@@ -373,9 +370,10 @@ def analyze_sport(df, stat_categories, player_col, team_col):
         teams_input = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ")
         if teams_input.lower() == 'exit':
             break
-        # Instead of removing all spaces, split by commas and normalize each team name.
         team_list = [normalize_team_name(t) for t in teams_input.split(",") if t.strip()]
-        filtered_df = df[df[team_col].apply(lambda x: normalize_team_name(x)) .isin(team_list)].copy()
+        print("Normalized CSV team names:", df[team_col].astype(str).apply(normalize_team_name).unique())
+        print("Team list from input:", team_list)
+        filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
         if filtered_df.empty:
             print("❌ No matching teams found. Please check the team names.")
             continue
@@ -471,7 +469,7 @@ def analyze_nhl_flow(df):
                     continue
             elif stat_choice == "POINTS":
                 try:
-                    df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors="coerce")
+                    df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors='coerce')
                 except Exception as e:
                     print("Error converting points to numeric:", e)
                     continue
@@ -497,7 +495,9 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
     teams_input = input("Enter MLB team names separated by commas (or press Enter to show all): ").strip().upper()
     if teams_input:
         team_list = [x.strip() for x in teams_input.split(",")]
-        filtered_df = df[df["TEAM"].isin(team_list)]
+        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)]
+        print("Normalized CSV team names:", df["TEAM"].astype(str).apply(normalize_team_name).unique())
+        print("Team list from input:", team_list)
     else:
         filtered_df = df
 
@@ -506,13 +506,9 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
         return
 
     sorted_df = filtered_df.sort_values(by=mapped_stat, ascending=False)
-    
-    # Rankings: Yellow: 1-3, Green: 5-7, Red: 10-12
     yellow = sorted_df.iloc[0:3]
     green = sorted_df.iloc[4:7]
     red = sorted_df.iloc[9:12]
-
-    # Using correct column name "PLAYER"
     print("🟢 " + ", ".join(green["PLAYER"].tolist()))
     print("🟡 " + ", ".join(yellow["PLAYER"].tolist()))
     print("🔴 " + ", ".join(red["PLAYER"].tolist()))

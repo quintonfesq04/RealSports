@@ -171,3 +171,6 @@ Script finished.
 An error occurred: 'NoneType' object has no attribute 'strip'
 💾 Saved NHL injury report data
 Script finished.
+💾 Saved player stats to nhl_player_stats.csv
+💾 Saved NHL injury report data
+Script finished.

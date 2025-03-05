@@ -5928,3 +5928,56 @@ Total stats rows fetched: 101
 💾 Fetched MLB injury data with 165 rows.
 💾 Saved mlb_injuries.csv.
 MLB data scraping complete.
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+💾 Saved mlb_stats.csv with raw stats data.
+💾 Fetched MLB injury data with 166 rows.
+💾 Saved mlb_injuries.csv.
+MLB data scraping complete.
