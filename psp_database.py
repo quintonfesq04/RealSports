@@ -1,0 +1,222 @@
+import os
+import time
+import re
+import pandas as pd
+import urllib.parse
+from notion_client import Client
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from bs4 import BeautifulSoup
+
+# --------------------------
+# Notion & Scraper Settings
+# --------------------------
+NOTION_TOKEN = "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"
+DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
+# StatMuse base settings
+BASE_URL = "https://www.statmuse.com"
+TIME_PERIOD = "past month"
+
+# Initialize Notion client
+notion = Client(auth=NOTION_TOKEN)
+
+# --------------------------
+# Notion Database Functions
+# --------------------------
+def fetch_unprocessed_rows():
+    """
+    Queries the Notion database for rows where Processed equals "no".
+    Assumes your database has properties: Teams, Sport, Stat, Processed, and ID.
+    """
+    try:
+        response = notion.databases.query(
+            database_id=DATABASE_ID,
+            filter={
+                "property": "Processed",
+                "select": {"equals": "no"}
+            }
+        )
+    except Exception as e:
+        print("Error querying Notion database:", e)
+        return []
+    
+    rows = []
+    for result in response.get("results", []):
+        page_id = result["id"]
+        props = result.get("properties", {})
+        
+        # Extract Teams (assume it's a title or rich_text property)
+        team_prop = props.get("Teams", {})
+        if team_prop.get("type") == "title":
+            team_parts = team_prop.get("title", [])
+        else:
+            team_parts = team_prop.get("rich_text", [])
+        teams = "".join(part.get("plain_text", "") for part in team_parts)
+        
+        # Extract Sport (select property)
+        sport_prop = props.get("Sport", {}).get("select", {})
+        sport = sport_prop.get("name", "") if sport_prop else ""
+        
+        # Extract Stat (select or rich_text)
+        stat_prop = props.get("Stat", {})
+        if "select" in stat_prop:
+            stat = stat_prop.get("select", {}).get("name", "")
+        elif "rich_text" in stat_prop:
+            stat = "".join(part.get("plain_text", "") for part in stat_prop.get("rich_text", []))
+        else:
+            stat = ""
+        
+        rows.append({
+            "page_id": page_id,
+            "teams": teams,
+            "sport": sport,
+            "stat": stat
+        })
+    return rows
+
+def mark_row_as_processed(page_id):
+    """Marks the given page (row) as processed by updating the Processed property to "Yes"."""
+    try:
+        notion.pages.update(
+            page_id=page_id,
+            properties={
+                "Processed": {"select": {"name": "Yes"}}
+            }
+        )
+    except Exception as e:
+        print(f"Error marking page {page_id} as processed:", e)
+
+# --------------------------
+# Scraping Functions
+# --------------------------
+def build_query_url(query, teams):
+    """
+    Constructs the full StatMuse query URL.
+    Assumes 'teams' is a string of team abbreviations.
+    """
+    teams_str = teams.replace(" ", "")  # Remove extra spaces if any.
+    full_query = f"{query} {TIME_PERIOD} {teams_str}"
+    encoded_query = urllib.parse.quote_plus(full_query)
+    url = f"{BASE_URL}/ask?q={encoded_query}"
+    return url
+
+def fetch_html(url):
+    """Uses Selenium to load the dynamic StatMuse page and returns the HTML."""
+    print("Fetching data from StatMuse with URL:")
+    print(url)
+    
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.get(url)
+    
+    try:
+        wait = WebDriverWait(driver, 15)
+        # Wait for the container that holds the data (adjust if needed)
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.flex-1.overflow-x-auto")))
+        print("Data appears to have loaded.")
+    except Exception as e:
+        print("Explicit wait failed:", e)
+    
+    html = driver.page_source
+    driver.quit()
+    return html
+
+def parse_table(html_content):
+    """
+    Parses the HTML and extracts the table of player data.
+    Returns a list of dictionaries (one per row).
+    """
+    soup = BeautifulSoup(html_content, "html.parser")
+    container = soup.select_one("div.flex-1.overflow-x-auto")
+    if not container:
+        print("Container not found.")
+        return None
+    
+    table = container.find("table")
+    if not table:
+        print("Table element not found.")
+        return None
+    
+    header_row = table.find("thead")
+    if not header_row:
+        print("No table header found.")
+        return None
+    headers = [th.get_text(strip=True) for th in header_row.find_all("th")]
+    print("Headers found:", headers)
+    
+    body = table.find("tbody")
+    if not body:
+        print("No table body found.")
+        return None
+    rows = []
+    for tr in body.find_all("tr"):
+        cells = [td.get_text(strip=True) for td in tr.find_all("td")]
+        if len(cells) == len(headers):
+            row_dict = dict(zip(headers, cells))
+            # Clean the NAME field if present
+            if "NAME" in row_dict:
+                row_dict["NAME"] = clean_name(row_dict["NAME"])
+            rows.append(row_dict)
+        else:
+            print("Skipping row with unexpected number of cells:", cells)
+    return rows
+
+def scrape_statmuse_data(sport, stat, teams):
+    """
+    Builds a dynamic query for the given sport, stat, and teams,
+    fetches and parses the page,
+    and returns the data (list of dictionaries).
+    """
+    query = f"{stat} leaders {sport.lower()}"
+    url = build_query_url(query, teams)
+    html = fetch_html(url)
+    data = parse_table(html)
+    return data
+
+def clean_name(name):
+    name = name.strip()
+    period_index = name.find('.')
+    # Only modify if a period exists and it's not the very beginning
+    if period_index != -1 and period_index > 0:
+        # Return the substring up to one character before the period.
+        return name[:period_index-1].strip()
+    return name
+
+# --------------------------
+# Main Process
+# --------------------------
+def main():
+    rows = fetch_unprocessed_rows()
+    if not rows:
+        print("No unprocessed rows found.")
+        return
+
+    for row in rows:
+        page_id = row["page_id"]
+        teams = row["teams"]  # Expecting a comma-separated string of teams.
+        sport = row["sport"]
+        stat = row["stat"]
+        
+        print(f"\nProcessing row for Sport: {sport}, Stat: {stat}, Teams: {teams}")
+        data = scrape_statmuse_data(sport, stat, teams)
+        if data:
+            # Build a file name based on sport and stat (replace spaces with underscores)
+            file_name = f"{sport.lower()}_{stat.lower().replace(' ', '_')}_psp_data.csv"
+            output_file = os.path.join("PSP", file_name)
+            pd.DataFrame(data).to_csv(output_file, index=False)
+            print(f"✅ Data exported to {output_file}")
+        else:
+            print("No data scraped for this row.")
+        
+        mark_row_as_processed(page_id)
+        print(f"Row with ID {page_id} marked as processed.")
+
+if __name__ == "__main__":
+    main()

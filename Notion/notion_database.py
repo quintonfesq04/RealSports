@@ -1,87 +1,118 @@
-import pandas as pd
-from notion_client import Client
-import time
-from datetime import datetime
 import asyncio
 import sys
+import os
+import subprocess
+import pandas as pd
+from datetime import datetime
+from notion_client import Client
+
+# Add the RealSports directory to the Python path so we can import Universal_Sports_Analyzer.
 sys.path.append("/Users/Q/Documents/Documents/RealSports")
 import Universal_Sports_Analyzer as USA
 
-# ---------------
+# -------------------------
 # CONFIGURATION
-# ---------------
+# -------------------------
 NOTION_TOKEN = "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"
-DATABASE_ID = "1aa71b1c663e8035bc89fb1e84a2d919"
+
+# Main polls database ID (for regular game polls)
+DATABASE_ID = "1aa71b1c-663e-8035-bc89-fb1e84a2d919"
+# PSP database ID (for your PSP queries)
+PSP_DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
 POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
 client = Client(auth=NOTION_TOKEN)
 
-def fetch_unprocessed_rows():
+# -------------------------
+# Notion Database Functions
+# -------------------------
+def fetch_unprocessed_rows(database_id):
     try:
         response = client.databases.query(
-            database_id=DATABASE_ID,
+            database_id=database_id,
             filter={
                 "property": "Processed",
                 "select": {"equals": "no"}
             },
             sort=[{
-                "property": "Order",    # Sorting by your custom "Order" property
+                "property": "Order",
                 "direction": "ascending"
             }]
         )
     except Exception as e:
         print("Error querying database:", e)
         return []
-    
+    print(f"Raw Notion API response for database {database_id}:", response)
     rows = []
     for result in response.get("results", []):
         page_id = result["id"]
         created_time = result.get("created_time", "")
         props = result.get("properties", {})
-        
-        team1_data = props.get("Team 1", {})
-        if team1_data.get("type") == "title":
-            team1_parts = team1_data.get("title", [])
+
+        # Extract teams from the "Teams" property if available, otherwise use "Team 1" and "Team 2"
+        if "Teams" in props:
+            team_prop = props["Teams"]
+            if team_prop.get("type") == "title":
+                team_parts = team_prop.get("title", [])
+            else:
+                team_parts = team_prop.get("rich_text", [])
+            teams_raw = "".join(part.get("plain_text", "") for part in team_parts)
+            teams_list = [t.strip().upper() for t in teams_raw.split(",") if t.strip()]
+            team1 = teams_list[0] if teams_list else ""
+            team2 = ""
+            row_teams = teams_list
         else:
-            team1_parts = team1_data.get("rich_text", [])
-        team1 = "".join(part.get("plain_text", "") for part in team1_parts)
-        
-        team2_parts = props.get("Team 2", {}).get("rich_text", [])
-        team2 = "".join(part.get("plain_text", "") for part in team2_parts)
-        
+            team1_data = props.get("Team 1", {})
+            if team1_data.get("type") == "title":
+                team1_parts = team1_data.get("title", [])
+            else:
+                team1_parts = team1_data.get("rich_text", [])
+            team1 = "".join(part.get("plain_text", "") for part in team1_parts).strip().upper()
+            team2_parts = props.get("Team 2", {}).get("rich_text", [])
+            team2 = "".join(part.get("plain_text", "") for part in team2_parts).strip().upper()
+            row_teams = [team1] if team1 else []
+
+        # Sport and Stat
         sport_select = props.get("Sport", {}).get("select", {})
         sport = sport_select.get("name", "") if sport_select else ""
-        
-        stat_value = ""
         stat_prop = props.get("Stat", {})
         if stat_prop.get("type") == "select":
-            stat_select = stat_prop.get("select")
-            stat_value = stat_select.get("name", "") if stat_select else ""
+            stat = stat_prop.get("select", {}).get("name", "")
         elif stat_prop.get("type") == "rich_text":
-            stat_rich = stat_prop.get("rich_text", [])
-            stat_value = "".join(part.get("plain_text", "") for part in stat_rich)
-        
+            stat = "".join(part.get("plain_text", "") for part in stat_prop.get("rich_text", []))
+        else:
+            stat = ""
         target_prop = props.get("Target", {})
         if target_prop.get("type") == "number":
             target_value = str(target_prop.get("number", ""))
         elif target_prop.get("type") == "rich_text":
-            target_rich = target_prop.get("rich_text", [])
-            target_value = "".join(part.get("plain_text", "") for part in target_rich)
+            target_value = "".join(part.get("plain_text", "") for part in target_prop.get("rich_text", []))
         else:
             target_value = ""
+
+        # Extract the Order value from the nested unique_id structure.
+        order_val = None
+        if "Order" in props:
+            order_prop = props["Order"]
+            if order_prop.get("type") == "unique_id":
+                order_val = order_prop.get("unique_id", {}).get("number")
         
+        is_psp = (database_id == PSP_DATABASE_ID)
         rows.append({
             "page_id": page_id,
             "team1": team1,
             "team2": team2,
+            "teams": row_teams,
             "sport": sport,
-            "stat": stat_value,
+            "stat": stat,
             "target": target_value,
-            "created_time": created_time
+            "created_time": created_time,
+            "Order": order_val,
+            "psp": is_psp
         })
-    
-    # If needed, reverse the list (if Notion returns in the opposite order)
-    rows = list(reversed(rows))
+    # Sort rows by the numeric Order value (missing values are treated as infinity)
+    rows.sort(key=lambda x: float(x.get("Order") if x.get("Order") is not None else float('inf')))
+    print(f"Found {len(rows)} unprocessed rows in database {database_id}, sorted by Order.")
     return rows
 
 async def append_poll_entries_to_page(entries):
@@ -101,21 +132,14 @@ async def append_poll_entries_to_page(entries):
                 "rich_text": [{"type": "text", "text": {"content": entry["output"]}}]
             }
         })
-        blocks.append({
-            "object": "block",
-            "type": "divider",
-            "divider": {}
-        })
-    
+        blocks.append({"object": "block", "type": "divider", "divider": {}})
     max_blocks = 100
     def chunk_list(lst, n):
         for i in range(0, len(lst), n):
             yield lst[i:i+n]
-    
     responses = []
     for block_chunk in chunk_list(blocks, max_blocks):
         try:
-            # Wrap the blocking call in asyncio.to_thread to run concurrently.
             response = await asyncio.to_thread(client.blocks.children.append,
                                                block_id=POLL_PAGE_ID,
                                                children=block_chunk)
@@ -133,9 +157,67 @@ async def mark_row_as_processed(page_id):
     except Exception as e:
         print(f"Error marking row {page_id} as processed: {e}")
 
-def run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target):
-    sport_upper = sport.upper()
-    teams = [team1.strip().upper(), team2.strip().upper()]
+# -------------------------
+# Helper Function: Run psp_database.py to update CSV files
+# -------------------------
+def update_psp_files():
+    try:
+        result = subprocess.run(["python", "psp_database.py"], capture_output=True, text=True)
+        print("psp_database.py output:")
+        print(result.stdout)
+    except Exception as e:
+        print("Error running psp_database.py:", e)
+
+# -------------------------
+# Helper Function: PSP NHL Analyzer
+# -------------------------
+def analyze_nhl_psp(file_path, stat_key):
+    try:
+        df = pd.read_csv(file_path)
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    df.columns = [col.upper() for col in df.columns]
+    PSP_MAPPING = {
+        "GOALS": "G",
+        "HITS": "HIT",
+        "POINTS": "P",
+        "SAVES": "SV",
+        "SHOTS": "S"
+    }
+    mapped_stat = PSP_MAPPING.get(stat_key)
+    if mapped_stat is None:
+        return f"❌ Invalid NHL stat choice."
+    if mapped_stat not in df.columns:
+        return f"Stat column '{mapped_stat}' not found in CSV."
+    try:
+        df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
+    yellow = sorted_df.iloc[0:3]   # Rankings 1–3
+    green = sorted_df.iloc[4:7]    # Rankings 5–7
+    red = sorted_df.iloc[9:12]     # Rankings 10–12
+    player_col = "PLAYER" if "PLAYER" in sorted_df.columns else ("NAME" if "NAME" in sorted_df.columns else None)
+    if player_col is None:
+        return "Player column not found in CSV."
+    green_list = green[player_col].tolist()
+    yellow_list = yellow[player_col].tolist()
+    red_list = red[player_col].tolist()
+    # Convert all items to strings in case some are numbers
+    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
+    output += f"🔴 {', '.join(str(x) for x in red_list)}"
+    return output
+
+# -------------------------
+# Analyzer Function: Calls the appropriate analyzer
+# -------------------------
+def run_universal_sports_analyzer_programmatic(row):
+    sport_upper = row["sport"].upper()
+    if "teams" in row and row["teams"]:
+        teams = row["teams"]
+    else:
+        teams = [row["team1"].strip().upper(), row["team2"].strip().upper()]
     
     def parse_target(target):
         t = target.strip().lower()
@@ -146,69 +228,101 @@ def run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target
         except Exception:
             return None
 
-    if sport_upper == "NBA":
-        df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
-        used_stat = stat.upper() if stat.strip() else "PPG"
-        used_target = parse_target(target)
-        result = USA.analyze_sport_noninteractive(
-            df, USA.STAT_CATEGORIES_NBA, "PLAYER", "TEAM", teams, used_stat, used_target
-        )
-    elif sport_upper == "CBB":
-        df = USA.load_player_stats()
-        used_stat = stat.upper() if stat.strip() else "PPG"
-        used_target = parse_target(target)
-        result = USA.analyze_sport_noninteractive(
-            df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, used_target
-        )
-    elif sport_upper == "MLB":
-        df = USA.integrate_mlb_data()
-        used_stat = stat.upper() if stat.strip() else "RBI"
-        if parse_target(target) is not None:
-            result = USA.analyze_sport_noninteractive(
-                df, USA.STAT_CATEGORIES_MLB, "PLAYER", "TEAM", teams, used_stat, parse_target(target)
-            )
-        else:
-            result = USA.analyze_mlb_noninteractive(df, teams, used_stat)
-    elif sport_upper == "NHL":
-        df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
-        if stat.strip():
-            nhl_stat = stat.upper()
-        else:
-            nhl_stat = "GOALS"
-        if nhl_stat == "S":
-            used_target = parse_target(target)
-            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, used_target)
-        else:
-            result = USA.analyze_nhl_noninteractive(df, teams, nhl_stat, None)
-    else:
-        result = "Sport not recognized."
-    return result
-
-async def process_rows():
-    rows = fetch_unprocessed_rows()
-    if not rows:
-        print("No unprocessed rows found.")
-        return
+    target_val = parse_target(row["target"])
     
+    if row.get("psp", False):
+        update_psp_files()
+        if sport_upper == "NHL":
+            stat_key = row["stat"].upper()
+            file_path = os.path.join("PSP", f"nhl_{row['stat'].lower()}_psp_data.csv")
+            return analyze_nhl_psp(file_path, stat_key)
+        elif sport_upper == "NBA":
+            stat_key = row["stat"].upper()
+            # Map FG3M to 3PM if needed.
+            if stat_key == "FG3M":
+                stat_key = "3PM"
+            if stat_key not in USA.STAT_CATEGORIES_NBA:
+                return f"❌ Invalid NBA stat choice."
+            file_path = os.path.join("PSP", f"nba_{row['stat'].lower()}_psp_data.csv")
+            try:
+                df = pd.read_csv(file_path)
+                df.columns = [col.upper() for col in df.columns]
+            except Exception as e:
+                return f"Error reading PSP CSV: {e}"
+            sorted_df = df.sort_values(by=USA.STAT_CATEGORIES_NBA[stat_key], ascending=False)
+            yellow = sorted_df.iloc[0:3]
+            green = sorted_df.iloc[3:6]
+            red = sorted_df.iloc[9:12]
+            player_col = "PLAYER" if "PLAYER" in sorted_df.columns else "NAME"
+            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
+            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
+            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
+            return output
+        else:
+            return "PSP processing not configured for this sport."
+    else:
+        if sport_upper == "NBA":
+            df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
+            used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
+            return USA.analyze_sport_noninteractive(
+                df, USA.STAT_CATEGORIES_NBA, "PLAYER", "TEAM", teams, used_stat, target_val
+            )
+        elif sport_upper == "CBB":
+            df = USA.load_player_stats()
+            used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
+            return USA.analyze_sport_noninteractive(
+                df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, target_val
+            )
+        elif sport_upper == "MLB":
+            df = USA.integrate_mlb_data()
+            used_stat = row["stat"].upper() if row["stat"].strip() else "RBI"
+            if target_val is not None:
+                return USA.analyze_sport_noninteractive(
+                    df, USA.STAT_CATEGORIES_MLB, "PLAYER", "TEAM", teams, used_stat, target_val
+                )
+            else:
+                return USA.analyze_mlb_noninteractive(df, teams, used_stat)
+        elif sport_upper == "NHL":
+            df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
+            nhl_stat = row["stat"].upper() if row["stat"].strip() else "GOALS"
+            if nhl_stat == "S":
+                return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val)
+            else:
+                return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, None)
+        else:
+            return "Sport not recognized."
+
+# -------------------------
+# Main Process
+# -------------------------
+async def process_rows():
+    main_rows = fetch_unprocessed_rows(DATABASE_ID)
+    if main_rows:
+        print(f"Processing {len(main_rows)} rows from the main database {DATABASE_ID}...")
+    else:
+        print(f"No unprocessed rows found in main database {DATABASE_ID}.")
+
+    psp_rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
+    if psp_rows:
+        print(f"Processing {len(psp_rows)} rows from the PSP database {PSP_DATABASE_ID}...")
+    else:
+        print(f"No unprocessed rows found in PSP database {PSP_DATABASE_ID}.")
+
+    all_rows = main_rows + psp_rows
+    if not all_rows:
+        print("No unprocessed rows found in any database.")
+        return
+
     poll_entries = []
-    # Process each row sequentially (or you could use asyncio.gather for concurrent processing of independent rows)
-    for row in rows:
-        page_id = row["page_id"]
-        team1 = row["team1"]
-        team2 = row["team2"]
-        sport = row["sport"]
-        stat = row["stat"]
-        target = row["target"]
-        
-        picks_output = run_universal_sports_analyzer_programmatic(team1, team2, sport, stat, target)
-        title = f"Game: {team1} vs {team2} ({sport}, {stat}, Target: {target})"
+    for row in all_rows:
+        result = run_universal_sports_analyzer_programmatic(row)
+        title = f"Game: {row.get('team1','')} vs {row.get('team2','')} ({row['sport']}, {row['stat']}, Target: {row['target']})"
         poll_entries.append({
             "title": title,
-            "output": picks_output
+            "output": result
         })
-        # Mark each row as processed asynchronously
-        await mark_row_as_processed(page_id)
-        print(f"Processed row for {team1} vs {team2} ({sport}, {stat})")
+        await mark_row_as_processed(row["page_id"])
+        print(f"Processed row for {row.get('team1','')} vs {row.get('team2','')} ({row['sport']}, {row['stat']})")
     
     responses = await append_poll_entries_to_page(poll_entries)
     print("Poll Entries:")

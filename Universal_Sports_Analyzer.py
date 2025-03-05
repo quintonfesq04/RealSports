@@ -56,12 +56,20 @@ def clean_header(header):
     return header
 
 def fix_mlb_player_name(name):
+    """
+    Fix an MLB player name by:
+      1. Removing any digits.
+      2. Removing extra spaces.
+      3. If the name ends with an extra letter followed by a period (e.g. "Nathan MacKinnonN."), remove the extra letter.
+    """
+    # Remove digits.
     name = re.sub(r'\d+', '', name).strip()
-    parts = re.findall(r'[A-ZÀ-ÖØ-Ý][a-zà-öø-ÿ]+', name)
-    if parts and len(parts) >= 2:
-        return f"{parts[0]} {parts[-1]}"
-    elif parts:
-        return parts[0]
+    # Remove extra spaces.
+    name = re.sub(r'\s+', ' ', name)
+    # Check for a pattern like "FirstName LastNameX." and remove the extra letter.
+    match = re.match(r"^(.*[A-Za-z])([A-Za-z])\.$", name)
+    if match:
+        name = match.group(2).strip()
     return name
 
 # --------------------------------------------------
@@ -460,24 +468,36 @@ def analyze_nhl_flow(df):
             print("🟡 " + ", ".join(yellow["Player"].tolist()))
             print("🔴 " + ", ".join(red["Player"].tolist()))
 
-def analyze_mlb_by_team_interactive(df):
+def analyze_mlb_by_team_interactive(df, mapped_stat):
     if df.empty:
         print("MLB stats CSV not found or empty.")
         return
+
     print("Available MLB columns:", df.columns.tolist())
     print("\nTop MLB Players (filtered by team if provided):")
+    
     teams_input = input("Enter MLB team names separated by commas (or press Enter to show all): ").strip().upper()
     if teams_input:
         team_list = [x.strip() for x in teams_input.split(",")]
         filtered_df = df[df["TEAM"].isin(team_list)]
     else:
         filtered_df = df
+
     if filtered_df.empty:
         print("❌ No matching teams found.")
-    else:
-        top9 = filtered_df.head(9)
-        for idx, row in top9.iterrows():
-            print(f"{row['PLAYER']} ({row['TEAM']})")
+        return
+
+    sorted_df = filtered_df.sort_values(by=mapped_stat, ascending=False)
+    
+    # Rankings: Yellow: 1-3, Green: 5-7, Red: 10-12
+    yellow = sorted_df.iloc[0:3]
+    green = sorted_df.iloc[4:7]
+    red = sorted_df.iloc[9:12]
+
+    # Using correct column name "PLAYER"
+    print("🟢 " + ", ".join(green["PLAYER"].tolist()))
+    print("🟡 " + ", ".join(yellow["PLAYER"].tolist()))
+    print("🔴 " + ", ".join(red["PLAYER"].tolist()))
 
 def load_player_stats():
     file_path = "/Users/Q/Documents/Documents/RealSports/CBB/cbb_players_stats.csv"
@@ -542,7 +562,7 @@ def main():
             if df_mlb.empty:
                 print("MLB stats CSV not found or empty.")
                 continue
-            analyze_mlb_by_team_interactive(df_mlb)
+            analyze_mlb_by_team_interactive(df_mlb, mapped_stat="RBI")
         elif choice == '5':
             print("👋 Exiting... Goodbye!")
             break
