@@ -12310,3 +12310,2591 @@ Original player_name: Malcolm Brogdon
 Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
 💾 Saved injury report data
 💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Expected to be out until at least Mar 6
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Expected to be out until at least Mar 6
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Expected to be out until at least Mar 6
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Isaiah Stewart
+Extracted data: Detroit, Isaiah Stewart, PF, Tue, Mar 4, Back, Game Time Decision
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Expected to be out until at least Mar 8
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv
+💾 Saved player stats to nba_player_stats.csv
+Original player_name: Trae Young
+Extracted data: Atlanta, Trae Young, PG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Vit Krejci
+Extracted data: Atlanta, Vit Krejci, SF, Wed, Mar 5, Back, Expected to be out until at least Mar 10
+Original player_name: Larry Nance Jr.
+Extracted data: Atlanta, Larry Nance Jr., PF, Wed, Mar 5, Knee, Expected to be out until at least Apr 1
+Original player_name: Daeqwon Plowden
+Extracted data: Atlanta, Daeqwon Plowden, SG, Tue, Mar 4, Elbow, Game Time Decision
+Original player_name: Jalen Johnson
+Extracted data: Atlanta, Jalen Johnson, SF, Wed, Jan 29, Shoulder, Out for the season
+Original player_name: Kobe Bufkin
+Extracted data: Atlanta, Kobe Bufkin, SG, Wed, Dec 18, Shoulder, Out for the season
+Original player_name: Jrue Holiday
+Extracted data: Boston, Jrue Holiday, PG, Wed, Mar 5, Finger, Game Time Decision
+Original player_name: Kristaps Porzingis
+Extracted data: Boston, Kristaps Porzingis, C, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Jayson Tatum
+Extracted data: Boston, Jayson Tatum, PF, Wed, Mar 5, Shoulder, Game Time Decision
+Original player_name: Noah Clowney
+Extracted data: Brooklyn, Noah Clowney, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: De'Anthony Melton
+Extracted data: Brooklyn, De'Anthony Melton, SG, Wed, Nov 20, Knee, Out for the season
+Original player_name: Josh Green
+Extracted data: Charlotte, Josh Green, SF, Wed, Mar 5, Illness, Expected to be out until at least Mar 7
+Original player_name: Josh Okogie
+Extracted data: Charlotte, Josh Okogie, SF, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 21
+Original player_name: Tre Mann
+Extracted data: Charlotte, Tre Mann, PG, Thu, Jan 30, Back, Out for the season
+Original player_name: Brandon Miller
+Extracted data: Charlotte, Brandon Miller, SG, Thu, Jan 23, Wrist, Out for the season
+Original player_name: Grant Williams
+Extracted data: Charlotte, Grant Williams, PF, Sun, Nov 24, Knee, Out for the season
+Original player_name: Patrick Williams
+Extracted data: Chicago, Patrick Williams, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Josh Giddey
+Extracted data: Chicago, Josh Giddey, PG, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Nikola Vucevic
+Extracted data: Chicago, Nikola Vucevic, C, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Lonzo Ball
+Extracted data: Chicago, Lonzo Ball, PG, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Kevin Huerter
+Extracted data: Chicago, Kevin Huerter, SG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Ayo Dosunmu
+Extracted data: Chicago, Ayo Dosunmu, PG, Sun, Mar 2, Shoulder, Out for the season
+Original player_name: Kai Jones
+Extracted data: Dallas, Kai Jones, C, Wed, Mar 5, Quadriceps, Expected to be out until at least Mar 7
+Original player_name: PJ Washington
+Extracted data: Dallas, PJ Washington, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Daniel Gafford
+Extracted data: Dallas, Daniel Gafford, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 2
+Original player_name: Dereck Lively II
+Extracted data: Dallas, Dereck Lively II, C, Wed, Mar 5, Ankle, Expected to be out until at least Apr 2
+Original player_name: Jaden Hardy
+Extracted data: Dallas, Jaden Hardy, SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 10
+Original player_name: Caleb Martin
+Extracted data: Dallas, Caleb Martin, SF, Wed, Mar 5, Hip, Expected to be out until at least Mar 7
+Original player_name: Dante Exum
+Extracted data: Dallas, Dante Exum, SG, Wed, Mar 5, Foot, Expected to be out until at least Mar 7
+Original player_name: Anthony Davis
+Extracted data: Dallas, Anthony Davis, C, Wed, Mar 5, Thigh, Expected to be out until at least Apr 2
+Original player_name: Kyrie Irving
+Extracted data: Dallas, Kyrie Irving, PG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Julian Strawther
+Extracted data: Denver, Julian Strawther, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 4
+Original player_name: Aaron Gordon
+Extracted data: Denver, Aaron Gordon, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: DaRon Holmes II
+Extracted data: Denver, DaRon Holmes II, PF, Sun, Feb 23, Achilles, Out for the season
+Original player_name: Tolu Smith
+Extracted data: Detroit, Tolu Smith, PF, Wed, Mar 5, Achilles, Expected to be out until at least Mar 8
+Original player_name: Ron Harper Jr.
+Extracted data: Detroit, Ron Harper Jr., SF, Wed, Mar 5, Thumb, Expected to be out until at least Mar 8
+Original player_name: Jaden Ivey
+Extracted data: Detroit, Jaden Ivey, SG, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 23
+Original player_name: Tobias Harris
+Extracted data: Detroit, Tobias Harris, PF, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Jonathan Kuminga
+Extracted data: Golden St., Jonathan Kuminga, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Jackson Rowe
+Extracted data: Golden St., Jackson Rowe, SF, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Gary Payton II
+Extracted data: Golden St., Gary Payton II, PG, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Fred VanVleet
+Extracted data: Houston, Fred VanVleet, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Tyrese Haliburton
+Extracted data: Indiana, Tyrese Haliburton, PG, Wed, Mar 5, Hip, Game Time Decision
+Original player_name: Bennedict Mathurin
+Extracted data: Indiana, Bennedict Mathurin, SF, Wed, Mar 5, Wrist, Game Time Decision
+Original player_name: Isaiah Jackson
+Extracted data: Indiana, Isaiah Jackson, C, Sat, Nov 2, Achilles, Out for the season
+Original player_name: Seth Lundy
+Extracted data: L.A. Clippers, Seth Lundy, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Kawhi Leonard
+Extracted data: L.A. Clippers, Kawhi Leonard, SF, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Norman Powell
+Extracted data: L.A. Clippers, Norman Powell, SG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 16
+Original player_name: Ben Simmons
+Extracted data: L.A. Clippers, Ben Simmons, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Derrick Jones Jr.
+Extracted data: L.A. Clippers, Derrick Jones Jr., SF, Wed, Mar 5, Groin, Expected to be out until at least Mar 7
+Original player_name: LeBron James
+Extracted data: L.A. Lakers, LeBron James, SF, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Luka Doncic
+Extracted data: L.A. Lakers, Luka Doncic, PG, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Jordan Goodwin
+Extracted data: L.A. Lakers, Jordan Goodwin, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Maxi Kleber
+Extracted data: L.A. Lakers, Maxi Kleber, C, Wed, Mar 5, Foot, Expected to be out until at least Apr 11
+Original player_name: Austin Reaves
+Extracted data: L.A. Lakers, Austin Reaves, SG, Wed, Mar 5, Calf, Game Time Decision
+Original player_name: Rui Hachimura
+Extracted data: L.A. Lakers, Rui Hachimura, PF, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Markieff Morris
+Extracted data: L.A. Lakers, Markieff Morris, PF, Wed, Mar 5, Illness, Expected to be out until at least Mar 8
+Original player_name: Santi Aldama
+Extracted data: Memphis, Santi Aldama, PF, Wed, Mar 5, Calf, Expected to be out until at least Mar 7
+Original player_name: John Konchar
+Extracted data: Memphis, John Konchar, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Zyon Pullin
+Extracted data: Memphis, Zyon Pullin, PG, Wed, Mar 5, Knee, Expected to be out until at least Mar 7
+Original player_name: Jaren Jackson Jr.
+Extracted data: Memphis, Jaren Jackson Jr., PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 17
+Original player_name: Yuki Kawamura
+Extracted data: Memphis, Yuki Kawamura, PG, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 7
+Original player_name: Jaime Jaquez Jr.
+Extracted data: Miami, Jaime Jaquez Jr., SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Tyler Herro
+Extracted data: Miami, Tyler Herro, PG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Kel'el Ware
+Extracted data: Miami, Kel'el Ware, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Nikola Jovic
+Extracted data: Miami, Nikola Jovic, PF, Wed, Mar 5, Hand, Expected to be out until at least Mar 27
+Original player_name: Andrew Wiggins
+Extracted data: Miami, Andrew Wiggins, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Dru Smith
+Extracted data: Miami, Dru Smith, SG, Tue, Dec 24, Achilles, Out for the season
+Original player_name: Pete Nance
+Extracted data: Milwaukee, Pete Nance, PF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Gary Trent Jr.
+Extracted data: Milwaukee, Gary Trent Jr., SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 8
+Original player_name: Ryan Rollins
+Extracted data: Milwaukee, Ryan Rollins, SG, Wed, Mar 5, Personal, Expected to be out until at least Mar 8
+Original player_name: Pat Connaughton
+Extracted data: Milwaukee, Pat Connaughton, SG, Wed, Mar 5, Calf, Expected to be out until at least Mar 8
+Original player_name: Rudy Gobert
+Extracted data: Minnesota, Rudy Gobert, C, Wed, Mar 5, Back, Expected to be out until at least Mar 7
+Original player_name: Mike Conley
+Extracted data: Minnesota, Mike Conley, PG, Wed, Mar 5, Rest, Expected to be out until at least Mar 7
+Original player_name: Brandon Boston Jr.
+Extracted data: New Orleans, Brandon Boston Jr., SG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 8
+Original player_name: Herbert Jones
+Extracted data: New Orleans, Herbert Jones, SG, Tue, Feb 11, Shoulder, Out for the season
+Original player_name: Dejounte Murray
+Extracted data: New Orleans, Dejounte Murray, PG, Fri, Jan 31, Achilles, Out for the season
+Original player_name: Precious Achiuwa
+Extracted data: New York, Precious Achiuwa, PF, Wed, Mar 5, Hamstring, Game Time Decision
+Original player_name: Mitchell Robinson
+Extracted data: New York, Mitchell Robinson, C, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Ariel Hukporti
+Extracted data: New York, Ariel Hukporti, C, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: OG Anunoby
+Extracted data: New York, OG Anunoby, SF, Wed, Mar 5, Thumb, Game Time Decision
+Original player_name: Chet Holmgren
+Extracted data: Oklahoma City, Chet Holmgren, C, Wed, Mar 5, Lower Leg, Expected to be out until at least Mar 7
+Original player_name: Ajay Mitchell
+Extracted data: Oklahoma City, Ajay Mitchell, PG, Wed, Mar 5, Toe, Expected to be out until at least Apr 2
+Original player_name: Alex Caruso
+Extracted data: Oklahoma City, Alex Caruso, PG, Wed, Mar 5, Ankle, Expected to be out until at least Mar 7
+Original player_name: Nikola Topic
+Extracted data: Oklahoma City, Nikola Topic, PG, Thu, Nov 7, Knee, Out for the season
+Original player_name: Cole Anthony
+Extracted data: Orlando, Cole Anthony, PG, Wed, Mar 5, Toe, Game Time Decision
+Original player_name: Jalen Suggs
+Extracted data: Orlando, Jalen Suggs, SG, Tue, Mar 4, Knee, Out for the season
+Original player_name: Moe Wagner
+Extracted data: Orlando, Moe Wagner, C, Sun, Dec 22, Knee, Out for the season
+Original player_name: Kyle Lowry
+Extracted data: Philadelphia, Kyle Lowry, PG, Wed, Mar 5, Hip, Expected to be out until at least Mar 9
+Original player_name: Tyrese Maxey
+Extracted data: Philadelphia, Tyrese Maxey, PG, Wed, Mar 5, Back, Expected to be out until at least Mar 9
+Original player_name: Justin Edwards
+Extracted data: Philadelphia, Justin Edwards, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Paul George
+Extracted data: Philadelphia, Paul George, SF, Tue, Mar 4, Groin, Game Time Decision
+Original player_name: Joel Embiid
+Extracted data: Philadelphia, Joel Embiid, C, Fri, Feb 28, Knee, Out for the season
+Original player_name: Eric Gordon
+Extracted data: Philadelphia, Eric Gordon, SF, Thu, Feb 27, Wrist, Out for the season
+Original player_name: Jared McCain
+Extracted data: Philadelphia, Jared McCain, SG, Thu, Jan 9, Knee, Out for the season
+Original player_name: Cody Martin
+Extracted data: Phoenix, Cody Martin, SF, Wed, Mar 5, Abdomen, Game Time Decision
+Original player_name: Bradley Beal
+Extracted data: Phoenix, Bradley Beal, SG, Tue, Mar 4, Calf, Game Time Decision
+Original player_name: Deni Avdija
+Extracted data: Portland, Deni Avdija, SF, Wed, Mar 5, Quadriceps, Game Time Decision
+Original player_name: Deandre Ayton
+Extracted data: Portland, Deandre Ayton, C, Wed, Mar 5, Calf, Expected to be out until at least Mar 21
+Original player_name: Jerami Grant
+Extracted data: Portland, Jerami Grant, PF, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Matisse Thybulle
+Extracted data: Portland, Matisse Thybulle, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Robert Williams III
+Extracted data: Portland, Robert Williams III, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Domantas Sabonis
+Extracted data: Sacramento, Domantas Sabonis, C, Wed, Mar 5, Hamstring, Expected to be out until at least Mar 10
+Original player_name: Malik Monk
+Extracted data: Sacramento, Malik Monk, SG, Wed, Mar 5, Toe, Expected to be out until at least Mar 7
+Original player_name: Charles Bassey
+Extracted data: San Antonio, Charles Bassey, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Victor Wembanyama
+Extracted data: San Antonio, Victor Wembanyama, C, Fri, Feb 21, Shoulder, Out for the season
+Original player_name: Riley Minix
+Extracted data: San Antonio, Riley Minix, SF, Wed, Jan 15, Shoulder, Out for the season
+Original player_name: Jamison Battle
+Extracted data: Toronto, Jamison Battle, SF, Wed, Mar 5, Nose, Game Time Decision
+Original player_name: Ochai Agbaji
+Extracted data: Toronto, Ochai Agbaji, SF, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Gradey Dick
+Extracted data: Toronto, Gradey Dick, SG, Wed, Mar 5, Knee, Expected to be out until at least Mar 24
+Original player_name: Brandon Ingram
+Extracted data: Toronto, Brandon Ingram, SF, Wed, Mar 5, Ankle, Expected to be out until at least Mar 28
+Original player_name: Garrett Temple
+Extracted data: Toronto, Garrett Temple, SF, Wed, Mar 5, Personal, Game Time Decision
+Original player_name: Jonathan Mogbo
+Extracted data: Toronto, Jonathan Mogbo, PF, Tue, Mar 4, Face, Game Time Decision
+Original player_name: Ulrich Chomche
+Extracted data: Toronto, Ulrich Chomche, C, Wed, Feb 19, Knee, Out for the season
+Original player_name: EJ Harkless
+Extracted data: Utah, EJ Harkless, SG, Wed, Mar 5, Groin, Expected to be out until at least Mar 9
+Original player_name: Collin Sexton
+Extracted data: Utah, Collin Sexton, SG, Wed, Mar 5, Ankle, Game Time Decision
+Original player_name: Keyonte George
+Extracted data: Utah, Keyonte George, SG, Wed, Mar 5, Illness, Game Time Decision
+Original player_name: Walker Kessler
+Extracted data: Utah, Walker Kessler, C, Wed, Mar 5, Rest, Game Time Decision
+Original player_name: Jaden Springer
+Extracted data: Utah, Jaden Springer, SG, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Jordan Clarkson
+Extracted data: Utah, Jordan Clarkson, PG, Wed, Mar 5, Foot, Game Time Decision
+Original player_name: Lauri Markkanen
+Extracted data: Utah, Lauri Markkanen, PF, Wed, Mar 5, Back, Game Time Decision
+Original player_name: John Collins
+Extracted data: Utah, John Collins, C, Wed, Mar 5, Back, Game Time Decision
+Original player_name: Taylor Hendricks
+Extracted data: Utah, Taylor Hendricks, PF, Fri, Nov 1, Lower Leg, Out for the season
+Original player_name: Saddiq Bey
+Extracted data: Washington, Saddiq Bey, SF, Wed, Mar 5, Knee, Expected to be out until at least Apr 6
+Original player_name: Jordan Poole
+Extracted data: Washington, Jordan Poole, SG, Wed, Mar 5, Elbow, Game Time Decision
+Original player_name: Colby Jones
+Extracted data: Washington, Colby Jones, SG, Wed, Mar 5, Achilles, Game Time Decision
+Original player_name: Richaun Holmes
+Extracted data: Washington, Richaun Holmes, C, Wed, Mar 5, Knee, Game Time Decision
+Original player_name: Malcolm Brogdon
+Extracted data: Washington, Malcolm Brogdon, PG, Wed, Mar 5, Ankle, Game Time Decision
+💾 Saved injury report data
+💾 Saved healthy player stats to nba_healthy_player_stats.csv

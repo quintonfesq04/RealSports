@@ -258,27 +258,39 @@ def integrate_mlb_data():
 # MLB Noninteractive Analysis (Ranking Slices)
 # --------------------------------------------------
 def analyze_mlb_noninteractive(df, teams, stat_choice):
-    if teams:
-        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()] if isinstance(teams, str) else [normalize_team_name(t) for t in teams]
-        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
-    else:
-        filtered_df = df.copy()
+    if not teams or len(teams) < 2:
+        return "❌ Two teams are required."
+
+    team_list = [normalize_team_name(t) for t in teams]
+
+    # Debugging: Print available teams
+    print("Teams to filter:", team_list)
+    print("Teams in dataset:", df["TEAM"].unique())
+
+    filtered_df = df[df["TEAM"].isin(team_list)].copy()
+
     if filtered_df.empty:
-        return "❌ No matching teams found."
+        return f"❌ No matching teams found for {teams}."
+
     mapped_stat = STAT_CATEGORIES_MLB.get(stat_choice)
     if mapped_stat is None:
         return "❌ Invalid stat choice."
+
     try:
         filtered_df[mapped_stat] = pd.to_numeric(filtered_df[mapped_stat], errors='coerce')
     except Exception as e:
         return f"Error converting stat column: {e}"
+
     sorted_df = filtered_df.sort_values(by=mapped_stat, ascending=False)
-    yellow = sorted_df.iloc[0:3]
-    green = sorted_df.iloc[3:6]
+
+    green = sorted_df.iloc[:3]
+    yellow = sorted_df.iloc[3:6]
     red = sorted_df.iloc[6:9]
-    output = "🟢 " + ", ".join(green["PLAYER"].tolist()) + "\n"
-    output += "🟡 " + ", ".join(yellow["PLAYER"].tolist()) + "\n"
-    output += "🔴 " + ", ".join(red["PLAYER"].tolist())
+
+    output = f"🟢 {', '.join(green['PLAYER'].tolist())}\n"
+    output += f"🟡 {', '.join(yellow['PLAYER'].tolist())}\n"
+    output += f"🔴 {', '.join(red['PLAYER'].tolist())}"
+
     return output
 
 # --------------------------------------------------
