@@ -231,3 +231,46 @@ Script finished.
 💾 Saved player stats to nhl_player_stats.csv
 💾 Saved NHL injury report data
 Script finished.
+💾 Saved player stats to nhl_player_stats.csv
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: Unable to receive message from renderer
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001025302d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102528934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x0000000102089f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x000000010207430c cxxbridge1$string$len + 4140
+4   chromedriver                        0x0000000102074084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000102071d9c chromedriver + 187804
+6   chromedriver                        0x00000001020729f4 chromedriver + 190964
+7   chromedriver                        0x000000010208f780 cxxbridge1$string$len + 115872
+8   chromedriver                        0x0000000102091d74 cxxbridge1$string$len + 125588
+9   chromedriver                        0x0000000102091e1c cxxbridge1$string$len + 125756
+10  chromedriver                        0x00000001020cbe04 cxxbridge1$string$len + 363300
+11  chromedriver                        0x00000001020c657c cxxbridge1$string$len + 340636
+12  chromedriver                        0x0000000102111e80 cxxbridge1$string$len + 650144
+13  chromedriver                        0x00000001020c5060 cxxbridge1$string$len + 335232
+14  chromedriver                        0x00000001024f8c38 cxxbridge1$str$ptr + 2512864
+15  chromedriver                        0x00000001024fbf58 cxxbridge1$str$ptr + 2525952
+16  chromedriver                        0x00000001024de578 cxxbridge1$str$ptr + 2404640
+17  chromedriver                        0x00000001024fc818 cxxbridge1$str$ptr + 2528192
+18  chromedriver                        0x00000001024cef2c cxxbridge1$str$ptr + 2341588
+19  chromedriver                        0x0000000102518a60 cxxbridge1$str$ptr + 2643464
+20  chromedriver                        0x0000000102518be8 cxxbridge1$str$ptr + 2643856
+21  chromedriver                        0x00000001025285a8 cxxbridge1$str$ptr + 2707792
+22  libsystem_pthread.dylib             0x0000000196c242e4 _pthread_start + 136
+23  libsystem_pthread.dylib             0x0000000196c1f0fc thread_start + 8
+
+💾 Saved NHL injury report data
+Script finished.
+💾 Saved player stats to nhl_player_stats.csv
+💾 Saved NHL injury report data
+Script finished.
+💾 Saved player stats to nhl_player_stats.csv
+💾 Saved NHL injury report data
+Script finished.
+💾 Saved player stats to nhl_player_stats.csv
+💾 Saved NHL injury report data
+Script finished.

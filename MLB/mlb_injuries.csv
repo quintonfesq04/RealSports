@@ -12,8 +12,8 @@ Atlanta,S. MurphySean Murphy,C,"Mon, Mar 3",Ribs,Expected to be out until at lea
 Atlanta,S. StriderSpencer Strider,SP,"Mon, Feb 10",Elbow,Expected to be out until at least May 2
 Atlanta,J. JimenezJoe Jimenez,RP,"Thu, Feb 6",Knee,Expected to be out until at least Aug 1
 Atlanta,R. AcunaRonald Acuna,RF,"Tue, Nov 5",Knee,Expected to be out until at least May 1
-Baltimore,A. KittredgeAndrew Kittredge,RP,"Wed, Mar 5",Knee,Expected to be out until at least Mar 27
 Baltimore,G. HendersonGunnar Henderson,3B,"Wed, Mar 5",Side,Expected to be out until at least Mar 27
+Baltimore,A. KittredgeAndrew Kittredge,RP,"Wed, Mar 5",Knee,Expected to be out until at least Mar 27
 Baltimore,J. WestburgJordan Westburg,2B,"Wed, Mar 5",Back,Questionable for start of season
 Baltimore,G. SanchezGary Sanchez,C,"Wed, Mar 5",Illness,Questionable for start of season
 Baltimore,C. McDermottChayce McDermott,SP,"Mon, Mar 3",Lat,Expected to be out until at least Mar 27
@@ -21,25 +21,25 @@ Baltimore,T. RogersTrevor Rogers,SP,"Mon, Mar 3",Kneecap,Expected to be out unti
 Baltimore,K. BradishKyle Bradish,SP,"Fri, Feb 14",Elbow,Expected to be out until at least Aug 1
 Baltimore,J. MateoJorge Mateo,SS,"Thu, Feb 13",Elbow,Expected to be out until at least Apr 15
 Baltimore,T. WellsTyler Wells,SP,"Wed, Dec 11",Elbow,Expected to be out until at least Jul 1
-Boston,T. CasasTriston Casas,1B,"Wed, Mar 5",Illness,Questionable for start of season
+Boston,R. DeversRafael Devers,3B,"Thu, Mar 6",Shoulder,Questionable for start of season
+Boston,T. CasasTriston Casas,1B,"Thu, Mar 6",Illness,Questionable for start of season
 Boston,M. YoshidaMasataka Yoshida,LF,"Tue, Mar 4",Shoulder,Expected to be out until at least Mar 27
-Boston,R. DeversRafael Devers,3B,"Tue, Mar 4",Shoulder,Questionable for start of season
 Boston,W. AbreuWilyer Abreu,CF,"Mon, Mar 3",Illness,Expected to be out until at least Mar 27
-Boston,L. GiolitoLucas Giolito,SP,"Sun, Mar 2",Elbow,Questionable for start of season
 Boston,B. BelloBrayan Bello,SP,"Sun, Mar 2",Shoulder,Expected to be out until at least Mar 27
+Boston,L. GiolitoLucas Giolito,SP,"Sun, Mar 2",Elbow,Questionable for start of season
 Boston,K. CrawfordKutter Crawford,SP,"Mon, Feb 24",Knee,Expected to be out until at least Apr 11
 Boston,Z. PenrodZach Penrod,RP,"Sat, Feb 22",Elbow,Expected to be out until at least Mar 27
 Boston,P. SandovalPatrick Sandoval,SP,"Mon, Feb 17",Elbow,Expected to be out until at least Aug 1
 Boston,L. PeralesLuis Perales,SP,"Thu, Jan 16",Elbow,Out for the season
 Boston,C. MurphyChris Murphy,RP,"Mon, Nov 4",Elbow,Expected to be out until at least Jun 1
 Chi. Cubs,J. AssadJavier Assad,RP,"Sat, Mar 1",Oblique,Expected to be out until at least Apr 11
-Chi. Cubs,N. HoernerNico Hoerner,2B,"Thu, Feb 27",Forearm,Expected to be out until at least Mar 27
 Chi. Cubs,O. CaissieOwen Caissie,OF,"Thu, Feb 27",Groin,Questionable for start of season
+Chi. Cubs,N. HoernerNico Hoerner,2B,"Thu, Feb 27",Forearm,Expected to be out until at least Mar 27
 Chi. Cubs,L. LittleLuke Little,RP,"Tue, Feb 18",Lat,Questionable for start of season
+Chi. White Sox,K. LeeKorey Lee,C,"Thu, Mar 6",Hand,Questionable for start of season
 Chi. White Sox,A. SlaterAustin Slater,CF,"Wed, Mar 5",Oblique,Expected to be out until at least Mar 27
-Chi. White Sox,K. LeeKorey Lee,C,"Wed, Mar 5",Hand,Questionable for start of season
-Chi. White Sox,C. MontgomeryColson Montgomery,SS,"Mon, Mar 3",Back,Questionable for start of season
 Chi. White Sox,M. TaylorMichael Taylor,CF,"Mon, Mar 3",Elbow,Questionable for start of season
+Chi. White Sox,C. MontgomeryColson Montgomery,SS,"Mon, Mar 3",Back,Questionable for start of season
 Chi. White Sox,D. ThorpeDrew Thorpe,SP,"Mon, Mar 3",Elbow,Expected to be out until at least Apr 15
 Chi. White Sox,A. BenintendiAndrew Benintendi,LF,"Fri, Feb 28",Hand,Expected to be out until at least Apr 15
 Chi. White Sox,P. BerroaPrelander Berroa,RP,"Mon, Feb 24",Elbow,Expected to be out until at least Apr 15
@@ -56,10 +56,10 @@ Cleveland,F. AlemanFranco Aleman,RP,"Tue, Feb 25",Abdomen,Expected to be out unt
 Cleveland,D. FryDavid Fry,C,"Wed, Feb 19",Elbow,Expected to be out until at least May 26
 Cleveland,J. MeansJohn Means,SP,"Mon, Feb 17",Elbow,Expected to be out until at least Sep 1
 Cleveland,S. HentgesSam Hentges,RP,"Mon, Feb 17",Shoulder,"Expected to be out until at least Feb 1, 2026"
-Cleveland,S. BieberShane Bieber,SP,"Fri, Feb 14",Elbow,Expected to be out until at least Jul 1
+Cleveland,D. EspinoDaniel Espino,SP,"Fri, Feb 14",Shoulder,Expected to be out until at least Jul 1
 Cleveland,N. EnrightNic Enright,RP,"Fri, Feb 14",Lat,Expected to be out until at least Apr 1
 Cleveland,T. StephanTrevor Stephan,RP,"Fri, Feb 14",Elbow,Expected to be out until at least Jun 1
-Cleveland,D. EspinoDaniel Espino,SP,"Fri, Feb 14",Shoulder,Expected to be out until at least Jul 1
+Cleveland,S. BieberShane Bieber,SP,"Fri, Feb 14",Elbow,Expected to be out until at least Jul 1
 Colorado,E. TovarEzequiel Tovar,SS,"Wed, Mar 5",Triceps,Questionable for start of season
 Colorado,J. CriswellJeff Criswell,SP,"Mon, Mar 3",Elbow,Out for the season
 Colorado,A. GomberAustin Gomber,SP,"Sun, Mar 2",Shoulder,Questionable for start of season
@@ -72,38 +72,37 @@ Detroit,S. Gipson-LongSawyer Gipson-Long,SP,"Mon, Nov 4",Elbow,Expected to be ou
 Houston,K. OrtKaleb Ort,RP,"Thu, Mar 6",Oblique,Questionable for start of season
 Houston,B. GamelBen Gamel,LF,"Thu, Mar 6",Back,Questionable for start of season
 Houston,C. WalkerChristian Walker,1B,"Wed, Mar 5",Oblique,Questionable for start of season
-Houston,S. DubinShawn Dubin,RP,"Tue, Feb 25",Shoulder,Expected to be out until at least Apr 18
 Houston,P. LeonPedro Leon,OF,"Tue, Feb 25",Knee,Expected to be out until at least Apr 18
+Houston,S. DubinShawn Dubin,RP,"Tue, Feb 25",Shoulder,Expected to be out until at least Apr 18
 Houston,T. TrammellTaylor Trammell,LF,"Sun, Feb 23",Calf,Expected to be out until at least Mar 27
 Houston,L. McCullersLance McCullers,SP,"Fri, Feb 14",Forearm,Expected to be out until at least May 1
 Houston,L. GarciaLuis Garcia,SP,"Sat, Jan 25",Elbow,Expected to be out until at least Apr 18
 Houston,J. FranceJ.P. France,SP,"Tue, Jan 14",Shoulder,Expected to be out until at least Aug 1
 Houston,C. JavierCristian Javier,SP,"Fri, Nov 15",Elbow,Expected to be out until at least Jul 20
+Kansas City,N. LoftinNick Loftin,1B,"Wed, Mar 5",Wrist,Questionable for start of season
 Kansas City,K. WrightKyle Wright,SP,"Wed, Mar 5",Shoulder,Questionable for start of season
 Kansas City,C. EstevezCarlos Estevez,RP,"Wed, Mar 5",Back,Questionable for start of season
 Kansas City,S. PerezSalvador Perez,C,"Wed, Mar 5",Eye,Questionable for start of season
-Kansas City,N. LoftinNick Loftin,1B,"Wed, Mar 5",Wrist,Questionable for start of season
 Kansas City,D. BlancoDairon Blanco,LF,"Mon, Mar 3",Achilles,Questionable for start of season
-Kansas City,A. MarshAlec Marsh,RP,"Sun, Mar 2",Shoulder,Questionable for start of season
 Kansas City,J. McArthurJames McArthur,RP,"Sun, Mar 2",Elbow,Questionable for start of season
+Kansas City,A. MarshAlec Marsh,RP,"Sun, Mar 2",Shoulder,Questionable for start of season
 L.A. Angels,L. RengifoLuis Rengifo,2B,"Wed, Mar 5",Hamstring,Questionable for start of season
 L.A. Angels,T. WardTaylor Ward,LF,"Wed, Mar 5",Knee,Questionable for start of season
-L.A. Angels,R. StephensonRobert Stephenson,RP,"Sat, Feb 15",Elbow,Expected to be out until at least Jul 7
 L.A. Angels,A. RendonAnthony Rendon,3B,"Sat, Feb 15",Hip,Expected to be out until at least Jul 1
+L.A. Angels,R. StephensonRobert Stephenson,RP,"Sat, Feb 15",Elbow,Expected to be out until at least Jul 7
 L.A. Angels,Z. NetoZachary Neto,SS,"Wed, Feb 12",Shoulder,Expected to be out until at least Apr 15
-L.A. Dodgers,W. SmithWill Smith,C,"Wed, Mar 5",Knee,Questionable for start of season
 L.A. Dodgers,E. PhillipsEvan Phillips,RP,"Wed, Mar 5",Shoulder,Expected to be out until at least Apr 11
-L.A. Dodgers,M. KopechMichael Kopech,SP,"Tue, Mar 4",Forearm,Questionable for start of season
 L.A. Dodgers,E. HenriquezEdgardo Henriquez,SP,"Tue, Mar 4",Foot,Expected to be out until at least Apr 11
+L.A. Dodgers,M. KopechMichael Kopech,SP,"Tue, Mar 4",Forearm,Questionable for start of season
 L.A. Dodgers,M. GroveMichael Grove,SP,"Tue, Feb 25",Shoulder,Expected to be out until at least Apr 11
 L.A. Dodgers,G. StoneGavin Stone,SP,"Thu, Feb 20",Shoulder,"Expected to be out until at least Feb 1, 2026"
 L.A. Dodgers,C. KershawClayton Kershaw,SP,"Tue, Feb 18",Toe,Expected to be out until at least May 26
-L.A. Dodgers,K. HurtKyle Hurt,RP,"Thu, Feb 13",Elbow,Out for the season
 L.A. Dodgers,R. RyanRiver Ryan,SP,"Thu, Feb 13",Elbow,"Expected to be out until at least Feb 1, 2026"
+L.A. Dodgers,K. HurtKyle Hurt,RP,"Thu, Feb 13",Elbow,Out for the season
 L.A. Dodgers,B. GraterolBrusdar Graterol,RP,"Fri, Nov 15",Shoulder,Expected to be out until at least Jul 18
 L.A. Dodgers,E. SheehanEmmet Sheehan,SP,"Tue, Nov 5",Elbow,Expected to be out until at least Jul 1
-Miami,N. FortesNick Fortes,C,"Wed, Mar 5",Groin,Questionable for start of season
 Miami,A. NardiAndrew Nardi,RP,"Wed, Mar 5",Back,Expected to be out until at least Mar 27
+Miami,N. FortesNick Fortes,C,"Wed, Mar 5",Groin,Questionable for start of season
 Miami,E. PerezEury Perez,SP,"Thu, Feb 20",Elbow,Expected to be out until at least Jul 18
 Miami,B. GarrettBraxton Garrett,SP,"Wed, Feb 12",Elbow,"Expected to be out until at least Apr 1, 2026"
 Milwaukee,D. HallDL Hall,RP,"Wed, Mar 5",Lat,Expected to be out until at least May 26
@@ -112,8 +111,8 @@ Milwaukee,J. QueroJeferson Quero,C,"Sun, Mar 2",Shoulder,Questionable for start 
 Milwaukee,B. WoodruffBrandon Woodruff,SP,"Thu, Feb 27",Shoulder,Expected to be out until at least Apr 20
 Milwaukee,B. PerkinsBlake Perkins,RF,"Sat, Feb 22",Lower Leg,Expected to be out until at least May 1
 Milwaukee,R. GasserRobert Gasser,SP,"Wed, Feb 12",Elbow,Expected to be out until at least Sep 1
+Minnesota,J. TopaJustin Topa,RP,"Thu, Mar 6",Shoulder,Questionable for start of season
 Minnesota,M. CanterinoMatt Canterino,RP,"Wed, Mar 5",Shoulder,Expected to be out until at least May 1
-Minnesota,J. TopaJustin Topa,RP,"Wed, Mar 5",Undisclosed,Questionable for start of season
 Minnesota,M. RayaMarco Raya,SP,"Tue, Mar 4",Quadriceps,Questionable for start of season
 Minnesota,E. RodriguezEmmanuel Rodriguez,CF,"Mon, Mar 3",Ankle,Expected to be out until at least Mar 27
 N.Y. Mets,B. NimmoBrandon Nimmo,CF,"Thu, Mar 6",Knee,Questionable for start of season
@@ -126,16 +125,16 @@ N.Y. Mets,F. MontasFrankie Montas,RP,"Mon, Feb 17",Lat,Expected to be out until 
 N.Y. Mets,D. SmithDrew Smith,RP,"Sat, Feb 15",Elbow,Expected to be out until at least Sep 1
 N.Y. Mets,A. MinterA.J. Minter,RP,"Wed, Feb 12",Hip,Expected to be out until at least Mar 27
 N.Y. Mets,R. MauricioRonny Mauricio,2B,"Thu, Jan 16",Knee,Expected to be out until at least Apr 1
+N.Y. Yankees,C. SchmidtClarke Schmidt,SP,"Thu, Mar 6",Back,Questionable for start of season
 N.Y. Yankees,C. BeeterClayton Beeter,RP,"Thu, Mar 6",Shoulder,Questionable for start of season
+N.Y. Yankees,D. LeMahieuDJ LeMahieu,3B,"Thu, Mar 6",Calf,Expected to be out until at least Apr 11
 N.Y. Yankees,L. GilLuis Gil,SP,"Mon, Mar 3",Lat,Expected to be out until at least Jun 3
-N.Y. Yankees,D. LeMahieuDJ LeMahieu,3B,"Sun, Mar 2",Calf,Questionable for start of season
-N.Y. Yankees,C. SchmidtClarke Schmidt,SP,"Sat, Mar 1",Back,Questionable for start of season
 N.Y. Yankees,J. BrubakerJ.T. Brubaker,SP,"Fri, Feb 28",Ribs,Expected to be out until at least Apr 15
-N.Y. Yankees,G. StantonGiancarlo Stanton,DH,"Thu, Feb 27",Elbow,Expected to be out until at least May 2
 N.Y. Yankees,S. EffrossScott Effross,RP,"Thu, Feb 27",Hamstring,Expected to be out until at least May 2
+N.Y. Yankees,G. StantonGiancarlo Stanton,DH,"Thu, Feb 27",Elbow,Expected to be out until at least May 2
 N.Y. Yankees,J. CousinsJake Cousins,RP,"Wed, Feb 26",Forearm,Expected to be out until at least Apr 15
 N.Y. Yankees,J. LoaisigaJonathan Loaisiga,RP,"Thu, Feb 13",Elbow,Expected to be out until at least Jun 1
-Philadelphia,J. RojasJohan Rojas,CF,"Wed, Mar 5",Shoulder,Questionable for start of season
+Philadelphia,J. RojasJohan Rojas,CF,"Thu, Mar 6",Shoulder,Questionable for start of season
 Philadelphia,W. WilsonWeston Wilson,LF,"Sat, Feb 22",Oblique,Expected to be out until at least Apr 5
 Pittsburgh,A. FrazierAdam Frazier,2B,"Wed, Mar 5",Back,Questionable for start of season
 Pittsburgh,J. OviedoJohan Oviedo,SP,"Mon, Mar 3",Lat,Expected to be out until at least May 30
@@ -154,7 +153,6 @@ Seattle,J. KowarJackson Kowar,RP,"Sun, Mar 2",Elbow,Expected to be out until at 
 Seattle,M. BrashMatt Brash,RP,"Mon, Feb 3",Elbow,Expected to be out until at least Apr 15
 St. Louis,J. WalkerJordan Walker,RF,"Wed, Mar 5",Knee,Questionable for start of season
 St. Louis,Z. ThompsonZack Thompson,RP,"Tue, Mar 4",Lat,Expected to be out until at least Apr 1
-Tampa Bay,B. RortvedtBen Rortvedt,C,"Mon, Mar 3",Shoulder,Questionable for start of season
 Tampa Bay,L. DriscollLogan Driscoll,C,"Mon, Mar 3",Ankle,Questionable for start of season
 Tampa Bay,H. KimHa-seong Kim,2B,"Wed, Feb 12",Shoulder,Expected to be out until at least May 23
 Tampa Bay,N. LavenderNathan Lavender,RP,"Wed, Feb 12",Elbow,Expected to be out until at least Jul 1
@@ -162,7 +160,6 @@ Texas,W. LangfordWyatt Langford,OF,"Wed, Mar 5",Oblique,Questionable for start o
 Texas,A. GarciaAdolis Garcia,RF,"Tue, Mar 4",Oblique,Questionable for start of season
 Texas,J. CorniellJose Corniell,SP,"Wed, Feb 26",Elbow,Expected to be out until at least Aug 1
 Texas,J. SborzJosh Sborz,RP,"Mon, Feb 17",Shoulder,Expected to be out until at least Jun 1
-Toronto,E. ClementErnie Clement,SS,"Wed, Mar 5",Lips,Questionable for start of season
 Toronto,R. BurrRyan Burr,RP,"Wed, Mar 5",Shoulder,Questionable for start of season
 Toronto,E. SwansonErik Swanson,RP,"Sun, Mar 2",Forearm,Questionable for start of season
 Toronto,A. BastardoAngel Bastardo,SP,"Fri, Feb 28",Elbow,Expected to be out until at least Sep 1
