@@ -19,7 +19,6 @@ STAT_CATEGORIES_CBB = {
     "3PM": "3PM"
 }
 
-# For NHL, include totals and per-game stats.
 STAT_CATEGORIES_NHL = {
     "GOALS": "G",
     "ASSISTS": "A",   # to be converted to per-game
@@ -27,7 +26,6 @@ STAT_CATEGORIES_NHL = {
     "S": "shotsPerGame"  # shots per game
 }
 
-# For MLB, desired columns.
 DESIRED_MLB_COLS = ["PLAYER", "TEAM", "G", "AB", "R", "H", "RBI", "AVG", "OBP", "OPS"]
 STAT_CATEGORIES_MLB = {
     "RBI": "RBI",
@@ -43,7 +41,6 @@ STAT_CATEGORIES_MLB = {
 # --------------------------------------------------
 # Team Name Normalization
 # --------------------------------------------------
-# Define a dictionary mapping alternate names to the canonical name.
 TEAM_ALIASES = {
     "QUC": "QUOC",
     "AZ": "ARI",
@@ -70,18 +67,52 @@ def clean_header(header):
     return header
 
 def fix_mlb_player_name(name):
-    """
-    Fix an MLB player name by:
-      1. Removing any digits.
-      2. Removing extra spaces.
-      3. Removing an extra trailing letter if present.
-    """
-    name = re.sub(r'\d+', '', name).strip()
-    name = re.sub(r'\s+', ' ', name)
-    match = re.match(r"^(.*[A-Za-z])([A-Za-z])\.$", name)
-    if match:
-        name = match.group(2).strip()
-    return name
+    import re
+    # Remove any leading and trailing digits.
+    name = re.sub(r'^\d+', '', name)
+    name = re.sub(r'\d+$', '', name)
+    
+    # Normalize spaces.
+    name = re.sub(r'\s+', ' ', name).strip()
+    
+    # Split the name into tokens (using space and period as delimiters).
+    tokens = re.split(r'[ \.]+', name)
+    fixed_tokens = []
+    
+    known_positions = {"RF", "CF", "LF", "SS", "C", "1B", "2B", "3B", "OF"}
+    
+    def remove_trailing_duplicate_substring(token):
+        for i in range(1, len(token)):
+            prefix = token[:i]
+            if token.endswith(prefix) and len(token) - i > 0:
+                if token[:-i].startswith(prefix):
+                    return token[:-i]
+        return token
+    
+    for token in tokens:
+        if not token:
+            continue  # Skip empty tokens instead of returning early
+        token = re.sub(r'[^A-Za-z]+$', '', token)
+        for pos in known_positions:
+            if token.upper().endswith(pos):
+                token = token[:-len(pos)].strip()
+        token = re.sub(r'(?<=[a-z])([A-Z])$', '', token)
+        if len(token) % 2 == 0:
+            half = len(token) // 2
+            if token[:half].lower() == token[half:].lower():
+                token = token[:half]
+        token = remove_trailing_duplicate_substring(token)
+        fixed_tokens.append(token)
+    
+    seen = set()
+    unique_tokens = []
+    for token in fixed_tokens:
+        token_lower = token.lower()
+        if token_lower not in seen:
+            unique_tokens.append(token)
+            seen.add(token_lower)
+    
+    return " ".join(unique_tokens)
 
 # --------------------------------------------------
 # NHL Per-Game Stat Calculation Functions
@@ -108,15 +139,13 @@ def calculate_nhl_per_game_stats(df):
 # --------------------------------------------------
 def categorize_players(df, stat_choice, target_value, player_col, team_col):
     if df.empty:
-        print("❌ DataFrame is empty. Check if the CSV data are correct.")
-        return pd.DataFrame()
+        return "❌ DataFrame is empty. Check if the CSV data are correct."
     try:
         df[stat_choice] = pd.to_numeric(df[stat_choice], errors='coerce')
     except Exception as e:
-        print("Error converting stat column to numeric:", e)
-        return df
+        return f"Error converting stat column to numeric: {e}"
     if target_value is None or target_value == 0:
-        return pd.DataFrame()
+        return ""
     df["Success_Rate"] = ((df[stat_choice] / target_value) * 100).round(1)
     
     df.loc[df["Success_Rate"] >= 110, "Category"] = "🟡 Favorite"
@@ -174,7 +203,6 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
     try:
         integrated_data = pd.merge(stats_df, injuries_df, how='left', on='Player')
     except Exception as e:
-        print("Merge error for NHL data:", e)
         return stats_df
     integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
     if "Team" not in integrated_data.columns:
@@ -232,8 +260,6 @@ def integrate_mlb_data():
 def analyze_mlb_noninteractive(df, teams, stat_choice):
     if teams:
         team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()] if isinstance(teams, str) else [normalize_team_name(t) for t in teams]
-        print("Normalized CSV team names:", df["TEAM"].astype(str).apply(normalize_team_name).unique())
-        print("Team list from input:", team_list)
         filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     else:
         filtered_df = df.copy()
@@ -256,16 +282,13 @@ def analyze_mlb_noninteractive(df, teams, stat_choice):
     return output
 
 # --------------------------------------------------
-# Non-interactive (Programmatic) Interfaces for NBA/CBB and NHL
+# Non-interactive Interfaces for NBA/CBB and NHL
 # --------------------------------------------------
 def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value):
     if isinstance(teams, str):
         team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
     else:
         team_list = [normalize_team_name(t) for t in teams]
-    
-    print("Normalized CSV team names:", df[team_col].astype(str).apply(normalize_team_name).unique())
-    print("Team list from input:", team_list)
     
     filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     if filtered_df.empty:
@@ -334,10 +357,7 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
     except Exception as e:
         return f"Error converting stat column: {e}"
     if len(teams) == 2 and stat_choice == "S":
-        if target_value is None:
-            return "Target value required for Shots analysis."
-        result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team")
-        return f"{result}"
+        return categorize_players(df_mode, mapped_stat, target_value, "Player", "Team")
     else:
         if stat_choice == "S":
             if "GP" in df_mode.columns and "S" in df_mode.columns:
@@ -349,14 +369,14 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
             try:
                 df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors='coerce')
             except Exception as e:
-                return f"Error converting points: {e}"
+                return f"Error converting points to numeric: {e}"
             sorted_df = df_mode.sort_values(by="PTS", ascending=False)
         else:
             sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
         
-        yellow = sorted_df.iloc[:3]
-        green = sorted_df.iloc[7:10]
-        red = sorted_df.iloc[22:25]
+        green = sorted_df.iloc[0:3]
+        yellow = sorted_df.iloc[3:6]
+        red = sorted_df.iloc[6:9]
         output = "🟢 " + ", ".join(green["Player"].tolist()) + "\n"
         output += "🟡 " + ", ".join(yellow["Player"].tolist()) + "\n"
         output += "🔴 " + ", ".join(red["Player"].tolist())
@@ -371,8 +391,6 @@ def analyze_sport(df, stat_categories, player_col, team_col):
         if teams_input.lower() == 'exit':
             break
         team_list = [normalize_team_name(t) for t in teams_input.split(",") if t.strip()]
-        print("Normalized CSV team names:", df[team_col].astype(str).apply(normalize_team_name).unique())
-        print("Team list from input:", team_list)
         filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
         if filtered_df.empty:
             print("❌ No matching teams found. Please check the team names.")
@@ -496,8 +514,6 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
     if teams_input:
         team_list = [x.strip() for x in teams_input.split(",")]
         filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)]
-        print("Normalized CSV team names:", df["TEAM"].astype(str).apply(normalize_team_name).unique())
-        print("Team list from input:", team_list)
     else:
         filtered_df = df
 

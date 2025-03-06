@@ -15,9 +15,7 @@ import Universal_Sports_Analyzer as USA
 # -------------------------
 NOTION_TOKEN = "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"
 
-# Main polls database ID (for regular game polls)
 DATABASE_ID = "1aa71b1c-663e-8035-bc89-fb1e84a2d919"
-# PSP database ID (for your PSP queries)
 PSP_DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
 POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
@@ -42,20 +40,15 @@ def fetch_unprocessed_rows(database_id):
     except Exception as e:
         print("Error querying database:", e)
         return []
-    print(f"Raw Notion API response for database {database_id}:", response)
     rows = []
     for result in response.get("results", []):
         page_id = result["id"]
         created_time = result.get("created_time", "")
         props = result.get("properties", {})
 
-        # Extract teams from the "Teams" property if available, otherwise use "Team 1" and "Team 2"
         if "Teams" in props:
             team_prop = props["Teams"]
-            if team_prop.get("type") == "title":
-                team_parts = team_prop.get("title", [])
-            else:
-                team_parts = team_prop.get("rich_text", [])
+            team_parts = team_prop.get("title", []) if team_prop.get("type") == "title" else team_prop.get("rich_text", [])
             teams_raw = "".join(part.get("plain_text", "") for part in team_parts)
             teams_list = [t.strip().upper() for t in teams_raw.split(",") if t.strip()]
             team1 = teams_list[0] if teams_list else ""
@@ -63,16 +56,12 @@ def fetch_unprocessed_rows(database_id):
             row_teams = teams_list
         else:
             team1_data = props.get("Team 1", {})
-            if team1_data.get("type") == "title":
-                team1_parts = team1_data.get("title", [])
-            else:
-                team1_parts = team1_data.get("rich_text", [])
+            team1_parts = team1_data.get("title", []) if team1_data.get("type") == "title" else team1_data.get("rich_text", [])
             team1 = "".join(part.get("plain_text", "") for part in team1_parts).strip().upper()
             team2_parts = props.get("Team 2", {}).get("rich_text", [])
             team2 = "".join(part.get("plain_text", "") for part in team2_parts).strip().upper()
             row_teams = [team1] if team1 else []
 
-        # Sport and Stat
         sport_select = props.get("Sport", {}).get("select", {})
         sport = sport_select.get("name", "") if sport_select else ""
         stat_prop = props.get("Stat", {})
@@ -90,7 +79,6 @@ def fetch_unprocessed_rows(database_id):
         else:
             target_value = ""
 
-        # Extract the Order value from the nested unique_id structure.
         order_val = None
         if "Order" in props:
             order_prop = props["Order"]
@@ -110,9 +98,7 @@ def fetch_unprocessed_rows(database_id):
             "Order": order_val,
             "psp": is_psp
         })
-    # Sort rows by the numeric Order value (missing values are treated as infinity)
     rows.sort(key=lambda x: float(x.get("Order") if x.get("Order") is not None else float('inf')))
-    print(f"Found {len(rows)} unprocessed rows in database {database_id}, sorted by Order.")
     return rows
 
 async def append_poll_entries_to_page(entries):
@@ -129,7 +115,7 @@ async def append_poll_entries_to_page(entries):
             "object": "block",
             "type": "paragraph",
             "paragraph": {
-                "rich_text": [{"type": "text", "text": {"content": entry["output"]}}]
+                "rich_text": [{"type": "text", "text": {"content": entry["output"] if entry["output"] is not None else ""}}]
             }
         })
         blocks.append({"object": "block", "type": "divider", "divider": {}})
@@ -162,9 +148,7 @@ async def mark_row_as_processed(page_id):
 # -------------------------
 def update_psp_files():
     try:
-        result = subprocess.run(["python", "psp_database.py"], capture_output=True, text=True)
-        print("psp_database.py output:")
-        print(result.stdout)
+        subprocess.run(["python", "psp_database.py"], capture_output=True, text=True)
     except Exception as e:
         print("Error running psp_database.py:", e)
 
@@ -194,16 +178,15 @@ def analyze_nhl_psp(file_path, stat_key):
     except Exception as e:
         return f"Error converting stat column: {e}"
     sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
-    yellow = sorted_df.iloc[0:3]   # Rankings 1–3
-    green = sorted_df.iloc[4:7]    # Rankings 5–7
-    red = sorted_df.iloc[9:12]     # Rankings 10–12
+    yellow = sorted_df.iloc[0:3]
+    green = sorted_df.iloc[4:7]
+    red = sorted_df.iloc[9:12]
     player_col = "PLAYER" if "PLAYER" in sorted_df.columns else ("NAME" if "NAME" in sorted_df.columns else None)
     if player_col is None:
         return "Player column not found in CSV."
     green_list = green[player_col].tolist()
     yellow_list = yellow[player_col].tolist()
     red_list = red[player_col].tolist()
-    # Convert all items to strings in case some are numbers
     output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
     output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
     output += f"🔴 {', '.join(str(x) for x in red_list)}"
@@ -238,7 +221,6 @@ def run_universal_sports_analyzer_programmatic(row):
             return analyze_nhl_psp(file_path, stat_key)
         elif sport_upper == "NBA":
             stat_key = row["stat"].upper()
-            # Map FG3M to 3PM if needed.
             if stat_key == "FG3M":
                 stat_key = "3PM"
             if stat_key not in USA.STAT_CATEGORIES_NBA:
@@ -297,17 +279,7 @@ def run_universal_sports_analyzer_programmatic(row):
 # -------------------------
 async def process_rows():
     main_rows = fetch_unprocessed_rows(DATABASE_ID)
-    if main_rows:
-        print(f"Processing {len(main_rows)} rows from the main database {DATABASE_ID}...")
-    else:
-        print(f"No unprocessed rows found in main database {DATABASE_ID}.")
-
     psp_rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
-    if psp_rows:
-        print(f"Processing {len(psp_rows)} rows from the PSP database {PSP_DATABASE_ID}...")
-    else:
-        print(f"No unprocessed rows found in PSP database {PSP_DATABASE_ID}.")
-
     all_rows = main_rows + psp_rows
     if not all_rows:
         print("No unprocessed rows found in any database.")
@@ -322,14 +294,8 @@ async def process_rows():
             "output": result
         })
         await mark_row_as_processed(row["page_id"])
-        print(f"Processed row for {row.get('team1','')} vs {row.get('team2','')} ({row['sport']}, {row['stat']})")
     
     responses = await append_poll_entries_to_page(poll_entries)
-    print("Poll Entries:")
-    for entry in poll_entries:
-        print(entry["title"])
-        print(entry["output"])
-        print("-----")
     if responses:
         print("Poll page updated successfully.")
     else:
