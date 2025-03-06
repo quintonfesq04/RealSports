@@ -33,8 +33,8 @@ Dallas,Kyrie Irving,PG,"Tue, Mar 4",Knee,Out for the season
 Denver,Julian Strawther,SF,"Wed, Mar 5",Knee,Expected to be out until at least Apr 4
 Denver,Aaron Gordon,PF,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 7
 Denver,DaRon Holmes II,PF,"Sun, Feb 23",Achilles,Out for the season
-Detroit,Ron Harper Jr.,SF,"Wed, Mar 5",Thumb,Expected to be out until at least Mar 8
 Detroit,Tolu Smith,PF,"Wed, Mar 5",Achilles,Expected to be out until at least Mar 8
+Detroit,Ron Harper Jr.,SF,"Wed, Mar 5",Thumb,Expected to be out until at least Mar 8
 Detroit,Jaden Ivey,SG,"Wed, Mar 5",Lower Leg,Expected to be out until at least Mar 23
 Detroit,Tobias Harris,PF,"Wed, Mar 5",Personal,Expected to be out until at least Mar 8
 Detroit,Isaiah Stewart,PF,"Tue, Mar 4",Back,Game Time Decision
@@ -50,18 +50,18 @@ L.A. Clippers,Ben Simmons,PG,"Wed, Mar 5",Knee,Expected to be out until at least
 L.A. Clippers,Norman Powell,SG,"Wed, Mar 5",Hamstring,Expected to be out until at least Mar 16
 L.A. Clippers,Kawhi Leonard,SF,"Wed, Mar 5",Knee,Expected to be out until at least Mar 7
 L.A. Clippers,Derrick Jones Jr.,SF,"Wed, Mar 5",Groin,Expected to be out until at least Mar 7
+L.A. Lakers,LeBron James,SF,"Wed, Mar 5",Foot,Game Time Decision
 L.A. Lakers,Luka Doncic,PG,"Wed, Mar 5",Knee,Game Time Decision
 L.A. Lakers,Jordan Goodwin,SG,"Wed, Mar 5",Ankle,Game Time Decision
 L.A. Lakers,Maxi Kleber,C,"Wed, Mar 5",Foot,Expected to be out until at least Apr 11
-L.A. Lakers,Markieff Morris,PF,"Wed, Mar 5",Illness,Game Time Decision
+L.A. Lakers,Markieff Morris,PF,"Wed, Mar 5",Illness,Expected to be out until at least Mar 8
 L.A. Lakers,Austin Reaves,SG,"Wed, Mar 5",Calf,Game Time Decision
 L.A. Lakers,Rui Hachimura,PF,"Wed, Mar 5",Knee,Expected to be out until at least Mar 8
 Memphis,Santi Aldama,PF,"Wed, Mar 5",Calf,Expected to be out until at least Mar 7
+Memphis,John Konchar,SG,"Wed, Mar 5",Knee,Expected to be out until at least Mar 7
 Memphis,Zyon Pullin,PG,"Wed, Mar 5",Knee,Expected to be out until at least Mar 7
 Memphis,Jaren Jackson Jr.,PF,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 17
 Memphis,Yuki Kawamura,PG,"Wed, Mar 5",Hamstring,Expected to be out until at least Mar 7
-Memphis,Scotty Pippen Jr.,PG,"Tue, Mar 4",Toe,Game Time Decision
-Memphis,John Konchar,SG,"Tue, Mar 4",Knee,Game Time Decision
 Miami,Jaime Jaquez Jr.,SF,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 7
 Miami,Tyler Herro,PG,"Wed, Mar 5",Illness,Expected to be out until at least Mar 7
 Miami,Kel'el Ware,C,"Wed, Mar 5",Knee,Expected to be out until at least Mar 7
@@ -72,13 +72,15 @@ Milwaukee,Pete Nance,PF,"Wed, Mar 5",Ankle,Expected to be out until at least Mar
 Milwaukee,Gary Trent Jr.,SG,"Wed, Mar 5",Knee,Expected to be out until at least Mar 8
 Milwaukee,Ryan Rollins,SG,"Wed, Mar 5",Personal,Expected to be out until at least Mar 8
 Milwaukee,Pat Connaughton,SG,"Wed, Mar 5",Calf,Expected to be out until at least Mar 8
-Minnesota,Mike Conley,PG,"Wed, Mar 5",Rest,Expected to be out until at least Mar 7
 Minnesota,Rudy Gobert,C,"Wed, Mar 5",Back,Expected to be out until at least Mar 7
-New Orleans,Brandon Boston Jr.,SG,"Wed, Mar 5",Ankle,Game Time Decision
+Minnesota,Mike Conley,PG,"Wed, Mar 5",Rest,Expected to be out until at least Mar 7
+New Orleans,Brandon Boston Jr.,SG,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 8
 New Orleans,Herbert Jones,SG,"Tue, Feb 11",Shoulder,Out for the season
 New Orleans,Dejounte Murray,PG,"Fri, Jan 31",Achilles,Out for the season
+New York,Precious Achiuwa,PF,"Wed, Mar 5",Hamstring,Game Time Decision
+New York,Mitchell Robinson,C,"Wed, Mar 5",Ankle,Game Time Decision
 New York,Ariel Hukporti,C,"Wed, Mar 5",Knee,Expected to be out until at least Apr 6
-Oklahoma City,Aaron Wiggins,SG,"Wed, Mar 5",Thumb,Game Time Decision
+New York,OG Anunoby,SF,"Wed, Mar 5",Thumb,Game Time Decision
 Oklahoma City,Chet Holmgren,C,"Wed, Mar 5",Lower Leg,Expected to be out until at least Mar 7
 Oklahoma City,Ajay Mitchell,PG,"Wed, Mar 5",Toe,Expected to be out until at least Apr 2
 Oklahoma City,Alex Caruso,PG,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 7
@@ -95,6 +97,7 @@ Philadelphia,Eric Gordon,SF,"Thu, Feb 27",Wrist,Out for the season
 Philadelphia,Jared McCain,SG,"Thu, Jan 9",Knee,Out for the season
 Phoenix,Cody Martin,SF,"Wed, Mar 5",Abdomen,Game Time Decision
 Phoenix,Bradley Beal,SG,"Tue, Mar 4",Calf,Game Time Decision
+Portland,Deni Avdija,SF,"Wed, Mar 5",Quadriceps,Expected to be out until at least Mar 7
 Portland,Deandre Ayton,C,"Wed, Mar 5",Calf,Expected to be out until at least Mar 21
 Portland,Jerami Grant,PF,"Wed, Mar 5",Knee,Expected to be out until at least Mar 7
 Portland,Robert Williams III,C,"Wed, Mar 5",Knee,Expected to be out until at least Mar 7
@@ -111,12 +114,12 @@ Toronto,Garrett Temple,SF,"Wed, Mar 5",Personal,Game Time Decision
 Toronto,Brandon Ingram,SF,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 28
 Toronto,Jonathan Mogbo,PF,"Tue, Mar 4",Face,Game Time Decision
 Toronto,Ulrich Chomche,C,"Wed, Feb 19",Knee,Out for the season
+Utah,Collin Sexton,SG,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 7
 Utah,Keyonte George,SG,"Wed, Mar 5",Illness,Expected to be out until at least Mar 7
 Utah,Walker Kessler,C,"Wed, Mar 5",Rest,Expected to be out until at least Mar 7
 Utah,Jaden Springer,SG,"Wed, Mar 5",Back,Expected to be out until at least Mar 7
-Utah,Collin Sexton,SG,"Wed, Mar 5",Ankle,Expected to be out until at least Mar 7
-Utah,Lauri Markkanen,PF,"Wed, Mar 5",Back,Expected to be out until at least Mar 7
 Utah,Jordan Clarkson,PG,"Wed, Mar 5",Foot,Expected to be out until at least Mar 7
+Utah,Lauri Markkanen,PF,"Wed, Mar 5",Back,Expected to be out until at least Mar 7
 Utah,John Collins,C,"Wed, Mar 5",Back,Expected to be out until at least Mar 7
 Utah,Taylor Hendricks,PF,"Fri, Nov 1",Lower Leg,Out for the season
 Washington,Saddiq Bey,SF,"Wed, Mar 5",Knee,Expected to be out until at least Apr 6
