@@ -275,8 +275,6 @@ def analyze_mlb_noninteractive(df, teams, stat_choice):
         return "❌ 'TEAM' column not found in the DataFrame."
     if teams:
         team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()] if isinstance(teams, str) else [normalize_team_name(t) for t in teams]
-        print("Normalized CSV team names:", df["TEAM"].astype(str).apply(normalize_team_name).unique())
-        print("Team list from input:", team_list)
         filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     else:
         filtered_df = df.copy()

@@ -42,7 +42,6 @@ def fetch_unprocessed_rows(database_id):
     except Exception as e:
         print("Error querying database:", e)
         return []
-    print(f"Raw Notion API response for database {database_id}:", response)
     rows = []
     for result in response.get("results", []):
         page_id = result["id"]
@@ -112,7 +111,6 @@ def fetch_unprocessed_rows(database_id):
         })
     # Sort rows by the numeric Order value (missing values are treated as infinity)
     rows.sort(key=lambda x: float(x.get("Order") if x.get("Order") is not None else float('inf')))
-    print(f"Found {len(rows)} unprocessed rows in database {database_id}, sorted by Order.")
     return rows
 
 async def append_poll_entries_to_page(entries):
@@ -163,7 +161,6 @@ async def mark_row_as_processed(page_id):
 def update_psp_files():
     try:
         result = subprocess.run(["python", "psp_database.py"], capture_output=True, text=True)
-        print("psp_database.py output:")
         print(result.stdout)
     except Exception as e:
         print("Error running psp_database.py:", e)
@@ -193,11 +190,21 @@ def analyze_nhl_psp(file_path, stat_key):
         df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
     except Exception as e:
         return f"Error converting stat column: {e}"
+    
+    # Filter out injured players
+    try:
+        df_inj = pd.read_csv("NHL/nhl_injuries.csv")
+        df_inj["playerName"] = df_inj["playerName"].str.strip()
+        injured_names = set(df_inj["playerName"].dropna().unique())
+        df = df[~df["NAME"].isin(injured_names)]
+    except Exception as e:
+        return f"Error loading or processing NHL injuries CSV: {e}"
+    
     sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
     yellow = sorted_df.iloc[0:3]   # Rankings 1–3
-    green = sorted_df.iloc[4:7]    # Rankings 5–7
-    red = sorted_df.iloc[9:12]     # Rankings 10–12
-    player_col = "PLAYER" if "PLAYER" in sorted_df.columns else ("NAME" if "NAME" in sorted_df.columns else None)
+    green = sorted_df.iloc[6:9]    # Rankings 5–7
+    red = sorted_df.iloc[12:15]     # Rankings 10–12
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
     if player_col is None:
         return "Player column not found in CSV."
     green_list = green[player_col].tolist()
@@ -237,7 +244,6 @@ def run_universal_sports_analyzer_programmatic(row):
             return analyze_nhl_psp(file_path, stat_key)
         elif sport_upper == "NBA":
             stat_key = row["stat"].upper()
-            # Map FG3M to 3PM if needed.
             if stat_key == "FG3M":
                 stat_key = "3PM"
             if stat_key not in USA.STAT_CATEGORIES_NBA:
@@ -248,11 +254,20 @@ def run_universal_sports_analyzer_programmatic(row):
                 df.columns = [col.upper() for col in df.columns]
             except Exception as e:
                 return f"Error reading PSP CSV: {e}"
+            
+            try:
+                df_inj = pd.read_csv("NBA/nba_injury_report.csv")
+                df_inj["playerName"] = df_inj["playerName"].str.strip()
+                injured_names = set(df_inj["playerName"].dropna().unique())
+                df = df[~df["NAME"].isin(injured_names)]
+            except Exception as e:
+                return f"Error loading or processing NBA injuries CSV: {e}"
+            
             sorted_df = df.sort_values(by=stat_key, ascending=False)
             yellow = sorted_df.iloc[0:3]
-            green = sorted_df.iloc[3:7]
-            red = sorted_df.iloc[9:13]
-            player_col = "PLAYER" if "PLAYER" in sorted_df.columns else "NAME"
+            green = sorted_df.iloc[6:9]
+            red = sorted_df.iloc[12:15]
+            player_col = "NAME" if "NAME" in sorted_df.columns else None
             output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
             output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
             output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
@@ -263,8 +278,9 @@ def run_universal_sports_analyzer_programmatic(row):
         if sport_upper == "NBA":
             df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
+            player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
             return USA.analyze_sport_noninteractive(
-                df, USA.STAT_CATEGORIES_NBA, "PLAYER", "TEAM", teams, used_stat, target_val
+                df, USA.STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val
             )
         elif sport_upper == "CBB":
             df = USA.load_player_stats()
@@ -277,19 +293,13 @@ def run_universal_sports_analyzer_programmatic(row):
             if df.empty or "TEAM" not in df.columns:
                 return "❌ 'TEAM' column not found in the MLB data."
             used_stat = row["stat"].upper() if row["stat"].strip() else "RBI"
-            if target_val is not None:
-                return USA.analyze_sport_noninteractive(
-                    df, USA.STAT_CATEGORIES_MLB, "PLAYER", "TEAM", teams, used_stat, target_val
-                )
-            else:
-                return USA.analyze_mlb_noninteractive(df, teams, used_stat)
+            return USA.analyze_mlb_noninteractive(
+                df, teams, used_stat
+            )
         elif sport_upper == "NHL":
             df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
             nhl_stat = row["stat"].upper() if row["stat"].strip() else "GOALS"
-            if nhl_stat == "S":
-                return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val)
-            else:
-                return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, None)
+            return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val)
         else:
             return "Sport not recognized."
 
@@ -298,20 +308,10 @@ def run_universal_sports_analyzer_programmatic(row):
 # -------------------------
 async def process_rows():
     main_rows = fetch_unprocessed_rows(DATABASE_ID)
-    if main_rows:
-        print(f"Processing {len(main_rows)} rows from the main database {DATABASE_ID}...")
-    else:
-        print(f"No unprocessed rows found in main database {DATABASE_ID}.")
-
     psp_rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
-    if psp_rows:
-        print(f"Processing {len(psp_rows)} rows from the PSP database {PSP_DATABASE_ID}...")
-    else:
-        print(f"No unprocessed rows found in PSP database {PSP_DATABASE_ID}.")
-
     all_rows = main_rows + psp_rows
     if not all_rows:
-        print("No unprocessed rows found in any database.")
+        print("No unprocessed rows found.")
         return
 
     poll_entries = []
@@ -323,18 +323,8 @@ async def process_rows():
             "output": result
         })
         await mark_row_as_processed(row["page_id"])
-        print(f"Processed row for {row.get('team1','')} vs {row.get('team2','')} ({row['sport']}, {row['stat']})")
     
-    responses = await append_poll_entries_to_page(poll_entries)
-    print("Poll Entries:")
-    for entry in poll_entries:
-        print(entry["title"])
-        print(entry["output"])
-        print("-----")
-    if responses:
-        print("Poll page updated successfully.")
-    else:
-        print("Failed to update poll page.")
+    await append_poll_entries_to_page(poll_entries)
 
 def main():
     asyncio.run(process_rows())
