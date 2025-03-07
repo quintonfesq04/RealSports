@@ -15032,3 +15032,623 @@ Total stats rows fetched: 1176
 💾 Fetched MLB injury data with 174 rows.
 💾 Saved mlb_injuries.csv.
 MLB data scraping complete.
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Error loading stats page 1 Message: timeout: Timed out receiving message from renderer: 17.280
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Error loading stats page 3 Message: timeout: Timed out receiving message from renderer: 17.524
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Error loading stats page 4 Message: timeout: Timed out receiving message from renderer: 17.784
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Error loading stats page 5 Message: timeout: Timed out receiving message from renderer: 16.590
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Error loading stats page 6 Message: timeout: Timed out receiving message from renderer: 17.839
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Error loading stats page 7 Message: timeout: Timed out receiving message from renderer: 17.739
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Error loading stats page 8 Message: timeout: Timed out receiving message from renderer: 17.911
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Error loading stats page 9 Message: timeout: Timed out receiving message from renderer: 17.637
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Error loading stats page 10 Message: timeout: Timed out receiving message from renderer: 17.625
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Error loading stats page 11 Message: timeout: Timed out receiving message from renderer: 17.694
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Error loading stats page 12 Message: timeout: Timed out receiving message from renderer: 17.216
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Error loading stats page 13 Message: timeout: Timed out receiving message from renderer: 17.725
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Error loading stats page 14 Message: timeout: Timed out receiving message from renderer: 17.643
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Error loading stats page 15 Message: timeout: Timed out receiving message from renderer: 17.712
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Error loading stats page 16 Message: timeout: Timed out receiving message from renderer: 16.349
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Error loading stats page 17 Message: timeout: Timed out receiving message from renderer: 17.900
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Error loading stats page 18 Message: timeout: Timed out receiving message from renderer: 17.705
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Error loading stats page 19 Message: timeout: Timed out receiving message from renderer: 17.854
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Error loading stats page 20 Message: timeout: Timed out receiving message from renderer: 17.234
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Error loading stats page 21 Message: timeout: Timed out receiving message from renderer: 16.790
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Error loading stats page 22 Message: timeout: Timed out receiving message from renderer: 17.988
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001028782d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000102870934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001023d1f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001023bc30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001023bc084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001023b9d9c chromedriver + 187804
+6   chromedriver                        0x00000001023ba9f4 chromedriver + 190964
+7   chromedriver                        0x00000001023c8848 cxxbridge1$string$len + 54632
+8   chromedriver                        0x00000001023de0a8 cxxbridge1$string$len + 142792
+9   chromedriver                        0x00000001023bb028 chromedriver + 192552
+10  chromedriver                        0x00000001023dde84 cxxbridge1$string$len + 142244
+11  chromedriver                        0x000000010245a15c cxxbridge1$string$len + 650876
+12  chromedriver                        0x000000010240d060 cxxbridge1$string$len + 335232
+13  chromedriver                        0x0000000102840c38 cxxbridge1$str$ptr + 2512864
+14  chromedriver                        0x0000000102843f58 cxxbridge1$str$ptr + 2525952
+15  chromedriver                        0x0000000102826578 cxxbridge1$str$ptr + 2404640
+16  chromedriver                        0x0000000102844818 cxxbridge1$str$ptr + 2528192
+17  chromedriver                        0x0000000102816f2c cxxbridge1$str$ptr + 2341588
+18  chromedriver                        0x0000000102860a60 cxxbridge1$str$ptr + 2643464
+19  chromedriver                        0x0000000102860be8 cxxbridge1$str$ptr + 2643856
+20  chromedriver                        0x00000001028705a8 cxxbridge1$str$ptr + 2707792
+21  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 650
+💾 Saved mlb_stats.csv with raw stats data.
+💾 Fetched MLB injury data with 173 rows.
+💾 Saved mlb_injuries.csv.
+MLB data scraping complete.
