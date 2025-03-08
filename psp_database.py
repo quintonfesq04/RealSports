@@ -193,14 +193,12 @@ def clean_name(name):
 # Main Process
 # --------------------------
 def main():
-    main_rows = fetch_unprocessed_rows(DATABASE_ID)
-    psp_rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
-    all_rows = main_rows + psp_rows
-    if not all_rows:
+    rows = fetch_unprocessed_rows()
+    if not rows:
         print("No unprocessed rows found.")
         return
 
-    for row in all_rows:
+    for row in rows:
         page_id = row["page_id"]
         teams = row["teams"]  # Expecting a comma-separated string of teams.
         sport = row["sport"]

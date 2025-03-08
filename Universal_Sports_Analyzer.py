@@ -47,9 +47,15 @@ STAT_CATEGORIES_MLB = {
 TEAM_ALIASES = {
     "QUC": "QUOC",
     "AZ": "ARI",
-    "AZ": "ARI",
-    "NCST": "NCSU",
-    "NCSU": "NCST"
+    "NCSU": "NCST",
+    "PRES": "PRE",
+    "LR": "UALR",
+    "BOIS": "BSU",
+    "HPU": "HP",
+    "CAM":"CAMP",
+    "HCU": "HBU",
+    "ATH": "OAK"
+
 }
 
 def normalize_team_name(team):

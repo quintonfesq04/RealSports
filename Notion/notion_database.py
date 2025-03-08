@@ -153,7 +153,12 @@ async def mark_row_as_processed(page_id):
                                 page_id=page_id,
                                 properties={"Processed": {"select": {"name": "Yes"}}})
     except Exception as e:
-        print(f"Error marking row {page_id} as processed: {e}")
+        if "Conflict occurred while saving" in str(e):
+            print(f"Conflict error while marking row {page_id} as processed. Retrying...")
+            await asyncio.sleep(1)
+            await mark_row_as_processed(page_id)
+        else:
+            print(f"Error marking row {page_id} as processed: {e}")
 
 # -------------------------
 # Helper Function: Run psp_database.py to update CSV files
@@ -268,6 +273,22 @@ def run_universal_sports_analyzer_programmatic(row):
             green = sorted_df.iloc[6:9]
             red = sorted_df.iloc[12:15]
             player_col = "NAME" if "NAME" in sorted_df.columns else None
+            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
+            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
+            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
+            return output
+        elif sport_upper == "CBB":
+            stat_key = row["stat"].upper()
+            if stat_key not in USA.STAT_CATEGORIES_CBB:
+                return f"❌ Invalid CBB stat choice."
+            # Generate PSP data for CBB dynamically
+            df = USA.load_player_stats()
+            df.columns = [col.upper() for col in df.columns]
+            sorted_df = df.sort_values(by=stat_key, ascending=False)
+            yellow = sorted_df.iloc[0:3]
+            green = sorted_df.iloc[6:9]
+            red = sorted_df.iloc[12:15]
+            player_col = "PLAYER" if "PLAYER" in sorted_df.columns else None
             output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
             output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
             output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"

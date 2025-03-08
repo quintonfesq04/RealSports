@@ -343,3 +343,40 @@ Script finished.
 💾 Saved player stats to nhl_player_stats.csv
 💾 Saved NHL injury report data
 Script finished.
+💾 Saved player stats to nhl_player_stats.csv
+💾 Saved NHL injury report data
+Script finished.
+There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event)
+An error occurred: Message: unknown error: net::ERR_INTERNET_DISCONNECTED
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x0000000104e9c2d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000104e94934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x00000001049f5f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x00000001049ee5f4 cxxbridge1$string$len + 62228
+4   chromedriver                        0x00000001049e055c cxxbridge1$string$len + 4732
+5   chromedriver                        0x00000001049e1f3c cxxbridge1$string$len + 11356
+6   chromedriver                        0x00000001049e09c4 cxxbridge1$string$len + 5860
+7   chromedriver                        0x00000001049e0338 cxxbridge1$string$len + 4184
+8   chromedriver                        0x00000001049e0084 cxxbridge1$string$len + 3492
+9   chromedriver                        0x00000001049ddd9c chromedriver + 187804
+10  chromedriver                        0x00000001049de8c0 chromedriver + 190656
+11  chromedriver                        0x00000001049f8f40 cxxbridge1$string$len + 105568
+12  chromedriver                        0x0000000104a7e9b4 cxxbridge1$string$len + 653012
+13  chromedriver                        0x0000000104a7de80 cxxbridge1$string$len + 650144
+14  chromedriver                        0x0000000104a31060 cxxbridge1$string$len + 335232
+15  chromedriver                        0x0000000104e64c38 cxxbridge1$str$ptr + 2512864
+16  chromedriver                        0x0000000104e67f58 cxxbridge1$str$ptr + 2525952
+17  chromedriver                        0x0000000104e4a578 cxxbridge1$str$ptr + 2404640
+18  chromedriver                        0x0000000104e68818 cxxbridge1$str$ptr + 2528192
+19  chromedriver                        0x0000000104e3af2c cxxbridge1$str$ptr + 2341588
+20  chromedriver                        0x0000000104e84a60 cxxbridge1$str$ptr + 2643464
+21  chromedriver                        0x0000000104e84be8 cxxbridge1$str$ptr + 2643856
+22  chromedriver                        0x0000000104e945a8 cxxbridge1$str$ptr + 2707792
+23  libsystem_pthread.dylib             0x00000001948702e4 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000019486b0fc thread_start + 8
+
+Error during request: HTTPSConnectionPool(host='www.cbssports.com', port=443): Max retries exceeded with url: /nhl/injuries/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x105ac5a90>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+No injury data to save.
+Script finished.
