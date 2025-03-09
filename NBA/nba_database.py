@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
     if not injuries_df.empty:
         print("💾 Saved injury report data")
-        injuries_df.to_csv('nba_injury_report.csv', index=False)
+        injuries_df.to_csv('NBA/nba_injury_report.csv', index=False)
     else:
         print("❌ No injury data found")
 

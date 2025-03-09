@@ -226,7 +226,7 @@ def save_players_to_csv(players):
         output_dir = "CBB"
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-        csv_path = os.path.join(output_dir, "cbb_players_stats.csv")
+        csv_path = os.path.join(output_dir, "CBB/cbb_players_stats.csv")
         df.to_csv(csv_path, index=False)
         print(f"✅ Player stats saved successfully to '{csv_path}'!")
     else:

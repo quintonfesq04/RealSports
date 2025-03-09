@@ -616,13 +616,13 @@ def main():
             analyze_sport(df_cbb, STAT_CATEGORIES_CBB, "Player", "Team")
         elif choice == '2':
             print("\n📊 Selected: NBA")
-            player_stats_file = 'nba_player_stats.csv'
-            injury_report_file = 'nba_injury_report.csv'
+            player_stats_file = 'NBA/nba_player_stats.csv'
+            injury_report_file = 'NBA/nba_injury_report.csv'
             df_nba = integrate_nba_data(player_stats_file, injury_report_file)
             analyze_sport(df_nba, STAT_CATEGORIES_NBA, "PLAYER", "TEAM")
         elif choice == '3':
             print("\n📊 Selected: NHL")
-            df_nhl = integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
+            df_nhl = integrate_nhl_data("NHL/nhl_player_stats.csv", "NHL/nhl_injuries.csv")
             analyze_nhl_flow(df_nhl)
         elif choice == '4':
             print("\n📊 Selected: MLB")

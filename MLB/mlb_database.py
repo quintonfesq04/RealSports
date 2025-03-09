@@ -69,7 +69,7 @@ def fetch_raw_table_data():
 def save_stats_csv():
     data = fetch_raw_table_data()
     print("Total stats rows fetched:", len(data))
-    with open("mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerows(data)
     print("💾 Saved mlb_stats.csv with raw stats data.")
@@ -133,7 +133,7 @@ def fetch_mlb_injury_data():
 def save_injuries_csv():
     df_injuries = fetch_mlb_injury_data()
     if not df_injuries.empty:
-        df_injuries.to_csv("mlb_injuries.csv", index=False)
+        df_injuries.to_csv("MLB/mlb_injuries.csv", index=False)
         print("💾 Saved mlb_injuries.csv.")
     else:
         print("No injury data to save.")
