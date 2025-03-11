@@ -698,3 +698,142 @@ Traceback (most recent call last):
   File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 616, in check_parent_directory
     raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
 OSError: Cannot save file into a non-existent directory: 'NHL'
+An error occurred: Cannot save file into a non-existent directory: 'NHL'
+Script finished.
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/NHL/nhl_database.py", line 133, in <module>
+    df_injuries.to_csv("NHL/nhl_injuries.csv", index=False)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'NHL'
+An error occurred: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: Unable to receive message from renderer
+  (Session info: chrome=133.0.6943.142)
+Stacktrace:
+0   chromedriver                        0x00000001005382d4 cxxbridge1$str$ptr + 2739836
+1   chromedriver                        0x0000000100530934 cxxbridge1$str$ptr + 2708700
+2   chromedriver                        0x0000000100091f90 cxxbridge1$string$len + 93360
+3   chromedriver                        0x000000010007c30c cxxbridge1$string$len + 4140
+4   chromedriver                        0x000000010007c084 cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000100079d9c chromedriver + 187804
+6   chromedriver                        0x000000010007a9f4 chromedriver + 190964
+7   chromedriver                        0x0000000100097780 cxxbridge1$string$len + 115872
+8   chromedriver                        0x0000000100099d74 cxxbridge1$string$len + 125588
+9   chromedriver                        0x0000000100099e1c cxxbridge1$string$len + 125756
+10  chromedriver                        0x00000001000d3e04 cxxbridge1$string$len + 363300
+11  chromedriver                        0x00000001000ce57c cxxbridge1$string$len + 340636
+12  chromedriver                        0x0000000100119e80 cxxbridge1$string$len + 650144
+13  chromedriver                        0x00000001000cd060 cxxbridge1$string$len + 335232
+14  chromedriver                        0x0000000100500c38 cxxbridge1$str$ptr + 2512864
+15  chromedriver                        0x0000000100503f58 cxxbridge1$str$ptr + 2525952
+16  chromedriver                        0x00000001004e6578 cxxbridge1$str$ptr + 2404640
+17  chromedriver                        0x0000000100504818 cxxbridge1$str$ptr + 2528192
+18  chromedriver                        0x00000001004d6f2c cxxbridge1$str$ptr + 2341588
+19  chromedriver                        0x0000000100520a60 cxxbridge1$str$ptr + 2643464
+20  chromedriver                        0x0000000100520be8 cxxbridge1$str$ptr + 2643856
+21  chromedriver                        0x00000001005305a8 cxxbridge1$str$ptr + 2707792
+22  libsystem_pthread.dylib             0x00000001991902e4 _pthread_start + 136
+23  libsystem_pthread.dylib             0x000000019918b0fc thread_start + 8
+
+Script finished.
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/NHL/nhl_database.py", line 133, in <module>
+    df_injuries.to_csv("NHL/nhl_injuries.csv", index=False)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'NHL'
+An error occurred: Cannot save file into a non-existent directory: 'NHL'
+Script finished.
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/NHL/nhl_database.py", line 133, in <module>
+    df_injuries.to_csv("NHL/nhl_injuries.csv", index=False)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'NHL'

@@ -18,7 +18,7 @@ NOTION_TOKEN = "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"
 DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
 # StatMuse base settings
 BASE_URL = "https://www.statmuse.com"
-TIME_PERIOD = "past month"
+TIME_PERIOD = "past week"
 
 # Initialize Notion client
 notion = Client(auth=NOTION_TOKEN)
@@ -101,6 +101,7 @@ def build_query_url(query, teams):
     full_query = f"{query} {TIME_PERIOD} {teams_str}"
     encoded_query = urllib.parse.quote_plus(full_query)
     url = f"{BASE_URL}/ask?q={encoded_query}"
+    print("Full query URL:", url)
     return url
 
 def fetch_html(url):
@@ -188,6 +189,61 @@ def clean_name(name):
         # Return the substring up to one character before the period.
         return name[:period_index-1].strip()
     return name
+
+def analyze_nba_psp(file_path, stat_key):
+    try:
+        df_psp = pd.read_csv(file_path)
+        df_psp.columns = [col.upper() for col in df_psp.columns]
+        print("PSP Data Loaded:", df_psp.head())
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    
+    try:
+        df_stats = pd.read_csv("NBA/nba_player_stats.csv")
+        df_stats.columns = [col.upper() for col in df_stats.columns]
+        print("NBA Player Stats Loaded:", df_stats.head())
+    except Exception as e:
+        return f"Error reading NBA player stats CSV: {e}"
+    
+    try:
+        df_inj = pd.read_csv("NBA/nba_injury_report.csv")
+        df_inj["playerName"] = df_inj["playerName"].str.strip()
+        injured_names = set(df_inj["playerName"].dropna().unique())
+        print("Injured Players:", injured_names)
+    except Exception as e:
+        return f"Error loading or processing NBA injuries CSV: {e}"
+    
+    # Merge PSP data with player stats to get the latest team information
+    df_merged = pd.merge(df_psp, df_stats, on="NAME", how="left", suffixes=('_psp', '_stats'))
+    print("Merged Data:", df_merged.head())
+    
+    # Filter out injured players
+    df_merged = df_merged[~df_merged["NAME"].isin(injured_names)]
+    print("Filtered Data (No Injuries):", df_merged.head())
+    
+    if stat_key not in df_merged.columns:
+        return f"Stat column '{stat_key}' not found in CSV."
+    
+    try:
+        df_merged[stat_key] = pd.to_numeric(df_merged[stat_key].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    
+    sorted_df = df_merged.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
+    yellow = sorted_df.iloc[0:3]   # Rankings 1–3
+    green = sorted_df.iloc[6:9]    # Rankings 5–7
+    red = sorted_df.iloc[12:15]     # Rankings 10–12
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    if player_col is None:
+        return "Player column not found in CSV."
+    green_list = green[player_col].tolist()
+    yellow_list = yellow[player_col].tolist()
+    red_list = red[player_col].tolist()
+    # Convert all items to strings in case some are numbers
+    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
+    output += f"🔴 {', '.join(str(x) for x in red_list)}"
+    return output
 
 # --------------------------
 # Main Process

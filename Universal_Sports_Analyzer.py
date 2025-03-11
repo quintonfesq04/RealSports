@@ -619,7 +619,7 @@ def main():
             player_stats_file = 'NBA/nba_player_stats.csv'
             injury_report_file = 'NBA/nba_injury_report.csv'
             df_nba = integrate_nba_data(player_stats_file, injury_report_file)
-            analyze_sport(df_nba, STAT_CATEGORIES_NBA, "PLAYER", "TEAM")
+            analyze_sport(df_nba, STAT_CATEGORIES_NBA, "PLAYER")
         elif choice == '3':
             print("\n📊 Selected: NHL")
             df_nhl = integrate_nhl_data("NHL/nhl_player_stats.csv", "NHL/nhl_injuries.csv")

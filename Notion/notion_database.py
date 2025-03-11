@@ -222,6 +222,34 @@ def analyze_nhl_psp(file_path, stat_key):
     return output
 
 # -------------------------
+# Helper Function: PSP NBA Analyzer
+# -------------------------
+def analyze_nba_psp(file_path, stat_key):
+    try:
+        df = pd.read_csv(file_path)
+        df.columns = [col.upper() for col in df.columns]
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    
+    try:
+        df_inj = pd.read_csv("NBA/nba_injury_report.csv")
+        df_inj["playerName"] = df_inj["playerName"].str.strip()
+        injured_names = set(df_inj["playerName"].dropna().unique())
+        df = df[~df["NAME"].isin(injured_names)]
+    except Exception as e:
+        return f"Error loading or processing NBA injuries CSV: {e}"
+    
+    sorted_df = df.sort_values(by=stat_key, ascending=False)
+    yellow = sorted_df.iloc[0:3]
+    green = sorted_df.iloc[6:9]
+    red = sorted_df.iloc[12:15]
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
+    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
+    return output
+
+# -------------------------
 # Analyzer Function: Calls the appropriate analyzer
 # -------------------------
 def run_universal_sports_analyzer_programmatic(row):
@@ -254,29 +282,7 @@ def run_universal_sports_analyzer_programmatic(row):
             if stat_key not in USA.STAT_CATEGORIES_NBA:
                 return f"❌ Invalid NBA stat choice."
             file_path = os.path.join("PSP", f"nba_{row['stat'].lower()}_psp_data.csv")
-            try:
-                df = pd.read_csv(file_path)
-                df.columns = [col.upper() for col in df.columns]
-            except Exception as e:
-                return f"Error reading PSP CSV: {e}"
-            
-            try:
-                df_inj = pd.read_csv("NBA/nba_injury_report.csv")
-                df_inj["playerName"] = df_inj["playerName"].str.strip()
-                injured_names = set(df_inj["playerName"].dropna().unique())
-                df = df[~df["NAME"].isin(injured_names)]
-            except Exception as e:
-                return f"Error loading or processing NBA injuries CSV: {e}"
-            
-            sorted_df = df.sort_values(by=stat_key, ascending=False)
-            yellow = sorted_df.iloc[0:3]
-            green = sorted_df.iloc[6:9]
-            red = sorted_df.iloc[12:15]
-            player_col = "NAME" if "NAME" in sorted_df.columns else None
-            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
-            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
-            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
-            return output
+            return analyze_nba_psp(file_path, stat_key)
         elif sport_upper == "CBB":
             stat_key = row["stat"].upper()
             if stat_key not in USA.STAT_CATEGORIES_CBB:
