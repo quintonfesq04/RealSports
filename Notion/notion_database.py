@@ -303,7 +303,7 @@ def run_universal_sports_analyzer_programmatic(row):
             return "PSP processing not configured for this sport."
     else:
         if sport_upper == "NBA":
-            df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
+            df = USA.integrate_nba_data('NBA/nba_player_stats.csv', 'NBA/nba_injury_report.csv')
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
             return USA.analyze_sport_noninteractive(
@@ -324,7 +324,7 @@ def run_universal_sports_analyzer_programmatic(row):
                 df, teams, used_stat
             )
         elif sport_upper == "NHL":
-            df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
+            df = USA.integrate_nhl_data("NHL/nhl_player_stats.csv", "NHL/nhl_injuries.csv")
             nhl_stat = row["stat"].upper() if row["stat"].strip() else "GOALS"
             return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val)
         else:
