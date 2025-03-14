@@ -23766,3 +23766,2399 @@ Traceback (most recent call last):
     with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
          ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Error loading stats page 17 Message: timeout: Timed out receiving message from renderer: 17.837
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x0000000102d45804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000102d3dddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000102891ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x000000010287c3d4 cxxbridge1$string$len + 4140
+4   chromedriver                        0x000000010287c14c cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000102879e64 chromedriver + 188004
+6   chromedriver                        0x000000010287aabc chromedriver + 191164
+7   chromedriver                        0x0000000102888690 cxxbridge1$string$len + 53992
+8   chromedriver                        0x000000010289e3ac cxxbridge1$string$len + 143364
+9   chromedriver                        0x000000010287b0f0 chromedriver + 192752
+10  chromedriver                        0x000000010289e194 cxxbridge1$string$len + 142828
+11  chromedriver                        0x000000010291a914 cxxbridge1$string$len + 652652
+12  chromedriver                        0x00000001028cd35c cxxbridge1$string$len + 335796
+13  chromedriver                        0x0000000102d0acd4 cxxbridge1$str$ptr + 2545532
+14  chromedriver                        0x0000000102d0dfa0 cxxbridge1$str$ptr + 2558536
+15  chromedriver                        0x0000000102cead04 cxxbridge1$str$ptr + 2414508
+16  chromedriver                        0x0000000102d0e800 cxxbridge1$str$ptr + 2560680
+17  chromedriver                        0x0000000102cdbba0 cxxbridge1$str$ptr + 2352712
+18  chromedriver                        0x0000000102d2e45c cxxbridge1$str$ptr + 2690820
+19  chromedriver                        0x0000000102d2e5e4 cxxbridge1$str$ptr + 2691212
+20  chromedriver                        0x0000000102d3da50 cxxbridge1$str$ptr + 2753784
+21  libsystem_pthread.dylib             0x00000001991902e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019918b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1151
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 70, in save_stats_csv
+    data = fetch_raw_table_data()
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 40, in fetch_raw_table_data
+    page_source = driver.page_source
+                  ^^^^^^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 570, in page_source
+    return self.execute(Command.GET_PAGE_SOURCE)["value"]
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 429, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSessionIdException: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x0000000100add804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000100ad5ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100629ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100612fa0 chromedriver + 192416
+4   chromedriver                        0x0000000100636820 cxxbridge1$string$len + 144504
+5   chromedriver                        0x00000001006995d8 cxxbridge1$string$len + 549424
+6   chromedriver                        0x00000001006b2178 cxxbridge1$string$len + 650704
+7   chromedriver                        0x000000010066535c cxxbridge1$string$len + 335796
+8   chromedriver                        0x0000000100aa2cd4 cxxbridge1$str$ptr + 2545532
+9   chromedriver                        0x0000000100aa5fa0 cxxbridge1$str$ptr + 2558536
+10  chromedriver                        0x0000000100a82d04 cxxbridge1$str$ptr + 2414508
+11  chromedriver                        0x0000000100aa6800 cxxbridge1$str$ptr + 2560680
+12  chromedriver                        0x0000000100a73ba0 cxxbridge1$str$ptr + 2352712
+13  chromedriver                        0x0000000100ac645c cxxbridge1$str$ptr + 2690820
+14  chromedriver                        0x0000000100ac65e4 cxxbridge1$str$ptr + 2691212
+15  chromedriver                        0x0000000100ad5a50 cxxbridge1$str$ptr + 2753784
+16  libsystem_pthread.dylib             0x00000001991902e4 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000019918b0fc thread_start + 8
+
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Error loading stats page 4 Message: 
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100d4d1d0 cxxbridge1$string$len + 384552
+4   chromedriver                        0x0000000100d8e678 cxxbridge1$string$len + 651984
+5   chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+6   chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+7   chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+8   chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+9   chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+10  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+11  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+12  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+13  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+14  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+15  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Error loading stats page 5 Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100cfe43c cxxbridge1$string$len + 61588
+4   chromedriver                        0x0000000100cf0624 cxxbridge1$string$len + 4732
+5   chromedriver                        0x0000000100cf2004 cxxbridge1$string$len + 11356
+6   chromedriver                        0x0000000100cf0a8c cxxbridge1$string$len + 5860
+7   chromedriver                        0x0000000100cf0400 cxxbridge1$string$len + 4184
+8   chromedriver                        0x0000000100cf014c cxxbridge1$string$len + 3492
+9   chromedriver                        0x0000000100cede64 chromedriver + 188004
+10  chromedriver                        0x0000000100cee988 chromedriver + 190856
+11  chromedriver                        0x0000000100d08e58 cxxbridge1$string$len + 105136
+12  chromedriver                        0x0000000100d8f198 cxxbridge1$string$len + 654832
+13  chromedriver                        0x0000000100d8e678 cxxbridge1$string$len + 651984
+14  chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+15  chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+16  chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+17  chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+18  chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+19  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+20  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+21  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+22  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+23  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Error loading stats page 6 Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100cfe43c cxxbridge1$string$len + 61588
+4   chromedriver                        0x0000000100cf0624 cxxbridge1$string$len + 4732
+5   chromedriver                        0x0000000100cf2004 cxxbridge1$string$len + 11356
+6   chromedriver                        0x0000000100cf0a8c cxxbridge1$string$len + 5860
+7   chromedriver                        0x0000000100cf0400 cxxbridge1$string$len + 4184
+8   chromedriver                        0x0000000100cf014c cxxbridge1$string$len + 3492
+9   chromedriver                        0x0000000100cede64 chromedriver + 188004
+10  chromedriver                        0x0000000100cee988 chromedriver + 190856
+11  chromedriver                        0x0000000100d08e58 cxxbridge1$string$len + 105136
+12  chromedriver                        0x0000000100d8f198 cxxbridge1$string$len + 654832
+13  chromedriver                        0x0000000100d8e678 cxxbridge1$string$len + 651984
+14  chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+15  chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+16  chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+17  chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+18  chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+19  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+20  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+21  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+22  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+23  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Error loading stats page 7 Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100cfe43c cxxbridge1$string$len + 61588
+4   chromedriver                        0x0000000100cf0624 cxxbridge1$string$len + 4732
+5   chromedriver                        0x0000000100cf2004 cxxbridge1$string$len + 11356
+6   chromedriver                        0x0000000100cf0a8c cxxbridge1$string$len + 5860
+7   chromedriver                        0x0000000100cf0400 cxxbridge1$string$len + 4184
+8   chromedriver                        0x0000000100cf014c cxxbridge1$string$len + 3492
+9   chromedriver                        0x0000000100cede64 chromedriver + 188004
+10  chromedriver                        0x0000000100cee988 chromedriver + 190856
+11  chromedriver                        0x0000000100d08e58 cxxbridge1$string$len + 105136
+12  chromedriver                        0x0000000100d8f198 cxxbridge1$string$len + 654832
+13  chromedriver                        0x0000000100d8e678 cxxbridge1$string$len + 651984
+14  chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+15  chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+16  chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+17  chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+18  chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+19  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+20  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+21  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+22  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+23  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Error loading stats page 8 Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100cfe43c cxxbridge1$string$len + 61588
+4   chromedriver                        0x0000000100cf0624 cxxbridge1$string$len + 4732
+5   chromedriver                        0x0000000100cf2004 cxxbridge1$string$len + 11356
+6   chromedriver                        0x0000000100cf0a8c cxxbridge1$string$len + 5860
+7   chromedriver                        0x0000000100cf0400 cxxbridge1$string$len + 4184
+8   chromedriver                        0x0000000100cf014c cxxbridge1$string$len + 3492
+9   chromedriver                        0x0000000100cede64 chromedriver + 188004
+10  chromedriver                        0x0000000100cee988 chromedriver + 190856
+11  chromedriver                        0x0000000100d08e58 cxxbridge1$string$len + 105136
+12  chromedriver                        0x0000000100d8f198 cxxbridge1$string$len + 654832
+13  chromedriver                        0x0000000100d8e678 cxxbridge1$string$len + 651984
+14  chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+15  chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+16  chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+17  chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+18  chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+19  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+20  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+21  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+22  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+23  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Error loading stats page 9 Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100cfe43c cxxbridge1$string$len + 61588
+4   chromedriver                        0x0000000100cf0624 cxxbridge1$string$len + 4732
+5   chromedriver                        0x0000000100cf2004 cxxbridge1$string$len + 11356
+6   chromedriver                        0x0000000100cf0a8c cxxbridge1$string$len + 5860
+7   chromedriver                        0x0000000100cf0400 cxxbridge1$string$len + 4184
+8   chromedriver                        0x0000000100cf014c cxxbridge1$string$len + 3492
+9   chromedriver                        0x0000000100cede64 chromedriver + 188004
+10  chromedriver                        0x0000000100cee988 chromedriver + 190856
+11  chromedriver                        0x0000000100d08e58 cxxbridge1$string$len + 105136
+12  chromedriver                        0x0000000100d8f198 cxxbridge1$string$len + 654832
+13  chromedriver                        0x0000000100d8e678 cxxbridge1$string$len + 651984
+14  chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+15  chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+16  chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+17  chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+18  chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+19  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+20  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+21  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+22  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+23  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Error loading stats page 10 Message: 
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100d4d1d0 cxxbridge1$string$len + 384552
+4   chromedriver                        0x0000000100d8e678 cxxbridge1$string$len + 651984
+5   chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+6   chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+7   chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+8   chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+9   chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+10  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+11  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+12  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+13  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+14  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+15  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Error loading stats page 11 Message: timeout: Timed out receiving message from renderer: 17.814
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100cf03d4 cxxbridge1$string$len + 4140
+4   chromedriver                        0x0000000100cf014c cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000100cede64 chromedriver + 188004
+6   chromedriver                        0x0000000100ceeabc chromedriver + 191164
+7   chromedriver                        0x0000000100cfc690 cxxbridge1$string$len + 53992
+8   chromedriver                        0x0000000100d123ac cxxbridge1$string$len + 143364
+9   chromedriver                        0x0000000100cef0f0 chromedriver + 192752
+10  chromedriver                        0x0000000100d12194 cxxbridge1$string$len + 142828
+11  chromedriver                        0x0000000100d8e914 cxxbridge1$string$len + 652652
+12  chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+13  chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+14  chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+15  chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+16  chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+17  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+18  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+19  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+20  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+21  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Error loading stats page 14 Message: timeout: Timed out receiving message from renderer: 16.523
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001011b9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001011b1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000100d05ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000100cf03d4 cxxbridge1$string$len + 4140
+4   chromedriver                        0x0000000100cf014c cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000100cede64 chromedriver + 188004
+6   chromedriver                        0x0000000100ceeabc chromedriver + 191164
+7   chromedriver                        0x0000000100cfc690 cxxbridge1$string$len + 53992
+8   chromedriver                        0x0000000100d123ac cxxbridge1$string$len + 143364
+9   chromedriver                        0x0000000100cef0f0 chromedriver + 192752
+10  chromedriver                        0x0000000100d12194 cxxbridge1$string$len + 142828
+11  chromedriver                        0x0000000100d8e914 cxxbridge1$string$len + 652652
+12  chromedriver                        0x0000000100d4135c cxxbridge1$string$len + 335796
+13  chromedriver                        0x000000010117ecd4 cxxbridge1$str$ptr + 2545532
+14  chromedriver                        0x0000000101181fa0 cxxbridge1$str$ptr + 2558536
+15  chromedriver                        0x000000010115ed04 cxxbridge1$str$ptr + 2414508
+16  chromedriver                        0x0000000101182800 cxxbridge1$str$ptr + 2560680
+17  chromedriver                        0x000000010114fba0 cxxbridge1$str$ptr + 2352712
+18  chromedriver                        0x00000001011a245c cxxbridge1$str$ptr + 2690820
+19  chromedriver                        0x00000001011a25e4 cxxbridge1$str$ptr + 2691212
+20  chromedriver                        0x00000001011b1a50 cxxbridge1$str$ptr + 2753784
+21  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 951
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Error loading stats page 1 Message: timeout: Timed out receiving message from renderer: 18.303
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000104c843d4 cxxbridge1$string$len + 4140
+4   chromedriver                        0x0000000104c8414c cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000104c81e64 chromedriver + 188004
+6   chromedriver                        0x0000000104c82abc chromedriver + 191164
+7   chromedriver                        0x0000000104c90690 cxxbridge1$string$len + 53992
+8   chromedriver                        0x0000000104ca63ac cxxbridge1$string$len + 143364
+9   chromedriver                        0x0000000104c830f0 chromedriver + 192752
+10  chromedriver                        0x0000000104ca6194 cxxbridge1$string$len + 142828
+11  chromedriver                        0x0000000104d22914 cxxbridge1$string$len + 652652
+12  chromedriver                        0x0000000104cd535c cxxbridge1$string$len + 335796
+13  chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+14  chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+15  chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+16  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+17  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+18  chromedriver                        0x000000010513645c cxxbridge1$str$ptr + 2690820
+19  chromedriver                        0x00000001051365e4 cxxbridge1$str$ptr + 2691212
+20  chromedriver                        0x0000000105145a50 cxxbridge1$str$ptr + 2753784
+21  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Error loading stats page 5 Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000104c82fa0 chromedriver + 192416
+4   chromedriver                        0x0000000104ca6820 cxxbridge1$string$len + 144504
+5   chromedriver                        0x0000000104d095d8 cxxbridge1$string$len + 549424
+6   chromedriver                        0x0000000104d22178 cxxbridge1$string$len + 650704
+7   chromedriver                        0x0000000104cd535c cxxbridge1$string$len + 335796
+8   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+9   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+10  chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+11  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+12  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+13  chromedriver                        0x000000010513645c cxxbridge1$str$ptr + 2690820
+14  chromedriver                        0x00000001051365e4 cxxbridge1$str$ptr + 2691212
+15  chromedriver                        0x0000000105145a50 cxxbridge1$str$ptr + 2753784
+16  libsystem_pthread.dylib             0x000000018d8402e4 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018d83b0fc thread_start + 8
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Error loading stats page 6 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Error loading stats page 7 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Error loading stats page 8 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Error loading stats page 9 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Error loading stats page 10 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Error loading stats page 11 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Error loading stats page 12 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Error loading stats page 13 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Error loading stats page 14 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Error loading stats page 15 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Error loading stats page 16 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Error loading stats page 17 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Error loading stats page 18 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Error loading stats page 19 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Error loading stats page 20 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Error loading stats page 21 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Error loading stats page 22 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Error loading stats page 23 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Error loading stats page 24 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Error loading stats page 25 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Error loading stats page 26 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Error loading stats page 27 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Error loading stats page 28 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Error loading stats page 29 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Error loading stats page 30 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Error loading stats page 31 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Error loading stats page 32 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Error loading stats page 33 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Error loading stats page 34 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Error loading stats page 35 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Error loading stats page 36 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Error loading stats page 37 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Error loading stats page 38 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Error loading stats page 39 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Error loading stats page 40 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Error loading stats page 41 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Error loading stats page 42 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Error loading stats page 43 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Error loading stats page 44 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Error loading stats page 45 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Error loading stats page 46 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Error loading stats page 47 Message: invalid session id
+Stacktrace:
+0   chromedriver                        0x000000010514d804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x0000000105145ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104c99d1c cxxbridge1$string$len + 92532
+3   chromedriver                        0x0000000104cd46d4 cxxbridge1$string$len + 332588
+4   chromedriver                        0x0000000104cfcf50 cxxbridge1$string$len + 498600
+5   chromedriver                        0x0000000104cfc250 cxxbridge1$string$len + 495272
+6   chromedriver                        0x0000000104c69cd8 chromedriver + 89304
+7   chromedriver                        0x0000000105112cd4 cxxbridge1$str$ptr + 2545532
+8   chromedriver                        0x0000000105115fa0 cxxbridge1$str$ptr + 2558536
+9   chromedriver                        0x00000001050f2d04 cxxbridge1$str$ptr + 2414508
+10  chromedriver                        0x0000000105116800 cxxbridge1$str$ptr + 2560680
+11  chromedriver                        0x00000001050e3ba0 cxxbridge1$str$ptr + 2352712
+12  chromedriver                        0x0000000104c686d4 chromedriver + 83668
+13  dyld                                0x000000018d4c0274 start + 2840
+
+Total stats rows fetched: 75
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
+Starting MLB data scraping...
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=3
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=4
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=5
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=6
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=7
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=8
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=9
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=10
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=11
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=12
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=13
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=14
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=15
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=16
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=17
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=18
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=19
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=20
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=21
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=22
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=23
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=24
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=25
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=26
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=27
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=28
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=29
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=30
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=31
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=32
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=33
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=34
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=35
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=36
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=37
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=38
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=39
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=40
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=41
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=42
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=43
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=44
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=45
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=46
+Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=47
+Total stats rows fetched: 1176
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 146, in main
+    save_stats_csv()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/Q/Documents/Documents/RealSports/MLB/mlb_database.py", line 72, in save_stats_csv
+    with open("MLB/mlb_stats.csv", "w", newline="", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'MLB/mlb_stats.csv'
