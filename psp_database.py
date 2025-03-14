@@ -18,7 +18,7 @@ NOTION_TOKEN = "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"
 DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
 # StatMuse base settings
 BASE_URL = "https://www.statmuse.com"
-TIME_PERIOD = "past week"
+TIME_PERIOD = "past month"
 
 # Initialize Notion client
 notion = Client(auth=NOTION_TOKEN)

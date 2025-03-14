@@ -55,8 +55,14 @@ TEAM_ALIASES = {
     "CAM":"CAMP",
     "HCU": "HBU",
     "ATH": "OAK"
-
 }
+
+# List of banned players
+BANNED_PLAYERS = [
+    "Bobby Portis",
+    "Jonas Valančiūnas",
+    "Ethen Frank"
+]
 
 def normalize_team_name(team):
     team = team.strip().upper()
@@ -278,7 +284,7 @@ def integrate_mlb_data():
 # --------------------------------------------------
 # MLB Noninteractive Analysis (Ranking Slices)
 # --------------------------------------------------
-def analyze_mlb_noninteractive(df, teams, stat_choice):
+def analyze_mlb_noninteractive(df, teams, stat_choice, banned_players):
     if "TEAM" not in df.columns:
         return "❌ 'TEAM' column not found in the DataFrame."
     if teams:
@@ -304,15 +310,19 @@ def analyze_mlb_noninteractive(df, teams, stat_choice):
     green = sorted_df.iloc[3:6]
     red = sorted_df.iloc[6:9]
     
-    output = "🟢 " + ", ".join(green["PLAYER"].tolist()) + "\n"
-    output += "🟡 " + ", ".join(yellow["PLAYER"].tolist()) + "\n"
-    output += "🔴 " + ", ".join(red["PLAYER"].tolist())
+    green_list = [player for player in green["PLAYER"].tolist() if player not in banned_players]
+    yellow_list = [player for player in yellow["PLAYER"].tolist() if player not in banned_players]
+    red_list = [player for player in red["PLAYER"].tolist() if player not in banned_players]
+    
+    output = "🟢 " + ", ".join(green_list) + "\n"
+    output += "🟡 " + ", ".join(yellow_list) + "\n"
+    output += "🔴 " + ", ".join(red_list)
     return output
 
 # --------------------------------------------------
 # Non-interactive (Programmatic) Interfaces for NBA/CBB and NHL
 # --------------------------------------------------
-def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value):
+def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value, banned_players):
     if isinstance(teams, str):
         team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
     else:
@@ -356,9 +366,9 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
         final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
     ]).reset_index(drop=True)
     
-    green_list = final_df[final_df["Category"] == "🟢 Best Bet"][player_col].tolist()
-    yellow_list = final_df[final_df["Category"] == "🟡 Favorite"][player_col].tolist()
-    red_list = final_df[final_df["Category"] == "🔴 Underdog"][player_col].tolist()
+    green_list = [player for player in final_df[final_df["Category"] == "🟢 Best Bet"][player_col].tolist() if player not in banned_players]
+    yellow_list = [player for player in final_df[final_df["Category"] == "🟡 Favorite"][player_col].tolist() if player not in banned_players]
+    red_list = [player for player in final_df[final_df["Category"] == "🔴 Underdog"][player_col].tolist() if player not in banned_players]
     
     green_output = ", ".join(green_list) if green_list else "No Green Plays"
     yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
@@ -369,7 +379,7 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
     output += f"🔴 {red_output}"
     return output
 
-def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
+def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None, banned_players=[]):
     filtered_df = df[df["Team"].isin(teams)].copy()
     if filtered_df.empty:
         return "❌ No matching teams found."
@@ -408,9 +418,14 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None):
         yellow = sorted_df.iloc[:3]
         green = sorted_df.iloc[7:10]
         red = sorted_df.iloc[22:25]
-        output = "🟢 " + ", ".join(green["Player"].tolist()) + "\n"
-        output += "🟡 " + ", ".join(yellow["Player"].tolist()) + "\n"
-        output += "🔴 " + ", ".join(red["Player"].tolist())
+        
+        green_list = [player for player in green["Player"].tolist() if player not in banned_players]
+        yellow_list = [player for player in yellow["Player"].tolist() if player not in banned_players]
+        red_list = [player for player in red["Player"].tolist() if player not in banned_players]
+        
+        output = "🟢 " + ", ".join(green_list) + "\n"
+        output += "🟡 " + ", ".join(yellow_list) + "\n"
+        output += "🔴 " + ", ".join(red_list)
         return output
 
 # --------------------------------------------------
@@ -453,8 +468,17 @@ def analyze_sport(df, stat_categories, player_col, team_col):
             continue
         
         result = categorize_players(df_mode, mapped_stat, target_value, player_col, team_col)
+        
+        # Filter out banned players
+        result_lines = result.split("\n")
+        filtered_result = []
+        for line in result_lines:
+            category, players = line.split(" ", 1)
+            filtered_players = [player for player in players.split(", ") if player not in BANNED_PLAYERS]
+            filtered_result.append(f"{category} {', '.join(filtered_players)}")
+        
         print(f"\nPlayer Performance Based on Target {target_value} {stat_choice}:")
-        print(result)
+        print("\n".join(filtered_result))
 
 def analyze_nhl_flow(df):
     while True:
@@ -500,14 +524,13 @@ def analyze_nhl_flow(df):
                     print("❌ Invalid target value.", e)
                     continue
                 result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team")
-                print(result)
             else:
                 yellow = sorted_df.iloc[0:3]
                 green = sorted_df.iloc[3:6]
                 red = sorted_df.iloc[14:17]
-                print("🟢 " + ", ".join(green["Player"].tolist()))
-                print("🟡 " + ", ".join(yellow["Player"].tolist()))
-                print("🔴 " + ", ".join(red["Player"].tolist()))
+                result = f"🟢 {', '.join(green['Player'].tolist())}\n"
+                result += f"🟡 {', '.join(yellow['Player'].tolist())}\n"
+                result += f"🔴 {', '.join(red['Player'].tolist())}"
         else:
             if stat_choice == "S":
                 if "GP" in df_mode.columns and "S" in df_mode.columns:
@@ -529,9 +552,19 @@ def analyze_nhl_flow(df):
             yellow = sorted_df.iloc[:3]
             green = sorted_df.iloc[7:10]
             red = sorted_df.iloc[22:25]
-            print("🟢 " + ", ".join(green["Player"].tolist()))
-            print("🟡 " + ", ".join(yellow["Player"].tolist()))
-            print("🔴 " + ", ".join(red["Player"].tolist()))
+            result = f"🟢 {', '.join(green['Player'].tolist())}\n"
+            result += f"🟡 {', '.join(yellow['Player'].tolist())}\n"
+            result += f"🔴 {', '.join(red['Player'].tolist())}"
+        
+        # Filter out banned players
+        result_lines = result.split("\n")
+        filtered_result = []
+        for line in result_lines:
+            category, players = line.split(" ", 1)
+            filtered_players = [player for player in players.split(", ") if player not in BANNED_PLAYERS]
+            filtered_result.append(f"{category} {', '.join(filtered_players)}")
+        
+        print("\n".join(filtered_result))
 
 def analyze_mlb_by_team_interactive(df, mapped_stat):
     if df.empty:
@@ -558,16 +591,14 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
     yellow = sorted_df.iloc[0:3]
     green = sorted_df.iloc[4:7]
     red = sorted_df.iloc[9:12]
-    print("🟢 " + ", ".join(green["PLAYER"].tolist()))
-    print("🟡 " + ", ".join(yellow["PLAYER"].tolist()))
-    print("🔴 " + ", ".join(red["PLAYER"].tolist()))
-
-def load_player_stats():
-    file_path = "cbb_players_stats.csv"
-    if not os.path.exists(file_path):
-        print(f"Error: File '{file_path}' not found. Please update the path.")
-        return pd.DataFrame()
-    return pd.read_csv(file_path)
+    
+    green_list = [player for player in green["PLAYER"].tolist() if player not in BANNED_PLAYERS]
+    yellow_list = [player for player in yellow["PLAYER"].tolist() if player not in BANNED_PLAYERS]
+    red_list = [player for player in red["PLAYER"].tolist() if player not in BANNED_PLAYERS]
+    
+    print("🟢 " + ", ".join(green_list))
+    print("🟡 " + ", ".join(yellow_list))
+    print("🔴 " + ", ".join(red_list))
 
 # --------------------------------------------------
 # NBA Integration Functions
@@ -605,7 +636,7 @@ def main():
         choice = input("Choose an option (1/2/3/4/5): ").strip()
         if choice == '1':
             print("\n📊 Selected: College Basketball (CBB)")
-            df_cbb = load_player_stats()
+            df_cbb = pd.read_csv('cbb_player_stats.csv')
             if df_cbb.empty:
                 continue
             analyze_sport(df_cbb, STAT_CATEGORIES_CBB, "Player", "Team")
@@ -614,7 +645,7 @@ def main():
             player_stats_file = 'nba_player_stats.csv'
             injury_report_file = 'nba_injury_report.csv'
             df_nba = integrate_nba_data(player_stats_file, injury_report_file)
-            analyze_sport(df_nba, STAT_CATEGORIES_NBA, "PLAYER")
+            analyze_sport(df_nba, STAT_CATEGORIES_NBA, "PLAYER", "TEAM")
         elif choice == '3':
             print("\n📊 Selected: NHL")
             df_nhl = integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")

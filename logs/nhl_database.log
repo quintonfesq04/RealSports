@@ -2118,3 +2118,6 @@ Traceback (most recent call last):
   File "/Users/Q/Documents/Documents/RealSports/venv/lib/python3.13/site-packages/pandas/io/common.py", line 616, in check_parent_directory
     raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
 OSError: Cannot save file into a non-existent directory: 'NHL'
+💾 Saved player stats to nhl_player_stats.csv
+💾 Saved NHL injury report data
+Script finished.

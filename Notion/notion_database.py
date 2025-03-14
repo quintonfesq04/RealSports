@@ -252,6 +252,13 @@ def analyze_nba_psp(file_path, stat_key):
 # -------------------------
 # Analyzer Function: Calls the appropriate analyzer
 # -------------------------
+
+# List of banned players
+banned_players = [
+    "Bobby Portis", 
+    "Jonas Valančiūnas"
+]
+
 def run_universal_sports_analyzer_programmatic(row):
     sport_upper = row["sport"].upper()
     teams = row.get("teams", [])
@@ -295,9 +302,9 @@ def run_universal_sports_analyzer_programmatic(row):
             green = sorted_df.iloc[6:9]
             red = sorted_df.iloc[12:15]
             player_col = "PLAYER" if "PLAYER" in sorted_df.columns else None
-            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
-            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
-            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
+            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if x not in banned_players)}\n"
+            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if x not in banned_players)}\n"
+            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if x not in banned_players)}"
             return output
         else:
             return "PSP processing not configured for this sport."
@@ -307,13 +314,13 @@ def run_universal_sports_analyzer_programmatic(row):
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
             return USA.analyze_sport_noninteractive(
-                df, USA.STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val
+                df, USA.STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val, banned_players
             )
         elif sport_upper == "CBB":
             df = USA.load_player_stats()
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             return USA.analyze_sport_noninteractive(
-                df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, target_val
+                df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, target_val, banned_players
             )
         elif sport_upper == "MLB":
             df = USA.integrate_mlb_data()
@@ -321,12 +328,12 @@ def run_universal_sports_analyzer_programmatic(row):
                 return "❌ 'TEAM' column not found in the MLB data."
             used_stat = row["stat"].upper() if row["stat"].strip() else "RBI"
             return USA.analyze_mlb_noninteractive(
-                df, teams, used_stat
+                df, teams, used_stat, banned_players
             )
         elif sport_upper == "NHL":
             df = USA.integrate_nhl_data("NHL/nhl_player_stats.csv", "NHL/nhl_injuries.csv")
             nhl_stat = row["stat"].upper() if row["stat"].strip() else "GOALS"
-            return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val)
+            return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val, banned_players)
         else:
             return "Sport not recognized."
 
