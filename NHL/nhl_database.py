@@ -67,7 +67,7 @@ def fetch_nhl_player_stats():
 
         # Save data to CSV
         df = pd.DataFrame(all_rows, columns=headers)
-        output_file = "NHL/nhl_player_stats.csv"
+        output_file = "nhl_player_stats.csv"
         df.to_csv(output_file, index=False)
         print(f"💾 Saved player stats to {output_file}")
 
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         fetch_nhl_player_stats()
         df_injuries = extract_nhl_injury_data(injury_url)
         if not df_injuries.empty:
-            df_injuries.to_csv("NHL/nhl_injuries.csv", index=False)
+            df_injuries.to_csv("nhl_injuries.csv", index=False)
             print("💾 Saved NHL injury report data")
         else:
             print("No injury data to save.")
