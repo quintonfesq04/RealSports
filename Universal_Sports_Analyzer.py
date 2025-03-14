@@ -225,7 +225,7 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
 # MLB Integration Functions
 # --------------------------------------------------
 def load_and_clean_mlb_stats():
-    file_path = "MLB/mlb_stats.csv"
+    file_path = "mlb_stats.csv"
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
@@ -265,7 +265,7 @@ def integrate_mlb_data():
         print("Error loading and cleaning MLB stats:", e)
         return pd.DataFrame()
     try:
-        df_inj = pd.read_csv("MLB/mlb_injuries.csv")
+        df_inj = pd.read_csv("mlb_injuries.csv")
     except Exception as e:
         print("Error loading mlb_injuries.csv:", e)
         return df_stats
@@ -317,9 +317,6 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
         team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
     else:
         team_list = [normalize_team_name(t) for t in teams]
-    
-    print("Normalized CSV team names:", df[team_col].astype(str).apply(normalize_team_name).unique())
-    print("Team list from input:", team_list)
     
     filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     if filtered_df.empty:
@@ -425,8 +422,6 @@ def analyze_sport(df, stat_categories, player_col, team_col):
         if teams_input.lower() == 'exit':
             break
         team_list = [normalize_team_name(t) for t in teams_input.split(",") if t.strip()]
-        print("Normalized CSV team names:", df[team_col].astype(str).apply(normalize_team_name).unique())
-        print("Team list from input:", team_list)
         filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
         if filtered_df.empty:
             print("❌ No matching teams found. Please check the team names.")
@@ -568,7 +563,7 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
     print("🔴 " + ", ".join(red["PLAYER"].tolist()))
 
 def load_player_stats():
-    file_path = "/Users/Q/Documents/Documents/RealSports/CBB/cbb_players_stats.csv"
+    file_path = "cbb_players_stats.csv"
     if not os.path.exists(file_path):
         print(f"Error: File '{file_path}' not found. Please update the path.")
         return pd.DataFrame()
@@ -616,13 +611,13 @@ def main():
             analyze_sport(df_cbb, STAT_CATEGORIES_CBB, "Player", "Team")
         elif choice == '2':
             print("\n📊 Selected: NBA")
-            player_stats_file = 'NBA/nba_player_stats.csv'
-            injury_report_file = 'NBA/nba_injury_report.csv'
+            player_stats_file = 'nba_player_stats.csv'
+            injury_report_file = 'nba_injury_report.csv'
             df_nba = integrate_nba_data(player_stats_file, injury_report_file)
             analyze_sport(df_nba, STAT_CATEGORIES_NBA, "PLAYER")
         elif choice == '3':
             print("\n📊 Selected: NHL")
-            df_nhl = integrate_nhl_data("NHL/nhl_player_stats.csv", "NHL/nhl_injuries.csv")
+            df_nhl = integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
             analyze_nhl_flow(df_nhl)
         elif choice == '4':
             print("\n📊 Selected: MLB")
