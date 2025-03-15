@@ -332,6 +332,12 @@ def analyze_mlb_noninteractive(df, teams, stat_choice, banned_players):
 # Non-interactive (Programmatic) Interfaces for NBA/CBB and NHL
 # --------------------------------------------------
 def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value, banned_players):
+    if team_col not in df.columns:
+        if "Team" in df.columns:
+            team_col = "Team"
+        else:
+            print(f"❌ '{team_col}' column not found in the DataFrame.")
+            return "❌ 'Team' column not found in the DataFrame."
     if isinstance(teams, str):
         team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
     else:
@@ -596,7 +602,7 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
         print("❌ No matching teams found.")
         return
 
-    sorted_df = filtered_df.sort_values(by=mapped_stat, ascending=False)
+    sorted_df = filtered_df.sort_values(by(mapped_stat, ascending=False))
     yellow = sorted_df.iloc[0:3]
     green = sorted_df.iloc[4:7]
     red = sorted_df.iloc[9:12]
@@ -629,6 +635,33 @@ def merge_nba_stats_with_injuries(stats_df, injuries_df):
     merged_df = pd.merge(stats_df, injuries_df, left_on='PLAYER', right_on='playerName', how='left')
     healthy_players_df = merged_df[merged_df['injury'].isnull()]
     return healthy_players_df
+
+# --------------------------------------------------
+# CBB Integration Functions
+# --------------------------------------------------
+def integrate_cbb_data(player_stats_file="cbb_players_stats.csv", injury_data_file="cbb_injuries.csv"):
+    try:
+        stats_df = pd.read_csv(player_stats_file)
+    except FileNotFoundError:
+        print(f"Error: The file {player_stats_file} was not found.")
+        return pd.DataFrame()
+    try:
+        injuries_df = pd.read_csv(injury_data_file)
+    except FileNotFoundError:
+        print(f"Error: The file {injury_data_file} was not found.")
+        return stats_df
+    if "playerName" in injuries_df.columns:
+        injuries_df.rename(columns={"playerName": "Player"}, inplace=True)
+    try:
+        integrated_data = pd.merge(stats_df, injuries_df, how='left', on='Player')
+    except Exception as e:
+        print("Merge error for CBB data:", e)
+        return stats_df
+    integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
+    if "Team" not in integrated_data.columns:
+        integrated_data["Team"] = stats_df["Team"]
+    integrated_data.columns = [col.strip() for col in integrated_data.columns]  # Normalize column names
+    return integrated_data
 
 # --------------------------------------------------
 # Main Menu (Interactive)
