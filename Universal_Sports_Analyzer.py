@@ -205,8 +205,16 @@ def load_nhl_injury_data(file_path):
     return pd.read_csv(file_path)
 
 def integrate_nhl_data(player_stats_file, injury_data_file):
-    stats_df = load_nhl_player_stats(player_stats_file)
-    injuries_df = load_nhl_injury_data(injury_data_file)
+    try:
+        stats_df = load_nhl_player_stats(player_stats_file)
+    except FileNotFoundError:
+        print(f"Error: The file {player_stats_file} was not found.")
+        return pd.DataFrame()
+    try:
+        injuries_df = load_nhl_injury_data(injury_data_file)
+    except FileNotFoundError:
+        print(f"Error: The file {injury_data_file} was not found.")
+        return stats_df
     if "playerName" in injuries_df.columns:
         injuries_df.rename(columns={"playerName": "Player"}, inplace=True)
     try:
@@ -217,6 +225,7 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
     integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
     if "Team" not in integrated_data.columns:
         integrated_data["Team"] = stats_df["Team"]
+    integrated_data.columns = [col.strip() for col in integrated_data.columns]  # Normalize column names
     integrated_data = calculate_nhl_per_game_stats(integrated_data)
     if "GP" in integrated_data.columns:
         games = pd.to_numeric(integrated_data["GP"], errors='coerce')
