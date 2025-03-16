@@ -11,6 +11,15 @@ sys.path.append("/Users/Q/Documents/Documents/RealSports")
 import Universal_Sports_Analyzer as USA
 
 # -------------------------
+# Banned Players Helper
+# -------------------------
+def is_banned(player_name, banned_set):
+    return player_name.strip().lower() in banned_set
+
+# Use the normalized banned set from USA if possible; otherwise, create one.
+banned_set = {name.strip().lower() for name in USA.BANNED_PLAYERS}
+
+# -------------------------
 # CONFIGURATION
 # -------------------------
 NOTION_TOKEN = "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"
@@ -22,8 +31,6 @@ PSP_DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
 POLL_PAGE_ID = "18e71b1c663e80cdb8a0fe5e8aeee5a9"
 
 client = Client(auth=NOTION_TOKEN)
-
-banned_set = {name.strip().lower() for name in USA.BANNED_PLAYERS}
 
 # -------------------------
 # Notion Database Functions
@@ -214,9 +221,9 @@ def analyze_nhl_psp(file_path, stat_key):
     if player_col is None:
         return "Player column not found in CSV."
     
-    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
-    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
+    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
+    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
     return output
 
 # -------------------------
@@ -237,9 +244,7 @@ def analyze_nba_psp(file_path, stat_key):
     except Exception as e:
         return f"Error loading or processing NBA injuries CSV: {e}"
     
-    # Sort the data by the chosen stat (descending)
     sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
-    # Partition the top 9 rows into 3 groups:
     green = sorted_df.iloc[0:3]
     yellow = sorted_df.iloc[3:6]
     red = sorted_df.iloc[6:9]
@@ -248,9 +253,9 @@ def analyze_nba_psp(file_path, stat_key):
     if player_col is None:
         return "Player column not found in CSV."
     
-    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
-    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
+    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
+    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
     return output
 
 # -------------------------
@@ -292,20 +297,18 @@ def run_universal_sports_analyzer_programmatic(row):
             stat_key = row["stat"].upper()
             if stat_key not in USA.STAT_CATEGORIES_CBB:
                 return f"❌ Invalid CBB stat choice."
-            # Generate PSP data for CBB dynamically
             df = USA.load_player_stats()  # Ensure this function returns your CBB stats DataFrame
             df.columns = [col.upper() for col in df.columns]
             sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
-            # Use contiguous slices for the top 9 players:
             green = sorted_df.iloc[0:3]
             yellow = sorted_df.iloc[3:6]
             red = sorted_df.iloc[6:9]
             player_col = "PLAYER" if "PLAYER" in sorted_df.columns else None
             if player_col is None:
                 return "Player column not found in CBB stats CSV."
-            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if x.strip().lower() not in banned_set)}\n"
-            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if x.strip().lower() not in banned_set)}\n"
-            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if x.strip().lower() not in banned_set)}"
+            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
+            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
+            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
             return output
         else:
             return "PSP processing not configured for this sport."

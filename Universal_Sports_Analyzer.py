@@ -52,12 +52,18 @@ TEAM_ALIASES = {
     "LR": "UALR",
     "BOIS": "BSU",
     "HPU": "HP",
-    "CAM":"CAMP",
+    "CAM": "CAMP",
     "HCU": "HBU",
     "ATH": "OAK"
 }
 
-# List of banned players
+def normalize_team_name(team):
+    team = team.strip().upper()
+    return TEAM_ALIASES.get(team, team)
+
+# --------------------------------------------------
+# Banned Players Handling
+# --------------------------------------------------
 BANNED_PLAYERS = [
     "Bobby Portis",
     "Jonas Valančiūnas",
@@ -65,9 +71,12 @@ BANNED_PLAYERS = [
     "Killian Hayes"
 ]
 
-def normalize_team_name(team):
-    team = team.strip().upper()
-    return TEAM_ALIASES.get(team, team)
+# Create a normalized set of banned players for consistent comparisons.
+BANNED_PLAYERS_SET = {p.strip().lower() for p in BANNED_PLAYERS}
+
+def is_banned(player_name, banned_set):
+    """Return True if player_name (normalized) is in banned_set."""
+    return player_name.strip().lower() in banned_set
 
 # --------------------------------------------------
 # Utility Functions: Header Cleaning and MLB Name Fixing
@@ -91,7 +100,7 @@ def fix_mlb_player_name(name):
     name = re.sub(r'\s+', ' ', name).strip()
     tokens = re.split(r'[ \.]+', name)
     fixed_tokens = []
-    known_positions = {"RF", "CF", "LF", "SS", "C", "1B", "2B", "3B", "OF", "DH"}
+    known_positions = {"RF", "CF", "LF", "SS", "C", "1B", "2B", "3B", "OF"}
     def remove_trailing_duplicate_substring(token):
         for i in range(1, len(token)):
             prefix = token[:i]
@@ -149,6 +158,9 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col):
     if df.empty:
         print("❌ DataFrame is empty. Check if the CSV data are correct.")
         return pd.DataFrame()
+    # Remove banned players from the pool before processing.
+    df = df[~df[player_col].apply(lambda x: is_banned(x, BANNED_PLAYERS_SET))]
+    
     try:
         df[stat_choice] = pd.to_numeric(df[stat_choice], errors='coerce')
     except Exception as e:
@@ -174,7 +186,7 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col):
     yellow_players = df[df["Category"] == "🟡 Favorite"].nlargest(3, "Success_Rate")
     if len(yellow_players) < 3:
         extra = df[df["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
-        yellow_players = pd.concat([yellow_players, extra]). drop_duplicates().nlargest(3, "Success_Rate")
+        yellow_players = pd.concat([yellow_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
     
     final_df = pd.concat([green_players, yellow_players, red_players]).drop_duplicates(subset=[player_col, team_col]).reset_index(drop=True)
     final_df = pd.concat([
@@ -183,6 +195,7 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col):
         final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
     ]).reset_index(drop=True)
     
+    # (No further filtering is needed here since banned players were already removed.)
     green_list = final_df[final_df["Category"] == "🟢 Best Bet"][player_col].tolist()
     yellow_list = final_df[final_df["Category"] == "🟡 Favorite"][player_col].tolist()
     red_list = final_df[final_df["Category"] == "🔴 Underdog"][player_col].tolist()
@@ -298,7 +311,8 @@ def analyze_mlb_noninteractive(df, teams, stat_choice, banned_players):
     if "TEAM" not in df.columns:
         return "❌ 'TEAM' column not found in the DataFrame."
     if teams:
-        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()] if isinstance(teams, str) else [normalize_team_name(t) for t in teams]
+        team_list = ([normalize_team_name(t) for t in teams.split(",") if t.strip()]
+                     if isinstance(teams, str) else [normalize_team_name(t) for t in teams])
         filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     else:
         filtered_df = df.copy()
@@ -316,13 +330,16 @@ def analyze_mlb_noninteractive(df, teams, stat_choice, banned_players):
         return f"Error converting stat column: {e}"
     
     sorted_df = filtered_df.sort_values(by=mapped_stat, ascending=False)
-    yellow = sorted_df.iloc[0:3]
-    green = sorted_df.iloc[3:6]
-    red = sorted_df.iloc[6:9]
-    
-    green_list = [player for player in green["PLAYER"].tolist() if player not in banned_players]
-    yellow_list = [player for player in yellow["PLAYER"].tolist() if player not in banned_players]
-    red_list = [player for player in red["PLAYER"].tolist() if player not in banned_players]
+    # Filter out banned players from the sorted data
+    sorted_df = sorted_df[~sorted_df["PLAYER"].apply(lambda x: is_banned(x, banned_players))]
+    non_banned = sorted_df["PLAYER"].tolist()
+    if len(non_banned) < 9:
+        players_to_use = non_banned
+    else:
+        players_to_use = non_banned[:9]
+    yellow_list = players_to_use[0:3]
+    green_list = players_to_use[3:6]
+    red_list = players_to_use[6:9]
     
     output = "🟢 " + ", ".join(green_list) + "\n"
     output += "🟡 " + ", ".join(yellow_list) + "\n"
@@ -354,7 +371,7 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
     try:
         df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
     except Exception as e:
-        return f"Error converting stat column: {e}"
+        return f"Error converting stat column to numeric: {e}"
     if target_value is None or target_value == 0:
         return "Target value required and must be nonzero."
     df_mode["Success_Rate"] = ((df_mode[mapped_stat] / target_value) * 100).round(1)
@@ -373,7 +390,7 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
     yellow_players = df_mode[df_mode["Category"] == "🟡 Favorite"].nlargest(3, "Success_Rate")
     if len(yellow_players) < 3:
         extra = df_mode[df_mode["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
-        yellow_players = pd.concat([yellow_players, extra]). drop_duplicates().nlargest(3, "Success_Rate")
+        yellow_players = pd.concat([yellow_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
     
     final_df = pd.concat([green_players, yellow_players, red_players]).drop_duplicates(subset=[player_col, team_col]).reset_index(drop=True)
     final_df = pd.concat([
@@ -382,9 +399,19 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
         final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
     ]).reset_index(drop=True)
     
-    green_list = [player for player in final_df[final_df["Category"] == "🟢 Best Bet"][player_col].tolist() if player not in banned_players]
-    yellow_list = [player for player in final_df[final_df["Category"] == "🟡 Favorite"][player_col].tolist() if player not in banned_players]
-    red_list = [player for player in final_df[final_df["Category"] == "🔴 Underdog"][player_col].tolist() if player not in banned_players]
+    # Here we filter out banned players from the final selection
+    non_banned = [player for player in final_df[player_col].tolist() if not is_banned(player, banned_players)]
+    # If we have fewer than 9 players, try to refill from df_mode (already computed and sorted by Success_Rate)
+    if len(non_banned) < 9:
+        all_non_banned = [player for player in df_mode[player_col].tolist() if not is_banned(player, banned_players)]
+        non_banned = all_non_banned[:9]
+    else:
+        non_banned = non_banned[:9]
+    
+    # Split into three groups of three
+    green_list = non_banned[0:3]
+    yellow_list = non_banned[3:6]
+    red_list = non_banned[6:9]
     
     green_output = ", ".join(green_list) if green_list else "No Green Plays"
     yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
@@ -431,13 +458,16 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None, banned
         else:
             sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
         
-        yellow = sorted_df.iloc[:3]
-        green = sorted_df.iloc[7:10]
-        red = sorted_df.iloc[22:25]
-        
-        green_list = [player for player in green["Player"].tolist() if player not in banned_players]
-        yellow_list = [player for player in yellow["Player"].tolist() if player not in banned_players]
-        red_list = [player for player in red["Player"].tolist() if player not in banned_players]
+        # Filter out banned players
+        sorted_df = sorted_df[~sorted_df["Player"].apply(lambda x: is_banned(x, banned_players))]
+        non_banned = sorted_df["Player"].tolist()
+        if len(non_banned) < 9:
+            players_to_use = non_banned
+        else:
+            players_to_use = non_banned[:9]
+        yellow_list = players_to_use[0:3]
+        green_list = players_to_use[3:6]
+        red_list = players_to_use[6:9]
         
         output = "🟢 " + ", ".join(green_list) + "\n"
         output += "🟡 " + ", ".join(yellow_list) + "\n"
@@ -491,18 +521,20 @@ def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_play
     yellow_players = filtered_df[filtered_df["Category"] == "🟡 Favorite"].nlargest(3, "Success_Rate")
     if len(yellow_players) < 3:
         extra = filtered_df[filtered_df["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
-        yellow_players = pd.concat([yellow_players, extra]). drop_duplicates().nlargest(3, "Success_Rate")
+        yellow_players = pd.concat([yellow_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
     
-    final_df = pd.concat([green_players, yellow_players, red_players]).drop_duplicates(subset=["Player", team_col]).reset_index(drop=True)
-    final_df = pd.concat([
-        final_df[final_df["Category"] == "🟢 Best Bet"].sort_values(by="Success_Rate", ascending=False),
-        final_df[final_df["Category"] == "🟡 Favorite"].sort_values(by="Success_Rate", ascending=False),
-        final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
-    ]).reset_index(drop=True)
-    
-    green_list = [player for player in final_df[final_df["Category"] == "🟢 Best Bet"]["Player"].tolist() if player.strip().lower() not in banned_players]
-    yellow_list = [player for player in final_df[final_df["Category"] == "🟡 Favorite"]["Player"].tolist() if player.strip().lower() not in banned_players]
-    red_list = [player for player in final_df[final_df["Category"] == "🔴 Underdog"]["Player"].tolist() if player.strip().lower() not in banned_players]
+    # Combine all and filter out banned players from the final list
+    combined = pd.concat([green_players, yellow_players, red_players]).drop_duplicates(subset=["Player", team_col])
+    combined = combined[~combined["Player"].apply(lambda x: is_banned(x, banned_players))]
+    non_banned = combined["Player"].tolist()
+    if len(non_banned) < 9:
+        players_to_use = non_banned
+    else:
+        players_to_use = non_banned[:9]
+    # Split into three groups
+    green_list = players_to_use[0:3]
+    yellow_list = players_to_use[3:6]
+    red_list = players_to_use[6:9]
     
     green_output = ", ".join(green_list) if green_list else "No Green Plays"
     yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
@@ -554,16 +586,8 @@ def analyze_sport(df, stat_categories, player_col, team_col):
         
         result = categorize_players(df_mode, mapped_stat, target_value, player_col, team_col)
         
-        # Filter out banned players
-        result_lines = result.split("\n")
-        filtered_result = []
-        for line in result_lines:
-            category, players = line.split(" ", 1)
-            filtered_players = [player for player in players.split(", ") if player not in BANNED_PLAYERS]
-            filtered_result.append(f"{category} {', '.join(filtered_players)}")
-        
         print(f"\nPlayer Performance Based on Target {target_value} {stat_choice}:")
-        print("\n".join(filtered_result))
+        print(result)
 
 def analyze_nhl_flow(df):
     while True:
@@ -634,22 +658,21 @@ def analyze_nhl_flow(df):
             else:
                 sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
             
-            yellow = sorted_df.iloc[:3]
-            green = sorted_df.iloc[7:10]
-            red = sorted_df.iloc[22:25]
-            result = f"🟢 {', '.join(green['Player'].tolist())}\n"
-            result += f"🟡 {', '.join(yellow['Player'].tolist())}\n"
-            result += f"🔴 {', '.join(red['Player'].tolist())}"
+            # Filter out banned players
+            sorted_df = sorted_df[~sorted_df["Player"].apply(lambda x: is_banned(x, BANNED_PLAYERS_SET))]
+            non_banned = sorted_df["Player"].tolist()
+            if len(non_banned) < 9:
+                players_to_use = non_banned
+            else:
+                players_to_use = non_banned[:9]
+            yellow = players_to_use[0:3]
+            green = players_to_use[3:6]
+            red = players_to_use[6:9]
+            result = f"🟢 {', '.join(green)}\n"
+            result += f"🟡 {', '.join(yellow)}\n"
+            result += f"🔴 {', '.join(red)}"
         
-        # Filter out banned players
-        result_lines = result.split("\n")
-        filtered_result = []
-        for line in result_lines:
-            category, players = line.split(" ", 1)
-            filtered_players = [player for player in players.split(", ") if player not in BANNED_PLAYERS]
-            filtered_result.append(f"{category} {', '.join(filtered_players)}")
-        
-        print("\n".join(filtered_result))
+        print("\n" + result)
 
 def analyze_mlb_by_team_interactive(df, mapped_stat):
     if df.empty:
@@ -673,17 +696,20 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
         return
 
     sorted_df = filtered_df.sort_values(by=[mapped_stat], ascending=False)
-    yellow = sorted_df.iloc[0:3]
-    green = sorted_df.iloc[4:7]
-    red = sorted_df.iloc[9:12]
+    # Filter out banned players
+    sorted_df = sorted_df[~sorted_df["PLAYER"].apply(lambda x: is_banned(x, BANNED_PLAYERS_SET))]
+    non_banned = sorted_df["PLAYER"].tolist()
+    if len(non_banned) < 9:
+        players_to_use = non_banned
+    else:
+        players_to_use = non_banned[:9]
+    yellow = players_to_use[0:3]
+    green = players_to_use[3:6]
+    red = players_to_use[6:9]
     
-    green_list = [player for player in green["PLAYER"].tolist() if player not in BANNED_PLAYERS]
-    yellow_list = [player for player in yellow["PLAYER"].tolist() if player not in BANNED_PLAYERS]
-    red_list = [player for player in red["PLAYER"].tolist() if player not in BANNED_PLAYERS]
-    
-    print("🟢 " + ", ".join(green_list))
-    print("🟡 " + ", ".join(yellow_list))
-    print("🔴 " + ", ".join(red_list))
+    print("🟢 " + ", ".join(green))
+    print("🟡 " + ", ".join(yellow))
+    print("🔴 " + ", ".join(red))
 
 # --------------------------------------------------
 # NBA Integration Functions
@@ -739,7 +765,7 @@ def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_fil
         print("Merge error for CBB data:", e)
         return stats_df
 
-    # Filter out players whose injuryStatus indicates they're out (looking for specific phrases)
+    # Filter out players whose injuryStatus indicates they're out
     if "injuryStatus" in integrated_data.columns:
         mask = (
             integrated_data["injuryStatus"].fillna("")
@@ -755,12 +781,12 @@ def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_fil
     if "Team" not in integrated_data.columns:
         integrated_data["Team"] = stats_df["Team"]
 
-    # Normalize column names (strip any extra whitespace)
+    # Normalize column names
     integrated_data.columns = [col.strip() for col in integrated_data.columns]
     return integrated_data
 
 # --------------------------------------------------
-# Main Menu (Interactive)
+# Interactive Main Menu
 # --------------------------------------------------
 def main():
     print("✅ Files loaded successfully")
