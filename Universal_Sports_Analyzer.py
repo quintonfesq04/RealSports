@@ -61,7 +61,8 @@ TEAM_ALIASES = {
 BANNED_PLAYERS = [
     "Bobby Portis",
     "Jonas Valančiūnas",
-    "Ethen Frank"
+    "Ethen Frank",
+    "Killian Hayes"
 ]
 
 def normalize_team_name(team):
@@ -443,6 +444,71 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None, banned
         output += "🔴 " + ", ".join(red_list)
         return output
 
+def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_players):
+    team_col = "Team" if "Team" in df.columns else "TEAM"
+    if team_col not in df.columns:
+        return "❌ 'Team' column not found in the DataFrame."
+    
+    if isinstance(teams, str):
+        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
+    else:
+        team_list = [normalize_team_name(t) for t in teams]
+    
+    filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    
+    mapped_stat = STAT_CATEGORIES_CBB.get(stat_choice)
+    if mapped_stat is None:
+        return "❌ Invalid stat choice."
+    
+    try:
+        filtered_df[mapped_stat] = pd.to_numeric(filtered_df[mapped_stat], errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    
+    if target_value is None or target_value == 0:
+        return "Target value required and must be nonzero."
+    
+    filtered_df["Success_Rate"] = ((filtered_df[mapped_stat] / target_value) * 100).round(1)
+    filtered_df.loc[filtered_df["Success_Rate"] >= 110, "Category"] = "🟡 Favorite"
+    filtered_df.loc[(filtered_df["Success_Rate"] >= 85) & (filtered_df["Success_Rate"] < 110), "Category"] = "🟢 Best Bet"
+    filtered_df.loc[filtered_df["Success_Rate"] < 85, "Category"] = "🔴 Underdog"
+    
+    filtered_df = filtered_df.drop_duplicates(subset=["Player", team_col])
+    red_players = filtered_df[filtered_df["Category"] == "🔴 Underdog"].nlargest(3, "Success_Rate")
+    if len(red_players) < 3:
+        extra = filtered_df[filtered_df["Success_Rate"] < 100].nlargest(3 - len(red_players), "Success_Rate")
+        red_players = pd.concat([red_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+    green_players = filtered_df[filtered_df["Category"] == "🟢 Best Bet"].nlargest(3, "Success_Rate")
+    if len(green_players) < 3:
+        extra = filtered_df[filtered_df["Success_Rate"] >= 100].nlargest(3 - len(green_players), "Success_Rate")
+        green_players = pd.concat([green_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+    yellow_players = filtered_df[filtered_df["Category"] == "🟡 Favorite"].nlargest(3, "Success_Rate")
+    if len(yellow_players) < 3:
+        extra = filtered_df[filtered_df["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
+        yellow_players = pd.concat([yellow_players, extra]). drop_duplicates().nlargest(3, "Success_Rate")
+    
+    final_df = pd.concat([green_players, yellow_players, red_players]).drop_duplicates(subset=["Player", team_col]).reset_index(drop=True)
+    final_df = pd.concat([
+        final_df[final_df["Category"] == "🟢 Best Bet"].sort_values(by="Success_Rate", ascending=False),
+        final_df[final_df["Category"] == "🟡 Favorite"].sort_values(by="Success_Rate", ascending=False),
+        final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
+    ]).reset_index(drop=True)
+    
+    green_list = [player for player in final_df[final_df["Category"] == "🟢 Best Bet"]["Player"].tolist() if player not in banned_players]
+    yellow_list = [player for player in final_df[final_df["Category"] == "🟡 Favorite"]["Player"].tolist() if player not in banned_players]
+    red_list = [player for player in final_df[final_df["Category"] == "🔴 Underdog"]["Player"].tolist() if player not in banned_players]
+    
+    green_output = ", ".join(green_list) if green_list else "No Green Plays"
+    yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
+    red_output = ", ".join(red_list) if red_list else "No Red Plays"
+    
+    output = f"🟢 {green_output}\n"
+    output += f"🟡 {yellow_output}\n"
+    output += f"🔴 {red_output}"
+    return output
+
 # --------------------------------------------------
 # Interactive Functions
 # --------------------------------------------------
@@ -602,7 +668,7 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
         print("❌ No matching teams found.")
         return
 
-    sorted_df = filtered_df.sort_values(by(mapped_stat, ascending=False))
+    sorted_df = filtered_df.sort_values(by=[mapped_stat], ascending=False)
     yellow = sorted_df.iloc[0:3]
     green = sorted_df.iloc[4:7]
     red = sorted_df.iloc[9:12]
@@ -639,7 +705,8 @@ def merge_nba_stats_with_injuries(stats_df, injuries_df):
 # --------------------------------------------------
 # CBB Integration Functions
 # --------------------------------------------------
-def integrate_cbb_data(player_stats_file="cbb_players_stats.csv", injury_data_file="cbb_injuries.csv"):
+def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_file="cbb_injuries.csv"):
+    print(f"Loading player stats from: {player_stats_file}")
     try:
         stats_df = pd.read_csv(player_stats_file)
     except FileNotFoundError:
@@ -678,7 +745,7 @@ def main():
         choice = input("Choose an option (1/2/3/4/5): ").strip()
         if choice == '1':
             print("\n📊 Selected: College Basketball (CBB)")
-            df_cbb = pd.read_csv('cbb_player_stats.csv')
+            df_cbb = integrate_cbb_data(player_stats_file="/Users/Q/Documents/Documents/RealSports/cbb_players_stats.csv")
             if df_cbb.empty:
                 continue
             analyze_sport(df_cbb, STAT_CATEGORIES_CBB, "Player", "Team")

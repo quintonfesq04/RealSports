@@ -317,10 +317,17 @@ def run_universal_sports_analyzer_programmatic(row):
                 df, USA.STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val, banned_players
             )
         elif sport_upper == "CBB":
-            df = USA.integrate_cbb_data()
+            player_stats_file = "/Users/Q/Documents/Documents/RealSports/cbb_player_stats.csv"
+            print(f"Attempting to load CBB player stats from: {player_stats_file}")
+            if not os.path.exists(player_stats_file):
+                return f"❌ '{player_stats_file}' file not found."
+            try:
+                df = USA.integrate_cbb_data(player_stats_file=player_stats_file)
+            except FileNotFoundError:
+                return f"❌ '{player_stats_file}' file not found."
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
-            return USA.analyze_sport_noninteractive(
-                df, USA.STAT_CATEGORIES_CBB, "Player", "Team", teams, used_stat, target_val, banned_players
+            return USA.analyze_cbb_noninteractive(
+                df, teams, used_stat, target_val, banned_players
             )
         elif sport_upper == "MLB":
             df = USA.integrate_mlb_data()
