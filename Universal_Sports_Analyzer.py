@@ -100,7 +100,7 @@ def fix_mlb_player_name(name):
     name = re.sub(r'\s+', ' ', name).strip()
     tokens = re.split(r'[ \.]+', name)
     fixed_tokens = []
-    known_positions = {"RF", "CF", "LF", "SS", "C", "1B", "2B", "3B", "OF"}
+    known_positions = {"RF", "CF", "LF", "SS", "C", "1B", "2B", "3B", "OF", "DH"}
     def remove_trailing_duplicate_substring(token):
         for i in range(1, len(token)):
             prefix = token[:i]
