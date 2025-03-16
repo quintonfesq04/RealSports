@@ -5,6 +5,10 @@ import os
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 # ---------------------------
 # Configuration & Constants
@@ -229,9 +233,114 @@ def save_players_to_csv(players):
     else:
         print("⚠️ No player data collected.")
 
+def fetch_cbb_injuries_oddstrader():
+    """
+    Scrapes CBB injury data from Oddstrader using Selenium.
+    
+    This updated version:
+      - Scrolls to the bottom repeatedly to trigger lazy-loading.
+      - Loops through all tables on the page.
+      - Attempts to extract headers from <thead> (or falls back to the first row).
+      - Skips any row that contains the phrase "no injuries to report".
+    """
+    url = "https://newsday.sportsdirectinc.com/basketball/ncaab-injuries.aspx?page=/data/ncaab/injury/injuries.html"
+    
+    # Set up Selenium in headless mode
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
+    driver = webdriver.Chrome(options=chrome_options)
+    
+    try:
+        driver.get(url)
+        wait = WebDriverWait(driver, 30)
+        # Wait until at least one table is present on the page
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table")))
+        
+        # Scroll to bottom repeatedly to trigger lazy-loading
+        SCROLL_PAUSE_TIME = 2
+        last_height = driver.execute_script("return document.body.scrollHeight")
+        while True:
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(SCROLL_PAUSE_TIME)
+            new_height = driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                break
+            last_height = new_height
+        
+        # Locate all table elements on the page
+        tables = driver.find_elements(By.CSS_SELECTOR, "table")
+        all_injuries = []
+        
+        for table in tables:
+            headers_list = []
+            # Try extracting header from <thead>
+            try:
+                thead = table.find_element(By.TAG_NAME, "thead")
+                header_rows = thead.find_elements(By.TAG_NAME, "tr")
+                if header_rows:
+                    headers_list = [cell.text.strip() for cell in header_rows[-1].find_elements(By.TAG_NAME, "th")]
+            except Exception as e:
+                # (Optional) Comment out or remove this print to suppress warnings:
+                # print(f"Warning: Unable to extract headers from <thead>: {e}")
+                pass
+            
+            # Get rows: if headers not found from <thead>, use the first row of table
+            rows = table.find_elements(By.TAG_NAME, "tr")
+            if not headers_list and rows:
+                headers_list = [cell.text.strip() for cell in rows[0].find_elements(By.TAG_NAME, "td")]
+                data_rows = rows[1:]
+            else:
+                try:
+                    tbody = table.find_element(By.TAG_NAME, "tbody")
+                    data_rows = tbody.find_elements(By.TAG_NAME, "tr")
+                except Exception:
+                    data_rows = rows[1:] if rows else []
+            
+            for row in data_rows:
+                cells = row.find_elements(By.TAG_NAME, "td")
+                if not cells:
+                    continue
+                # Skip rows that contain "no injuries to report"
+                if any("no injuries to report" in cell.text.strip().lower() for cell in cells):
+                    continue
+                row_data = {}
+                for i, cell in enumerate(cells):
+                    col_name = headers_list[i] if i < len(headers_list) and headers_list[i] else f"col_{i}"
+                    row_data[col_name] = cell.text.strip()
+                if row_data:
+                    all_injuries.append(row_data)
+        
+        if all_injuries:
+            print(f"✅ Found {len(all_injuries)} injury record(s).")
+        else:
+            print("⚠️ Injury table was found, but no injury records were extracted.")
+        return all_injuries
+    
+    except TimeoutException:
+        print("❌ Timeout waiting for the injury table to load.")
+        return []
+    except Exception as e:
+        print(f"❌ Selenium error: {e}")
+        return []
+    finally:
+        driver.quit()
+
+def save_injuries_to_csv(injuries, filename="cbb_injuries.csv"):
+    if injuries:
+        df = pd.DataFrame(injuries)
+        df.to_csv(filename, index=False)
+        print(f"✅ Injury data saved successfully to '{filename}'!")
+    else:
+        print("⚠️ No injury data to save.")
+
 # ---------------------------
 # Main Process
 # ---------------------------
 if __name__ == "__main__":
     all_players = fetch_all_players()
     save_players_to_csv(all_players)
+    
+    # Now scrape and save injury data from Oddstrader
+    injuries = fetch_cbb_injuries_oddstrader()
+    save_injuries_to_csv(injuries)

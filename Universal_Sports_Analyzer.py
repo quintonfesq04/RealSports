@@ -91,7 +91,7 @@ def fix_mlb_player_name(name):
     name = re.sub(r'\s+', ' ', name).strip()
     tokens = re.split(r'[ \.]+', name)
     fixed_tokens = []
-    known_positions = {"RF", "CF", "LF", "SS", "C", "1B", "2B", "3B", "OF"}
+    known_positions = {"RF", "CF", "LF", "SS", "C", "1B", "2B", "3B", "OF", "DH"}
     def remove_trailing_duplicate_substring(token):
         for i in range(1, len(token)):
             prefix = token[:i]
@@ -449,12 +449,16 @@ def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_play
     if team_col not in df.columns:
         return "❌ 'Team' column not found in the DataFrame."
     
-    if isinstance(teams, str):
-        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
+    # Only filter if teams are provided
+    if teams:
+        if isinstance(teams, str):
+            team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
+        else:
+            team_list = [normalize_team_name(t) for t in teams]
+        filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     else:
-        team_list = [normalize_team_name(t) for t in teams]
+        filtered_df = df.copy()
     
-    filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     if filtered_df.empty:
         return "❌ No matching teams found."
     
@@ -496,9 +500,9 @@ def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_play
         final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
     ]).reset_index(drop=True)
     
-    green_list = [player for player in final_df[final_df["Category"] == "🟢 Best Bet"]["Player"].tolist() if player not in banned_players]
-    yellow_list = [player for player in final_df[final_df["Category"] == "🟡 Favorite"]["Player"].tolist() if player not in banned_players]
-    red_list = [player for player in final_df[final_df["Category"] == "🔴 Underdog"]["Player"].tolist() if player not in banned_players]
+    green_list = [player for player in final_df[final_df["Category"] == "🟢 Best Bet"]["Player"].tolist() if player.strip().lower() not in banned_players]
+    yellow_list = [player for player in final_df[final_df["Category"] == "🟡 Favorite"]["Player"].tolist() if player.strip().lower() not in banned_players]
+    red_list = [player for player in final_df[final_df["Category"] == "🔴 Underdog"]["Player"].tolist() if player.strip().lower() not in banned_players]
     
     green_output = ", ".join(green_list) if green_list else "No Green Plays"
     yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
@@ -712,22 +716,47 @@ def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_fil
     except FileNotFoundError:
         print(f"Error: The file {player_stats_file} was not found.")
         return pd.DataFrame()
+    
     try:
         injuries_df = pd.read_csv(injury_data_file)
     except FileNotFoundError:
         print(f"Error: The file {injury_data_file} was not found.")
         return stats_df
+
+    # Rename the player name column to "Player"
     if "playerName" in injuries_df.columns:
         injuries_df.rename(columns={"playerName": "Player"}, inplace=True)
+    elif "col_0" in injuries_df.columns:
+        injuries_df.rename(columns={"col_0": "Player"}, inplace=True)
+    
+    # Rename the injury status column to "injuryStatus" if needed
+    if "injuryStatus" not in injuries_df.columns and "col_2" in injuries_df.columns:
+        injuries_df.rename(columns={"col_2": "injuryStatus"}, inplace=True)
+    
     try:
         integrated_data = pd.merge(stats_df, injuries_df, how='left', on='Player')
     except Exception as e:
         print("Merge error for CBB data:", e)
         return stats_df
-    integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
+
+    # Filter out players whose injuryStatus indicates they're out (looking for specific phrases)
+    if "injuryStatus" in integrated_data.columns:
+        mask = (
+            integrated_data["injuryStatus"].fillna("")
+            .str.lower()
+            .str.contains("out indefinitely") |
+            integrated_data["injuryStatus"].fillna("")
+            .str.lower()
+            .str.contains("out for season")
+        )
+        integrated_data = integrated_data[~mask]
+
+    # Ensure the "Team" column exists
     if "Team" not in integrated_data.columns:
         integrated_data["Team"] = stats_df["Team"]
-    integrated_data.columns = [col.strip() for col in integrated_data.columns]  # Normalize column names
+
+    # Normalize column names (strip any extra whitespace)
+    integrated_data.columns = [col.strip() for col in integrated_data.columns]
     return integrated_data
 
 # --------------------------------------------------
