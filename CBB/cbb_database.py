@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-# ---------------------------
+ # ---------------------------
 # Configuration & Constants
 # ---------------------------
 # ESPN API URL and Headers

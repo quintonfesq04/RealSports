@@ -8,16 +8,8 @@ from notion_client import Client
 
 # Add the RealSports directory to the Python path so we can import Universal_Sports_Analyzer.
 sys.path.append("/Users/Q/Documents/Documents/RealSports")
+from Universal_Sports_Analyzer import is_banned, BANNED_PLAYERS, BANNED_PLAYERS_SET
 import Universal_Sports_Analyzer as USA
-
-# -------------------------
-# Banned Players Helper
-# -------------------------
-def is_banned(player_name, banned_set):
-    return player_name.strip().lower() in banned_set
-
-# Use the normalized banned set from USA if possible; otherwise, create one.
-banned_set = {name.strip().lower() for name in USA.BANNED_PLAYERS}
 
 # -------------------------
 # CONFIGURATION
@@ -169,9 +161,6 @@ async def mark_row_as_processed(page_id):
         else:
             print(f"Error marking row {page_id} as processed: {e}")
 
-# -------------------------
-# Helper Function: Run psp_database.py to update CSV files
-# -------------------------
 def update_psp_files():
     try:
         result = subprocess.run(["python", "psp_database.py"], capture_output=True, text=True)
@@ -221,9 +210,9 @@ def analyze_nhl_psp(file_path, stat_key):
     player_col = "NAME" if "NAME" in sorted_df.columns else None
     if player_col is None:
         return "Player column not found in CSV."
-    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
-    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
+    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}\n"
+    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}"
     return output
 
 # -------------------------
@@ -253,20 +242,14 @@ def analyze_nba_psp(file_path, stat_key):
     if player_col is None:
         return "Player column not found in CSV."
     
-    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
-    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
+    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}\n"
+    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}"
     return output
 
 # -------------------------
 # Analyzer Function: Calls the appropriate analyzer
 # -------------------------
-
-# List of banned players (for non-PSP processing)
-banned_players = [
-    "Bobby Portis", 
-    "Jonas Valančiūnas"
-]
 
 def run_universal_sports_analyzer_programmatic(row):
     sport_upper = row["sport"].upper()
@@ -312,9 +295,9 @@ def run_universal_sports_analyzer_programmatic(row):
             player_col = "PLAYER" if "PLAYER" in sorted_df.columns else None
             if player_col is None:
                 return "Player column not found in CBB stats CSV."
-            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
-            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
-            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
+            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}\n"
+            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}\n"
+            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), BANNED_PLAYERS_SET))}"
             return output
         else:
             return "PSP processing not configured for this sport."
@@ -324,10 +307,10 @@ def run_universal_sports_analyzer_programmatic(row):
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
             return USA.analyze_sport_noninteractive(
-                df, USA.STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val, banned_players
+                df, USA.STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val, BANNED_PLAYERS_SET
             )
         elif sport_upper == "CBB":
-            player_stats_file = "/Users/Q/Documents/Documents/RealSports/cbb_player_stats.csv"
+            player_stats_file = "cbb_players_stats.csv"
             print(f"Attempting to load CBB player stats from: {player_stats_file}")
             if not os.path.exists(player_stats_file):
                 return f"❌ '{player_stats_file}' file not found."
@@ -337,7 +320,7 @@ def run_universal_sports_analyzer_programmatic(row):
                 return f"❌ '{player_stats_file}' file not found."
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             return USA.analyze_cbb_noninteractive(
-                df, teams, used_stat, target_val, banned_players
+                df, teams, used_stat, target_val, BANNED_PLAYERS_SET
             )
         elif sport_upper == "MLB":
             df = USA.integrate_mlb_data()
@@ -345,12 +328,12 @@ def run_universal_sports_analyzer_programmatic(row):
                 return "❌ 'TEAM' column not found in the MLB data."
             used_stat = row["stat"].upper() if row["stat"].strip() else "RBI"
             return USA.analyze_mlb_noninteractive(
-                df, teams, used_stat, banned_players
+                df, teams, used_stat, BANNED_PLAYERS_SET
             )
         elif sport_upper == "NHL":
             df = USA.integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
             nhl_stat = row["stat"].upper() if row["stat"].strip() else "GOALS"
-            return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val, banned_players)
+            return USA.analyze_nhl_noninteractive(df, teams, nhl_stat, target_val, BANNED_PLAYERS_SET)
         else:
             return "Sport not recognized."
 
