@@ -42860,6 +42860,7 @@ Original player_name: Bilal Coulibaly
 Extracted data: Washington, Bilal Coulibaly, SF, Thu, Mar 13, Hip, Out for the season
 💾 Saved injury report data
 💾 Saved healthy player stats to nba_healthy_player_stats.csv
+<<<<<<< HEAD
 💾 Saved player stats to nba_player_stats.csv
 Original player_name: Trae Young
 Extracted data: Atlanta, Trae Young, PG, Sat, Mar 15, Achilles, Game Time Decision
@@ -49430,3 +49431,5 @@ Original player_name: Bilal Coulibaly
 Extracted data: Washington, Bilal Coulibaly, SF, Sat, Mar 15, Hamstring, Out for the season
 💾 Saved injury report data
 💾 Saved healthy player stats to nba_healthy_player_stats.csv
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)

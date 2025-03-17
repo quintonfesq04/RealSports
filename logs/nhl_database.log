@@ -2193,6 +2193,7 @@ Script finished.
 💾 Saved player stats to nhl_player_stats.csv
 💾 Saved NHL injury report data
 Script finished.
+<<<<<<< HEAD
 💾 Saved player stats to nhl_player_stats.csv
 💾 Saved NHL injury report data
 Script finished.
@@ -2268,3 +2269,5 @@ Script finished.
 💾 Saved player stats to nhl_player_stats.csv
 💾 Saved NHL injury report data
 Script finished.
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)

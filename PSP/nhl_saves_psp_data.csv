@@ -1,4 +1,5 @@
 ,NAME,MIN,SV,MONTH,GP,GS,W,L,OTL,SA,SV%,GA,GAA,SHO
+<<<<<<< HEAD
 ,Elvis Merzlikins,358,163,February 2025,6,6,2,3,1,183,.891,20,3.36,0
 ,Jeremy Swayman,364,160,February 2025,6,6,2,2,2,177,.904,17,2.80,1
 ,Jake Allen,276,148,February 2025,5,5,1,4,0,163,.908,15,3.27,1
@@ -13,3 +14,30 @@
 ,James Reimer,111,54,February 2025,2,1,1,1,0,58,.931,4,2.16,0
 ,Daniil Tarasov,60,29,February 2025,1,1,1,0,0,31,.935,2,2.00,0
 ,Joonas Korpisalo,58,19,February 2025,1,1,0,1,0,22,.864,3,3.10,0
+=======
+,Andrei Vasilevskiy,478,238,February 2025,8,8,7,0,1,253,.941,15,1.88,1
+,Juuse Saros,357,165,February 2025,6,6,2,4,0,183,.902,18,3.02,0
+,Elvis Merzlikins,358,163,February 2025,6,6,2,3,1,183,.891,20,3.36,0
+,Jeremy Swayman,364,160,February 2025,6,6,2,2,2,177,.904,17,2.80,1
+,Samuel Ersson,361,158,February 2025,6,6,3,1,2,174,.908,16,2.66,0
+,Igor Shesterkin,373,154,February 2025,7,7,3,4,0,176,.875,22,3.54,0
+,Jake Allen,276,148,February 2025,5,5,1,4,0,163,.908,15,3.27,1
+,Arvid Soderblom,280,145,February 2025,5,4,0,3,2,162,.895,17,3.65,0
+,Sam Montembeault,398,143,February 2025,7,6,4,3,0,159,.899,16,2.41,1
+,Jordan Binnington,307,129,February 2025,5,5,4,0,1,141,.915,12,2.34,0
+,Logan Thompson,301,129,February 2025,5,5,2,1,2,147,.878,18,3.59,0
+,Anthony Stolarz,243,123,February 2025,4,4,4,0,0,133,.925,10,2.47,0
+,Linus Ullmark,207,122,February 2025,4,4,0,4,0,137,.891,15,4.35,0
+,Alex Nedeljkovic,307,117,February 2025,6,6,2,2,1,135,.867,18,3.52,1
+,Joseph Woll,237,116,February 2025,4,4,3,1,0,126,.921,10,2.53,0
+,Darcy Kuemper,300,115,February 2025,5,5,4,1,0,131,.878,16,3.20,0
+,Sergei Bobrovsky,295,114,February 2025,5,5,3,2,0,125,.912,11,2.24,0
+,Petr Mrazek,200,96,February 2025,4,4,1,2,0,113,.850,17,5.11,0
+,Pyotr Kochetkov,237,93,February 2025,4,4,2,2,0,105,.886,12,3.04,0
+,Kevin Lankinen,236,92,February 2025,4,3,2,1,1,100,.920,8,2.03,0
+,Ukko-Pekka Luukkonen,246,85,February 2025,5,5,3,1,0,99,.859,14,3.41,0
+,Vitek Vanecek,181,81,February 2025,3,3,0,1,2,93,.871,12,3.97,0
+,Alexandar Georgiev,180,78,February 2025,3,3,0,2,1,89,.876,11,3.67,0
+,Joel Hofer,185,72,February 2025,3,3,1,1,1,80,.900,8,2.60,0
+,Adin Hill,178,71,February 2025,3,3,2,1,0,77,.922,6,2.02,0
+>>>>>>> parent of 2a9db67 (push before banned list fix)
