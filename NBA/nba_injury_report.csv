@@ -1,5 +1,6 @@
 teamName,playerName,position,updated,injury,injuryStatus
 <<<<<<< HEAD
+<<<<<<< HEAD
 Atlanta,Clint Capela,C,"Sun, Mar 16",Personal,Expected to be out until at least Mar 18
 Atlanta,Caris LeVert,SG,"Sun, Mar 16",Knee,Expected to be out until at least Mar 18
 Atlanta,Larry Nance Jr.,PF,"Sun, Mar 16",Knee,Expected to be out until at least Apr 1
@@ -13,6 +14,8 @@ Brooklyn,Ziaire Williams,SF,"Sun, Mar 16",Achilles,Expected to be out until at l
 Brooklyn,D'Angelo Russell,PG,"Sun, Mar 16",Ankle,Expected to be out until at least Mar 18
 Brooklyn,Cam Thomas,SG,"Sat, Mar 15",Hamstring,Out for the season
 =======
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Atlanta,Clint Capela,C,"Sat, Mar 15",Personal,Game Time Decision
 Atlanta,Larry Nance Jr.,PF,"Fri, Mar 14",Knee,Expected to be out until at least Apr 1
 Atlanta,Jalen Johnson,SF,"Wed, Jan 29",Shoulder,Out for the season
@@ -26,12 +29,16 @@ Brooklyn,Cam Thomas,SG,"Sat, Mar 15",Hamstring,Out for the season
 Brooklyn,Noah Clowney,PF,"Fri, Mar 14",Ankle,Expected to be out until at least Mar 16
 Brooklyn,Trendon Watford,PF,"Fri, Mar 14",Hamstring,Expected to be out until at least Mar 16
 Brooklyn,Nicolas Claxton,C,"Fri, Mar 14",Rest,Expected to be out until at least Mar 16
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 Brooklyn,De'Anthony Melton,SG,"Wed, Nov 20",Knee,Out for the season
 Charlotte,Josh Okogie,SF,"Sun, Mar 16",Hamstring,Expected to be out until at least Mar 21
 Charlotte,Tre Mann,PG,"Thu, Jan 30",Back,Out for the season
 Charlotte,Brandon Miller,SG,"Thu, Jan 23",Wrist,OFS. Expected Return - 2025-10-01
 Charlotte,Grant Williams,PF,"Sun, Nov 24",Knee,Out for the season
+<<<<<<< HEAD
 <<<<<<< HEAD
 Chicago,Coby White,PG,"Sun, Mar 16",Toe,Game Time Decision
 Chicago,Josh Giddey,PG,"Sun, Mar 16",Ankle,Game Time Decision
@@ -157,6 +164,22 @@ Dallas,Daniel Gafford,C,"Fri, Mar 14",Knee,Expected to be out until at least Apr
 Dallas,PJ Washington,PF,"Fri, Mar 14",Ankle,Game Time Decision
 Dallas,Olivier-Maxence Prosper,SF,"Fri, Mar 7",Wrist,Out for the season
 Dallas,Kyrie Irving,PG,"Tue, Mar 4",Knee,Out for the season
+=======
+Chicago,Josh Giddey,PG,"Fri, Mar 14",Ankle,Game Time Decision
+Chicago,Lonzo Ball,PG,"Fri, Mar 14",Wrist,Expected to be out until at least Mar 17
+Chicago,Coby White,PG,"Fri, Mar 14",Toe,Game Time Decision
+Chicago,Ayo Dosunmu,PG,"Sun, Mar 2",Shoulder,Out for the season
+Cleveland,Donovan Mitchell,SG,"Sat, Mar 15",Groin,Game Time Decision
+Dallas,Dante Exum,SG,"Sat, Mar 15",Hand,Out for the season
+Dallas,Anthony Davis,C,"Fri, Mar 14",Thigh,Expected to be out until at least Apr 2
+Dallas,Kai Jones,C,"Fri, Mar 14",Quadriceps,Game Time Decision
+Dallas,Jaden Hardy,SG,"Fri, Mar 14",Ankle,Game Time Decision
+Dallas,Dereck Lively II,C,"Fri, Mar 14",Ankle,Expected to be out until at least Apr 2
+Dallas,Daniel Gafford,C,"Fri, Mar 14",Knee,Expected to be out until at least Apr 2
+Dallas,PJ Washington,PF,"Fri, Mar 14",Ankle,Game Time Decision
+Dallas,Olivier-Maxence Prosper,SF,"Fri, Mar 7",Wrist,Out for the season
+Dallas,Kyrie Irving,PG,"Tue, Mar 4",Knee,Out for the season
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Denver,Christian Braun,SF,"Sat, Mar 15",Foot,Game Time Decision
 Denver,Aaron Gordon,PF,"Sat, Mar 15",Calf,Game Time Decision
 Denver,Nikola Jokic,C,"Sat, Mar 15",Elbow,Game Time Decision
@@ -246,4 +269,7 @@ Utah,Taylor Hendricks,PF,"Fri, Nov 1",Lower Leg,Out for the season
 Washington,Malcolm Brogdon,PG,"Fri, Mar 14",Ankle,Expected to be out until at least Mar 17
 Washington,Saddiq Bey,SF,"Fri, Mar 14",Knee,Expected to be out until at least Apr 6
 Washington,Bilal Coulibaly,SF,"Thu, Mar 13",Hip,Out for the season
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)

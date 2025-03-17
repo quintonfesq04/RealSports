@@ -35,9 +35,12 @@ Chi. Cubs,J. AssadJavier Assad,RP,"Sat, Mar 1",Oblique,Expected to be out until 
 Chi. Cubs,N. HoernerNico Hoerner,2B,"Thu, Feb 27",Forearm,Expected to be out until at least Mar 27
 Chi. Cubs,O. CaissieOwen Caissie,OF,"Thu, Feb 27",Groin,Questionable for start of season
 <<<<<<< HEAD
+<<<<<<< HEAD
 Chi. White Sox,O. ColasOscar Colas,RF,"Sun, Mar 16",Wrist,Questionable for start of season
 Chi. White Sox,J. RojasJosh Rojas,2B,"Sun, Mar 16",Toe,Questionable for start of season
 =======
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Chi. White Sox,A. BenintendiAndrew Benintendi,LF,"Fri, Mar 14",Hand,Expected to be out until at least Apr 8
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 Chi. White Sox,P. BerroaPrelander Berroa,RP,"Fri, Mar 14",Elbow,Out for the season
@@ -57,6 +60,7 @@ Cleveland,A. WaltersAndrew Walters,RP,"Sun, Mar 9",Shoulder,Expected to be out u
 Cleveland,D. FryDavid Fry,C,"Wed, Feb 19",Elbow,Expected to be out until at least May 26
 Cleveland,J. MeansJohn Means,SP,"Mon, Feb 17",Elbow,Expected to be out until at least Sep 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 Cleveland,S. HentgesSam Hentges,RP,"Mon, Feb 17",Shoulder,"Expected to be out until at least Feb 1, 2026"
 Cleveland,T. StephanTrevor Stephan,RP,"Fri, Feb 14",Elbow,Expected to be out until at least Jun 1
 Cleveland,S. BieberShane Bieber,SP,"Fri, Feb 14",Elbow,Expected to be out until at least Jul 1
@@ -73,6 +77,12 @@ Cleveland,S. BieberShane Bieber,SP,"Fri, Feb 14",Elbow,Expected to be out until 
 Colorado,A. GomberAustin Gomber,SP,"Fri, Mar 14",Shoulder,Questionable for start of season
 Colorado,J. CriswellJeff Criswell,SP,"Mon, Mar 3",Elbow,Out for the season
 >>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
+Cleveland,T. StephanTrevor Stephan,RP,"Fri, Feb 14",Elbow,Expected to be out until at least Jun 1
+Cleveland,S. BieberShane Bieber,SP,"Fri, Feb 14",Elbow,Expected to be out until at least Jul 1
+Colorado,A. GomberAustin Gomber,SP,"Fri, Mar 14",Shoulder,Questionable for start of season
+Colorado,J. CriswellJeff Criswell,SP,"Mon, Mar 3",Elbow,Out for the season
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Detroit,J. UrquidyJose Urquidy,SP,"Sat, Mar 8",Elbow,Expected to be out until at least Jul 20
 Detroit,S. Gipson-LongSawyer Gipson-Long,SP,"Sat, Mar 8",Elbow,Expected to be out until at least Jul 1
 Detroit,T. MaddenTy Madden,SP,"Fri, Mar 7",Shoulder,Expected to be out until at least Apr 11
@@ -83,7 +93,11 @@ Detroit,T. MattisonTyler Mattison,RP,"Wed, Nov 20",Elbow,Expected to be out unti
 Houston,C. WalkerChristian Walker,1B,"Sun, Mar 16",Oblique,Questionable for start of season
 Houston,F. WhitleyForrest Whitley,SP,"Fri, Mar 14",Knee,Expected to be out until at least Mar 27
 <<<<<<< HEAD
+<<<<<<< HEAD
 Houston,L. GarciaLuis Garcia,SP,"Fri, Mar 7",Elbow,Expected to be out until at least May 2
+=======
+Houston,C. WalkerChristian Walker,1B,"Sun, Mar 9",Oblique,Questionable for start of season
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 =======
 Houston,C. WalkerChristian Walker,1B,"Sun, Mar 9",Oblique,Questionable for start of season
 >>>>>>> parent of 2a9db67 (push before banned list fix)
@@ -130,6 +144,7 @@ Milwaukee,B. WoodruffBrandon Woodruff,SP,"Thu, Feb 27",Shoulder,Expected to be o
 Milwaukee,B. PerkinsBlake Perkins,RF,"Sat, Feb 22",Lower Leg,Expected to be out until at least May 1
 Milwaukee,R. GasserRobert Gasser,SP,"Wed, Feb 12",Elbow,Expected to be out until at least Sep 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 Minnesota,B. StewartBrock Stewart,RP,"Sun, Mar 16",Knee,Questionable for start of season
 Minnesota,R. LewisRoyce Lewis,3B,"Sun, Mar 16",Hamstring,Expected to be out until at least Apr 22
 Minnesota,M. TonkinMichael Tonkin,RP,"Sun, Mar 16",Shoulder,Expected to be out until at least Apr 18
@@ -139,6 +154,9 @@ N.Y. Mets,B. NimmoBrandon Nimmo,CF,"Sun, Mar 16",Knee,Questionable for start of 
 N.Y. Mets,S. MarteStarling Marte,RF,"Sun, Mar 16",Knee,Questionable for start of season
 =======
 Minnesota,J. TopaJustin Topa,RP,"Thu, Mar 13",Shoulder,Questionable for start of season
+=======
+Minnesota,J. TopaJustin Topa,RP,"Thu, Mar 13",Shoulder,Questionable for start of season
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Minnesota,M. TonkinMichael Tonkin,RP,"Thu, Mar 13",Shoulder,Questionable for start of season
 N.Y. Mets,J. McNeilJeff McNeil,2B,"Fri, Mar 14",Oblique,Expected to be out until at least Apr 11
 >>>>>>> parent of 2a9db67 (push before banned list fix)
@@ -205,6 +223,9 @@ Washington,A. ChaparroAndres Chaparro,3B,"Sun, Mar 16",Oblique,Questionable for 
 =======
 Washington,A. ChaparroAndres Chaparro,3B,"Fri, Mar 14",Side,Questionable for start of season
 Washington,A. RosarioAmed Rosario,SS,"Thu, Mar 13",Knee,Questionable for start of season
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 Washington,Z. BrzykcyZach Brzykcy,RP,"Mon, Mar 10",Quadriceps,Questionable for start of season
 Washington,M. ThompsonMason Thompson,RP,"Wed, Feb 19",Elbow,Expected to be out until at least May 26

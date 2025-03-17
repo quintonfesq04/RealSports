@@ -1,10 +1,13 @@
 teamName,playerName,position,updated,injury,injuryStatus
 <<<<<<< HEAD
+<<<<<<< HEAD
 Anaheim,Ross Johnston,LW,"Sun, Mar 16",Upper Body,Expected to be out until at least Mar 18
 Anaheim,Robby Fabbri,C,"Sun, Mar 16",Upper Body,IR. Expected to be out until at least Mar 30
 Anaheim,John Gibson,G,"Sun, Mar 16",Lower Body,Expected to be out until at least Mar 18
 Anaheim,Sam Colangelo,RW,"Sun, Mar 16",Upper Body,Expected to be out until at least Mar 18
 =======
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Anaheim,John Gibson,G,"Sat, Mar 15",Lower Body,Day-to-Day
 Anaheim,Ross Johnston,LW,"Sat, Mar 15",Upper Body,Day-to-Day
 Anaheim,Sam Colangelo,RW,"Sat, Mar 15",Upper Body,Day-to-Day
@@ -21,9 +24,12 @@ Calgary,Connor Zary,C,"Thu, Mar 13",Suspension,Expected to be out until at least
 Calgary,Justin Kirkland,LW,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 15
 Calgary,Anthony Mantha,RW,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 15
 <<<<<<< HEAD
+<<<<<<< HEAD
 Carolina,Andrei Svechnikov,RW,"Sun, Mar 16",Upper Body,Day-to-Day
 Carolina,Dmitry Orlov,D,"Sun, Mar 16",Upper Body,Day-to-Day
 =======
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Carolina,Dmitry Orlov,D,"Sat, Mar 15",Upper Body,Day-to-Day
 Carolina,Andrei Svechnikov,RW,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 20
 >>>>>>> parent of 2a9db67 (push before banned list fix)
@@ -33,6 +39,7 @@ Chicago,Laurent Brossoit,G,"Thu, Mar 6",Knee,IR. Expected to be out until at lea
 Colorado,Josh Manson,D,"Sun, Mar 16",Upper Body,Expected to be out until at least Mar 31
 Colorado,Gabriel Landeskog,LW,"Mon, Mar 3",Knee,IR. Expected to be out until at least Apr 17
 <<<<<<< HEAD
+<<<<<<< HEAD
 Columbus,Elvis Merzlikins,G,"Sun, Mar 16",Personal,Day-to-Day
 Columbus,Jake Christiansen,D,"Sun, Mar 16",Upper Body,Day-to-Day
 Columbus,Erik Gudbranson,D,"Fri, Mar 14",Shoulder,IR. Expected to be out until at least Mar 17
@@ -41,6 +48,9 @@ Columbus,Sean Monahan,C,"Tue, Mar 4",Wrist,IR. Expected to be out until at least
 Columbus,Kevin Labanc,RW,"Fri, Feb 21",Shoulder,IR. Expected to be out until at least Sep 20
 =======
 Columbus,Erik Gudbranson,D,"Fri, Mar 14",Shoulder,IR. Expected to be out until at least Mar 17
+=======
+Columbus,Erik Gudbranson,D,"Fri, Mar 14",Shoulder,IR. Expected to be out until at least Mar 17
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Columbus,Elvis Merzlikins,G,"Fri, Mar 14",Personal,Expected to be out until at least Mar 17
 Columbus,Jake Christiansen,D,"Thu, Mar 13",Upper Body,Expected to be out until at least Mar 17
 Columbus,Cole Sillinger,C,"Sat, Mar 8",Shoulder,IR. Expected to be out until at least Apr 1
@@ -48,6 +58,9 @@ Columbus,Sean Monahan,C,"Tue, Mar 4",Wrist,IR. Expected to be out until at least
 Columbus,Kevin Labanc,RW,"Fri, Feb 21",Shoulder,IR. Expected to be out until at least Sep 20
 Dallas,Roope Hintz,LW,"Sat, Mar 15",Face,Day-to-Day
 Dallas,Lian Bichsel,D,"Sat, Mar 15",Illness,Day-to-Day
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 Dallas,Miro Heiskanen,D,"Fri, Mar 7",Knee,IR. Expected to be out until at least Mar 31
 Dallas,Nils Lundkvist,D,"Sat, Feb 1",Shoulder,IR. Expected to be out until at least Sep 21
@@ -77,11 +90,18 @@ New Jersey,Dougie Hamilton,D,"Thu, Mar 13",Lower Body,Expected to be out until a
 New Jersey,Jonas Siegenthaler,D,"Fri, Mar 7",Lower Body,IR. Expected to be out until at least Apr 18
 New Jersey,Jack Hughes,C,"Wed, Mar 5",Shoulder,IR. Expected to be out until at least Sep 15
 <<<<<<< HEAD
+<<<<<<< HEAD
 N.Y. Islanders,Adam Pelech,D,"Sun, Mar 16",Lower Body,Expected to be out until at least Mar 18
 N.Y. Islanders,Adam Boqvist,D,"Sun, Mar 16",Upper Body,Expected to be out until at least Mar 18
 N.Y. Islanders,Semyon Varlamov,G,"Sat, Mar 8",Lower Body,IR. Expected to be out until at least Apr 17
 N.Y. Islanders,Mathew Barzal,C,"Sat, Mar 8",Kneecap,IR. Expected to be out until at least Apr 1
 N.Y. Rangers,Arthur Kaliyev,RW,"Sun, Mar 16",Upper Body,Expected to be out until at least Mar 18
+=======
+N.Y. Islanders,Adam Boqvist,D,"Sat, Mar 15",Upper Body,Day-to-Day
+N.Y. Islanders,Mathew Barzal,C,"Sat, Mar 8",Kneecap,IR. Expected to be out until at least Apr 1
+N.Y. Islanders,Semyon Varlamov,G,"Sat, Mar 8",Lower Body,IR. Expected to be out until at least Apr 17
+N.Y. Rangers,Arthur Kaliyev,RW,"Fri, Mar 14",Upper Body,Day-to-Day
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 =======
 N.Y. Islanders,Adam Boqvist,D,"Sat, Mar 15",Upper Body,Day-to-Day
 N.Y. Islanders,Mathew Barzal,C,"Sat, Mar 8",Kneecap,IR. Expected to be out until at least Apr 1
@@ -101,11 +121,15 @@ San Jose,Henry Thrun,D,"Sun, Mar 16",Upper Body,Expected to be out until at leas
 =======
 Pittsburgh,Ryan Shea,D,"Wed, Mar 12",Upper Body,Expected to be out until at least Mar 18
 San Jose,Henry Thrun,D,"Wed, Mar 12",Upper Body,Expected to be out until at least Mar 20
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 San Jose,Jan Rutta,D,"Mon, Mar 10",Lower Body,IR. Expected to be out until at least Apr 13
 San Jose,Logan Couture,C,"Sat, Mar 1",Groin,IR. Expected to be out until at least Sep 15
 St. Louis,Colton Parayko,D,"Wed, Mar 12",Knee,Expected to be out until at least Apr 17
 St. Louis,Torey Krug,D,"Mon, Jan 27",Ankle,IR. Expected to be out until at least Sep 15
+<<<<<<< HEAD
 <<<<<<< HEAD
 Toronto,Max Pacioretty,LW,"Sat, Mar 15",Undisclosed,IR. Expected to be out until at least Mar 30
 Toronto,Jani Hakanpaa,D,"Sat, Mar 8",Knee,IR. Expected to be out until at least Mar 30
@@ -129,6 +153,19 @@ Vancouver,Thatcher Demko,G,"Sun, Mar 9",Lower Body,IR. Expected to be out until 
 Vancouver,Noah Juulsen,D,"Thu, Feb 27",Groin,IR. Expected to be out until at least Sep 15
 Vegas,Raphael Lavoie,C,"Thu, Mar 13",Upper Body,IR. Expected to be out until at least Mar 20
 Vegas,William Karlsson,C,"Thu, Mar 13",Lower Body,IR. Expected to be out until at least Mar 20
+=======
+Tampa Bay,Nikita Kucherov,RW,"Fri, Mar 14",Illness,Day-to-Day
+Toronto,Max Pacioretty,LW,"Sat, Mar 15",Undisclosed,IR. Expected to be out until at least Mar 30
+Toronto,Jani Hakanpaa,D,"Sat, Mar 8",Knee,IR. Expected to be out until at least Mar 30
+Utah,Nick Bjugstad,C,"Sat, Mar 15",Upper Body,Day-to-Day
+Utah,Liam O'Brien,LW,"Sat, Mar 15",Undisclosed,Day-to-Day
+Utah,Robert Bortuzzo,D,"Fri, Mar 14",Lower Body,IR. Expected to be out until at least Mar 16
+Vancouver,Tyler Myers,D,"Thu, Mar 13",Undisclosed,Day-to-Day
+Vancouver,Thatcher Demko,G,"Sun, Mar 9",Lower Body,IR. Expected to be out until at least Mar 30
+Vancouver,Noah Juulsen,D,"Thu, Feb 27",Groin,IR. Expected to be out until at least Sep 15
+Vegas,Raphael Lavoie,C,"Thu, Mar 13",Upper Body,IR. Expected to be out until at least Mar 20
+Vegas,William Karlsson,C,"Thu, Mar 13",Lower Body,IR. Expected to be out until at least Mar 20
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 Vegas,Shea Theodore,D,"Wed, Mar 12",Arm,Expected to be out until at least Mar 23
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 Vegas,Robin Lehner,G,"Mon, Jan 27",Hip,IR. Expected to be out until at least Sep 15

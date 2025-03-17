@@ -1,5 +1,6 @@
 ,NAME,MIN,SV,MONTH,GP,GS,W,L,OTL,SA,SV%,GA,GAA,SHO
 <<<<<<< HEAD
+<<<<<<< HEAD
 ,Elvis Merzlikins,358,163,February 2025,6,6,2,3,1,183,.891,20,3.36,0
 ,Jeremy Swayman,364,160,February 2025,6,6,2,2,2,177,.904,17,2.80,1
 ,Jake Allen,276,148,February 2025,5,5,1,4,0,163,.908,15,3.27,1
@@ -15,6 +16,8 @@
 ,Daniil Tarasov,60,29,February 2025,1,1,1,0,0,31,.935,2,2.00,0
 ,Joonas Korpisalo,58,19,February 2025,1,1,0,1,0,22,.864,3,3.10,0
 =======
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 ,Andrei Vasilevskiy,478,238,February 2025,8,8,7,0,1,253,.941,15,1.88,1
 ,Juuse Saros,357,165,February 2025,6,6,2,4,0,183,.902,18,3.02,0
 ,Elvis Merzlikins,358,163,February 2025,6,6,2,3,1,183,.891,20,3.36,0
@@ -40,4 +43,7 @@
 ,Alexandar Georgiev,180,78,February 2025,3,3,0,2,1,89,.876,11,3.67,0
 ,Joel Hofer,185,72,February 2025,3,3,1,1,1,80,.900,8,2.60,0
 ,Adin Hill,178,71,February 2025,3,3,2,1,0,77,.922,6,2.02,0
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)

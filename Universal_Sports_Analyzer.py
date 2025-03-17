@@ -543,6 +543,9 @@ def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_play
     green_list = [player for player in final_df[final_df["Category"] == "🟢 Best Bet"]["Player"].tolist() if player not in banned_players]
     yellow_list = [player for player in final_df[final_df["Category"] == "🟡 Favorite"]["Player"].tolist() if player not in banned_players]
     red_list = [player for player in final_df[final_df["Category"] == "🔴 Underdog"]["Player"].tolist() if player not in banned_players]
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
     
     green_output = ", ".join(green_list) if green_list else "No Green Plays"
@@ -764,6 +767,7 @@ def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_fil
         print("Merge error for CBB data:", e)
         return stats_df
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     # Filter out players whose injuryStatus indicates they're out
     if "injuryStatus" in integrated_data.columns:
@@ -783,6 +787,12 @@ def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_fil
 
     # Normalize column names
     integrated_data.columns = [col.strip() for col in integrated_data.columns]
+=======
+    integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
+    if "Team" not in integrated_data.columns:
+        integrated_data["Team"] = stats_df["Team"]
+    integrated_data.columns = [col.strip() for col in integrated_data.columns]  # Normalize column names
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 =======
     integrated_data = integrated_data[integrated_data['injuryStatus'].isnull()]
     if "Team" not in integrated_data.columns:
