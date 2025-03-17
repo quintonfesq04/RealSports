@@ -24253,6 +24253,7 @@ Row: ['32', '', '76.0', '37.5', '15.8', '6.5', '5.4', '12.6', '44.3', '68.3', '3
 ✅ Player stats saved successfully to 'cbb_players_stats.csv'!
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 🚀 Starting CBB player stats API scraper...
 📦 Fetching API page 1...
 📦 Fetching API page 2...
@@ -28324,6 +28325,8 @@ Row: ['32', '', '76.0', '37.5', '15.8', '6.5', '5.4', '12.6', '44.3', '68.3', '3
 ✅ Player stats saved successfully to 'cbb_players_stats.csv'!
 ✅ Found 192 injury record(s).
 ✅ Injury data saved successfully to 'cbb_injuries.csv'!
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 =======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 =======

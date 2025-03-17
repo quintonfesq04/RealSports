@@ -28335,6 +28335,7 @@ Total stats rows fetched: 1176
 MLB data scraping complete.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Starting MLB data scraping...
 Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=1
 Fetching stats from: https://www.mlb.com/stats/rbi?timeframe=-14&page=2
@@ -30056,6 +30057,8 @@ Total stats rows fetched: 1176
 💾 Fetched MLB injury data with 181 rows.
 💾 Saved mlb_injuries.csv.
 MLB data scraping complete.
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 =======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 =======

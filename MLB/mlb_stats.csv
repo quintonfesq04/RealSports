@@ -1,6 +1,7 @@
 PLAYERPLAYER,TEAMTEAM,GGames PlayedGames in which a player has appeared.GGames PlayedGames in which a player has appeared.,"ABAt BatsTrips to the plate that do not result in a walk, hit by pitch, sacrifice, or reach on interference.ABAt BatsTrips to the plate that do not result in a walk, hit by pitch, sacrifice, or reach on interference.",RRunsWhen a baserunner safely reaches home plate and scores.RRunsWhen a baserunner safely reaches home plate and scores.,HHitsWhen a batter reaches base safely on a fair ball unless the batter is deemed by the official scorer to have reached on an error or a fielder's choice.HHitsWhen a batter reaches base safely on a fair ball unless the batter is deemed by the official scorer to have reached on an error or a fielder's choice.,2BDoublesWhen a batter reaches on a hit and stops at second base or only advances farther than second base on an error or a fielder's attempt to put out another baserunner.2BDoublesWhen a batter reaches on a hit and stops at second base or only advances farther than second base on an error or a fielder's attempt to put out another baserunner.,3BTriplesWhen a batter reaches on a hit and stops at third base or only advances farther than third base on an error or a fielder's attempt to put out another baserunner.3BTriplesWhen a batter reaches on a hit and stops at third base or only advances farther than third base on an error or a fielder's attempt to put out another baserunner.,"HRHome RunsWhen a batter reaches on a hit, touches all bases, and scores a run without a putout recorded or the benefit of error.HRHome RunsWhen a batter reaches on a hit, touches all bases, and scores a run without a putout recorded or the benefit of error.","caret-upcaret-downRBIRuns Batted InRuns which score because of the batter's safe hit, sac bunt, sac fly, infield out or fielder's choice or is forced to score by a bases loaded walk, hit batter, or interference.caret-upcaret-downRBIRuns Batted InRuns which score because of the batter's safe hit, sac bunt, sac fly, infield out or fielder's choice or is forced to score by a bases loaded walk, hit batter, or interference.",BBWalksWhen a batter is awarded first base after four balls have been called by the umpire or the opposing team opts to intentionally award the batter first base.BBWalksWhen a batter is awarded first base after four balls have been called by the umpire or the opposing team opts to intentionally award the batter first base.,SOStrikeoutsWhen the umpire calls three strikes on the batter.SOStrikeoutsWhen the umpire calls three strikes on the batter.,"SBStolen BasesWhen the runner advances one base unaided by a hit, a putout, an error, a force-out, a fielder's choice, a passed ball, a wild pitch, or a balk.SBStolen BasesWhen the runner advances one base unaided by a hit, a putout, an error, a force-out, a fielder's choice, a passed ball, a wild pitch, or a balk.",CSCaught StealingWhen a runner attempts to steal but is tagged out before safely attaining the next base.CSCaught StealingWhen a runner attempts to steal but is tagged out before safely attaining the next base.,AVGBatting AverageThe rate of hits per at bat.H/ABAVGBatting AverageThe rate of hits per at bat.H/AB,OBPOn-Base PercentageThe rate at which a batter reached base in his plate appearances.(H+BB+HBP)/(AB+BB+HBP+SF)OBPOn-Base PercentageThe rate at which a batter reached base in his plate appearances.(H+BB+HBP)/(AB+BB+HBP+SF),SLGSlugging PercentageThe rate of total bases per at bat.(1B+2Bx2+3Bx3+HRx4)/ABSLGSlugging PercentageThe rate of total bases per at bat.(1B+2Bx2+3Bx3+HRx4)/AB,OPSOn-Base Plus SluggingThe sum of on-base percentage and slugging percentage.OBP+SLGOPSOn-Base Plus SluggingThe sum of on-base percentage and slugging percentage.OBP+SLG
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 1OneilO CruzCruzOF1‌‌‌,PIT,8,21,7,5,0,0,2,10,5,12,4,0,.238,.393,.524,.917
 1RyanR MountcastleMountcastle1B1‌‌‌,BAL,8,22,5,6,1,0,3,10,1,3,0,0,.273,.292,.727,1.019
 1GavinG SheetsSheets1B1‌‌‌,SD,11,29,7,12,0,0,6,10,2,7,0,0,.414,.452,1.034,1.486
@@ -1179,6 +1180,8 @@ PLAYERPLAYER,TEAMTEAM,GGames PlayedGames in which a player has appeared.GGames P
 =======
 =======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
+>>>>>>> parent of 2a9db67 (push before banned list fix)
 1PeteP Crow-ArmstrongCrow-ArmstrongCF1‌‌‌,CHC,6,16,6,9,2,0,3,11,0,3,1,0,.563,.529,1.250,1.779
 1OneilO CruzCruzOF1‌‌‌,PIT,9,23,8,6,0,0,3,11,6,13,4,0,.261,.419,.652,1.071
 3BrandonB DruryDrury2B3‌‌‌,CWS,7,23,4,10,4,0,3,10,1,4,0,0,.435,.458,1.000,1.458
@@ -2355,6 +2358,9 @@ PLAYERPLAYER,TEAMTEAM,GGames PlayedGames in which a player has appeared.GGames P
 768DiegoD MosqueraMosqueraSS768‌‌‌,NYM,2,2,0,0,0,0,0,0,0,1,0,0,.000,.000,.000,.000
 768JackJ MossMossLF768‌‌‌,CIN,1,1,0,0,0,0,0,0,0,0,0,0,.000,.000,.000,.000
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 2a9db67 (push before banned list fix)
+=======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 =======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
