@@ -87,7 +87,7 @@ def fetch_unprocessed_rows(database_id):
         if stat_prop.get("type") == "select":
             stat = stat_prop.get("select", {}).get("name", "")
         elif stat_prop.get("type") == "rich_text":
-               stat = "".join(part.get("plain_text", "") for part in stat_prop.get("rich_text", []))
+            stat = "".join(part.get("plain_text", "") for part in stat_prop.get("rich_text", []))
         else:
             stat = ""
         target_prop = props.get("Target", {})
@@ -216,37 +216,14 @@ def analyze_nhl_psp(file_path, stat_key):
     
     sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
     yellow = sorted_df.iloc[0:3]   # Rankings 1–3
-    green = sorted_df.iloc[6:9]    # Rankings 5–7
-    red = sorted_df.iloc[12:15]     # Rankings 10–12
+    green = sorted_df.iloc[6:9]    # Rankings 7–9
+    red = sorted_df.iloc[12:15]     # Rankings 13–15
     player_col = "NAME" if "NAME" in sorted_df.columns else None
     if player_col is None:
         return "Player column not found in CSV."
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
     output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
     output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
     output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
-=======
-=======
->>>>>>> parent of 2a9db67 (push before banned list fix)
-=======
->>>>>>> parent of 2a9db67 (push before banned list fix)
-    green_list = green[player_col].tolist()
-    yellow_list = yellow[player_col].tolist()
-    red_list = red[player_col].tolist()
-    # Convert all items to strings in case some are numbers
-    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
-    output += f"🔴 {', '.join(str(x) for x in red_list)}"
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 2a9db67 (push before banned list fix)
-=======
->>>>>>> parent of 2a9db67 (push before banned list fix)
-=======
->>>>>>> parent of 2a9db67 (push before banned list fix)
     return output
 
 # -------------------------
@@ -267,9 +244,6 @@ def analyze_nba_psp(file_path, stat_key):
     except Exception as e:
         return f"Error loading or processing NBA injuries CSV: {e}"
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
     green = sorted_df.iloc[0:3]
     yellow = sorted_df.iloc[3:6]
@@ -282,37 +256,13 @@ def analyze_nba_psp(file_path, stat_key):
     output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
     output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
     output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
-=======
-    sorted_df = df.sort_values(by=stat_key, ascending=False)
-    yellow = sorted_df.iloc[0:3]
-    green = sorted_df.iloc[6:9]
-    red = sorted_df.iloc[12:15]
-    player_col = "NAME" if "NAME" in sorted_df.columns else None
-=======
-    sorted_df = df.sort_values(by=stat_key, ascending=False)
-    yellow = sorted_df.iloc[0:3]
-    green = sorted_df.iloc[6:9]
-    red = sorted_df.iloc[12:15]
-    player_col = "NAME" if "NAME" in sorted_df.columns else None
->>>>>>> parent of 2a9db67 (push before banned list fix)
-=======
-    sorted_df = df.sort_values(by=stat_key, ascending=False)
-    yellow = sorted_df.iloc[0:3]
-    green = sorted_df.iloc[6:9]
-    red = sorted_df.iloc[12:15]
-    player_col = "NAME" if "NAME" in sorted_df.columns else None
->>>>>>> parent of 2a9db67 (push before banned list fix)
-    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist())}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist())}\n"
-    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist())}"
->>>>>>> parent of 2a9db67 (push before banned list fix)
     return output
 
 # -------------------------
 # Analyzer Function: Calls the appropriate analyzer
 # -------------------------
 
-# List of banned players
+# List of banned players (for non-PSP processing)
 banned_players = [
     "Bobby Portis", 
     "Jonas Valančiūnas"
@@ -353,9 +303,6 @@ def run_universal_sports_analyzer_programmatic(row):
             stat_key = row["stat"].upper()
             if stat_key not in USA.STAT_CATEGORIES_CBB:
                 return f"❌ Invalid CBB stat choice."
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             df = USA.load_player_stats()  # Ensure this function returns your CBB stats DataFrame
             df.columns = [col.upper() for col in df.columns]
             sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
@@ -368,45 +315,6 @@ def run_universal_sports_analyzer_programmatic(row):
             output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
             output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), banned_set))}\n"
             output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), banned_set))}"
-=======
-            # Generate PSP data for CBB dynamically
-            df = USA.load_player_stats()
-            df.columns = [col.upper() for col in df.columns]
-            sorted_df = df.sort_values(by=stat_key, ascending=False)
-            yellow = sorted_df.iloc[0:3]
-            green = sorted_df.iloc[6:9]
-            red = sorted_df.iloc[12:15]
-            player_col = "PLAYER" if "PLAYER" in sorted_df.columns else None
-            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if x not in banned_players)}\n"
-            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if x not in banned_players)}\n"
-            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if x not in banned_players)}"
->>>>>>> parent of 2a9db67 (push before banned list fix)
-=======
-            # Generate PSP data for CBB dynamically
-            df = USA.load_player_stats()
-            df.columns = [col.upper() for col in df.columns]
-            sorted_df = df.sort_values(by=stat_key, ascending=False)
-            yellow = sorted_df.iloc[0:3]
-            green = sorted_df.iloc[6:9]
-            red = sorted_df.iloc[12:15]
-            player_col = "PLAYER" if "PLAYER" in sorted_df.columns else None
-            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if x not in banned_players)}\n"
-            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if x not in banned_players)}\n"
-            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if x not in banned_players)}"
->>>>>>> parent of 2a9db67 (push before banned list fix)
-=======
-            # Generate PSP data for CBB dynamically
-            df = USA.load_player_stats()
-            df.columns = [col.upper() for col in df.columns]
-            sorted_df = df.sort_values(by=stat_key, ascending=False)
-            yellow = sorted_df.iloc[0:3]
-            green = sorted_df.iloc[6:9]
-            red = sorted_df.iloc[12:15]
-            player_col = "PLAYER" if "PLAYER" in sorted_df.columns else None
-            output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if x not in banned_players)}\n"
-            output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if x not in banned_players)}\n"
-            output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if x not in banned_players)}"
->>>>>>> parent of 2a9db67 (push before banned list fix)
             return output
         else:
             return "PSP processing not configured for this sport."
