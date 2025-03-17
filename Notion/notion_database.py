@@ -87,7 +87,7 @@ def fetch_unprocessed_rows(database_id):
         if stat_prop.get("type") == "select":
             stat = stat_prop.get("select", {}).get("name", "")
         elif stat_prop.get("type") == "rich_text":
-            stat = "".join(part.get("plain_text", "") for part in stat_prop.get("rich_text", []))
+               stat = "".join(part.get("plain_text", "") for part in stat_prop.get("rich_text", []))
         else:
             stat = ""
         target_prop = props.get("Target", {})
