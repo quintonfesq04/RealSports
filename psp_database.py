@@ -101,13 +101,10 @@ def build_query_url(query, teams):
     full_query = f"{query} {TIME_PERIOD} {teams_str}"
     encoded_query = urllib.parse.quote_plus(full_query)
     url = f"{BASE_URL}/ask?q={encoded_query}"
-    print("Full query URL:", url)
     return url
 
 def fetch_html(url):
     """Uses Selenium to load the dynamic StatMuse page and returns the HTML."""
-    print("Fetching data from StatMuse with URL:")
-    print(url)
     
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -150,7 +147,6 @@ def parse_table(html_content):
         print("No table header found.")
         return None
     headers = [th.get_text(strip=True) for th in header_row.find_all("th")]
-    print("Headers found:", headers)
     
     body = table.find("tbody")
     if not body:
@@ -194,14 +190,12 @@ def analyze_nba_psp(file_path, stat_key):
     try:
         df_psp = pd.read_csv(file_path)
         df_psp.columns = [col.upper() for col in df_psp.columns]
-        print("PSP Data Loaded:", df_psp.head())
     except Exception as e:
         return f"Error reading PSP CSV: {e}"
     
     try:
         df_stats = pd.read_csv("NBA/nba_player_stats.csv")
         df_stats.columns = [col.upper() for col in df_stats.columns]
-        print("NBA Player Stats Loaded:", df_stats.head())
     except Exception as e:
         return f"Error reading NBA player stats CSV: {e}"
     
@@ -209,17 +203,14 @@ def analyze_nba_psp(file_path, stat_key):
         df_inj = pd.read_csv("NBA/nba_injury_report.csv")
         df_inj["playerName"] = df_inj["playerName"].str.strip()
         injured_names = set(df_inj["playerName"].dropna().unique())
-        print("Injured Players:", injured_names)
     except Exception as e:
         return f"Error loading or processing NBA injuries CSV: {e}"
     
     # Merge PSP data with player stats to get the latest team information
     df_merged = pd.merge(df_psp, df_stats, on="NAME", how="left", suffixes=('_psp', '_stats'))
-    print("Merged Data:", df_merged.head())
     
     # Filter out injured players
     df_merged = df_merged[~df_merged["NAME"].isin(injured_names)]
-    print("Filtered Data (No Injuries):", df_merged.head())
     
     if stat_key not in df_merged.columns:
         return f"Stat column '{stat_key}' not found in CSV."
@@ -260,19 +251,16 @@ def main():
         sport = row["sport"]
         stat = row["stat"]
         
-        print(f"\nProcessing row for Sport: {sport}, Stat: {stat}, Teams: {teams}")
         data = scrape_statmuse_data(sport, stat, teams)
         if data:
             # Build a file name based on sport and stat (replace spaces with underscores)
             file_name = f"{sport.lower()}_{stat.lower().replace(' ', '_')}_psp_data.csv"
             output_file = os.path.join("PSP", file_name)
             pd.DataFrame(data).to_csv(output_file, index=False)
-            print(f"✅ Data exported to {output_file}")
         else:
             print("No data scraped for this row.")
         
         mark_row_as_processed(page_id)
-        print(f"Row with ID {page_id} marked as processed.")
 
 if __name__ == "__main__":
     main()

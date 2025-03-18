@@ -234,6 +234,8 @@ def analyze_nba_psp(file_path, stat_key):
         return f"Error loading or processing NBA injuries CSV: {e}"
     
     sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
+    # Remove duplicate entries based on the NAME column.
+    sorted_df = sorted_df.drop_duplicates(subset=["NAME"]).reset_index(drop=True)
     green = sorted_df.iloc[0:3]
     yellow = sorted_df.iloc[3:6]
     red = sorted_df.iloc[6:9]
@@ -311,7 +313,6 @@ def run_universal_sports_analyzer_programmatic(row):
             )
         elif sport_upper == "CBB":
             player_stats_file = "cbb_players_stats.csv"
-            print(f"Attempting to load CBB player stats from: {player_stats_file}")
             if not os.path.exists(player_stats_file):
                 return f"❌ '{player_stats_file}' file not found."
             try:
@@ -344,10 +345,7 @@ async def process_rows():
     main_rows = fetch_unprocessed_rows(DATABASE_ID)
     psp_rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
     all_rows = main_rows + psp_rows
-    if not all_rows:
-        print("No unprocessed rows found.")
-        return
-
+    
     poll_entries = []
     for row in all_rows:
         result = run_universal_sports_analyzer_programmatic(row)
