@@ -1,95 +1,87 @@
 teamName,playerName,position,updated,injury,injuryStatus
-Anaheim,Ross Johnston,LW,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 16
-Anaheim,Sam Colangelo,RW,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 16
-Anaheim,John Gibson,G,"Thu, Mar 13",Lower Body,Day-to-Day
-Anaheim,Robby Fabbri,C,"Tue, Mar 11",Upper Body,IR. Expected to be out until at least Mar 16
+Anaheim,Ross Johnston,LW,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 23
+Anaheim,John Gibson,G,"Wed, Mar 19",Lower Body,Day-to-Day
+Anaheim,Sam Colangelo,RW,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 23
+Anaheim,Robby Fabbri,C,"Sun, Mar 16",Upper Body,IR. Expected to be out until at least Mar 30
 Anaheim,Brock McGinn,LW,"Mon, Jan 27",Lower Body,IR. Expected to be out until at least Sep 15
 Boston,Charlie McAvoy,D,"Tue, Mar 11",Shoulder,IR. Expected to be out until at least Apr 15
 Boston,Hampus Lindholm,D,"Sun, Feb 23",Kneecap,IR. Expected to be out until at least May 1
-Buffalo,Josh Norris,C,"Fri, Mar 14",Undisclosed,Day-to-Day
-Buffalo,John-Jason Peterka,RW,"Fri, Mar 14",Lower Body,Expected to be out until at least Mar 17
-Buffalo,Jacob Bernard-Docker,D,"Thu, Mar 13",Not Injury Related,Day-to-Day
-Buffalo,Jacob Bryson,D,"Wed, Mar 12",Upper Body,Day-to-Day
-Calgary,Mikael Backlund,C,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 25
-Calgary,Connor Zary,C,"Thu, Mar 13",Suspension,Expected to be out until at least Mar 18
-Calgary,Justin Kirkland,LW,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 15
+Buffalo,Josh Norris,C,"Wed, Mar 19",Undisclosed,Day-to-Day
+Buffalo,Jiri Kulich,C,"Wed, Mar 19",Concussion,Day-to-Day
+Buffalo,John-Jason Peterka,RW,"Wed, Mar 19",Lower Body,Day-to-Day
+Calgary,Mikael Backlund,C,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 25
 Calgary,Anthony Mantha,RW,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 15
-Carolina,Andrei Svechnikov,RW,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 20
-Carolina,Dmitry Orlov,D,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 15
-Carolina,William Carrier,LW,"Wed, Mar 12",Lower Body,Expected to be out until at least Apr 17
+Calgary,Justin Kirkland,LW,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 15
+Carolina,Andrei Svechnikov,RW,"Wed, Mar 19",Upper Body,Day-to-Day
+Carolina,William Carrier,LW,"Wed, Mar 19",Lower Body,Expected to be out until at least Apr 17
+Carolina,Dmitry Orlov,D,"Wed, Mar 19",Upper Body,Day-to-Day
 Carolina,Jesper Fast,RW,"Mon, Jan 27",Neck,IR. Expected to be out until at least Sep 15
 Chicago,Laurent Brossoit,G,"Thu, Mar 6",Knee,IR. Expected to be out until at least Sep 15
-Colorado,MacKenzie Blackwood,G,"Fri, Mar 14",Illness,Day-to-Day
+Colorado,Josh Manson,D,"Wed, Mar 19",Upper Body,Expected to be out until at least Apr 10
 Colorado,Gabriel Landeskog,LW,"Mon, Mar 3",Knee,IR. Expected to be out until at least Apr 17
-Columbus,Erik Gudbranson,D,"Fri, Mar 14",Shoulder,IR. Expected to be out until at least Mar 17
-Columbus,Jake Christiansen,D,"Thu, Mar 13",Upper Body,Expected to be out until at least Mar 17
-Columbus,Cole Sillinger,C,"Sat, Mar 8",Shoulder,IR. Expected to be out until at least Apr 1
+Columbus,Cole Sillinger,C,"Wed, Mar 19",Shoulder,IR. Expected to be out until at least Mar 24
+Columbus,Erik Gudbranson,D,"Wed, Mar 19",Shoulder,IR. Expected to be out until at least Mar 24
+Columbus,Jake Christiansen,D,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 21
+Columbus,Kevin Labanc,RW,"Tue, Mar 18",Shoulder,IR. Expected to be out until at least Sep 15
 Columbus,Sean Monahan,C,"Tue, Mar 4",Wrist,IR. Expected to be out until at least Mar 24
-Columbus,Kevin Labanc,RW,"Fri, Feb 21",Shoulder,IR. Expected to be out until at least Sep 20
-Dallas,Lian Bichsel,D,"Fri, Mar 14",Illness,Expected to be out until at least Mar 16
-Dallas,Roope Hintz,LW,"Wed, Mar 12",Face,Expected to be out until at least Mar 16
-Dallas,Miro Heiskanen,D,"Fri, Mar 7",Knee,IR. Expected to be out until at least Mar 31
-Dallas,Nils Lundkvist,D,"Sat, Feb 1",Shoulder,IR. Expected to be out until at least Sep 21
-Dallas,Tyler Seguin,C,"Sat, Feb 1",Hip,IR. Expected to be out until at least Apr 3
-Detroit,Carter Mazur,LW,"Fri, Mar 7",Upper Body,IR. Expected to be out until at least Mar 14
+Dallas,Nils Lundkvist,D,"Tue, Mar 18",Shoulder,IR. Expected to be out until at least Sep 15
+Dallas,Miro Heiskanen,D,"Tue, Mar 18",Knee,IR. Expected to be out until at least May 3
+Dallas,Tyler Seguin,C,"Tue, Mar 18",Hip,IR. Expected to be out until at least Apr 16
+Detroit,Carter Mazur,LW,"Fri, Mar 14",Upper Body,IR. Expected to be out until at least Mar 22
 Detroit,Andrew Copp,C,"Tue, Feb 25",Pectoral,IR. Expected to be out until at least Sep 15
 Detroit,Jeff Petry,D,"Mon, Feb 3",Undisclosed,IR. Expected to be out until at least Apr 1
-Edmonton,Mattias Janmark,C,"Fri, Mar 14",Illness,Day-to-Day
-Edmonton,John Klingberg,D,"Fri, Mar 14",Undisclosed,Day-to-Day
-Edmonton,Mattias Ekholm,D,"Wed, Mar 12",Undisclosed,Expected to be out until at least Mar 18
+Edmonton,John Klingberg,D,"Wed, Mar 19",Undisclosed,Day-to-Day
+Edmonton,Alec Regula,D,"Tue, Mar 18",Knee,IR. Expected to be out until at least Mar 26
 Edmonton,Evander Kane,LW,"Fri, Mar 7",Knee,IR. Expected to be out until at least Apr 18
-Edmonton,Alec Regula,D,"Thu, Feb 27",Knee,IR. Expected to be out until at least Mar 18
-Florida,Brad Marchand,LW,"Wed, Mar 12",Upper Body,Expected to be out until at least Mar 23
+Florida,Dmitry Kulikov,D,"Wed, Mar 19",Upper Body,Expected to be out until at least Apr 8
+Florida,Brad Marchand,LW,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 28
 Florida,Matthew Tkachuk,LW,"Mon, Mar 3",Groin,IR. Expected to be out until at least Apr 17
+Minnesota,Jonas Brodin,D,"Wed, Mar 19",Lower Body,Expected to be out until at least Mar 22
+Minnesota,Marcus Foligno,LW,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 22
 Minnesota,Joel Eriksson Ek,C,"Thu, Mar 13",Lower Body,IR. Expected to be out until at least Mar 24
-Minnesota,Jonas Brodin,D,"Thu, Mar 13",Lower Body,Expected to be out until at least Mar 17
 Minnesota,Kirill Kaprizov,LW,"Sun, Mar 9",Lower Body,IR. Expected to be out until at least Apr 6
-Montreal,Joel Armia,RW,"Thu, Mar 13",Upper Body,Day-to-Day
-Montreal,Kaiden Guhle,D,"Wed, Mar 12",Quadriceps,Expected to be out until at least Mar 30
+Montreal,Kaiden Guhle,D,"Wed, Mar 19",Quadriceps,Expected to be out until at least Mar 30
+Montreal,Carey Price,G,"Tue, Mar 18",Knee,IR. Expected to be out until at least Sep 15
 Montreal,Kirby Dach,C,"Sun, Mar 2",Knee,IR. Expected to be out until at least Sep 15
-Montreal,Carey Price,G,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 23
-Nashville,Michael Bunting,LW,"Tue, Mar 11",Abdomen,IR. Expected to be out until at least Mar 14
-Nashville,Zachary L'Heureux,LW,"Mon, Mar 10",Upper Body,IR. Expected to be out until at least Mar 14
-Nashville,Roman Josi,D,"Thu, Mar 6",Upper Body,IR. Expected to be out until at least Mar 18
+Nashville,Roman Josi,D,"Tue, Mar 18",Upper Body,IR. Expected to be out until at least Apr 16
 Nashville,Adam Wilsby,D,"Fri, Feb 21",Upper Body,IR. Expected to be out until at least Sep 15
 Nashville,Jeremy Lauzon,D,"Tue, Feb 18",Lower Body,IR. Expected to be out until at least Sep 15
-New Jersey,Dougie Hamilton,D,"Thu, Mar 13",Lower Body,Expected to be out until at least Apr 28
+New Jersey,Dougie Hamilton,D,"Wed, Mar 19",Lower Body,Expected to be out until at least Apr 28
 New Jersey,Jonas Siegenthaler,D,"Fri, Mar 7",Lower Body,IR. Expected to be out until at least Apr 18
 New Jersey,Jack Hughes,C,"Wed, Mar 5",Shoulder,IR. Expected to be out until at least Sep 15
-N.Y. Islanders,Adam Boqvist,D,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 16
-N.Y. Islanders,Mathew Barzal,C,"Sat, Mar 8",Kneecap,IR. Expected to be out until at least Apr 1
+N.Y. Islanders,Adam Boqvist,D,"Wed, Mar 19",Upper Body,Day-to-Day
+N.Y. Islanders,Alexander Romanov,D,"Wed, Mar 19",Illness,Day-to-Day
 N.Y. Islanders,Semyon Varlamov,G,"Sat, Mar 8",Lower Body,IR. Expected to be out until at least Apr 17
-N.Y. Rangers,Arthur Kaliyev,RW,"Fri, Mar 14",Upper Body,Day-to-Day
-N.Y. Rangers,Adam Fox,D,"Tue, Mar 11",Upper Body,IR. Expected to be out until at least Mar 16
+N.Y. Islanders,Mathew Barzal,C,"Sat, Mar 8",Kneecap,IR. Expected to be out until at least Apr 1
+N.Y. Rangers,Arthur Kaliyev,RW,"Wed, Mar 19",Upper Body,Expected to be out until at least Sep 15
 N.Y. Rangers,Adam Edstrom,C,"Tue, Feb 4",Lower Body,IR. Expected to be out until at least Apr 17
-Ottawa,Travis Hamonic,D,"Fri, Mar 14",Lower Body,Day-to-Day
-Ottawa,Brady Tkachuk,LW,"Thu, Mar 13",Hip,Day-to-Day
+Ottawa,Nick Jensen,D,"Wed, Mar 19",Lower Body,Day-to-Day
 Ottawa,Nick Cousins,C,"Sat, Feb 22",Knee,IR. Expected to be out until at least Apr 1
-Philadelphia,Garnet Hathaway,RW,"Fri, Mar 14",Upper Body,Day-to-Day
-Philadelphia,Rasmus Ristolainen,D,"Fri, Mar 14",Undisclosed,Expected to be out until at least Mar 17
+Philadelphia,Rasmus Ristolainen,D,"Wed, Mar 19",Upper Body,Day-to-Day
+Philadelphia,Garnet Hathaway,RW,"Wed, Mar 19",Upper Body,Day-to-Day
 Philadelphia,Ryan Ellis,D,"Mon, Jan 27",Back,IR. Expected to be out until at least Sep 15
-Pittsburgh,Tommy Novak,C,"Fri, Mar 14",Lower Body,Day-to-Day
-Pittsburgh,Pierre-Olivier Joseph,D,"Thu, Mar 13",Upper Body,IR. Expected to be out until at least Mar 18
-Pittsburgh,Ryan Shea,D,"Wed, Mar 12",Upper Body,Expected to be out until at least Mar 18
-San Jose,Henry Thrun,D,"Wed, Mar 12",Upper Body,Expected to be out until at least Mar 20
+Pittsburgh,Ryan Shea,D,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 30
+Pittsburgh,Tommy Novak,C,"Wed, Mar 19",Lower Body,Day-to-Day
+Pittsburgh,Emil Bemstrom,C,"Wed, Mar 19",Undisclosed,Day-to-Day
+Pittsburgh,Pierre-Olivier Joseph,D,"Tue, Mar 18",Upper Body,IR. Expected to be out until at least Mar 30
+San Jose,Henry Thrun,D,"Wed, Mar 19",Upper Body,Expected to be out until at least Mar 30
 San Jose,Jan Rutta,D,"Mon, Mar 10",Lower Body,IR. Expected to be out until at least Apr 13
 San Jose,Logan Couture,C,"Sat, Mar 1",Groin,IR. Expected to be out until at least Sep 15
-St. Louis,Colton Parayko,D,"Wed, Mar 12",Knee,Expected to be out until at least Apr 17
+St. Louis,Colton Parayko,D,"Wed, Mar 19",Knee,Expected to be out until at least Apr 17
 St. Louis,Torey Krug,D,"Mon, Jan 27",Ankle,IR. Expected to be out until at least Sep 15
-Tampa Bay,Nikita Kucherov,RW,"Fri, Mar 14",Illness,Day-to-Day
+Toronto,Max Pacioretty,LW,"Sat, Mar 15",Undisclosed,IR. Expected to be out until at least Mar 30
 Toronto,Jani Hakanpaa,D,"Sat, Mar 8",Knee,IR. Expected to be out until at least Mar 30
-Toronto,Max Pacioretty,LW,"Fri, Mar 7",Undisclosed,IR. Expected to be out until at least Mar 15
-Utah,Nick Bjugstad,C,"Fri, Mar 14",Upper Body,Expected to be out until at least Mar 16
-Utah,Robert Bortuzzo,D,"Fri, Mar 14",Lower Body,IR. Expected to be out until at least Mar 16
-Vancouver,Tyler Myers,D,"Thu, Mar 13",Undisclosed,Day-to-Day
-Vancouver,Elias Pettersson,D,"Wed, Mar 12",Upper Body,Day-to-Day
+Utah,Liam O'Brien,LW,"Wed, Mar 19",Lower Body,Expected to be out until at least Apr 12
+Utah,Robert Bortuzzo,D,"Tue, Mar 18",Lower Body,IR. Expected to be out until at least Mar 20
+Vancouver,Filip Chytil,C,"Wed, Mar 19",Concussion,Day-to-Day
+Vancouver,Conor Garland,RW,"Wed, Mar 19",Undisclosed,Day-to-Day
 Vancouver,Thatcher Demko,G,"Sun, Mar 9",Lower Body,IR. Expected to be out until at least Mar 30
 Vancouver,Noah Juulsen,D,"Thu, Feb 27",Groin,IR. Expected to be out until at least Sep 15
-Vegas,Raphael Lavoie,C,"Thu, Mar 13",Upper Body,IR. Expected to be out until at least Mar 20
+Vegas,Shea Theodore,D,"Wed, Mar 19",Arm,Expected to be out until at least Apr 6
 Vegas,William Karlsson,C,"Thu, Mar 13",Lower Body,IR. Expected to be out until at least Mar 20
-Vegas,Shea Theodore,D,"Wed, Mar 12",Arm,Expected to be out until at least Mar 23
+Vegas,Raphael Lavoie,C,"Thu, Mar 13",Upper Body,IR. Expected to be out until at least Mar 20
 Vegas,Robin Lehner,G,"Mon, Jan 27",Hip,IR. Expected to be out until at least Sep 15
 Washington,Sonny Milano,LW,"Fri, Mar 7",Upper Body,IR. Expected to be out until at least Apr 1
 Washington,T.J. Oshie,RW,"Mon, Jan 27",Back,IR. Expected to be out until at least Sep 15
 Washington,Nicklas Backstrom,C,"Mon, Jan 27",Hip,IR. Expected to be out until at least Jul 1
-Winnipeg,Neal Pionk,D,"Fri, Mar 14",Undisclosed,Expected to be out until at least Mar 25
+Winnipeg,Neal Pionk,D,"Wed, Mar 19",Lower Body,Expected to be out until at least Mar 25

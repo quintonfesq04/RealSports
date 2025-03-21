@@ -2277,3 +2277,153 @@ Script finished.
 >>>>>>> parent of 2a9db67 (push before banned list fix)
 =======
 >>>>>>> parent of 2a9db67 (push before banned list fix)
+An error occurred: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: Unable to receive message from renderer
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+0   chromedriver                        0x00000001048c9804 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001048c1ddc cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000104415ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x00000001044003d4 cxxbridge1$string$len + 4140
+4   chromedriver                        0x000000010440014c cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001043fde64 chromedriver + 188004
+6   chromedriver                        0x00000001043feabc chromedriver + 191164
+7   chromedriver                        0x000000010440c690 cxxbridge1$string$len + 53992
+8   chromedriver                        0x00000001044223ac cxxbridge1$string$len + 143364
+9   chromedriver                        0x00000001043ff0f0 chromedriver + 192752
+10  chromedriver                        0x0000000104421d4c cxxbridge1$string$len + 141732
+11  chromedriver                        0x000000010449e914 cxxbridge1$string$len + 652652
+12  chromedriver                        0x000000010445135c cxxbridge1$string$len + 335796
+13  chromedriver                        0x000000010488ecd4 cxxbridge1$str$ptr + 2545532
+14  chromedriver                        0x0000000104891fa0 cxxbridge1$str$ptr + 2558536
+15  chromedriver                        0x000000010486ed04 cxxbridge1$str$ptr + 2414508
+16  chromedriver                        0x0000000104892800 cxxbridge1$str$ptr + 2560680
+17  chromedriver                        0x000000010485fba0 cxxbridge1$str$ptr + 2352712
+18  chromedriver                        0x00000001048b245c cxxbridge1$str$ptr + 2690820
+19  chromedriver                        0x00000001048b25e4 cxxbridge1$str$ptr + 2691212
+20  chromedriver                        0x00000001048c1a50 cxxbridge1$str$ptr + 2753784
+21  libsystem_pthread.dylib             0x000000019ca0c2e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019ca070fc thread_start + 8
+
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=50577): Read timed out. (read timeout=120)
+TableBase-shadows divs not found.
+No injury data to save.
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=61715): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=51373): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=52611): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=53938): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=56857): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=58053): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=58684): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=59266): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=59811): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=60448): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=61070): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=61724): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=62302): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=62883): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=63376): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=65331): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+Script finished.
+Traceback (most recent call last):
+  File "/Users/Q/Documents/Documents/RealSports/NHL/nhl_database.py", line 130, in <module>
+    fetch_nhl_player_stats()
+  File "/Users/Q/Documents/Documents/RealSports/NHL/nhl_database.py", line 18, in fetch_nhl_player_stats
+    driver = webdriver.Chrome(options=options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/opt/miniconda3/lib/python3.12/site-packages/selenium/webdriver/chromium/webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/opt/miniconda3/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 250, in __init__
+    self.start_session(capabilities)
+  File "/opt/miniconda3/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 342, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 429, in execute
+    self.error_handler.check_response(response)
+  File "/opt/miniconda3/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+0   chromedriver                        0x0000000103305798 cxxbridge1$str$ptr + 2785964
+1   chromedriver                        0x00000001032fdd70 cxxbridge1$str$ptr + 2754692
+2   chromedriver                        0x0000000102e51ea8 cxxbridge1$string$len + 92928
+3   chromedriver                        0x0000000102e84ed4 cxxbridge1$string$len + 301868
+4   chromedriver                        0x0000000102e815a0 cxxbridge1$string$len + 287224
+5   chromedriver                        0x0000000102ec6870 cxxbridge1$string$len + 570568
+6   chromedriver                        0x0000000102ec60e4 cxxbridge1$string$len + 568636
+7   chromedriver                        0x0000000102e8d35c cxxbridge1$string$len + 335796
+8   chromedriver                        0x00000001032cac68 cxxbridge1$str$ptr + 2545532
+9   chromedriver                        0x00000001032cdf34 cxxbridge1$str$ptr + 2558536
+10  chromedriver                        0x00000001032aac98 cxxbridge1$str$ptr + 2414508
+11  chromedriver                        0x00000001032ce794 cxxbridge1$str$ptr + 2560680
+12  chromedriver                        0x000000010329bb34 cxxbridge1$str$ptr + 2352712
+13  chromedriver                        0x00000001032ee3f0 cxxbridge1$str$ptr + 2690820
+14  chromedriver                        0x00000001032ee578 cxxbridge1$str$ptr + 2691212
+15  chromedriver                        0x00000001032fd9e4 cxxbridge1$str$ptr + 2753784
+16  libsystem_pthread.dylib             0x00000001821b82e4 _pthread_start + 136
+17  libsystem_pthread.dylib             0x00000001821b30fc thread_start + 8
+
+An error occurred: HTTPConnectionPool(host='localhost', port=49728): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=51283): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=52071): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=52869): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=53694): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=54649): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=55679): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=56779): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=57928): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.

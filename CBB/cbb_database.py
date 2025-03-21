@@ -5,6 +5,7 @@ import os
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
  # ---------------------------
 # Configuration & Constants
@@ -106,12 +107,18 @@ def fetch_players_html():
     """
     print("🚀 Starting HTML scraper for new link using ResponsiveTable selectors...")
 
-    # Set up Selenium in headless mode
+    # Set up Selenium with additional stability options for cron
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--headless=new")  # New headless mode (improves stability)
+    chrome_options.add_argument("--no-sandbox")  # Prevents security sandbox issues
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Prevents memory crashes in cron
+    chrome_options.add_argument("--remote-debugging-port=9222")  # Helps with debugging
+    chrome_options.add_argument("--disable-gpu")  # Avoids GPU-related crashes in headless mode
+
     # Adjust executable_path if needed (or ensure chromedriver is in your PATH)
-    driver = webdriver.Chrome(options=chrome_options)
+    service = Service("/opt/homebrew/bin/chromedriver")  # Ensure this path is correct
+
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
         driver.get(HTML_URL)
