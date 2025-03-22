@@ -11,6 +11,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
+# Import banned check from Universal_Sports_Analyzer
+from Universal_Sports_Analyzer import is_banned
+
 # --------------------------
 # Notion & Scraper Settings
 # --------------------------
@@ -186,7 +189,18 @@ def clean_name(name):
         return name[:period_index-1].strip()
     return name
 
+# --------------------------
+# PSP Analyzer Functions
+# --------------------------
 def analyze_nba_psp(file_path, stat_key):
+    """
+    Reads the NBA PSP CSV file and merges it with player stats.
+    Then filters out injured and banned players.
+    Outputs PSP groups based on ranking:
+      • Yellow: ranks 1–3
+      • Green: ranks 6–8
+      • Red: ranks 13–15
+    """
     try:
         df_psp = pd.read_csv(file_path)
         df_psp.columns = [col.upper() for col in df_psp.columns]
@@ -221,16 +235,20 @@ def analyze_nba_psp(file_path, stat_key):
         return f"Error converting stat column: {e}"
     
     sorted_df = df_merged.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
-    yellow = sorted_df.iloc[0:3]   # Rankings 1–3
-    green = sorted_df.iloc[6:9]    # Rankings 5–7
-    red = sorted_df.iloc[12:15]     # Rankings 10–12
+    # Define ranking groups based on your PSP rules:
+    yellow = sorted_df.iloc[0:3]       # Ranks 1-3
+    green = sorted_df.iloc[5:8]        # Ranks 6-8 (adjusted from previous 7-9)
+    red = sorted_df.iloc[12:15]        # Ranks 13-15
+    
     player_col = "NAME" if "NAME" in sorted_df.columns else None
     if player_col is None:
         return "Player column not found in CSV."
-    green_list = green[player_col].tolist()
-    yellow_list = yellow[player_col].tolist()
-    red_list = red[player_col].tolist()
-    # Convert all items to strings in case some are numbers
+    
+    # Filter out banned players using is_banned (passing stat_key as context)
+    green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
+    yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
+    red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
+    
     output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
     output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
     output += f"🔴 {', '.join(str(x) for x in red_list)}"
