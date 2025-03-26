@@ -2,6 +2,9 @@ import pandas as pd
 import os
 import re
 
+# Define the base directory for relative file paths.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # --------------------------------------------------
 # Define stat categories for NBA, CBB, NHL, and MLB
 # --------------------------------------------------
@@ -61,18 +64,12 @@ def normalize_team_name(team):
 # --------------------------------------------------
 # Traded Players List and Functions
 # --------------------------------------------------
-# Define traded players using lowercase keys and their new teams.
 TRADED_PLAYERS = {
     "kyle kuzma": "MIL"
-    # Add other traded players as needed:
-    # "player name in lowercase": "NEW TEAM"
+    # Add other traded players as needed.
 }
 
 def update_traded_players(df, player_col="PLAYER", team_col="TEAM"):
-    """
-    Update the team for any player in the traded players list.
-    Converts the player name to string to avoid errors.
-    """
     df[team_col] = df.apply(
         lambda row: TRADED_PLAYERS.get(str(row[player_col]).strip().lower(), row[team_col]),
         axis=1
@@ -80,10 +77,6 @@ def update_traded_players(df, player_col="PLAYER", team_col="TEAM"):
     return df
 
 def is_traded_excluded(player_name, current_teams):
-    """
-    Returns True if the player is in the traded list and his new team is not among the current teams.
-    current_teams should be a list of normalized (uppercase) team abbreviations.
-    """
     normalized_name = player_name.strip().lower()
     if normalized_name in TRADED_PLAYERS:
         new_team = TRADED_PLAYERS[normalized_name].strip().upper()
@@ -94,7 +87,6 @@ def is_traded_excluded(player_name, current_teams):
 # --------------------------------------------------
 # Banned Players Handling
 # --------------------------------------------------
-# Global banned players (applied to all polls)
 GLOBAL_BANNED_PLAYERS = [
     "Bobby Portis",
     "Jonas Valančiūnas",
@@ -105,7 +97,6 @@ GLOBAL_BANNED_PLAYERS = [
 ]
 GLOBAL_BANNED_PLAYERS_SET = {p.strip().lower() for p in GLOBAL_BANNED_PLAYERS}
 
-# Stat-specific banned players.
 STAT_SPECIFIC_BANNED = {
     "ASSISTS": {"Jordan Poole"},
     "HITS": {"Brenden Dillon"},
@@ -113,11 +104,6 @@ STAT_SPECIFIC_BANNED = {
 }
 
 def is_banned(player_name, stat=None):
-    """
-    Returns True if the given player (normalized) is banned.
-    If a stat is provided, check the stat-specific banned list first.
-    Otherwise, check the global banned list.
-    """
     player = player_name.strip().lower()
     if stat:
         banned_for_stat = {p.lower() for p in STAT_SPECIFIC_BANNED.get(stat.upper(), set())}
@@ -241,10 +227,16 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col, stat
     df.loc[(df["Success_Rate"] >= 100) & (df["Success_Rate"] < 120), "Category"] = "🟢 Best Bet"
     df.loc[df["Success_Rate"] < 100, "Category"] = "🔴 Underdog"
     df = df.drop_duplicates(subset=[player_col, team_col])
-    red_players = df[df["Category"] == "🔴 Underdog"].nlargest(3, "Success_Rate")
+    
+    # For CBB polls: enforce a minimum success rate for red picks.
+    MIN_CBB_RED_SUCCESS_RATE = 80
+    red_df = df[df["Category"] == "🔴 Underdog"]
+    red_df = red_df[red_df["Success_Rate"] >= MIN_CBB_RED_SUCCESS_RATE]
+    red_players = red_df.nlargest(3, "Success_Rate")
     if len(red_players) < 3:
         extra = df[df["Success_Rate"] < 100].nlargest(3 - len(red_players), "Success_Rate")
         red_players = pd.concat([red_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+    
     green_players = df[df["Category"] == "🟢 Best Bet"].nlargest(3, "Success_Rate")
     if len(green_players) < 3:
         extra = df[df["Success_Rate"] >= 100].nlargest(3 - len(green_players), "Success_Rate")
@@ -253,12 +245,14 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col, stat
     if len(yellow_players) < 3:
         extra = df[df["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
         yellow_players = pd.concat([yellow_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+    
     final_df = pd.concat([green_players, yellow_players, red_players]).drop_duplicates(subset=[player_col, team_col]).reset_index(drop=True)
     final_df = pd.concat([
         final_df[final_df["Category"] == "🟢 Best Bet"].sort_values(by="Success_Rate", ascending=False),
         final_df[final_df["Category"] == "🟡 Favorite"].sort_values(by="Success_Rate", ascending=False),
         final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
     ]).reset_index(drop=True)
+    
     green_list = final_df[final_df["Category"] == "🟢 Best Bet"][player_col].tolist()
     yellow_list = final_df[final_df["Category"] == "🟡 Favorite"][player_col].tolist()
     red_list = final_df[final_df["Category"] == "🔴 Underdog"][player_col].tolist()
@@ -271,6 +265,7 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col, stat
     unique_yellow = [name for name in yellow_list if name not in unique_green]
     unique_red = [name for name in red_list if name not in unique_green and name not in unique_yellow]
     
+    # IMPORTANT: For MLB, output order should be green, then yellow, then red.
     green_output = ", ".join(unique_green) if unique_green else "No Green Plays"
     yellow_output = ", ".join(unique_yellow) if unique_yellow else "No Yellow Plays"
     red_output = ", ".join(unique_red) if unique_red else "No Red Plays"
@@ -289,15 +284,17 @@ def load_nhl_injury_data(file_path):
     return pd.read_csv(file_path)
 
 def integrate_nhl_data(player_stats_file, injury_data_file):
+    stats_path = os.path.join(BASE_DIR, player_stats_file)
+    inj_path = os.path.join(BASE_DIR, injury_data_file)
     try:
-        stats_df = load_nhl_player_stats(player_stats_file)
+        stats_df = load_nhl_player_stats(stats_path)
     except FileNotFoundError:
-        print(f"Error: The file {player_stats_file} was not found.")
+        print(f"Error: The file {stats_path} was not found.")
         return pd.DataFrame()
     try:
-        injuries_df = load_nhl_injury_data(injury_data_file)
+        injuries_df = load_nhl_injury_data(inj_path)
     except FileNotFoundError:
-        print(f"Error: The file {injury_data_file} was not found.")
+        print(f"Error: The file {inj_path} was not found.")
         return stats_df
     if "playerName" in injuries_df.columns:
         injuries_df.rename(columns={"playerName": "Player"}, inplace=True)
@@ -325,7 +322,7 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
 # MLB Integration Functions
 # --------------------------------------------------
 def load_and_clean_mlb_stats():
-    file_path = "mlb_stats.csv"
+    file_path = os.path.join(BASE_DIR, "mlb_stats.csv")
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
@@ -357,10 +354,11 @@ def integrate_mlb_data():
     except Exception as e:
         print("Error loading and cleaning MLB stats:", e)
         return pd.DataFrame()
+    inj_path = os.path.join(BASE_DIR, "mlb_injuries.csv")
     try:
-        df_inj = pd.read_csv("mlb_injuries.csv")
+        df_inj = pd.read_csv(inj_path)
     except Exception as e:
-        print("Error loading mlb_injuries.csv:", e)
+        print(f"Error loading mlb_injuries.csv from {inj_path}: {e}")
         return df_stats
     df_inj["playerName"] = df_inj["playerName"].str.strip()
     df_inj["playerName_clean"] = df_inj["playerName"].apply(fix_mlb_player_name)
@@ -395,9 +393,104 @@ def analyze_mlb_noninteractive(df, teams, stat_choice, banned_stat=None):
     yellow_list = players_to_use[0:3]
     green_list = players_to_use[3:6]
     red_list = players_to_use[6:9]
+    # Order: green, then yellow, then red.
     output = "🟢 " + ", ".join(green_list) + "\n"
     output += "🟡 " + ", ".join(yellow_list) + "\n"
     output += "🔴 " + ", ".join(red_list)
+    return output
+
+def analyze_mlb_by_team_interactive(df, mapped_stat):
+    if df.empty:
+        print("MLB stats CSV not found or empty.")
+        return
+    while True:
+        print("\nTop MLB Players (filtered by team if provided):")
+        teams_input = input("Enter MLB team names separated by commas (or type 'exit' to return to main menu): ").strip().upper()
+        if teams_input.lower() == "exit":
+            break
+        if teams_input:
+            team_list = [x.strip() for x in teams_input.split(",")]
+            filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)]
+        else:
+            filtered_df = df
+        if filtered_df.empty:
+            print("❌ No matching teams found.")
+            continue
+        sorted_df = filtered_df.sort_values(by=[mapped_stat], ascending=False)
+        sorted_df = sorted_df[~sorted_df["PLAYER"].apply(lambda x: is_banned(x, mapped_stat))]
+        non_banned = sorted_df["PLAYER"].tolist()
+        if len(non_banned) < 9:
+            players_to_use = non_banned
+        else:
+            players_to_use = non_banned[:9]
+        # Order: green, then yellow, then red.
+        yellow = players_to_use[0:3]
+        green = players_to_use[3:6]
+        red = players_to_use[6:9]
+        print("🟢 " + ", ".join(green))
+        print("🟡 " + ", ".join(yellow))
+        print("🔴 " + ", ".join(red))
+
+# --------------------------------------------------
+# NEW: NHL PSP Analyzer Function
+# --------------------------------------------------
+def analyze_nhl_psp(file_path, stat_key):
+    # Clean and uppercase the incoming stat key.
+    stat_key = stat_key.strip().upper()
+    # Updated mapping based on your CSV:
+    # Points are stored under "HIT" and Hits under "P".
+    if stat_key == "POINTS":
+        mapped_stat = "HIT"
+    elif stat_key == "HITS":
+        mapped_stat = "P"
+    elif stat_key == "SHOTS":
+        mapped_stat = "S"
+    elif stat_key == "ASSISTS":
+        mapped_stat = "A"
+    elif stat_key == "GOALS":
+        mapped_stat = "G"
+    elif stat_key == "SAVES":
+        mapped_stat = "SV"
+    else:
+        mapped_stat = stat_key
+
+    try:
+        df = pd.read_csv(file_path)
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    
+    # Standardize header names: strip whitespace and uppercase.
+    df.columns = [col.strip().upper() for col in df.columns]
+    
+    if mapped_stat not in df.columns:
+        return f"Error: Column '{mapped_stat}' not found in PSP CSV. Available columns: {df.columns.tolist()}"
+    
+    try:
+        df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    
+    sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
+    if len(sorted_df) >= 15:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[5:8]
+        red = sorted_df.iloc[12:15]
+    else:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[3:6]
+        red = sorted_df.iloc[6:9]
+    
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    if player_col is None:
+        return "Player column not found in CSV."
+    
+    green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
+    yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
+    red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
+    
+    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
+    output += f"🔴 {', '.join(str(x) for x in red_list)}"
     return output
 
 # --------------------------------------------------
@@ -414,7 +507,6 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
         team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
     else:
         team_list = [normalize_team_name(t) for t in teams]
-    # Exclude traded players whose new team is not among the current teams.
     filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
     filtered_df = filtered_df[~filtered_df["PLAYER"].apply(lambda x: is_traded_excluded(x, team_list))]
     if filtered_df.empty:
@@ -470,9 +562,14 @@ def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, team
             non_banned = all_non_banned[:9]
         else:
             non_banned = non_banned[:9]
-        green_list = non_banned[0:3]
-        yellow_list = non_banned[3:6]
-        red_list = non_banned[6:9]
+        if stat_categories == STAT_CATEGORIES_NHL and len(non_banned) >= 15:
+            yellow_list = non_banned[0:3]
+            green_list = non_banned[5:8]
+            red_list = non_banned[12:15]
+        else:
+            yellow_list = non_banned[0:3]
+            green_list = non_banned[3:6]
+            red_list = non_banned[6:9]
     yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
     green_output = ", ".join(green_list) if green_list else "No Green Plays"
     red_output = ", ".join(red_list) if red_list else "No Red Plays"
@@ -498,10 +595,24 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None, banned
         return f"Error converting stat column: {e}"
     df_mode = df_mode.dropna(subset=[mapped_stat])
     if len(teams) == 2 and stat_choice == "S":
-        if target_value is None:
-            return "Target value required for Shots analysis."
-        result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team", stat_for_ban=stat_choice)
-        return f"{result}"
+        sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
+        if stat_choice == "S":
+            target_value = input(f"\nEnter target {stat_choice} value (per game): ").strip()
+            if not target_value:
+                return "❌ Target value is required for Shots."
+            try:
+                target_value = float(target_value)
+            except Exception as e:
+                return f"❌ Invalid target value: {e}"
+            result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team", stat_for_ban=stat_choice)
+        else:
+            yellow = sorted_df.iloc[0:3]
+            green = sorted_df.iloc[3:6]
+            red = sorted_df.iloc[14:17]
+            result = f"🟢 {', '.join(green['Player'].tolist())}\n"
+            result += f"🟡 {', '.join(yellow['Player'].tolist())}\n"
+            result += f"🔴 {', '.join(red['Player'].tolist())}"
+        return result
     else:
         if stat_choice == "S":
             if "GP" in df_mode.columns and "S" in df_mode.columns:
@@ -513,21 +624,25 @@ def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None, banned
             try:
                 df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors='coerce')
             except Exception as e:
-                return f"Error converting points: {e}"
+                return f"Error converting points to numeric: {e}"
             sorted_df = df_mode.sort_values(by="PTS", ascending=False)
         else:
             sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
         sorted_df = sorted_df.drop_duplicates(subset=["Player"])
         sorted_df = sorted_df[~sorted_df["Player"].apply(lambda x: is_banned(x, stat_choice))]
         non_banned = sorted_df["Player"].tolist()
-        players_to_use = non_banned[:9] if len(non_banned) >= 9 else non_banned
-        yellow = players_to_use[0:3]
-        green = players_to_use[3:6]
-        red = players_to_use[6:9]
-        output = "🟢 " + ", ".join(green) + "\n"
-        output += "🟡 " + ", ".join(yellow) + "\n"
-        output += "🔴 " + ", ".join(red)
-        return output
+        if len(non_banned) >= 15:
+            yellow = non_banned[0:3]
+            green = non_banned[5:8]
+            red = non_banned[12:15]
+        else:
+            yellow = non_banned[0:3]
+            green = non_banned[3:6]
+            red = non_banned[6:9]
+        result = f"🟢 {', '.join(green)}\n"
+        result += f"🟡 {', '.join(yellow)}\n"
+        result += f"🔴 {', '.join(red)}"
+        return result
 
 def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_stat=None):
     team_col = "Team" if "Team" in df.columns else "TEAM"
@@ -562,7 +677,10 @@ def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_stat
     if len(yellow_players) < 3:
         extra = filtered_df[filtered_df["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
         yellow_players = pd.concat([yellow_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
-    red_players = filtered_df.sort_values(by="Success_Rate", ascending=True).head(3)
+    MIN_CBB_RED_SUCCESS_RATE = 80
+    red_players = filtered_df[filtered_df["Category"] == "🔴 Underdog"]
+    red_players = red_players[red_players["Success_Rate"] >= MIN_CBB_RED_SUCCESS_RATE]
+    red_players = red_players.sort_values(by="Success_Rate", ascending=True).head(3)
     red_players["Category"] = "🔴 Underdog"
     green_list = [player for player in green_players["Player"].tolist() if not is_banned(player, stat_choice)]
     yellow_list = [player for player in yellow_players["Player"].tolist() if not is_banned(player, stat_choice)]
@@ -650,9 +768,14 @@ def analyze_nhl_flow(df):
                     continue
                 result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team", stat_for_ban=stat_choice)
             else:
-                yellow = sorted_df.iloc[0:3]
-                green = sorted_df.iloc[3:6]
-                red = sorted_df.iloc[14:17]
+                if len(df_mode) >= 15:
+                    yellow = df_mode.sort_values(by=mapped_stat, ascending=False).iloc[0:3]
+                    green = df_mode.sort_values(by=mapped_stat, ascending=False).iloc[5:8]
+                    red = df_mode.sort_values(by=mapped_stat, ascending=False).iloc[12:15]
+                else:
+                    yellow = df_mode.sort_values(by=mapped_stat, ascending=False).iloc[0:3]
+                    green = df_mode.sort_values(by=mapped_stat, ascending=False).iloc[3:6]
+                    red = df_mode.sort_values(by=mapped_stat, ascending=False).iloc[6:9]
                 result = f"🟢 {', '.join(green['Player'].tolist())}\n"
                 result += f"🟡 {', '.join(yellow['Player'].tolist())}\n"
                 result += f"🔴 {', '.join(red['Player'].tolist())}"
@@ -676,52 +799,34 @@ def analyze_nhl_flow(df):
             sorted_df = sorted_df.drop_duplicates(subset=["Player"])
             sorted_df = sorted_df[~sorted_df["Player"].apply(lambda x: is_banned(x, stat_choice))]
             non_banned = sorted_df["Player"].tolist()
-            players_to_use = non_banned[:9] if len(non_banned) >= 9 else non_banned
-            yellow = players_to_use[0:3]
-            green = players_to_use[3:6]
-            red = players_to_use[6:9]
+            if len(non_banned) >= 15:
+                yellow = non_banned[0:3]
+                green = non_banned[5:8]
+                red = non_banned[12:15]
+            else:
+                yellow = non_banned[0:3]
+                green = non_banned[3:6]
+                red = non_banned[6:9]
             result = f"🟢 {', '.join(green)}\n"
             result += f"🟡 {', '.join(yellow)}\n"
             result += f"🔴 {', '.join(red)}"
         print("\n" + result)
 
-def analyze_mlb_by_team_interactive(df, mapped_stat):
-    if df.empty:
+def analyze_mlb_by_team_interactive_wrapper():
+    df_mlb = integrate_mlb_data()
+    if df_mlb.empty:
         print("MLB stats CSV not found or empty.")
         return
-    while True:
-        print("\nTop MLB Players (filtered by team if provided):")
-        teams_input = input("Enter MLB team names separated by commas (or type 'exit' to return to main menu): ").strip().upper()
-        if teams_input.lower() == "exit":
-            break
-        if teams_input:
-            team_list = [x.strip() for x in teams_input.split(",")]
-            filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)]
-        else:
-            filtered_df = df
-        if filtered_df.empty:
-            print("❌ No matching teams found.")
-            continue
-        sorted_df = filtered_df.sort_values(by=[mapped_stat], ascending=False)
-        sorted_df = sorted_df[~sorted_df["PLAYER"].apply(lambda x: is_banned(x, mapped_stat))]
-        non_banned = sorted_df["PLAYER"].tolist()
-        if len(non_banned) < 9:
-            players_to_use = non_banned
-        else:
-            players_to_use = non_banned[:9]
-        yellow = players_to_use[0:3]
-        green = players_to_use[3:6]
-        red = players_to_use[6:9]
-        print("🟢 " + ", ".join(green))
-        print("🟡 " + ", ".join(yellow))
-        print("🔴 " + ", ".join(red))
+    analyze_mlb_by_team_interactive(df_mlb, mapped_stat="RBI")
 
 # --------------------------------------------------
 # NBA Integration Functions
 # --------------------------------------------------
 def integrate_nba_data(player_stats_file, injury_report_file):
-    stats_df = load_nba_player_stats(player_stats_file)
-    injuries_df = load_nba_injury_report(injury_report_file)
+    nba_stats_path = os.path.join(os.path.dirname(BASE_DIR), "RealSports", "NBA", player_stats_file)
+    nba_injuries_path = os.path.join(os.path.dirname(BASE_DIR), "RealSports", "NBA", injury_report_file)
+    stats_df = load_nba_player_stats(nba_stats_path)
+    injuries_df = load_nba_injury_report(nba_injuries_path)
     merged_df = merge_nba_stats_with_injuries(stats_df, injuries_df)
     merged_df = update_traded_players(merged_df, player_col="PLAYER", team_col="TEAM")
     return merged_df
@@ -743,16 +848,18 @@ def merge_nba_stats_with_injuries(stats_df, injuries_df):
 # CBB Integration Functions
 # --------------------------------------------------
 def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_file="cbb_injuries.csv"):
-    print(f"Loading player stats from: {player_stats_file}")
+    stats_path = os.path.join(BASE_DIR, player_stats_file)
+    inj_path = os.path.join(BASE_DIR, injury_data_file)
+    print(f"Loading player stats from: {stats_path}")
     try:
-        stats_df = pd.read_csv(player_stats_file)
+        stats_df = pd.read_csv(stats_path)
     except FileNotFoundError:
-        print(f"Error: The file {player_stats_file} was not found.")
+        print(f"Error: The file {stats_path} was not found.")
         return pd.DataFrame()
     try:
-        injuries_df = pd.read_csv(injury_data_file)
+        injuries_df = pd.read_csv(inj_path)
     except FileNotFoundError:
-        print(f"Error: The file {injury_data_file} was not found.")
+        print(f"Error: The file {inj_path} was not found.")
         return stats_df
     if "playerName" in injuries_df.columns:
         injuries_df.rename(columns={"playerName": "Player"}, inplace=True)
@@ -782,6 +889,250 @@ def integrate_cbb_data(player_stats_file="cbb_player_stats.csv", injury_data_fil
     return integrated_data
 
 # --------------------------------------------------
+# NEW: NHL PSP Analyzer Function
+# --------------------------------------------------
+def analyze_nhl_psp(file_path, stat_key):
+    NHL_PSP_COLUMN_MAP = {
+        "SHOTS": "S",
+        "POINTS": "PTS",
+        "ASSISTS": "A",
+        "GOALS": "G",
+        "HITS": "HITS",
+        "SAVES": "SAVES"
+    }
+    mapped_stat = NHL_PSP_COLUMN_MAP.get(stat_key, stat_key)
+    try:
+        df = pd.read_csv(file_path)
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    df.columns = [col.upper() for col in df.columns]
+    if mapped_stat not in df.columns:
+        return f"Error: Column '{mapped_stat}' not found in PSP CSV."
+    try:
+        df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
+    if len(sorted_df) >= 15:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[5:8]
+        red = sorted_df.iloc[12:15]
+    else:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[3:6]
+        red = sorted_df.iloc[6:9]
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    if player_col is None:
+        return "Player column not found in CSV."
+    green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
+    yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
+    red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
+    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
+    output += f"🔴 {', '.join(str(x) for x in red_list)}"
+    return output
+
+# --------------------------------------------------
+# Non-interactive (Programmatic) Interfaces for NBA/CBB and NHL
+# --------------------------------------------------
+def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value, banned_stat=None):
+    if team_col not in df.columns:
+        if "Team" in df.columns:
+            team_col = "Team"
+        else:
+            print(f"❌ '{team_col}' column not found in the DataFrame.")
+            return "❌ 'Team' column not found in the DataFrame."
+    if isinstance(teams, str):
+        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
+    else:
+        team_list = [normalize_team_name(t) for t in teams]
+    filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+    filtered_df = filtered_df[~filtered_df["PLAYER"].apply(lambda x: is_traded_excluded(x, team_list))]
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    mapped_stat = stat_categories.get(stat_choice)
+    if mapped_stat is None:
+        return "❌ Invalid stat choice."
+    df_mode = filtered_df.copy()
+    try:
+        df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column to numeric: {e}"
+    if target_value is None or target_value == 0:
+        return "Target value required and must be nonzero."
+    df_mode["Success_Rate"] = ((df_mode[mapped_stat] / target_value) * 100).round(1)
+    df_mode.loc[df_mode["Success_Rate"] >= 120, "Category"] = "🟡 Favorite"
+    df_mode.loc[(df_mode["Success_Rate"] >= 100) & (df_mode["Success_Rate"] < 120), "Category"] = "🟢 Best Bet"
+    df_mode.loc[df_mode["Success_Rate"] < 100, "Category"] = "🔴 Underdog"
+    df_mode = df_mode.drop_duplicates(subset=[player_col])
+    df_mode = df_mode.dropna(subset=[mapped_stat])
+    df_mode = df_mode.drop_duplicates(subset=[player_col])
+    if stat_categories == STAT_CATEGORIES_NBA:
+        sorted_overall = df_mode.sort_values(by="Success_Rate", ascending=False)
+        sorted_overall = sorted_overall.drop_duplicates(subset=[player_col])
+        all_non_banned = [player for player in sorted_overall[player_col].tolist() 
+                            if not is_banned(player, stat_choice)]
+        non_banned = all_non_banned[:9]
+        yellow_list = non_banned[0:3]
+        green_list = non_banned[3:6]
+        red_list = non_banned[6:9]
+    else:
+        red_players = df_mode[df_mode["Category"] == "🔴 Underdog"].nlargest(3, "Success_Rate")
+        if len(red_players) < 3:
+            extra = df_mode[df_mode["Success_Rate"] < 100].nlargest(3 - len(red_players), "Success_Rate")
+            red_players = pd.concat([red_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+        green_players = df_mode[df_mode["Category"] == "🟢 Best Bet"].nlargest(3, "Success_Rate")
+        if len(green_players) < 3:
+            extra = df_mode[df_mode["Success_Rate"] >= 100].nlargest(3 - len(green_players), "Success_Rate")
+            green_players = pd.concat([green_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+        yellow_players = df_mode[df_mode["Category"] == "🟡 Favorite"].nlargest(3, "Success_Rate")
+        if len(yellow_players) < 3:
+            extra = df_mode[df_mode["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
+            yellow_players = pd.concat([yellow_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+        final_df = pd.concat([green_players, yellow_players, red_players]).drop_duplicates(subset=[player_col, team_col]).reset_index(drop=True)
+        final_df = pd.concat([
+            final_df[final_df["Category"] == "🟢 Best Bet"].sort_values(by="Success_Rate", ascending=False),
+            final_df[final_df["Category"] == "🟡 Favorite"].sort_values(by="Success_Rate", ascending=False),
+            final_df[final_df["Category"] == "🔴 Underdog"].sort_values(by="Success_Rate", ascending=True)
+        ]).reset_index(drop=True)
+        non_banned = [player for player in final_df[player_col].tolist() if not is_banned(player, stat_choice)]
+        if len(non_banned) < 9:
+            all_non_banned = [player for player in df_mode[player_col].tolist() if not is_banned(player, stat_choice)]
+            non_banned = all_non_banned[:9]
+        else:
+            non_banned = non_banned[:9]
+        if stat_categories == STAT_CATEGORIES_NHL and len(non_banned) >= 15:
+            yellow_list = non_banned[0:3]
+            green_list = non_banned[5:8]
+            red_list = non_banned[12:15]
+        else:
+            yellow_list = non_banned[0:3]
+            green_list = non_banned[3:6]
+            red_list = non_banned[6:9]
+    yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
+    green_output = ", ".join(green_list) if green_list else "No Green Plays"
+    red_output = ", ".join(red_list) if red_list else "No Red Plays"
+    output = f"🟢 {green_output}\n"
+    output += f"🟡 {yellow_output}\n"
+    output += f"🔴 {red_output}"
+    return output
+
+def analyze_nhl_noninteractive(df, teams, stat_choice, target_value=None, banned_stat=None):
+    filtered_df = df[df["Team"].isin(teams)].copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    if stat_choice in ["ASSISTS", "POINTS", "S"]:
+        df_mode = calculate_nhl_per_game_stats(filtered_df.copy())
+    else:
+        df_mode = filtered_df.copy()
+    mapped_stat = STAT_CATEGORIES_NHL.get(stat_choice)
+    if mapped_stat is None:
+        return "❌ Invalid NHL stat choice."
+    try:
+        df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    df_mode = df_mode.dropna(subset=[mapped_stat])
+    if len(teams) == 2 and stat_choice == "S":
+        sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
+        if stat_choice == "S":
+            target_value = input(f"\nEnter target {stat_choice} value (per game): ").strip()
+            if not target_value:
+                return "❌ Target value is required for Shots."
+            try:
+                target_value = float(target_value)
+            except Exception as e:
+                return f"❌ Invalid target value: {e}"
+            result = categorize_players(df_mode, mapped_stat, target_value, "Player", "Team", stat_for_ban=stat_choice)
+        else:
+            yellow = sorted_df.iloc[0:3]
+            green = sorted_df.iloc[3:6]
+            red = sorted_df.iloc[14:17]
+            result = f"🟢 {', '.join(green['Player'].tolist())}\n"
+            result += f"🟡 {', '.join(yellow['Player'].tolist())}\n"
+            result += f"🔴 {', '.join(red['Player'].tolist())}"
+        return result
+    else:
+        if stat_choice == "S":
+            if "GP" in df_mode.columns and "S" in df_mode.columns:
+                df_mode = df_mode.assign(shotsPerGame = pd.to_numeric(df_mode["S"], errors="coerce") / pd.to_numeric(df_mode["GP"], errors="coerce"))
+                sorted_df = df_mode.sort_values(by="shotsPerGame", ascending=False)
+            else:
+                return "Required raw data for shots per game is missing."
+        elif stat_choice == "POINTS":
+            try:
+                df_mode["PTS"] = pd.to_numeric(df_mode["PTS"], errors='coerce')
+            except Exception as e:
+                return f"Error converting points to numeric: {e}"
+            sorted_df = df_mode.sort_values(by="PTS", ascending=False)
+        else:
+            sorted_df = df_mode.sort_values(by=mapped_stat, ascending=False)
+        sorted_df = sorted_df.drop_duplicates(subset=["Player"])
+        sorted_df = sorted_df[~sorted_df["Player"].apply(lambda x: is_banned(x, stat_choice))]
+        non_banned = sorted_df["Player"].tolist()
+        if len(non_banned) >= 15:
+            yellow = non_banned[0:3]
+            green = non_banned[5:8]
+            red = non_banned[12:15]
+        else:
+            yellow = non_banned[0:3]
+            green = non_banned[3:6]
+            red = non_banned[6:9]
+        result = f"🟢 {', '.join(green)}\n"
+        result += f"🟡 {', '.join(yellow)}\n"
+        result += f"🔴 {', '.join(red)}"
+        return result
+
+def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_stat=None):
+    team_col = "Team" if "Team" in df.columns else "TEAM"
+    if team_col not in df.columns:
+        return "❌ 'Team' column not found in the DataFrame."
+    if isinstance(teams, str):
+        team_list = [normalize_team_name(t) for t in teams.split(",") if t.strip()]
+    else:
+        team_list = [normalize_team_name(t) for t in teams]
+    filtered_df = df[df[team_col].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    mapped_stat = STAT_CATEGORIES_CBB.get(stat_choice)
+    if mapped_stat is None:
+        return "❌ Invalid stat choice."
+    try:
+        filtered_df[mapped_stat] = pd.to_numeric(filtered_df[mapped_stat], errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    if target_value is None or target_value == 0:
+        return "Target value required and must be nonzero."
+    filtered_df["Success_Rate"] = ((filtered_df[mapped_stat] / target_value) * 100).round(1)
+    filtered_df.loc[filtered_df["Success_Rate"] >= 120, "Category"] = "🟡 Favorite"
+    filtered_df.loc[(filtered_df["Success_Rate"] >= 100) & (filtered_df["Success_Rate"] < 120), "Category"] = "🟢 Best Bet"
+    filtered_df.loc[filtered_df["Success_Rate"] < 100, "Category"] = "🔴 Underdog"
+    filtered_df = filtered_df.drop_duplicates(subset=["Player", team_col])
+    green_players = filtered_df[filtered_df["Category"] == "🟢 Best Bet"].nlargest(3, "Success_Rate")
+    if len(green_players) < 3:
+        extra = filtered_df[filtered_df["Success_Rate"] >= 100].nlargest(3 - len(green_players), "Success_Rate")
+        green_players = pd.concat([green_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+    yellow_players = filtered_df[filtered_df["Category"] == "🟡 Favorite"].nlargest(3, "Success_Rate")
+    if len(yellow_players) < 3:
+        extra = filtered_df[filtered_df["Success_Rate"] >= 120].nlargest(3 - len(yellow_players), "Success_Rate")
+        yellow_players = pd.concat([yellow_players, extra]).drop_duplicates().nlargest(3, "Success_Rate")
+    MIN_CBB_RED_SUCCESS_RATE = 80
+    red_players = filtered_df[filtered_df["Category"] == "🔴 Underdog"]
+    red_players = red_players[red_players["Success_Rate"] >= MIN_CBB_RED_SUCCESS_RATE]
+    red_players = red_players.sort_values(by="Success_Rate", ascending=True).head(3)
+    red_players["Category"] = "🔴 Underdog"
+    green_list = [player for player in green_players["Player"].tolist() if not is_banned(player, stat_choice)]
+    yellow_list = [player for player in yellow_players["Player"].tolist() if not is_banned(player, stat_choice)]
+    red_list = [player for player in red_players["Player"].tolist() if not is_banned(player, stat_choice)]
+    green_output = ", ".join(green_list) if green_list else "No Green Plays"
+    yellow_output = ", ".join(yellow_list) if yellow_list else "No Yellow Plays"
+    red_output = ", ".join(red_list) if red_list else "No Red Plays"
+    output = f"🟢 {green_output}\n"
+    output += f"🟡 {yellow_output}\n"
+    output += f"🔴 {red_output}"
+    return output
+
+# --------------------------------------------------
 # Interactive Main Menu
 # --------------------------------------------------
 def main():
@@ -802,9 +1153,7 @@ def main():
             analyze_sport(df_cbb, STAT_CATEGORIES_CBB, "Player", "Team")
         elif choice == '2':
             print("\n📊 Selected: NBA")
-            player_stats_file = 'nba_player_stats.csv'
-            injury_report_file = 'nba_injury_report.csv'
-            df_nba = integrate_nba_data(player_stats_file, injury_report_file)
+            df_nba = integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
             analyze_sport(df_nba, STAT_CATEGORIES_NBA, "PLAYER", "TEAM")
         elif choice == '3':
             print("\n📊 Selected: NHL")

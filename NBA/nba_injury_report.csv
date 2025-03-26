@@ -1,120 +1,124 @@
 teamName,playerName,position,updated,injury,injuryStatus
-Atlanta,Jacob Toppin,SF,"Sun, Mar 23",Elbow,Game Time Decision
-Atlanta,Keaton Wallace,PG,"Sun, Mar 23",Shoulder,Game Time Decision
+Atlanta,Jacob Toppin,SF,"Tue, Mar 25",Elbow,Expected to be out until at least Mar 26
+Atlanta,Keaton Wallace,PG,"Mon, Mar 24",Shoulder,Expected to be out until at least Mar 27
 Atlanta,Clint Capela,C,"Sat, Mar 22",Hand,Expected to be out until at least Apr 15
 Atlanta,Larry Nance Jr.,PF,"Wed, Mar 19",Knee,Expected to be out until at least Apr 1
 Atlanta,Jalen Johnson,SF,"Wed, Jan 29",Shoulder,Out for the season
 Atlanta,Kobe Bufkin,SG,"Wed, Dec 18",Shoulder,Out for the season
-Boston,Jrue Holiday,PG,"Sun, Mar 23",Shoulder,Game Time Decision
-Boston,Kristaps Porzingis,C,"Sun, Mar 23",Illness,Game Time Decision
-Boston,Xavier Tillman,C,"Sat, Mar 22",Knee,Expected to be out until at least Mar 24
-Boston,Jaylen Brown,SF,"Fri, Mar 21",Knee,Expected to be out until at least Mar 24
-Brooklyn,Ziaire Williams,SF,"Sat, Mar 22",Hamstring,Game Time Decision
-Brooklyn,D'Angelo Russell,PG,"Sat, Mar 22",Ankle,Game Time Decision
+Boston,Xavier Tillman,C,"Tue, Mar 25",Knee,Game Time Decision
+Boston,Jayson Tatum,PF,"Tue, Mar 25",Ankle,Game Time Decision
+Brooklyn,Day'Ron Sharpe,C,"Tue, Mar 25",Knee,Expected to be out until at least Mar 28
+Brooklyn,Cameron Johnson,SF,"Tue, Mar 25",Rest,Expected to be out until at least Mar 28
 Brooklyn,Cam Thomas,SG,"Sat, Mar 15",Hamstring,Out for the season
 Brooklyn,De'Anthony Melton,SG,"Wed, Nov 20",Knee,Out for the season
-Charlotte,Josh Green,SF,"Sun, Mar 23",Shoulder,Game Time Decision
-Charlotte,Josh Okogie,SF,"Sat, Mar 22",Hamstring,Expected to be out until at least Mar 25
 Charlotte,Tre Mann,PG,"Thu, Jan 30",Back,Out for the season
 Charlotte,Brandon Miller,SG,"Thu, Jan 23",Wrist,Out for the season
 Charlotte,Grant Williams,PF,"Sun, Nov 24",Knee,Out for the season
-Chicago,Emanuel Miller,SF,"Sun, Mar 23",Illness,Game Time Decision
+Chicago,E.J. Liddell,SF,"Tue, Mar 25",Illness,Game Time Decision
+Chicago,Lonzo Ball,PG,"Tue, Mar 25",Wrist,Game Time Decision
+Chicago,Jahmir Young,PG,"Tue, Mar 25",Illness,Game Time Decision
+Chicago,Emanuel Miller,SF,"Tue, Mar 25",Illness,Game Time Decision
 Chicago,Tre Jones,PG,"Sat, Mar 22",Foot,Expected to be out until at least Apr 6
-Chicago,Lonzo Ball,PG,"Wed, Mar 19",Wrist,Expected to be out until at least Mar 27
 Chicago,Ayo Dosunmu,PG,"Sun, Mar 2",Shoulder,Out for the season
-Cleveland,Emoni Bates,SF,"Sun, Mar 23",Personal,Expected to be out until at least Mar 25
-Cleveland,Jaylon Tyson,SF,"Sun, Mar 23",Knee,Game Time Decision
-Dallas,Caleb Martin,SF,"Sun, Mar 23",Hip,Expected to be out until at least Mar 25
-Dallas,Brandon Williams,PG,"Sun, Mar 23",Back,Game Time Decision
-Dallas,Anthony Davis,C,"Sat, Mar 22",Thigh,Game Time Decision
-Dallas,Dereck Lively II,C,"Wed, Mar 19",Ankle,Expected to be out until at least Apr 2
-Dallas,Dante Exum,SG,"Wed, Mar 19",Hand,Expected to be out until at least Oct 1
+Cleveland,Emoni Bates,SF,"Tue, Mar 25",Personal,Expected to be out until at least Mar 27
+Cleveland,Jaylon Tyson,SF,"Mon, Mar 24",Knee,Expected to be out until at least Mar 27
+Cleveland,Donovan Mitchell,SG,"Mon, Mar 24",Groin,Expected to be out until at least Mar 27
+Dallas,PJ Washington,PF,"Tue, Mar 25",Ankle,Expected to be out until at least Mar 27
+Dallas,Caleb Martin,SF,"Tue, Mar 25",Hip,Expected to be out until at least Mar 27
+Dallas,Anthony Davis,C,"Tue, Mar 25",Abdomen,Expected to be out until at least Mar 27
 Dallas,Daniel Gafford,C,"Wed, Mar 19",Knee,Expected to be out until at least Apr 2
+Dallas,Dante Exum,SG,"Wed, Mar 19",Hand,Expected to be out until at least Oct 1
+Dallas,Dereck Lively II,C,"Wed, Mar 19",Ankle,Expected to be out until at least Apr 2
 Dallas,Olivier-Maxence Prosper,SF,"Fri, Mar 7",Wrist,Out for the season
 Dallas,Kyrie Irving,PG,"Tue, Mar 4",Knee,Out for the season
-Denver,Nikola Jokic,C,"Sun, Mar 23",Ankle,Game Time Decision
+Denver,Christian Braun,SF,"Tue, Mar 25",Foot,Game Time Decision
+Denver,Aaron Gordon,PF,"Tue, Mar 25",Calf,Game Time Decision
+Denver,Nikola Jokic,C,"Tue, Mar 25",Ankle,Game Time Decision
 Denver,Julian Strawther,SF,"Wed, Mar 19",Knee,Expected to be out until at least Apr 9
 Denver,DaRon Holmes II,PF,"Sun, Feb 23",Achilles,Out for the season
-Detroit,Cade Cunningham,SG,"Sun, Mar 23",Calf,Game Time Decision
-Detroit,Tim Hardaway Jr.,SG,"Sat, Mar 22",Ankle,Expected to be out until at least Mar 25
+Detroit,Cade Cunningham,SG,"Tue, Mar 25",Calf,Expected to be out until at least Mar 28
 Detroit,Jaden Ivey,SG,"Wed, Mar 19",Lower Leg,Expected to be out until at least May 1
-Golden St.,Stephen Curry,PG,"Sat, Mar 22",Pelvis,Game Time Decision
+Golden St.,Stephen Curry,PG,"Tue, Mar 25",Pelvis,Expected to be out until at least Mar 28
 Houston,Reed Sheppard,SG,"Wed, Mar 19",Thumb,Expected to be out until at least Apr 9
-Indiana,Bennedict Mathurin,SF,"Sun, Mar 23",Ankle,Game Time Decision
 Indiana,Isaiah Jackson,C,"Sat, Nov 2",Achilles,Out for the season
+L.A. Clippers,Jordan Miller,SF,"Tue, Mar 25",Hamstring,Expected to be out until at least Mar 28
+L.A. Clippers,Seth Lundy,SG,"Mon, Mar 24",Ankle,Game Time Decision
 L.A. Clippers,James Harden,PG,"Mon, Mar 24",Ankle,Game Time Decision
-L.A. Clippers,Jordan Miller,SF,"Sat, Mar 22",Hamstring,Expected to be out until at least Mar 26
-L.A. Clippers,Seth Lundy,SG,"Sat, Mar 22",Ankle,Expected to be out until at least Mar 26
-L.A. Lakers,LeBron James,SF,"Sun, Mar 23",Groin,Game Time Decision
-L.A. Lakers,Rui Hachimura,PF,"Sun, Mar 23",Knee,Game Time Decision
+L.A. Lakers,LeBron James,SF,"Tue, Mar 25",Groin,Game Time Decision
+L.A. Lakers,Rui Hachimura,PF,"Tue, Mar 25",Knee,Game Time Decision
 L.A. Lakers,Maxi Kleber,C,"Wed, Mar 19",Foot,Expected to be out until at least Apr 11
-Memphis,Ja Morant,PG,"Sat, Mar 22",Hamstring,Game Time Decision
-Memphis,Brandon Clarke,C,"Sat, Mar 22",Knee,Out for the season
-Memphis,Zyon Pullin,PG,"Sat, Mar 22",Knee,Game Time Decision
+Memphis,Zyon Pullin,PG,"Mon, Mar 24",Knee,Expected to be out until at least Mar 27
+Memphis,Marvin Bagley III,C,"Mon, Mar 24",Concussion,Expected to be out until at least Mar 27
+Memphis,Ja Morant,PG,"Mon, Mar 24",Hamstring,Expected to be out until at least Mar 27
 Memphis,Lamar Stevens,SF,"Sat, Mar 22",Shoulder,Game Time Decision
-Miami,Nikola Jovic,PF,"Wed, Mar 19",Hand,Expected to be out until at least Mar 27
+Memphis,Brandon Clarke,C,"Sat, Mar 22",Knee,Out for the season
+Miami,Nikola Jovic,PF,"Tue, Mar 25",Hand,Expected to be out until at least Mar 31
+Miami,Duncan Robinson,SG,"Tue, Mar 25",Back,Expected to be out until at least Mar 27
 Miami,Dru Smith,SG,"Tue, Dec 24",Achilles,Out for the season
-Milwaukee,Gary Trent Jr.,SG,"Sun, Mar 23",Back,Game Time Decision
-Milwaukee,Damian Lillard,PG,"Sun, Mar 23",Calf,Expected to be out until at least Mar 26
-Milwaukee,Giannis Antetokounmpo,PF,"Sun, Mar 23",Knee,Game Time Decision
+Milwaukee,Giannis Antetokounmpo,PF,"Tue, Mar 25",Foot,Game Time Decision
+Milwaukee,Damian Lillard,PG,"Tue, Mar 25",Calf,Expected to be out until at least Mar 26
 Milwaukee,Jericho Sims,C,"Wed, Mar 19",Thumb,Expected to be out until at least Apr 19
-Minnesota,Anthony Edwards,SG,"Sun, Mar 23",Thumb,Game Time Decision
-New Orleans,Zion Williamson,PF,"Sun, Mar 23",Back,Game Time Decision
-New Orleans,Yves Missi,C,"Sun, Mar 23",Hip,Game Time Decision
-New Orleans,Brandon Boston Jr.,SG,"Wed, Mar 19",Ankle,Expected to be out until at least Mar 28
+New Orleans,Bruce Brown,SG,"Tue, Mar 25",Rest,Game Time Decision
+New Orleans,Zion Williamson,PF,"Tue, Mar 25",Back,Game Time Decision
+New Orleans,Brandon Boston Jr.,SG,"Tue, Mar 25",Ankle,Game Time Decision
+New Orleans,CJ McCollum,PG,"Tue, Mar 25",Rest,Game Time Decision
+New Orleans,Jordan Hawkins,SG,"Mon, Mar 24",Ankle,Game Time Decision
 New Orleans,Trey Murphy III,SF,"Tue, Mar 18",Shoulder,Out for the season
 New Orleans,Herbert Jones,SG,"Tue, Feb 11",Shoulder,Out for the season
 New Orleans,Dejounte Murray,PG,"Fri, Jan 31",Achilles,Out for the season
-New York,Miles McBride,PG,"Sun, Mar 23",Groin,Game Time Decision
+New York,Mitchell Robinson,C,"Tue, Mar 25",Ankle,Expected to be out until at least Mar 26
+New York,Miles McBride,PG,"Mon, Mar 24",Groin,Expected to be out until at least Mar 26
 New York,Jalen Brunson,PG,"Fri, Mar 21",Ankle,Expected to be out until at least Mar 30
 New York,Ariel Hukporti,C,"Wed, Mar 19",Knee,Expected to be out until at least Apr 6
-Oklahoma City,Alex Ducas,SG,"Sun, Mar 23",Quadriceps,Expected to be out until at least Mar 25
-Oklahoma City,Chet Holmgren,C,"Sun, Mar 23",Hip,Expected to be out until at least Mar 25
-Oklahoma City,Jalen Williams,SF,"Sat, Mar 22",Hip,Expected to be out until at least Mar 25
-Oklahoma City,Ousmane Dieng,SF,"Sat, Mar 22",Calf,Expected to be out until at least Mar 25
+Oklahoma City,Aaron Wiggins,SG,"Tue, Mar 25",Achilles,Game Time Decision
+Oklahoma City,Cason Wallace,PG,"Tue, Mar 25",Knee,Game Time Decision
+Oklahoma City,Chet Holmgren,C,"Mon, Mar 24",Hip,Game Time Decision
+Oklahoma City,Jalen Williams,SF,"Mon, Mar 24",Hip,Game Time Decision
+Oklahoma City,Alex Ducas,SG,"Mon, Mar 24",Quadriceps,Expected to be out until at least Mar 27
+Oklahoma City,Ousmane Dieng,SF,"Mon, Mar 24",Calf,Expected to be out until at least Mar 27
 Oklahoma City,Ajay Mitchell,PG,"Wed, Mar 19",Toe,Expected to be out until at least Apr 2
 Oklahoma City,Nikola Topic,PG,"Thu, Nov 7",Knee,Out for the season
-Orlando,Trevelin Queen,SG,"Sat, Mar 22",Ankle,Game Time Decision
-Orlando,Cole Anthony,PG,"Sat, Mar 22",Toe,Game Time Decision
+Orlando,Cole Anthony,PG,"Tue, Mar 25",Toe,Expected to be out until at least Mar 27
 Orlando,Jalen Suggs,SG,"Tue, Mar 4",Knee,Out for the season
 Orlando,Moe Wagner,C,"Sun, Dec 22",Knee,Out for the season
-Philadelphia,Oshae Brissett,SF,"Sun, Mar 23",Knee,Game Time Decision
-Philadelphia,Lonnie Walker IV,SG,"Sat, Mar 22",Concussion,Expected to be out until at least Mar 24
-Philadelphia,Kyle Lowry,PG,"Sat, Mar 22",Hip,Expected to be out until at least Mar 24
-Philadelphia,Adem Bona,PF,"Sat, Mar 22",Ankle,Expected to be out until at least Mar 24
-Philadelphia,Andre Drummond,C,"Sat, Mar 22",Toe,Expected to be out until at least Mar 24
-Philadelphia,Kelly Oubre Jr.,SG,"Sat, Mar 22",Knee,Expected to be out until at least Mar 24
-Philadelphia,Tyrese Maxey,PG,"Sat, Mar 22",Back,Expected to be out until at least Mar 24
+Philadelphia,Kyle Lowry,PG,"Tue, Mar 25",Hip,Expected to be out until at least Mar 29
+Philadelphia,Quentin Grimes,SG,"Tue, Mar 25",Rest,Game Time Decision
+Philadelphia,Tyrese Maxey,PG,"Tue, Mar 25",Back,Expected to be out until at least Mar 29
+Philadelphia,Lonnie Walker IV,SG,"Tue, Mar 25",Neck,Expected to be out until at least Mar 29
+Philadelphia,Kelly Oubre Jr.,SG,"Tue, Mar 25",Knee,Expected to be out until at least Mar 29
+Philadelphia,Andre Drummond,C,"Tue, Mar 25",Toe,Expected to be out until at least Mar 29
 Philadelphia,Paul George,SF,"Mon, Mar 17",Groin,Out for the season
 Philadelphia,Joel Embiid,C,"Fri, Feb 28",Knee,Out for the season
 Philadelphia,Eric Gordon,SF,"Thu, Feb 27",Wrist,Out for the season
 Philadelphia,Jared McCain,SG,"Thu, Jan 9",Knee,Out for the season
-Phoenix,Nick Richards,C,"Sat, Mar 22",Calf,Game Time Decision
-Phoenix,Mason Plumlee,C,"Sat, Mar 22",Quadriceps,Game Time Decision
-Phoenix,Bradley Beal,SG,"Wed, Mar 19",Hamstring,Expected to be out until at least Mar 26
+Phoenix,Bradley Beal,SG,"Tue, Mar 25",Hamstring,Expected to be out until at least Mar 28
+Portland,Sidy Cissoko,SF,"Tue, Mar 25",Ankle,Expected to be out until at least Mar 26
+Portland,Dalano Banton,PG,"Mon, Mar 24",Illness,Game Time Decision
 Portland,Jerami Grant,PF,"Sun, Mar 23",Knee,Game Time Decision
 Portland,Robert Williams III,C,"Fri, Mar 21",Knee,Expected to be out until at least Oct 1
 Portland,Deandre Ayton,C,"Thu, Mar 20",Calf,Expected to be out until at least Mar 30
-Portland,Sidy Cissoko,SF,"Tue, Mar 18",Ankle,Game Time Decision
-Sacramento,Domantas Sabonis,C,"Sun, Mar 23",Ankle,Game Time Decision
-Sacramento,Malik Monk,SG,"Sun, Mar 23",Illness,Game Time Decision
-Sacramento,Devin Carter,SG,"Sun, Mar 23",Illness,Game Time Decision
-San Antonio,Harrison Ingram,SF,"Sun, Mar 23",Illness,Expected to be out until at least Mar 25
-San Antonio,Charles Bassey,C,"Sat, Mar 22",Knee,Expected to be out until at least Mar 25
+Sacramento,Malik Monk,SG,"Tue, Mar 25",Illness,Game Time Decision
+Sacramento,Devin Carter,SG,"Tue, Mar 25",Illness,Game Time Decision
+Sacramento,Doug McDermott,SF,"Tue, Mar 25",Elbow,Game Time Decision
+San Antonio,Charles Bassey,C,"Mon, Mar 24",Knee,Expected to be out until at least Mar 27
 San Antonio,De'Aaron Fox,PG,"Thu, Mar 13",Finger,Out for the season
 San Antonio,Victor Wembanyama,C,"Fri, Feb 21",Shoulder,Out for the season
 San Antonio,Riley Minix,SF,"Wed, Jan 15",Shoulder,Out for the season
-Toronto,Brandon Ingram,SF,"Sun, Mar 23",Ankle,Expected to be out until at least Apr 13
-Toronto,Chris Boucher,C,"Sun, Mar 23",Illness,Game Time Decision
-Toronto,Immanuel Quickley,PG,"Sat, Mar 22",Rest,Expected to be out until at least Mar 24
-Toronto,Jakob Poeltl,C,"Sat, Mar 22",Rest,Expected to be out until at least Mar 24
-Toronto,Gradey Dick,SG,"Wed, Mar 19",Knee,Expected to be out until at least Mar 24
+Toronto,Immanuel Quickley,PG,"Tue, Mar 25",Rest,Expected to be out until at least Mar 28
+Toronto,Chris Boucher,C,"Tue, Mar 25",Illness,Expected to be out until at least Mar 28
+Toronto,Gradey Dick,SG,"Tue, Mar 25",Knee,Expected to be out until at least Mar 28
+Toronto,Jakob Poeltl,C,"Tue, Mar 25",Rest,Expected to be out until at least Mar 28
+Toronto,Brandon Ingram,SF,"Tue, Mar 25",Ankle,Expected to be out until at least Apr 9
 Toronto,Ulrich Chomche,C,"Wed, Feb 19",Knee,Out for the season
-Utah,EJ Harkless,SG,"Sat, Mar 22",Groin,Expected to be out until at least Mar 25
-Utah,Lauri Markkanen,PF,"Sat, Mar 22",Illness,Expected to be out until at least Mar 25
+Utah,EJ Harkless,SG,"Tue, Mar 25",Groin,Expected to be out until at least Mar 27
+Utah,Jordan Clarkson,PG,"Tue, Mar 25",Foot,Expected to be out until at least Mar 27
+Utah,Lauri Markkanen,PF,"Mon, Mar 24",Illness,Expected to be out until at least Mar 27
 Utah,John Collins,C,"Wed, Mar 19",Ankle,Expected to be out until at least Apr 9
 Utah,Taylor Hendricks,PF,"Fri, Nov 1",Lower Leg,Out for the season
+Washington,Kyshawn George,SF,"Tue, Mar 25",Ankle,Expected to be out until at least Mar 27
+Washington,Malcolm Brogdon,PG,"Tue, Mar 25",Ankle,Game Time Decision
+Washington,Marcus Smart,PG,"Tue, Mar 25",Finger,Expected to be out until at least Mar 27
+Washington,Khris Middleton,SF,"Tue, Mar 25",Ankle,Expected to be out until at least Mar 27
 Washington,Saddiq Bey,SF,"Fri, Mar 21",Knee,Expected to be out until at least Apr 2
 Washington,Bilal Coulibaly,SF,"Thu, Mar 20",Hamstring,Expected to be out until at least Oct 1
-Washington,Malcolm Brogdon,PG,"Wed, Mar 19",Ankle,Expected to be out until at least Mar 26
 Washington,Corey Kispert,SG,"Tue, Mar 18",Thumb,Out for the season

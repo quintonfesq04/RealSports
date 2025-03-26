@@ -3,13 +3,19 @@ import sys
 import os
 import subprocess
 import pandas as pd
-from datetime import datetime
 from notion_client import Client
 
-# Add the RealSports directory to the Python path so we can import Universal_Sports_Analyzer.
-sys.path.append("/Users/Q/Documents/Documents/RealSports")
-from Universal_Sports_Analyzer import is_banned  # Updated banned logic is in this module
+# Determine directories:
+NOTION_DIR = os.path.dirname(os.path.abspath(__file__))
+REALSPORTS_DIR = os.path.dirname(NOTION_DIR)
+PSP_FOLDER = os.path.join(REALSPORTS_DIR, "PSP")
+
+# Ensure the RealSports directory is in sys.path so we can import our modules
+sys.path.insert(0, REALSPORTS_DIR)
+
+from Universal_Sports_Analyzer import is_banned
 import Universal_Sports_Analyzer as USA
+import psp_database  # Import the PSP module for NBA PSP analysis
 
 # -------------------------
 # CONFIGURATION
@@ -72,7 +78,7 @@ def fetch_unprocessed_rows(database_id):
             team2 = "".join(part.get("plain_text", "") for part in team2_parts).strip().upper()
             row_teams = [team1, team2] if team2 else [team1]
 
-        # Sport and Stat
+        # Sport and Stat extraction
         sport_select = props.get("Sport", {}).get("select", {})
         sport = sport_select.get("name", "") if sport_select else ""
         stat_prop = props.get("Stat", {})
@@ -90,7 +96,7 @@ def fetch_unprocessed_rows(database_id):
         else:
             target_value = ""
 
-        # Extract the Order value from the nested unique_id structure.
+        # Extract the Order value
         order_val = None
         if "Order" in props:
             order_prop = props["Order"]
@@ -161,8 +167,9 @@ async def mark_row_as_processed(page_id):
             print(f"Error marking row {page_id} as processed: {e}")
 
 def update_psp_files():
+    psp_path = os.path.join(REALSPORTS_DIR, "psp_database.py")
     try:
-        result = subprocess.run(["python", "psp_database.py"], capture_output=True, text=True)
+        result = subprocess.run(["python", psp_path], capture_output=True, text=True)
         print(result.stdout)
     except Exception as e:
         print("Error running psp_database.py:", e)
@@ -171,71 +178,49 @@ def update_psp_files():
 # Helper Functions: PSP Analyzers
 # -------------------------
 def analyze_nhl_psp(file_path, stat_key):
+    # Updated mapping for NHL PSP columns:
+    NHL_PSP_COLUMN_MAP = {
+        "SHOTS": "S",
+        "POINTS": "P",  # Changed: expect "POINTS" column instead of "PTS"
+        "ASSISTS": "A",
+        "GOALS": "G",
+        "HITS": "HIT",         # Changed: expect "H" column instead of "HITS"
+        "SAVES": "SV"        # Changed: expect "SV" column instead of "SAVES"
+    }
+    mapped_stat = NHL_PSP_COLUMN_MAP.get(stat_key, stat_key)
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
         return f"Error reading PSP CSV: {e}"
     df.columns = [col.upper() for col in df.columns]
-    PSP_MAPPING = {
-        "GOALS": "G",
-        "HITS": "HIT",
-        "POINTS": "P",
-        "SAVES": "SV",
-        "SHOTS": "S"
-    }
-    mapped_stat = PSP_MAPPING.get(stat_key)
-    if mapped_stat is None:
-        return f"❌ Invalid NHL stat choice."
     if mapped_stat not in df.columns:
-        return f"Stat column '{mapped_stat}' not found in CSV."
+        return f"Error: Column '{mapped_stat}' not found in PSP CSV."
     try:
         df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
     except Exception as e:
         return f"Error converting stat column: {e}"
-    try:
-        df_inj = pd.read_csv("NHL/nhl_injuries.csv")
-        df_inj["playerName"] = df_inj["playerName"].str.strip()
-        injured_names = set(df_inj["playerName"].dropna().unique())
-        df = df[~df["NAME"].isin(injured_names)]
-    except Exception as e:
-        return f"Error loading or processing NHL injuries CSV: {e}"
     sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
-    yellow = sorted_df.iloc[0:3]
-    green = sorted_df.iloc[6:9]
-    red = sorted_df.iloc[12:15]
+    if len(sorted_df) >= 15:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[5:8]
+        red = sorted_df.iloc[12:15]
+    else:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[3:6]
+        red = sorted_df.iloc[6:9]
     player_col = "NAME" if "NAME" in sorted_df.columns else None
     if player_col is None:
         return "Player column not found in CSV."
-    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
-    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), stat_key))}"
+    green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
+    yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
+    red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
+    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
+    output += f"🔴 {', '.join(str(x) for x in red_list)}"
     return output
 
 def analyze_nba_psp(file_path, stat_key):
-    try:
-        df = pd.read_csv(file_path)
-        df.columns = [col.upper() for col in df.columns]
-    except Exception as e:
-        return f"Error reading PSP CSV: {e}"
-    try:
-        df_inj = pd.read_csv("NBA/nba_injury_report.csv")
-        df_inj["playerName"] = df_inj["playerName"].str.strip()
-        injured_names = set(df_inj["playerName"].dropna().unique())
-        df = df[~df["NAME"].isin(injured_names)]
-    except Exception as e:
-        return f"Error loading or processing NBA injuries CSV: {e}"
-    sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
-    sorted_df = sorted_df.drop_duplicates(subset=["NAME"]).reset_index(drop=True)
-    green = sorted_df.iloc[0:3]
-    yellow = sorted_df.iloc[3:6]
-    red = sorted_df.iloc[6:9]
-    player_col = "NAME" if "NAME" in sorted_df.columns else None
-    if player_col is None:
-        return "Player column not found in CSV."
-    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
-    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), stat_key))}"
-    return output
+    return psp_database.analyze_nba_psp(file_path, stat_key)
 
 # -------------------------
 # Analyzer Function: Calls the appropriate analyzer
@@ -245,7 +230,7 @@ def run_universal_sports_analyzer_programmatic(row):
     teams = row.get("teams", [])
     if not teams:
         teams = [team.strip().upper() for team in [row.get("team1", ""), row.get("team2", "")] if team]
-    
+
     def parse_target(target):
         t = target.strip().lower()
         if t in ["", "none"]:
@@ -261,7 +246,7 @@ def run_universal_sports_analyzer_programmatic(row):
         update_psp_files()
         if sport_upper == "NHL":
             stat_key = row["stat"].upper()
-            file_path = os.path.join("PSP", f"nhl_{row['stat'].lower()}_psp_data.csv")
+            file_path = os.path.join(PSP_FOLDER, f"nhl_{row['stat'].lower()}_psp_data.csv")
             return analyze_nhl_psp(file_path, stat_key)
         elif sport_upper == "NBA":
             stat_key = row["stat"].upper()
@@ -269,13 +254,12 @@ def run_universal_sports_analyzer_programmatic(row):
                 stat_key = "3PM"
             if stat_key not in USA.STAT_CATEGORIES_NBA:
                 return f"❌ Invalid NBA stat choice."
-            file_path = os.path.join("PSP", f"nba_{row['stat'].lower()}_psp_data.csv")
+            file_path = os.path.join(PSP_FOLDER, f"nba_{row['stat'].lower()}_psp_data.csv")
             return analyze_nba_psp(file_path, stat_key)
         elif sport_upper == "CBB":
             stat_key = row["stat"].upper()
             if stat_key not in USA.STAT_CATEGORIES_CBB:
                 return f"❌ Invalid CBB stat choice."
-            # Use the dedicated analyzer for CBB from USA
             df = USA.integrate_cbb_data("cbb_players_stats.csv", "cbb_injuries.csv")
             if df.empty:
                 return "❌ CBB stats not found or empty."
@@ -284,6 +268,8 @@ def run_universal_sports_analyzer_programmatic(row):
             return "PSP processing not configured for this sport."
     else:
         if sport_upper == "NBA":
+            nba_stats_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_player_stats.csv")
+            nba_injuries_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_injury_report.csv")
             df = USA.integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
@@ -292,7 +278,7 @@ def run_universal_sports_analyzer_programmatic(row):
             )
         elif sport_upper == "CBB":
             player_stats_file = "cbb_players_stats.csv"
-            if not os.path.exists(player_stats_file):
+            if not os.path.exists(os.path.join(REALSPORTS_DIR, player_stats_file)):
                 return f"❌ '{player_stats_file}' file not found."
             try:
                 df = USA.integrate_cbb_data(player_stats_file=player_stats_file)
