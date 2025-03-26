@@ -194,7 +194,6 @@ Caleb Love,ARIZ,16.8,3.5,4.4,2.6,1
 John Camden,DEL,16.8,2.1,5.5,2.7,1
 Mateu Escamilla,ST. A,16.8,1.8,6.3,2.5,1
 Matt Rogers,AMER,16.7,1.3,5.5,1.7,1
-Davion Bailey,UIW,16.7,1.3,2.9,3.6,1
 Darius Johnson,UCF,16.7,4.3,3.3,2.5,1
 Payton Sandfort,IOWA,16.7,2.9,6.0,2.5,1
 Terrence Edwards Jr.,LOU,16.7,2.7,4.1,1.9,1
@@ -203,6 +202,7 @@ Sam Hines Jr.,SELA,16.7,2.1,6.4,0.6,1
 C.J. Walker,ECU,16.7,0.7,6.4,0.3,1
 Bryce Johnson,UMBC,16.7,2.6,4.1,1.7,1
 Brody Fox,CIT,16.7,2.3,5.1,0.3,1
+Davion Bailey,UIW,16.7,1.2,2.9,3.5,1
 Po'Boigh King,NCCU,16.7,1.6,2.9,2.2,1
 Denijay Harris,USM,16.7,1.3,10.6,0.6,1
 Daniel Batcho,LT,16.7,0.5,6.4,0.0,1
@@ -322,17 +322,19 @@ Jasai Miles,UNF,15.4,1.9,6.8,2.4,1
 Johnathan Lawson,LR,15.4,3.6,5.2,2.4,1
 Kobe Stewart,PRES,15.3,2.5,5.2,1.5,1
 Sonny Wilson,TOL,15.3,3.2,4.8,0.7,1
+Honor Huff,UTC,15.3,2.3,1.9,3.4,1
 Bent Leuchten,UCI,15.3,1.6,9.0,0.5,1
 Kenyon Giles,UNCG,15.3,1.8,2.9,2.7,1
+Chase Walker,ILST,15.3,2.1,6.2,0.3,1
 Nate Calmese,WSU,15.2,4.4,3.0,1.2,1
 Nick Dorn,ELON,15.2,0.8,3.8,3.0,1
 Matthew-Alexander Moncrieffe,SEA,15.2,1.1,9.6,0.0,1
+Dylan Hayman,UIW,15.2,1.6,5.1,1.4,1
 Augustinas Kiudulas,VMI,15.2,1.6,6.3,1.0,1
 Pierre Brooks II,BUT,15.2,1.9,5.0,1.6,1
 Xavier Bell,WICH,15.2,1.2,2.8,1.0,1
 Josh Scovens,ARMY,15.2,1.8,4.2,0.9,1
 Sean Pedulla,MISS,15.2,3.7,3.5,2.4,1
-Honor Huff,UTC,15.2,2.2,1.9,3.4,1
 Marcus Williams,SF,15.1,4.3,3.6,2.2,1
 Gabe Madsen,UTAH,15.1,2.5,2.6,3.0,1
 Barry Dunning Jr.,USA,15.1,2.2,7.2,1.2,1
@@ -340,8 +342,8 @@ Jeremiah Wilkinson,CAL,15.1,1.5,1.9,1.9,1
 AJ Dancler,LEM,15.1,3.4,3.8,2.2,1
 Tae Davis,ND,15.1,1.8,5.3,0.5,1
 Jakobi Heady,CMU,15.0,1.5,6.5,0.8,1
+Jalin Anderson,UIW,15.0,5.0,3.3,1.5,1
 Max Shulga,VCU,15.0,4.0,5.9,2.1,1
-Jalin Anderson,UIW,15.0,5.1,3.3,1.6,1
 Lance Williams,XAVL,15.0,1.0,4.0,0.0,1
 Jestin Porter,MTSU,15.0,1.2,2.9,2.5,1
 Parker Desjardins,THOMA,15.0,2.0,2.0,5.0,1
@@ -375,22 +377,20 @@ Sincere Key,MOR,15.0,1.0,4.0,5.0,1
 Emanuel Hylton,WASHADV,15.0,1.0,5.0,3.0,1
 Joe Bamisile,VCU,15.0,1.9,5.0,1.8,1
 Mason Falslev,USU,15.0,3.7,6.3,1.6,1
-Dallion Johnson,FGCU,15.0,1.2,2.4,3.1,1
 Kasparas Jakucionis,ILL,15.0,4.7,5.7,1.6,1
 Julian Mackey,HCU,15.0,1.5,2.6,2.2,1
 Josh Banks,UNCA,15.0,1.5,3.8,2.4,1
-Dylan Hayman,UIW,14.9,1.6,5.1,1.3,1
 Nazir Williams,COR,14.9,3.6,4.4,1.5,1
 Gabriel Pozzato,EVAN,14.9,1.3,4.4,1.8,1
-Chase Walker,ILST,14.9,2.1,6.2,0.3,1
 Javontae Campbell,BGSU,14.9,3.1,4.1,0.4,1
 Max Green,HC,14.9,3.5,5.6,2.3,1
 Kam Woods,RMU,14.9,5.2,4.7,1.5,1
-Atin Wright,UNT,14.9,0.7,2.4,2.7,1
+Atin Wright,UNT,14.9,0.7,2.4,2.8,1
 Garry Clark,AMCC,14.9,1.2,7.7,0.5,1
 Marcus Millender,UTSA,14.9,3.3,3.0,2.3,1
 Elias Ralph,PAC,14.8,1.8,7.3,0.9,1
 Tyon Grant-Foster,GCU,14.8,2.1,5.9,0.9,1
+Dallion Johnson,FGCU,14.8,1.2,2.4,3.1,1
 AJ Lopez,ME,14.8,1.1,2.3,1.6,1
 Rob Martin,SEMO,14.8,4.5,2.5,1.4,1
 Sam Sherry,ELON,14.8,1.6,7.4,1.1,1
@@ -405,7 +405,6 @@ Brandon Walker,MTST,14.7,1.6,4.9,0.6,1
 Kaleb Banks,TULN,14.7,1.0,6.7,1.5,1
 Connor Kochera,DAV,14.7,2.8,4.2,1.1,1
 Zuby Ejiofor,SJU,14.7,1.6,8.1,0.3,1
-Johnny Kinziger,ILST,14.7,2.9,3.8,2.3,1
 Janus Shepherd,MATYKL,14.7,0.7,2.0,1.7,1
 Claude Mckesey,LINCOLNCA,14.7,4.0,3.7,0.0,1
 Rasheer Fleming,JOES,14.7,1.3,8.5,1.8,1
@@ -416,6 +415,7 @@ Kezza Giffa,HPU,14.6,2.5,2.5,1.2,1
 Dylan Williamson,TOW,14.6,2.6,2.3,2.7,1
 Nick Anderson,FUR,14.6,2.3,2.2,2.7,1
 Mehki Ellison,STET,14.6,2.5,2.7,1.5,1
+Johnny Kinziger,ILST,14.6,2.9,3.8,2.3,1
 Melvin Council Jr.,SBU,14.6,4.1,5.4,1.2,1
 Isaac Bruns,SDAK,14.6,0.6,4.3,1.4,1
 Ja'Kobi Gillespie,MD,14.6,5.0,2.8,2.4,1
@@ -458,7 +458,6 @@ Milos Ilic,L-MD,14.4,3.0,7.5,0.6,1
 Dominick Nelson,UVU,14.4,1.7,5.2,0.6,1
 Terrance Johnson,UVAL,14.4,0.3,6.1,0.6,1
 Ryan Sabol,BUF,14.4,2.0,2.9,2.5,1
-Bash Wieland,UTC,14.3,1.5,4.2,0.9,1
 Jamal Gibson,SOUTH,14.3,1.7,8.3,0.3,1
 Joshua Russ,LINCOLNCA,14.3,1.0,2.7,4.3,1
 Alex Karaban,CONN,14.3,2.8,5.3,2.1,1
@@ -472,6 +471,7 @@ Tayton Conerway,TROY,14.2,4.8,4.6,1.1,1
 Tyler Whitney-Sidney,LEH,14.2,2.0,3.2,1.2,1
 Malique Ewin,FSU,14.2,1.7,7.6,0.0,1
 Anthony Selden,GWEB,14.2,1.8,4.0,0.7,1
+Trey Bonham,UTC,14.2,2.8,4.5,1.8,1
 Jean Aranguren,HOF,14.2,4.2,5.5,1.6,1
 David Joplin,MARQ,14.2,1.3,5.4,2.1,1
 Chance McMillian,TTU,14.2,1.9,4.1,2.3,1
@@ -485,7 +485,7 @@ Nate Bittle,ORE,14.2,1.9,7.6,1.0,1
 Nelly Junior Joseph,UNM,14.2,1.2,11.0,0.0,1
 Noah Farrakhan,HAMP,14.2,2.7,3.0,1.3,1
 James Dent Jr.,NIU,14.2,3.1,5.4,2.4,1
-Trey Bonham,UTC,14.1,2.8,4.5,1.7,1
+Bash Wieland,UTC,14.1,1.6,4.1,0.9,1
 Alvaro Folgueiras,RMU,14.1,3.2,9.1,1.3,1
 CJ Hines,ALST,14.1,2.4,3.0,2.0,1
 Rafael Castro,GW,14.1,1.8,9.1,0.0,1
@@ -551,7 +551,6 @@ Mason Williams,EWU,13.9,2.4,3.2,1.4,1
 Sam Brown,PENN,13.9,2.3,3.3,1.9,1
 Jahnathan Lamothe,NCAT,13.8,2.6,7.3,1.9,1
 Jackson Paveletzke,OHIO,13.8,4.8,4.1,0.6,1
-Tevin Smith,CLE,13.8,1.6,4.2,0.9,1
 Noa Gonsalves,UTU,13.8,1.5,2.9,2.2,1
 Austin Rapp,PORT,13.8,2.5,6.5,2.7,1
 Darius Maddox,GMU,13.8,1.1,2.9,1.9,1
@@ -578,6 +577,7 @@ Fletcher Loyer,PUR,13.7,1.8,2.1,2.1,1
 BJ Freeman,ASU,13.7,2.6,3.9,2.1,1
 Peter Suder,M-OH,13.7,3.8,4.9,1.1,1
 Niels Lane,DEL,13.7,2.2,4.4,0.6,1
+Tevin Smith,CLE,13.7,1.6,4.2,0.9,1
 Tyrese Hunter,MEM,13.7,3.6,3.8,2.3,1
 Yame Butler,DREX,13.6,1.8,4.6,1.3,1
 Martin Somerville,UML,13.6,3.7,2.9,2.3,1
@@ -597,11 +597,11 @@ Jared Strickland,ALICE,13.5,2.5,6.5,1.0,1
 Deonte Jackson,LTRN,13.5,3.5,2.0,1.5,1
 Walker Blaine,LTRN,13.5,3.0,2.5,2.5,1
 Aitor Anabitarte,SFIL,13.5,1.0,5.5,1.0,1
-Duke Deen,BRAD,13.5,3.8,3.3,3.0,1
 Cameron Edmonds,GEO,13.5,0.0,3.0,1.5,1
 Carson Kelly,WNMEX,13.5,2.5,2.0,3.5,1
 Tyler No,EVERG,13.5,1.0,0.0,2.0,1
 Vegas Evans,TXWESL,13.5,0.5,4.0,1.5,1
+Duke Deen,BRAD,13.5,3.8,3.4,3.0,1
 Silas Demary Jr.,UGA,13.5,3.1,3.9,1.8,1
 Will Richard,FLA,13.5,1.9,4.5,2.0,1
 D'Maurian Williams,HPU,13.5,2.3,3.3,1.4,1
@@ -679,6 +679,7 @@ Major Freeman,SIE,13.0,1.9,3.8,2.0,1
 Robert Brown III,NICH,13.0,1.0,3.4,2.5,1
 George Beale Jr.,HAMP,13.0,0.9,2.3,1.9,1
 Danny Wolf,MICH,13.0,3.6,9.8,1.0,1
+Bryce Thompson,OKST,13.0,1.7,2.7,1.0,1
 Chance Moore,SBU,13.0,1.1,6.5,0.7,1
 Addison Patterson,NWST,13.0,3.3,5.5,0.5,1
 Oumar Ballo,IU,13.0,2.1,9.1,0.0,1
@@ -730,7 +731,6 @@ Carter Whitt,BEL,12.9,6.0,4.7,1.1,1
 Anthony McComb III,UNH,12.9,1.2,3.1,1.2,1
 Jaden Daughtry,INST,12.9,0.9,4.3,0.4,1
 Yanic Konan Niederhauser,PSU,12.9,0.8,6.3,0.0,1
-Bryce Thompson,OKST,12.9,1.7,2.7,1.0,1
 Tre Dinkins,DUQ,12.9,3.1,2.3,2.4,1
 Chuck Harris,SMU,12.9,2.7,2.9,2.2,1
 Anquan Hill,SHU,12.8,1.3,5.7,1.6,1
@@ -761,6 +761,7 @@ Kaleb Glenn,FAU,12.6,0.6,4.8,1.4,1
 Steve Settle III,TEM,12.6,1.7,6.2,1.5,1
 Payton Sparks,BALL,12.6,1.5,7.7,0.0,1
 Jayden Jackson,NAU,12.6,3.4,3.7,0.8,1
+Tahj Staveskie,CLE,12.6,1.6,2.2,2.3,1
 Will Riley,ILL,12.6,2.2,4.1,1.3,1
 Jaylin McDuffie,ST. A,12.6,1.2,2.4,3.6,1
 Nick Johnson,WIN,12.6,1.6,3.3,1.4,1
@@ -777,7 +778,6 @@ Madison Durr,MONM,12.5,3.2,2.9,0.3,1
 Javan Simmons,TOL,12.5,2.2,6.8,0.1,1
 Jamal Fuller,LIU,12.5,1.3,6.0,1.1,1
 Chad Baker-Mazara,AUB,12.5,2.7,3.1,1.5,1
-Tahj Staveskie,CLE,12.5,1.6,2.1,2.4,1
 Ben Soumahoro,ALICE,12.5,1.5,4.0,0.0,1
 Bailey Wiseman,PIEDM,12.5,0.5,1.5,2.5,1
 Tate Odvody,COLOR,12.5,0.0,1.0,1.5,1
@@ -799,7 +799,6 @@ Christoph Tilly,SCU,12.5,1.9,4.9,0.5,1
 Kadary Richmond,SJU,12.4,5.3,6.4,0.2,1
 Ian Schieffelin,CLEM,12.4,2.7,9.4,0.9,1
 Dallas Hobbs,MSM,12.4,3.3,3.7,1.8,1
-Abou Ousmane,OKST,12.4,0.7,5.2,0.5,1
 Tyson Dunn,BUF,12.4,5.3,3.8,1.6,1
 Chad Venning,BC,12.4,0.7,4.1,0.0,1
 Zaon Collins,FRES,12.4,4.6,4.0,0.9,1
@@ -841,6 +840,7 @@ Jaha Jackson,EAS,12.2,2.0,2.8,0.4,1
 Josue Grullon,UTM,12.2,0.7,3.7,2.3,1
 Duncan Powell,GT,12.2,0.8,5.4,1.6,1
 Myles Rigsby,TROY,12.2,1.4,4.1,0.7,1
+Abou Ousmane,OKST,12.2,0.7,5.2,0.5,1
 Zek Montgomery,BRAD,12.2,1.8,2.7,1.4,1
 J'Vonne Hadley,LOU,12.2,1.8,7.3,0.9,1
 Mackenzie Mgbako,IU,12.2,1.1,4.6,1.5,1
@@ -915,7 +915,6 @@ Omar Croskey,SCST,12.0,1.3,3.8,1.8,1
 Nate Lliteras,UNF,12.0,1.2,5.3,1.7,1
 Tyreese Watson,ULM,12.0,4.3,3.3,0.6,1
 Ian Jackson,UNC,11.9,0.9,2.7,1.7,1
-Brenen Lorient,UNT,11.9,1.3,5.0,0.3,1
 Jase Richardson,MSU,11.9,2.0,3.2,1.3,1
 Joson Sanon,ASU,11.9,1.0,3.4,1.7,1
 Brian Taylor II,SIUE,11.9,2.9,4.1,1.2,1
@@ -923,6 +922,7 @@ Kobe Julien,ARST,11.9,1.5,5.3,1.1,1
 Cameron Shockley-Okeke,HOW,11.9,1.1,3.3,2.5,1
 Coltie Young,ULM,11.9,1.4,3.1,2.7,1
 Jalen Cox,COLG,11.9,3.9,4.4,0.6,1
+Brenen Lorient,UNT,11.9,1.3,4.9,0.3,1
 Will Johnston,LMU,11.9,3.2,2.2,2.1,1
 Daniel Rivera,MASS,11.9,1.8,7.4,0.2,1
 Izaiah Pasha,DEL,11.9,3.9,4.2,0.6,1
@@ -947,7 +947,6 @@ Miles Kelly,AUB,11.7,1.1,3.5,2.4,1
 Isaac Jessup,CP,11.7,2.6,3.5,3.1,1
 Kalen Garry,SDST,11.7,2.5,3.9,1.8,1
 Jaeden Zackery,CLEM,11.7,3.1,3.3,1.2,1
-Dylan Arnett,CLE,11.7,1.6,7.2,0.0,1
 D'Angelo Stoxstill,KYCHR,11.7,0.3,5.0,0.3,1
 Diego Fernandez,TRB,11.7,2.0,2.3,1.0,1
 Tyon Thompson,SOUTH,11.7,3.3,2.7,2.3,1
@@ -977,6 +976,7 @@ Drake Dobbs,STMN,11.6,3.7,2.7,1.3,1
 Javon Bennett,DAY,11.6,2.1,2.7,2.1,1
 Nick Kern Jr.,PSU,11.5,2.3,5.0,0.2,1
 Ahmad Henderson II,UIC,11.5,2.6,2.7,1.3,1
+Dylan Arnett,CLE,11.5,1.6,7.2,0.0,1
 Alex Crawford,FRES,11.5,1.3,4.3,0.7,1
 Jalyke Gaines-Wyatt,ALCN,11.5,3.0,2.2,1.1,1
 Lynn Kidd,MIA,11.5,1.4,7.1,0.0,1
@@ -1210,6 +1210,7 @@ Guy Ragland Jr.,COR,10.7,2.9,5.3,1.8,1
 Tamin Lipsey,ISU,10.6,3.1,2.6,1.1,1
 Elijah Stephens,AMER,10.6,3.8,2.7,0.9,1
 Izaiyah Nelson,ARST,10.6,0.6,8.9,0.0,1
+Jordan Pyke,UIW,10.6,1.4,5.3,0.4,1
 Gregg Glenn III,TULN,10.6,3.2,5.3,0.1,1
 Nic McClain,EWU,10.6,3.8,3.6,0.7,1
 Miles Brewster,BU,10.6,2.3,3.8,1.4,1
@@ -1217,12 +1218,12 @@ Erik Pratt,MILW,10.6,1.8,3.3,1.5,1
 Tate McCubbin,APSU,10.6,0.5,4.7,2.3,1
 Tajavis Miller,NDSU,10.6,1.3,4.5,1.1,1
 Masen Miller,NDSU,10.6,1.5,2.6,2.8,1
+Jevin Muniz,FGCU,10.6,4.2,5.8,1.3,1
 Tramon Mark,TEX,10.6,1.7,3.7,1.2,1
 Kyan Evans,CSU,10.6,3.1,2.9,1.9,1
 Neftali Alvarez,USM,10.6,3.6,2.7,0.6,1
 Jayden Taylor,NCSU,10.6,1.6,2.8,1.3,1
 Ty Berry,NU,10.6,1.3,3.6,2.2,1
-Jordan Pyke,UIW,10.6,1.4,5.1,0.4,1
 Marcus Tankersley,ALCN,10.6,1.3,2.5,0.1,1
 Ryan Nembhard,GONZ,10.5,9.8,3.0,1.1,1
 Connor Amundsen,DART,10.5,3.1,2.5,1.6,1
@@ -1265,7 +1266,6 @@ Christian Shumate,MCN,10.4,0.8,6.5,0.5,1
 Andrej Jakimovski,COLO,10.4,1.3,5.0,1.6,1
 Jarrett Hensley,SIU,10.4,1.4,5.8,1.3,1
 Tyler Nickel,VAN,10.4,0.9,2.4,2.5,1
-Jevin Muniz,FGCU,10.4,4.2,5.8,1.2,1
 Jerone Morton,MORE,10.4,3.4,3.2,1.1,1
 Connor Essegian,NEB,10.4,1.1,2.8,2.3,1
 Elijah Saunders,UVA,10.4,0.8,5.0,1.1,1
@@ -1305,7 +1305,6 @@ Alex Merkviladze,LMU,10.3,2.0,6.4,1.5,1
 Jailen Bedford,UNLV,10.2,1.2,4.3,1.7,1
 Dorian McMillian,JKST,10.2,0.6,4.3,1.5,1
 Trey Autry,GW,10.2,1.0,3.7,1.8,1
-Dalton Banks,ILST,10.2,3.9,3.5,0.6,1
 Matas Vokietaitis,FAU,10.2,0.3,5.4,0.0,1
 Juan Cranford Jr.,SFPA,10.2,1.9,4.2,1.7,1
 Al Green,LT,10.2,0.9,2.3,1.9,1
@@ -1319,6 +1318,7 @@ Jefferson De La Cruz Monegro,VAL,10.1,1.6,2.8,0.9,1
 Fletcher Abee,UNCA,10.1,1.2,1.8,2.5,1
 Robert Carpenter,NMSU,10.1,0.5,5.8,1.6,1
 Ante Beljan,LR,10.1,1.9,4.5,0.0,1
+Dalton Banks,ILST,10.1,4.0,3.5,0.6,1
 Zion Cruz,RID,10.1,1.4,2.8,1.0,1
 Myles Rice,IU,10.1,2.8,2.8,0.8,1
 Carmelo Adkins,UPST,10.1,1.4,4.8,1.4,1
@@ -1419,6 +1419,7 @@ Owen Dease,AMCC,9.8,1.6,4.2,1.2,1
 Carter Bjerke,STMN,9.8,1.1,3.3,2.2,1
 Daniel Hankins-Sanford,MASS,9.8,0.6,7.4,0.3,1
 Luke Barrett,SMC,9.8,1.4,6.8,1.1,1
+Je'Shawn Stevenson,CLE,9.8,1.0,2.4,1.1,1
 Day Day Thomas,CIN,9.8,2.6,2.6,1.2,1
 Colin Smalls,AMER,9.8,1.2,1.7,1.3,1
 Christian Howard,COLI,9.8,2.0,3.3,0.0,1
@@ -1460,7 +1461,6 @@ Dovydas Butka,PEPP,9.6,2.2,6.1,0.4,1
 Dayvion McKnight,XAV,9.6,4.2,2.6,0.6,1
 Sebastian Mack,UCLA,9.6,1.7,2.1,0.6,1
 Claudell Harris Jr.,MSST,9.6,1.2,2.8,2.0,1
-Je'Shawn Stevenson,CLE,9.6,1.0,2.5,1.1,1
 Julius Rollins,WIU,9.5,1.3,4.3,1.1,1
 Jaehshon Thomas,CLT,9.5,1.3,3.3,1.2,1
 Noble Crawford,CHST,9.5,2.0,4.0,1.5,1
@@ -1695,6 +1695,7 @@ Ben Callahan-Gold,BING,8.8,0.7,2.5,1.9,1
 Tanner Cuff,EVAN,8.8,3.2,6.2,0.4,1
 Jacob Wilson,ULM,8.8,1.6,3.5,1.6,1
 Connor Hollenbeck,IDST,8.8,1.4,4.1,1.3,1
+Jasper Floyd,UNT,8.8,3.9,2.9,0.7,1
 RJ Melendez,MSST,8.8,0.9,4.3,1.0,1
 Brock Harding,IOWA,8.8,5.3,2.3,1.2,1
 Ruot Bijiek,BUCK,8.8,1.2,3.8,1.3,1
@@ -1702,7 +1703,6 @@ Zed Key,DAY,8.8,0.3,3.8,0.0,1
 Efton Reid III,WAKE,8.8,1.0,6.6,0.3,1
 Lance Waddles,OMA,8.8,1.8,3.9,1.3,1
 Zvonimir Ivisic,ARK,8.8,0.8,4.4,1.4,1
-Jasper Floyd,UNT,8.8,3.9,2.9,0.7,1
 Casey Simmons,YALE,8.8,0.7,4.6,0.5,1
 Jordan Chatman,FAMU,8.8,0.8,3.7,1.7,1
 Zach Bell,JAX,8.8,1.5,2.8,1.0,1
@@ -1771,7 +1771,6 @@ Jurian Dixon,UCI,8.5,1.7,2.8,0.8,1
 Michael Houge,JVST,8.5,0.9,7.4,0.2,1
 Brandon Stroud,USF,8.5,2.0,5.7,0.4,1
 Cam Morris III,UML,8.5,1.6,4.7,0.3,1
-Chase Robinson,CLE,8.5,2.2,2.7,0.9,1
 Matt Pena,MCM,8.5,1.0,2.0,1.0,1
 Leonard Jackson,LOLA,8.5,1.5,1.5,1.0,1
 Max Peeler,ERSKINE,8.5,0.5,1.0,2.5,1
@@ -1831,6 +1830,7 @@ Trey Townsend,ARIZ,8.3,1.0,4.0,0.4,1
 Chauncey Wiggins,CLEM,8.3,0.7,2.9,1.2,1
 Jahsean Corbett,DUQ,8.3,1.7,5.2,0.3,1
 Dante Sawyer,UAPB,8.3,1.2,2.5,0.2,1
+Chase Robinson,CLE,8.3,2.2,2.6,0.9,1
 Jordan Ross,SMC,8.3,2.6,3.1,0.7,1
 Cooper Bowser,FUR,8.3,1.7,4.7,0.0,1
 Mady Sissoko,CAL,8.3,0.4,8.2,0.0,1
@@ -1890,11 +1890,11 @@ Wilson Dubinsky,SCST,8.1,1.2,2.8,1.8,1
 Sadaidriene Hall,SJSU,8.1,1.7,5.1,0.6,1
 Christopher Mantis,ME,8.1,1.1,2.9,2.1,1
 Delrecco Gillespie,KENT,8.1,0.5,7.9,0.1,1
-Rahmir Barno,FGCU,8.1,3.8,4.0,0.2,1
 Zine Eddine Bedri,COLU,8.1,2.2,5.4,0.3,1
 Ben Michaels,BUF,8.1,1.0,4.0,0.8,1
 Jaydon Young,VT,8.1,1.4,1.7,1.4,1
 Blake Lander,LIU,8.1,1.2,2.8,1.3,1
+Rahmir Barno,FGCU,8.0,3.7,4.1,0.2,1
 Preston Ruedinger,GB,8.0,3.1,3.7,1.2,1
 Khaliq Abdul-Mateen,ETAM,8.0,1.5,2.5,1.8,1
 Ace Valentine,UMBC,8.0,3.2,2.6,0.6,1
@@ -2049,15 +2049,14 @@ Eloy Medina,NNMC,7.8,0.0,1.0,1.8,1
 Hassan Diarra,CONN,7.7,5.7,3.7,0.7,1
 Kvonn Cramer,BRY,7.7,0.6,4.4,0.1,1
 Kobe Elvis,OU,7.7,2.8,1.8,1.4,1
+Johnathan Massie,UNT,7.7,0.9,4.5,0.6,1
 Brian Amuneke,FRES,7.7,0.4,2.6,1.2,1
 Jacobi Wright,SC,7.7,2.3,2.2,0.9,1
 Jaden Schutt,VT,7.7,1.5,2.8,1.8,1
 Isaac Parson,NCCU,7.7,4.2,1.9,0.5,1
-Moulaye Sissoko,UNT,7.7,0.6,6.4,0.0,1
 Antwone Woolfolk,M-OH,7.7,1.2,5.4,0.1,1
 Xavier DuSell,NEV,7.7,0.7,1.6,2.0,1
 Kobe Young,CSUF,7.7,0.8,5.8,0.5,1
-Johnathan Massie,UNT,7.7,1.0,4.6,0.6,1
 Jacquez Anderson,TRB,7.7,0.0,1.7,1.7,1
 Kalil Camara,BCU,7.7,1.0,4.0,1.3,1
 Demetrius Lilley,LAS,7.7,0.5,5.8,1.0,1
@@ -2079,6 +2078,7 @@ Collin Moore,GCU,7.6,2.0,3.4,1.0,1
 Chandler Baker,COLG,7.6,1.0,1.8,1.5,1
 Love Bettis,NWST,7.6,2.1,1.2,0.8,1
 Ben Humrichous,ILL,7.6,0.9,3.8,1.8,1
+Arturo Dean,OKST,7.6,3.4,3.1,0.4,1
 Tre-Vaughn Minott,PRST,7.6,0.4,7.6,0.0,1
 Flash Burton,RID,7.6,2.2,2.3,0.4,1
 Dawson Baker,BYU,7.6,1.3,1.9,1.2,1
@@ -2119,16 +2119,15 @@ Brandon Scott,CSO,7.5,1.0,4.0,1.5,1
 Peter Dress,EMB,7.5,1.0,2.0,1.5,1
 Anthony Sierras,TXWESL,7.5,1.5,1.0,0.5,1
 Izzy Santiago,PEN,7.5,2.5,4.0,1.5,1
+Moulaye Sissoko,UNT,7.5,0.6,6.5,0.0,1
 Garrett Hien,FUR,7.5,2.5,4.6,0.8,1
 Henry Coleman III,TA&M,7.5,0.5,5.5,0.0,1
 Samson Johnson,CONN,7.5,1.0,3.5,0.0,1
 Ben Burnham,VT,7.5,0.9,3.9,1.2,1
 Samson Aletan,YALE,7.5,0.8,3.8,0.0,1
 Mouhamed Dioubate,ALA,7.5,1.1,6.0,0.3,1
-Arturo Dean,OKST,7.5,3.5,3.0,0.4,1
 Braeden Carrington,TLSA,7.4,1.7,4.8,1.5,1
 David Fuchs,URI,7.4,0.9,7.5,0.2,1
-Latrell Jossell,UNT,7.4,1.5,1.4,1.4,1
 Tyler Rolison,NEV,7.4,2.0,2.9,0.7,1
 MJ Collins Jr.,VAN,7.4,0.5,2.3,0.8,1
 Kylan Blackmon,CLT,7.4,1.0,2.7,1.1,1
@@ -2170,6 +2169,8 @@ Stewart Clough,MATYKL,7.3,1.0,2.7,0.0,1
 DJ Holthusen,NOR,7.3,0.7,5.7,0.0,1
 Will Gray-Watson,TF,7.3,1.7,2.3,0.7,1
 Elijah Williams,LINCOLNCA,7.3,1.7,3.3,2.0,1
+Latrell Jossell,UNT,7.3,1.5,1.3,1.4,1
+Ty Pence,ILST,7.3,1.4,4.1,0.7,1
 Isaiah Addo-Ankrah,DEN,7.3,0.5,2.4,1.8,1
 Demetrius Davis,UNCG,7.3,1.4,3.6,0.8,1
 Kamrin Oriol,UNF,7.3,1.4,2.3,1.8,1
@@ -2191,6 +2192,7 @@ Bryce Baker,WIN,7.3,0.6,3.1,2.0,1
 Lyndel Erold,BRWN,7.3,1.0,3.9,1.1,1
 Mark Butler,LAF,7.3,3.0,3.2,0.0,1
 Kolby Granger,TXSO,7.3,1.5,4.5,0.9,1
+Brandon Newman,OKST,7.3,0.8,3.6,1.1,1
 Matt Mayock,AMER,7.3,1.3,2.3,1.2,1
 Bradley Ezewiro,UAB,7.3,0.3,4.4,0.0,1
 Anthony Dell'Orso,ARIZ,7.3,1.4,1.4,1.3,1
@@ -2232,7 +2234,6 @@ Hank Alvey,LEH,7.1,0.9,4.9,0.0,1
 Drew Fielder,GTWN,7.1,1.0,5.4,0.6,1
 Griffin Barrouk,SHU,7.1,0.9,3.0,1.9,1
 Cameron Matthews,MSST,7.1,3.6,6.7,0.2,1
-Ty Pence,ILST,7.1,1.4,3.9,0.7,1
 Amael L'Etang,DAY,7.1,1.2,4.3,0.6,1
 Kohen Rowbatham,UNO,7.1,1.3,1.2,0.5,1
 Diego Campisano,NAU,7.1,0.6,2.3,1.3,1
@@ -2242,6 +2243,7 @@ Kasen Jennings,USF,7.1,1.8,1.9,1.1,1
 Vic Searls,OHIO,7.1,0.8,3.9,0.1,1
 Bryce Ford,TOL,7.1,0.8,2.8,1.1,1
 Randall Pettus II,NKU,7.1,1.5,2.8,1.1,1
+Michael Duax,FGCU,7.1,1.6,4.5,0.2,1
 James Scott,LOU,7.1,1.4,6.1,0.0,1
 Anthony Finkley,JOES,7.1,1.6,3.8,1.3,1
 Cam Manyawu,DRKE,7.1,0.9,5.3,0.0,1
@@ -2349,7 +2351,6 @@ Tavarez Lacey,SPA,7.0,1.0,4.0,0.0,1
 Orlando Thomas,WEBBINT,7.0,3.0,4.0,1.0,1
 Jalen Mcafee Marion,SOUTH,7.0,1.0,2.0,1.0,1
 Terrance Arceneaux,HOU,7.0,0.8,2.8,0.7,1
-Brandon Newman,OKST,7.0,0.8,3.6,1.1,1
 Keller Boothby,W&M,7.0,1.1,3.2,1.7,1
 Peyton Smith,FAIR,7.0,0.5,3.9,0.1,1
 Morez Johnson Jr.,ILL,7.0,0.3,6.7,0.0,1
@@ -2390,11 +2391,10 @@ Jinwoo Kim,NAVY,6.8,1.0,2.1,1.1,1
 Gabe Dynes,YSU,6.8,0.4,5.8,0.0,1
 Isaiah Jones,OAK,6.8,1.6,4.5,0.6,1
 Duane Posey,TXSO,6.8,0.7,4.2,0.0,1
-Malachi Poindexter,ILST,6.8,1.2,1.8,1.3,1
-Michael Duax,FGCU,6.8,1.6,4.4,0.2,1
 Jhaylon Martinez,NIA,6.8,0.8,5.2,0.1,1
 Xavier Lipscomb,MSM,6.8,4.3,4.2,1.0,1
 Noah Batchelor,BUF,6.8,1.3,6.1,1.2,1
+Malachi Poindexter,ILST,6.8,1.2,1.8,1.4,1
 Sadraque NgaNga,SJSU,6.8,0.6,3.3,0.8,1
 Josh Ogundele,TNST,6.8,0.8,4.2,0.0,1
 Arlandus Keyes,MSM,6.8,1.9,3.3,1.5,1
@@ -2413,7 +2413,6 @@ Shaqir O'Neal,FAMU,6.7,0.8,3.4,0.6,1
 Javonte Johnson,CBU,6.7,0.7,3.0,1.6,1
 Kareem Rozier,DUQ,6.7,3.3,1.9,1.1,1
 Josiah Hammons,SHSU,6.7,0.8,1.6,1.7,1
-Landon Wolf,ILST,6.7,0.8,3.1,1.1,1
 Damarion Dennis,AMCC,6.7,1.3,1.9,0.9,1
 Rory Stewart,FGCU,6.7,0.7,2.9,1.7,1
 Kyrell Shaw,UMES,6.7,1.4,2.5,1.5,1
@@ -2439,6 +2438,7 @@ Bowen Hardman,AKR,6.6,0.1,1.0,1.9,1
 Chase Martin,MOST,6.6,1.0,2.0,0.3,1
 Jalen Breath,UNCG,6.6,0.7,7.0,0.0,1
 Louis Bleechmore,FAIR,6.6,1.0,3.5,1.1,1
+Jaquan Johnson,BRAD,6.6,2.4,2.4,0.4,1
 Jaylani Darden,NORF,6.6,2.5,4.8,0.5,1
 Alex Archer,LA SI,6.6,1.6,3.2,0.6,1
 Darius Ford,AAMU,6.6,2.4,1.8,0.9,1
@@ -2461,13 +2461,13 @@ David Punch,TCU,6.5,0.6,4.4,0.3,1
 Caleb Walker,AFA,6.5,1.3,3.1,0.1,1
 Manny Obaseki,TA&M,6.5,1.2,1.6,0.4,1
 Kalu Anya,SLU,6.5,2.5,7.5,0.1,1
-Jaquan Johnson,BRAD,6.5,2.5,2.4,0.4,1
 Isaiah Richards,GWEB,6.5,1.3,7.2,0.3,1
 Harry Rouhliadeff,HAW,6.5,0.6,3.7,0.6,1
 Cole Farrell,PRST,6.5,0.9,2.0,0.7,1
 Davide Poser,UNH,6.5,1.6,2.2,1.7,1
 Joey Chammaa,USD,6.5,1.7,0.9,0.6,1
 Jeffrey Langston Jr.,SUU,6.5,0.6,3.8,0.1,1
+Landon Wolf,ILST,6.5,0.7,3.0,1.1,1
 Carter Bryant,ARIZ,6.5,1.0,4.1,1.0,1
 Schafer Reichart,COLOR,6.5,2.0,2.0,0.0,1
 Zach Murphy,LIF,6.5,1.2,2.8,0.2,1
@@ -2485,7 +2485,6 @@ Isaiah Melvo,ARLIN,6.5,1.5,3.5,0.0,1
 Jadon Yeh,TRMC,6.5,3.5,2.5,1.5,1
 Lonzo Rand,LADY,6.5,2.0,1.0,0.5,1
 Alfred Worrell Jr.,USM,6.5,0.3,1.6,1.2,1
-Jack Daugherty,ILST,6.5,0.3,1.8,1.8,1
 Elijah Dias,MATYKL,6.5,1.3,3.0,0.0,1
 Trevor Pittman,BOB,6.5,1.5,1.5,1.5,1
 Lukas Sward,VTSJ,6.5,3.0,2.0,0.5,1
@@ -2523,6 +2522,7 @@ Troy D'Amico,DEP,6.3,1.7,2.7,1.3,1
 Chandler Jackson,FSU,6.3,2.0,2.1,0.2,1
 Brennan Watkins,NDSU,6.3,2.9,3.1,1.3,1
 Rylan Griffen,KU,6.3,1.4,2.1,1.2,1
+Jack Daugherty,ILST,6.3,0.3,1.7,1.8,1
 Pedro Lopez-Sanvicente,DEN,6.3,1.3,3.4,0.4,1
 Cole Henry,WYO,6.3,1.4,3.7,0.0,1
 Brandin Cummings,PITT,6.3,0.8,1.6,0.9,1
@@ -2536,25 +2536,24 @@ Deng Mayar,UND,6.3,0.6,4.0,0.5,1
 Fidelis Okereke,CSUB,6.3,0.7,4.5,0.0,1
 Seth Wilson,AKR,6.3,1.1,1.9,1.6,1
 Amir Nesbitt,STO,6.3,2.6,2.0,1.1,1
-Garrison Keeslar,UTC,6.3,3.0,4.5,0.8,1
 Stoney Hadnot,SDST,6.3,0.7,4.1,0.2,1
 Jesus Mendoza,NNMC,6.3,0.5,1.5,1.8,1
 Grady Lewis,CSUN,6.2,0.5,3.8,0.0,1
 Junjie Wang,SF,6.2,0.6,3.3,1.0,1
 Willie Williams,NWST,6.2,1.5,7.6,0.0,1
-Grant Newell,UNT,6.2,0.5,3.5,0.6,1
+Khalil Brantley,OKST,6.2,2.4,2.6,0.4,1
 Torey Alston,MTSU,6.2,0.9,5.2,0.1,1
 Giovanni Emejuru,GMU,6.2,0.2,4.0,0.0,1
 Jaden Alexander,CSUB,6.2,0.7,2.7,0.6,1
 Guillermo Diaz Graham,PITT,6.2,1.5,5.0,1.1,1
 Jake Wahlin,UTAH,6.2,1.4,5.0,0.8,1
-Khalil Brantley,OKST,6.2,2.4,2.6,0.4,1
 Kaleb Brown,CSUF,6.2,1.7,3.1,0.7,1
 Desmond Polk,SIUE,6.2,1.1,3.3,1.0,1
 Ken Evans Jr.,FAU,6.2,1.9,2.7,1.2,1
 Terrance Jones,NORF,6.2,1.0,2.8,0.7,1
 Kerwin Walton,TTU,6.2,0.5,1.3,1.7,1
 Zach Bloch,UNCO,6.2,1.1,1.7,1.6,1
+Grant Newell,UNT,6.2,0.5,3.6,0.5,1
 Kwo Agwa,RGV,6.2,0.8,4.3,0.2,1
 Erik Gallardo,BTHD,6.2,0.6,2.2,0.6,1
 Logan Allen,FIT,6.2,0.2,1.0,0.4,1
@@ -2565,6 +2564,7 @@ Nigel Burris,WEB,6.2,0.7,5.3,0.8,1
 Danquez Dawsey,LAM,6.2,2.2,1.8,1.0,1
 Marcus Overstreet,MER,6.2,0.2,5.3,0.0,1
 Shane Nowell,PRST,6.2,0.7,3.2,0.6,1
+Garrison Keeslar,UTC,6.2,3.0,4.5,0.8,1
 Kobe Johnson,SLU,6.2,1.8,3.3,0.8,1
 Quincy Ademokoya,USF,6.2,0.7,2.3,1.2,1
 Chris Moncrief,SFPA,6.2,1.3,2.8,0.3,1
@@ -2779,6 +2779,7 @@ Jakai Robinson,BRY,5.8,0.8,3.4,0.1,1
 Alden Applewhite,MUR,5.8,0.8,3.2,0.8,1
 Troy Cole Jr.,SEMO,5.8,0.3,3.0,0.6,1
 Brady Shoulders,MER,5.8,1.2,5.9,0.9,1
+Demarion Burch,BRAD,5.8,0.9,1.6,0.7,1
 Marqui Worthy,MASS,5.8,1.9,1.5,0.2,1
 Brock Felder,SUU,5.8,1.0,6.2,0.0,1
 Billy Richmond III,ARK,5.8,1.3,3.0,0.1,1
@@ -2822,13 +2823,13 @@ Bruno Alocen,INST,5.7,1.7,2.8,1.3,1
 Isaiah Mbeng,W&M,5.7,3.4,1.8,1.0,1
 Moussa Cisse,MEM,5.7,0.5,6.5,0.0,1
 Dasear Haskins,JOES,5.7,0.6,3.3,0.5,1
-Almar Atlason,BRAD,5.7,0.9,2.0,1.3,1
 Jordan Derkack,RUTG,5.7,1.5,2.8,0.4,1
 Ryan Dufault,STMN,5.7,1.6,2.1,0.1,1
 Ryan Wade,GB,5.7,1.8,1.1,1.2,1
 Isaiah Lewis,SOUTH,5.7,2.0,2.7,0.3,1
 Sean Stewart,OSU,5.7,0.6,5.8,0.0,1
 KiJan Robinson,HOF,5.7,1.0,1.6,1.1,1
+Almar Atlason,BRAD,5.7,0.9,2.0,1.3,1
 Bilal Abdur-Rahman,AAMU,5.7,2.3,1.8,0.3,1
 Carlos Raven,MATYKL,5.7,2.0,0.7,1.0,1
 Isaiah Alston,CHEY,5.7,0.0,3.0,0.7,1
@@ -2846,7 +2847,7 @@ Sam Alamutu,UVM,5.6,2.2,6.5,0.1,1
 Jayson Kent,TEX,5.6,0.4,3.3,0.4,1
 Chris Howell,UCSD,5.6,3.0,3.8,0.6,1
 Sincere Malone,NICH,5.6,1.1,4.0,0.1,1
-Jamyron Keller,OKST,5.6,1.4,2.5,1.0,1
+Ahmet Jonovic,BRAD,5.6,0.9,4.5,0.0,1
 Evan Ashe,BING,5.6,1.1,2.4,0.4,1
 Touko Tainamo,WYO,5.6,0.7,2.9,0.3,1
 Brandon Morgan,WCU,5.6,2.4,2.8,1.0,1
@@ -2857,23 +2858,22 @@ Taeo Thomas,BTHD,5.6,0.8,1.8,0.4,1
 David Odinigwe,LA SI,5.6,0.8,2.8,0.0,1
 Osiris Grady,UVU,5.6,0.8,2.7,0.3,1
 Jamal Sumlin,KENT,5.6,1.9,3.1,0.4,1
+Collin Mulholland,UTC,5.6,1.4,2.0,0.7,1
 Eugene Brown III,GASO,5.6,0.7,3.8,1.0,1
 Keyontae Lewis,WAG,5.6,0.4,5.0,0.1,1
 Joshua Strong,HOW,5.6,1.8,2.0,1.5,1
 Jacob Crews,MIZ,5.6,0.3,2.1,1.2,1
 Mekhi Lowery,TOW,5.6,1.7,5.2,0.0,1
-Collin Mulholland,UTC,5.6,1.3,1.9,0.7,1
 Iverson King,PRES,5.6,0.7,3.4,0.3,1
 Austin Patterson,MONT,5.6,0.7,2.2,1.1,1
 JJ Traynor,DEP,5.6,0.6,3.3,0.4,1
 Isaac Asuma,MINN,5.6,2.1,2.9,0.8,1
 Joseph Tugler,HOU,5.6,0.9,5.9,0.1,1
+Reece Robinson,CLE,5.6,0.6,4.4,0.3,1
 Ben Hammond,VT,5.6,2.1,1.7,0.6,1
 K.J. Windham,NU,5.6,2.0,1.1,0.9,1
-Ahmet Jonovic,BRAD,5.5,0.9,4.5,0.0,1
 Charlie Williams,LIP,5.5,1.6,1.9,0.9,1
 Savion Lewis,QUIN,5.5,6.3,3.4,0.0,1
-Reece Robinson,CLE,5.5,0.6,4.4,0.3,1
 Jason Schofield,MRST,5.5,1.3,3.2,0.0,1
 Jeffrey Mills,AFA,5.5,2.4,3.2,0.8,1
 Ben Nau,STMN,5.5,1.1,1.8,1.4,1
@@ -2922,7 +2922,6 @@ Gary Gray,ARLIN,5.5,0.5,4.0,0.0,1
 Ian Smikle,TLSA,5.5,0.6,5.5,0.0,1
 Malik Henry,UNCG,5.5,0.4,4.4,0.0,1
 Drew Scharnowski,BEL,5.5,1.1,3.0,0.0,1
-Robert Jennings II,OKST,5.5,0.3,3.4,0.2,1
 Jaylen Jones,OAK,5.5,3.1,2.8,0.4,1
 Trent Middleton Jr.,DEL,5.5,1.7,2.7,0.4,1
 Frankquon Sherman,KENN,5.5,0.7,4.8,0.3,1
@@ -2930,6 +2929,7 @@ Isaiah Sy,ORST,5.5,1.0,1.8,1.2,1
 Landyn Jumawan,NWST,5.5,1.0,1.9,1.4,1
 Landin Hacker,BELL,5.5,0.9,1.4,1.2,1
 Clarence Rupert,IONA,5.5,1.7,4.9,0.2,1
+Jamyron Keller,OKST,5.5,1.4,2.5,1.0,1
 Greedy Williams,UNCW,5.5,2.6,2.8,0.3,1
 Amier Ali,ASU,5.5,0.7,2.9,0.9,1
 ND Okafor,WSU,5.5,0.3,2.6,0.0,1
@@ -2956,6 +2956,7 @@ Marvin McGhee IV,CSUB,5.4,0.3,2.8,1.3,1
 Jaylin Stewart,CONN,5.4,0.9,2.4,0.7,1
 Myles Colvin,PUR,5.4,0.5,2.6,1.1,1
 Francis Nwaokorie,LUC,5.4,0.6,5.0,0.8,1
+Robert Jennings II,OKST,5.4,0.3,3.4,0.2,1
 Tsvet Sotirov,NIU,5.4,0.6,2.4,1.4,1
 Malcolm Wrisby-Jefferson,BRWN,5.4,2.2,3.4,0.2,1
 Pharaoh Compton,SDSU,5.4,0.4,2.4,0.0,1
@@ -3033,7 +3034,6 @@ Mike Loughnane,DAV,5.1,2.3,2.2,1.0,1
 Royce Parham,MARQ,5.1,0.4,2.2,0.8,1
 Jawarie Hamelin,UNH,5.1,2.9,2.7,0.6,1
 Nate Heise,ISU,5.1,1.0,3.2,0.8,1
-Jack Kostel,UTC,5.1,1.2,2.6,0.9,1
 Jaxon Ellingsworth,UTA,5.1,0.3,2.8,0.4,1
 Dontae Horne,GASO,5.1,1.6,2.2,0.6,1
 Jair Horton,MVSU,5.1,0.8,2.7,0.5,1
@@ -3056,7 +3056,7 @@ Justas Stonkus,COFC,5.0,0.5,1.7,0.8,1
 Ja'Vier Francis,HOU,5.0,0.2,4.3,0.0,1
 Dylan Cardwell,AUB,5.0,1.6,4.8,0.0,1
 Davon Barnes,MISS,5.0,0.8,3.2,0.4,1
-Jordan Davis,ILST,5.0,0.9,4.0,1.1,1
+Jack Kostel,UTC,5.0,1.2,2.6,0.9,1
 Adetokunbo Bakare,SPU,5.0,0.6,2.5,1.0,1
 Charlie Weber,HAWAIIPAC,5.0,0.0,2.0,0.0,1
 Bowen Born,CSU,5.0,1.4,1.3,0.9,1
@@ -3064,7 +3064,6 @@ Treylan Smith,MOBIL,5.0,1.0,6.0,1.0,1
 Will Bartoszek,HARDSIM,5.0,3.0,3.0,0.0,1
 TJ Hilliard,MCM,5.0,0.0,2.0,0.0,1
 Tristan Gross,STET,5.0,0.8,2.4,1.0,1
-Jayden Williams,UIW,5.0,0.3,4.5,0.0,1
 Hassan Perkins,UMES,5.0,1.7,1.4,0.8,1
 Jon'Quarius McGhee,LACOLLEGE,5.0,1.0,2.0,1.0,1
 Trevor Arico,EMER,5.0,1.0,1.0,0.0,1
@@ -3209,6 +3208,7 @@ Eli Wilborn,DUQ,5.0,0.4,3.5,0.0,1
 CJ Happy,PRIN,5.0,0.6,2.0,0.8,1
 Frank Mitchell,MINN,4.9,0.7,4.7,0.0,1
 Jackson Skipper,ORU,4.9,0.5,2.3,1.0,1
+Jayden Williams,UIW,4.9,0.3,4.4,0.0,1
 Zaakir Williamson,SPU,4.9,0.3,3.3,0.1,1
 Jasen Green,CREI,4.9,1.0,3.2,0.3,1
 Noah Robledo,COLU,4.9,0.5,2.5,1.1,1
@@ -3216,6 +3216,7 @@ Dyondre Dominguez,ARST,4.9,0.7,2.5,0.7,1
 Ryan Abelman,NAU,4.9,0.9,2.2,1.0,1
 Ben Defty,BU,4.9,0.5,2.6,0.0,1
 Mikah Ballew,PORT,4.9,0.8,1.4,0.6,1
+Jordan Davis,ILST,4.9,0.8,3.9,1.1,1
 Camaren Sparrow,COPP,4.9,1.0,2.8,0.4,1
 Jaylin Jackson-Posey,TXSO,4.9,1.3,2.4,0.9,1
 Jacob Beccles,COR,4.9,2.0,1.4,0.5,1
@@ -3314,11 +3315,11 @@ TJ Gadsden,HOF,4.6,0.7,3.2,0.8,1
 Cam Estevez,URI,4.5,0.7,1.1,1.0,1
 Camden Heide,PUR,4.5,0.4,3.6,0.8,1
 Arnas Sakenis,SIUE,4.5,0.7,3.8,0.0,1
-Sean Cusano,UTC,4.5,0.8,3.8,0.6,1
 Glenn Taylor Jr.,OU,4.5,1.0,2.5,0.6,1
 Tre Green,MTSU,4.5,0.3,1.6,0.9,1
 Jordan Rogers,NJIT,4.5,1.5,4.2,0.5,1
 Puoch Dobuol,SOU,4.5,0.5,3.3,0.3,1
+Sean Cusano,UTC,4.5,0.8,3.7,0.6,1
 Wilhelm Breidenbach,WASH,4.5,0.4,2.4,0.7,1
 Booker Cusaac,NBRY,4.5,0.5,4.0,0.0,1
 Breon Pass,NCSU,4.5,1.1,1.3,0.8,1
@@ -3374,7 +3375,6 @@ JT Warren,NWST,4.5,0.4,2.6,0.4,1
 Connor Dubsky,UNCA,4.5,0.4,0.5,1.0,1
 Randy Brady,USA,4.5,2.2,3.5,0.6,1
 Sheridan Sharp,SIU,4.5,2.3,1.5,0.2,1
-Corey Thomas,BRAD,4.5,0.6,3.2,0.5,1
 Ladji Dembele,IOWA,4.5,0.6,3.5,0.4,1
 Elijah Johnson,UVAL,4.5,0.7,2.8,0.0,1
 Shey Eberwein,SDAK,4.5,1.0,1.6,0.4,1
@@ -3397,6 +3397,7 @@ Caleb Brown,ST. A,4.4,1.2,2.6,0.4,1
 Marco Brown,EAS,4.4,1.0,1.0,0.8,1
 Zavier Fitch,WAG,4.4,0.8,4.1,0.0,1
 Mayuom Buom,SDAK,4.4,0.3,2.1,0.0,1
+Corey Thomas,BRAD,4.4,0.6,3.1,0.5,1
 Tyrel Bladen,NORF,4.4,0.5,3.4,0.0,1
 Mason Gillis,DUKE,4.4,0.8,2.7,0.9,1
 Darius DeAveiro,VAL,4.4,2.9,2.8,0.8,1
@@ -3409,6 +3410,7 @@ Dylan Williams,PENN,4.4,1.2,1.2,0.9,1
 Brayden Crump,ELON,4.4,0.3,3.1,0.3,1
 Chas Kelley III,BC,4.4,2.0,1.2,0.7,1
 Ethan Pickett,UIC,4.4,0.7,2.7,0.3,1
+Caden Boser,ILST,4.4,0.9,1.6,0.8,1
 Oakland Fort,NAU,4.3,1.8,1.7,0.6,1
 Ola Ajiboye,TNTC,4.3,1.3,3.4,0.0,1
 Will Spriggs,STA,4.3,1.7,2.3,0.0,1
@@ -3443,7 +3445,6 @@ Brett Decker Jr.,LIB,4.3,0.4,0.6,0.9,1
 Jace Posey,TCU,4.3,0.4,2.3,0.3,1
 Brentay Noel,SOU,4.3,0.7,3.8,0.1,1
 Niklas Polonowski,PENN,4.3,0.4,1.6,1.0,1
-Caden Boser,ILST,4.2,0.9,1.6,0.8,1
 Nika Metskhvarishvili,CLT,4.2,0.5,2.5,0.6,1
 Mason Ritter,COLU,4.2,0.8,2.0,0.0,1
 Kayden Carter,WIU,4.2,0.8,2.6,0.0,1
@@ -3491,7 +3492,6 @@ Marshal Destremau,RGV,4.1,0.9,3.8,0.5,1
 Porter Bazil,HCU,4.1,0.3,1.8,0.6,1
 Wilguens Jr. Exacte,UTAH,4.1,0.7,4.2,0.5,1
 Kanaan Carlyle,IU,4.0,1.2,1.6,0.7,1
-Lamin Sabally,UIW,4.0,0.5,3.3,0.0,1
 Ife West-Ingram,RID,4.0,0.9,2.6,0.0,1
 Dailliss Cox,CHST,4.0,0.4,2.9,0.1,1
 Chase McKey,WCU,4.0,0.8,3.8,0.0,1
@@ -3692,6 +3692,7 @@ Isaiah Jackson,DRKE,3.8,1.9,3.4,0.2,1
 Varick Lewis,LBSU,3.8,0.3,0.6,0.8,1
 Rikus Schulte,UCR,3.8,0.5,3.3,0.2,1
 Jayden Cooper,USA,3.8,0.7,1.0,0.7,1
+Connor Dillon,BRAD,3.8,0.4,1.4,0.7,1
 Aaron McBride,LMU,3.8,1.0,2.9,0.0,1
 Oscar Berry,UNF,3.8,1.1,2.2,0.9,1
 Ring Nyeri,KC,3.8,0.4,2.3,0.7,1
@@ -3718,7 +3719,6 @@ Jaden Martin,MORG,3.8,1.2,3.1,0.1,1
 Bryant Selebangue,MCN,3.7,0.5,4.3,0.0,1
 TJ Biel,SEMO,3.7,0.4,2.6,0.4,1
 Isaac Lindsey,SDST,3.7,0.6,1.0,0.9,1
-Makai Richards,UTC,3.7,0.6,1.8,0.1,1
 David Thomas,DEP,3.7,1.5,1.3,0.4,1
 Messiah Jones,TOW,3.7,1.1,3.9,0.1,1
 Jed Miller,MTST,3.7,2.2,2.8,0.6,1
@@ -3727,12 +3727,14 @@ Julian Bowie,BOIS,3.7,0.8,1.5,0.8,1
 Isaiah Skinner,UPST,3.7,0.8,2.8,0.6,1
 Jah Quinones,MER,3.7,1.4,2.0,0.5,1
 Nic Book,UPST,3.7,0.7,4.0,0.0,1
+Rondel Walker,UNT,3.7,0.9,3.7,0.6,1
 Macon Emory,DEL,3.7,0.6,2.7,0.7,1
 Blake Barker,ARMY,3.7,1.1,2.9,0.7,1
 Miles Webb,SFPA,3.7,1.0,2.8,0.1,1
 Mihailo Boskovic,BYU,3.7,0.4,1.8,0.5,1
 Trent Perry,UCLA,3.7,0.7,1.7,0.4,1
 Ethan Morton,CSU,3.7,2.2,3.2,0.1,1
+Makai Richards,UTC,3.7,0.5,1.8,0.1,1
 Dok Muordar,MONM,3.7,0.4,3.5,0.0,1
 Isaac Johnson,USU,3.7,0.3,1.7,0.6,1
 Shane Peterson,MO,3.7,0.3,1.7,1.0,1
@@ -3771,7 +3773,6 @@ Nate Brafford,GASO,3.6,0.6,2.2,0.7,1
 Cam'Ron Brown,COPP,3.6,2.6,1.9,0.1,1
 Arrinten Page,CIN,3.5,0.4,2.3,0.1,1
 Shahid Muhammad,MASS,3.5,0.0,2.2,0.0,1
-Rondel Walker,UNT,3.5,0.9,3.7,0.6,1
 Xavier Amos,WISC,3.5,0.4,1.8,0.5,1
 Jahseem Felton,HALL,3.5,0.7,1.3,0.3,1
 Kelechi Okworogwo,NCCU,3.5,0.2,2.2,0.1,1
@@ -3833,9 +3834,9 @@ Luke Gray,ORU,3.4,0.2,2.6,0.1,1
 Elijah Thomas,EWU,3.4,0.5,1.2,0.7,1
 K.J. Hymes,NEV,3.4,0.3,2.4,0.0,1
 Ishan Sharma,UVA,3.4,0.8,1.3,0.8,1
+Ebrima Dibba,CLE,3.4,4.0,3.1,0.2,1
 Can Kaan Turgut,FIT,3.4,0.8,2.0,0.6,1
 Tristian Pretlow,ST. A,3.4,0.2,2.4,0.6,1
-Ebrima Dibba,CLE,3.4,4.1,3.1,0.2,1
 Caleb Embeya,TOW,3.4,0.3,3.9,0.0,1
 DJ Nix,COR,3.4,0.3,1.8,0.6,1
 Darlinstone Dubar,TENN,3.4,0.5,1.8,0.5,1
@@ -3881,8 +3882,10 @@ Mambourou Mara,UND,3.2,0.4,1.8,0.4,1
 Trey Hicks,LONG,3.2,0.2,1.7,0.0,1
 Josh Gray,MIZ,3.2,0.6,5.3,0.0,1
 Dillan Baker,NAU,3.2,0.5,1.8,0.5,1
+Latif Diouf,UTC,3.2,1.0,2.6,0.0,1
 Aiden Sherrell,ALA,3.2,0.4,2.9,0.3,1
 Ze'Rik Onyema,TEX,3.2,0.4,2.5,0.0,1
+Isaac Abidde,CLE,3.2,0.3,2.0,0.3,1
 Di'Andre Howell-South,WAG,3.2,1.1,2.2,0.2,1
 Donovan Murphy,FIT,3.2,0.4,4.0,0.0,1
 Kean Webb,USD,3.2,0.3,2.2,0.0,1
@@ -3894,7 +3897,6 @@ Kernan Bundy,IONA,3.2,1.0,2.7,0.5,1
 Dylan James,UGA,3.2,0.6,2.2,0.3,1
 AD Diedhiou,ULM,3.2,1.0,4.1,0.0,1
 Andrew Ball,MONM,3.2,0.2,2.8,0.3,1
-Latif Diouf,UTC,3.2,1.0,2.4,0.0,1
 Kadar Waller,CSUB,3.2,1.8,1.8,0.2,1
 Even Brauns,IOWA,3.2,0.5,1.1,0.0,1
 Max Frazier,CCSU,3.1,0.5,2.6,0.0,1
@@ -3903,7 +3905,6 @@ Angelo Ciaravino,NU,3.1,0.5,1.8,0.3,1
 Thierno Sylla,SFA,3.1,0.4,2.6,0.3,1
 Braylhan Thomas,GASO,3.1,0.7,2.5,0.4,1
 Braxton Meah,NEB,3.1,0.7,3.5,0.0,1
-Isaac Abidde,CLE,3.1,0.3,1.9,0.2,1
 Raymond Somerville,DSU,3.1,0.3,2.1,0.0,1
 Henry Abraham,CCU,3.1,1.2,1.9,0.8,1
 Noah Barnett,UVM,3.1,0.3,2.4,0.0,1
@@ -3919,7 +3920,6 @@ Kyle Edison,SELA,3.1,0.6,1.6,0.6,1
 Jeremiah Evans,UL,3.1,0.2,2.1,0.0,1
 Wyatt Nausadis,AMER,3.1,0.9,1.1,0.5,1
 Darius Duffy,MILW,3.0,0.2,2.4,0.0,1
-Patrick Suemnick,OKST,3.0,0.3,2.0,0.0,1
 Diogo Seixas,CARK,3.0,0.8,2.3,0.3,1
 Rick Issanza,LMU,3.0,0.2,3.1,0.0,1
 Devaunte Robinson,ALICE,3.0,0.0,1.0,0.0,1
@@ -4124,6 +4124,7 @@ Jake Davis,ILL,3.0,0.3,1.4,0.7,1
 Rodolfo Bolis,EIU,3.0,1.2,4.0,0.0,1
 David Wilkerson,YSU,3.0,0.8,1.3,0.3,1
 Jorge Moreno,SIU,3.0,0.4,2.5,0.0,1
+Patrick Suemnick,OKST,2.9,0.3,1.9,0.0,1
 Villiam Garcia Adsten,DREX,2.9,0.7,2.2,0.4,1
 Tye Dorset,MRMK,2.9,0.7,0.8,0.5,1
 Trey Horton,UTEP,2.9,0.5,1.3,0.7,1
@@ -4196,7 +4197,6 @@ Collin Chandler,UK,2.7,0.7,1.0,0.6,1
 Fredrick King,CREI,2.7,0.1,1.3,0.0,1
 Emmanuel Okorafor,HALL,2.7,0.2,2.2,0.0,1
 Pape N'Diaye,UNLV,2.7,0.1,3.7,0.1,1
-KJ Debrick,CLE,2.7,0.3,2.2,0.1,1
 Kent Jackson,JAX,2.7,0.5,0.6,0.8,1
 Jacob Conner,DAY,2.7,0.3,1.1,0.5,1
 Travis Perry,UK,2.7,0.6,0.8,0.6,1
@@ -4220,6 +4220,7 @@ Zahree Harrison,COPP,2.6,1.1,1.2,0.1,1
 David Tubek,HALL,2.6,0.3,1.7,0.4,1
 Joshua DeCady,HOF,2.6,0.1,1.7,0.1,1
 Carnegie Johnson,NAVY,2.6,0.7,0.9,0.5,1
+KJ Debrick,CLE,2.6,0.3,2.2,0.1,1
 Isaiah Caldwell,ARMY,2.6,0.8,2.6,0.2,1
 Damarius Owens,MARQ,2.6,0.5,1.2,0.4,1
 Jojo Anderson,IDHO,2.6,1.6,1.2,0.3,1
@@ -4334,6 +4335,7 @@ Gabe Pickens,NMSU,2.4,1.9,0.9,0.3,1
 Avery Felts,ARST,2.4,0.6,1.2,0.8,1
 Jayden Ross,CONN,2.4,0.8,1.5,0.3,1
 Jason Rivera-Torres,SF,2.4,0.4,2.3,0.2,1
+Tristen Guillouette,FGCU,2.4,0.2,2.0,0.0,1
 Blaize Sagna,STET,2.4,1.3,2.0,0.3,1
 Chuck Bailey III,NEV,2.4,0.3,1.3,0.3,1
 Michael Griffin,WGA,2.3,0.7,2.3,0.1,1
@@ -4373,7 +4375,6 @@ Ronald Ducros,DALLA,2.3,0.5,3.8,0.0,1
 Kevin Enriquez,BTHD,2.3,0.3,0.8,0.8,1
 Mateo Hamilton,LA SI,2.3,0.3,0.3,0.3,1
 Malick Diallo,TCU,2.2,0.2,2.7,0.0,1
-Marcus Glover,UIW,2.2,0.6,4.7,0.0,1
 Egan Shields,UNCO,2.2,0.3,1.4,0.0,1
 Andy Stefonowicz,NDSU,2.2,1.9,1.3,0.5,1
 Justin Abson,UGA,2.2,0.8,2.1,0.0,1
@@ -4387,6 +4388,7 @@ Dante Kearse,CIT,2.2,0.3,1.3,0.4,1
 Martin Kawa,MRST,2.2,0.3,0.6,0.5,1
 Duncan Reid,SUU,2.2,0.3,0.8,0.6,1
 Kole Williams,FIU,2.2,0.3,1.2,0.3,1
+Marcus Glover,UIW,2.1,0.6,4.6,0.0,1
 Ubongabasi Etim,CARK,2.1,0.3,3.0,0.0,1
 Eunique Rink,HAMP,2.1,0.2,1.0,0.0,1
 James O'Donnell,SF,2.1,0.5,2.6,0.0,1
@@ -4404,12 +4406,11 @@ Jahvin Carter,PSU,2.1,0.7,0.7,0.4,1
 Jon O'Neill,UNH,2.1,0.3,2.3,0.0,1
 Cole McCabe,RID,2.1,0.3,1.5,0.0,1
 Josiah Moseley,VILL,2.1,0.1,2.4,0.0,1
+Darren Williams,FGCU,2.1,0.2,1.0,0.6,1
 KJ Thomas,UTEP,2.1,0.6,0.6,0.1,1
-Tristen Guillouette,FGCU,2.1,0.1,1.8,0.0,1
 David Idada,SEMO,2.1,0.2,2.7,0.0,1
 Ben Bowen,DEN,2.0,0.5,0.7,0.1,1
 Will Heimbrodt,SEA,2.0,0.5,2.0,0.1,1
-Darren Williams,FGCU,2.0,0.1,0.9,0.6,1
 Mason Jones,BALL,2.0,0.6,2.3,0.2,1
 Pierce Bazil,HCU,2.0,0.2,0.7,0.2,1
 Aaron Smith,AAMU,2.0,0.5,2.0,0.1,1
@@ -4783,6 +4784,7 @@ Richie Springs,QUIN,1.6,0.3,1.4,0.0,1
 Chika Nduka,MTST,1.6,1.0,1.0,0.0,1
 Ruben Prey,SJU,1.6,0.3,1.5,0.1,1
 Jordy Barnes,USU,1.6,2.1,0.8,0.3,1
+Mintautas Mockus,UIW,1.6,0.5,2.4,0.1,1
 Justin Pippen,MICH,1.6,0.6,0.7,0.3,1
 Parby Kabamba,MRST,1.6,0.2,1.6,0.3,1
 Parker Gerrits,WSU,1.5,0.9,1.0,0.3,1
@@ -4848,7 +4850,6 @@ Carson Kraiza,AQU,1.5,0.0,0.5,0.5,1
 Mohamed Musa,SOUTH,1.5,2.0,1.5,0.5,1
 Daniil Glazkov,LUC,1.5,0.2,0.6,0.2,1
 Spencer Mahoney,CAL,1.5,0.2,1.0,0.3,1
-Mintautas Mockus,UIW,1.5,0.5,2.2,0.1,1
 Eduardo Klafke,MISS,1.5,0.4,1.1,0.4,1
 Logan Suber,LIP,1.5,0.8,1.1,0.2,1
 Baraka Okojie,MEM,1.5,1.2,1.2,0.2,1
