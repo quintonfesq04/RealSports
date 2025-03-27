@@ -27,6 +27,7 @@ import urllib.parse
 import pandas as pd
 import requests
 import numpy as np
+import unicodedata
 
 # Selenium & BeautifulSoup imports for PSP scraping
 from selenium import webdriver
@@ -77,7 +78,9 @@ STAT_CATEGORIES_MLB = {
     "H": "H",
     "AVG": "AVG",
     "OBP": "OBP",
-    "OPS": "OPS"
+    "OPS": "OPS",
+    "TOTAL BASES": "TB",
+    "STRIKEOUTS": "SO"
 }
 
 # ----------------------------
@@ -159,7 +162,8 @@ def clean_header(header):
         mid = len(header) // 2
         if header[:mid] == header[mid:]:
             header = header[:mid]
-    keys = sorted(["PLAYER", "TEAM", "RBI", "AVG", "OBP", "OPS", "AB", "R", "H", "G"], key=len, reverse=True)
+    # Include "SO" in the keys list.
+    keys = sorted(["PLAYER", "TEAM", "RBI", "AVG", "OBP", "OPS", "AB", "R", "H", "G", "SO"], key=len, reverse=True)
     for key in keys:
         if key.lower() in header.lower():
             return key
@@ -176,6 +180,7 @@ def deduplicate_token(token):
     return token
 
 def fix_mlb_player_name(name):
+    # Process suffixes and remove boundary digits and extra whitespace.
     name = re.sub(r'\b(Jr|SR|III|IV|V)[\.]?\b', r' \1 ', name, flags=re.IGNORECASE)
     name = re.sub(r'^\d+', '', name)
     name = re.sub(r'\d+$', '', name)
@@ -222,7 +227,12 @@ def fix_mlb_player_name(name):
         earlier = [t.lower() for t in final_tokens[:-1]]
         if final_tokens[-1].lower() in earlier:
             final_tokens = final_tokens[:-1]
-    return " ".join(final_tokens)
+    result = " ".join(final_tokens)
+    # Additional fixes for specific problematic cases:
+    result = result.replace("De La CruzDe La Cruz", "De La Cruz")
+    result = result.replace("JoJ ", "Jo ")
+    result = result.replace("GimenezGiménez", "Gimenez")
+    return result
 
 # ----------------------------
 # NHL Stat Calculation Functions
@@ -359,36 +369,67 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
     integrated_data = update_traded_players(integrated_data, player_col="Player", team_col="Team")
     return integrated_data
 
-# ---------- MLB Integration ----------
+# ---------- MLB Batting Integration ----------
 def load_and_clean_mlb_stats():
-    file_path = os.path.join(BASE_DIR, "mlb_stats.csv")
+    """
+    Loads the new 2024 MLB stats from "mlb_2024_stats.csv", cleans headers and player names,
+    then merges with the spring training stats from "mlb_stats.csv" to supply TEAM data.
+    """
+    # Load new season stats.
+    stats_file_path = os.path.join(BASE_DIR, "mlb_2024_stats.csv")
     try:
-        df = pd.read_csv(file_path)
+        df_new = pd.read_csv(stats_file_path)
     except Exception as e:
-        print(f"Error loading MLB stats from {file_path}: {e}")
+        print(f"Error loading MLB stats from {stats_file_path}: {e}")
         return pd.DataFrame()
-    if df.empty:
-        print(f"Error: The file {file_path} is empty.")
+    if df_new.empty:
+        print(f"Error: The file {stats_file_path} is empty.")
         return pd.DataFrame()
-    raw_cols = [clean_header(col) for col in df.columns]
-    df.columns = raw_cols
-    df = df.loc[:, ~df.columns.duplicated()]
+    # Clean headers.
+    df_new.columns = [clean_header(col) for col in df_new.columns]
+    df_new = df_new.loc[:, ~df_new.columns.duplicated()]
     for col in DESIRED_MLB_COLS:
-        if col not in df.columns:
-            df[col] = None
-    df = df.reindex(columns=DESIRED_MLB_COLS)
-    df["PLAYER"] = df["PLAYER"].apply(fix_mlb_player_name)
-    if "TEAM" not in df.columns:
-        print("Error: 'TEAM' column not found in the MLB stats CSV.")
-        return pd.DataFrame()
-    df["TEAM"] = df["TEAM"].astype(str).apply(normalize_team_name)
-    return df
+        if col not in df_new.columns:
+            df_new[col] = None
+    df_new = df_new.reindex(columns=DESIRED_MLB_COLS)
+    # Normalize player names using your fix_mlb_player_name function.
+    df_new["PLAYER"] = df_new["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
+    
+    # Load spring training stats to supply TEAM info.
+    spring_file_path = os.path.join(BASE_DIR, "mlb_stats.csv")
+    try:
+        df_spring = pd.read_csv(spring_file_path)
+        df_spring.columns = [clean_header(col) for col in df_spring.columns]
+        df_spring = df_spring.loc[:, ~df_spring.columns.duplicated()]
+    except Exception as e:
+        print(f"Warning: Could not load spring training stats: {e}")
+        return df_new
+    
+    if "PLAYER" in df_spring.columns and "TEAM" in df_spring.columns:
+        df_spring["PLAYER"] = df_spring["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
+        df_spring["TEAM"] = df_spring["TEAM"].astype(str).apply(normalize_team_name)
+        # Merge to get TEAM info.
+        df_merged = df_new.merge(df_spring[["PLAYER", "TEAM"]], on="PLAYER", how="left", suffixes=("", "_spring"))
+        # Use TEAM from new stats if present; otherwise, fallback to spring training.
+        df_merged["TEAM"] = df_merged.apply(
+            lambda row: row["TEAM"] if row["TEAM"] not in [None, "", "Unknown"] else row["TEAM_spring"],
+            axis=1
+        )
+        df_merged.drop(columns=["TEAM_spring"], inplace=True)
+        return df_merged
+    else:
+        print("Warning: Spring training stats does not contain PLAYER or TEAM columns.")
+        return df_new
 
 def integrate_mlb_data():
+    """
+    Integrates MLB stats and injury data. Injured players (or those on the traded list)
+    are removed, and the resulting DataFrame contains only healthy players.
+    """
     try:
         df_stats = load_and_clean_mlb_stats()
         if "TEAM" not in df_stats.columns:
-            print("Error: 'TEAM' column not found in the MLB stats CSV.")
+            print("Error: 'TEAM' column not found in the MLB stats data.")
             return pd.DataFrame()
     except Exception as e:
         print("Error loading and cleaning MLB stats:", e)
@@ -407,6 +448,10 @@ def integrate_mlb_data():
     return healthy_df[DESIRED_MLB_COLS]
 
 def analyze_mlb_noninteractive(df, teams, stat_choice, banned_stat=None):
+    """
+    Non-interactively analyze MLB stats by filtering by teams (if provided), sorting by the chosen stat,
+    and grouping players into green, yellow, and red categories.
+    """
     if "TEAM" not in df.columns:
         return "❌ 'TEAM' column not found in the DataFrame."
     if teams:
@@ -432,13 +477,16 @@ def analyze_mlb_noninteractive(df, teams, stat_choice, banned_stat=None):
     yellow_list = players_to_use[0:3]
     green_list = players_to_use[3:6]
     red_list = players_to_use[6:9]
-    # Order: green, then yellow, then red.
     output = "🟢 " + ", ".join(green_list) + "\n"
     output += "🟡 " + ", ".join(yellow_list) + "\n"
     output += "🔴 " + ", ".join(red_list)
     return output
 
 def analyze_mlb_by_team_interactive(df, mapped_stat):
+    """
+    Interactive MLB analysis: prompts the user to provide team(s) to filter,
+    then sorts and displays players grouped into green, yellow, and red.
+    """
     if df.empty:
         print("MLB stats CSV not found or empty.")
         return
@@ -462,13 +510,154 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
             players_to_use = non_banned
         else:
             players_to_use = non_banned[:9]
-        # Order: green, then yellow, then red.
         yellow = players_to_use[0:3]
         green = players_to_use[3:6]
         red = players_to_use[6:9]
         print("🟢 " + ", ".join(green))
         print("🟡 " + ", ".join(yellow))
         print("🔴 " + ", ".join(red))
+
+# ---------- MLB Pitching Integration ----------
+def load_and_clean_mlb_pitching_stats():
+    """
+    Loads MLB pitching stats from "mlb_pitching_2024_stats.csv", cleans headers and player names,
+    then merges with the spring training pitching stats from "mlb_pitching_spring_stats.csv" to supply TEAM data.
+    """
+    # Load new (2024) pitching stats.
+    stats_file_path = os.path.join(BASE_DIR, "mlb_pitching_2024_stats.csv")
+    try:
+        df_new = pd.read_csv(stats_file_path)
+    except Exception as e:
+        print(f"Error loading MLB pitching stats from {stats_file_path}: {e}")
+        return pd.DataFrame()
+    if df_new.empty:
+        print(f"Error: The file {stats_file_path} is empty.")
+        return pd.DataFrame()
+    # Clean headers.
+    df_new.columns = [clean_header(col) for col in df_new.columns]
+    df_new = df_new.loc[:, ~df_new.columns.duplicated()]
+    # Ensure a TEAM column exists.
+    if "TEAM" not in df_new.columns:
+        df_new["TEAM"] = ""
+    # Rename "K" to "SO" if necessary.
+    if "K" in df_new.columns and "SO" not in df_new.columns:
+        df_new.rename(columns={"K": "SO"}, inplace=True)
+    # Normalize player names.
+    if "PLAYER" in df_new.columns:
+        df_new["PLAYER"] = df_new["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
+    else:
+        print("Warning: 'PLAYER' column not found in MLB pitching stats.")
+        return df_new
+
+    # Load spring training pitching stats for TEAM mapping.
+    spring_file_path = os.path.join(BASE_DIR, "mlb_pitching_spring_stats.csv")
+    try:
+        df_spring = pd.read_csv(spring_file_path)
+        df_spring.columns = [clean_header(col) for col in df_spring.columns]
+        df_spring = df_spring.loc[:, ~df_spring.columns.duplicated()]
+    except Exception as e:
+        print(f"Warning: Could not load MLB pitching spring stats: {e}")
+        return df_new
+    if "PLAYER" in df_spring.columns and "TEAM" in df_spring.columns:
+        df_spring["PLAYER"] = df_spring["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
+        df_spring["TEAM"] = df_spring["TEAM"].astype(str).apply(normalize_team_name)
+        # If spring training stats use "K" instead of "SO", rename them too.
+        if "K" in df_spring.columns and "SO" not in df_spring.columns:
+            df_spring.rename(columns={"K": "SO"}, inplace=True)
+        # Merge on PLAYER to pull TEAM info.
+        df_merged = df_new.merge(df_spring[["PLAYER", "TEAM"]], on="PLAYER", how="left", suffixes=("", "_spring"))
+        # Use TEAM from new stats if present; otherwise, fallback to spring training.
+        df_merged["TEAM"] = df_merged.apply(
+            lambda row: row["TEAM"] if row["TEAM"] not in [None, "", "Unknown"] else row["TEAM_spring"],
+            axis=1
+        )
+        df_merged.drop(columns=["TEAM_spring"], inplace=True)
+        return df_merged
+    else:
+        print("Warning: Spring training pitching stats does not contain PLAYER or TEAM columns.")
+        return df_new
+
+def integrate_mlb_pitching_data():
+    """
+    Integrates MLB pitching stats and injury data. Injured pitchers (or those on the traded list)
+    are removed, and the resulting DataFrame contains only healthy pitchers.
+    """
+    try:
+        df_stats = load_and_clean_mlb_pitching_stats()
+        if "TEAM" not in df_stats.columns:
+            print("Error: 'TEAM' column not found in the MLB pitching stats data.")
+            return pd.DataFrame()
+    except Exception as e:
+        print("Error loading and cleaning MLB pitching stats:", e)
+        return pd.DataFrame()
+    inj_path = os.path.join(BASE_DIR, "mlb_injuries.csv")
+    try:
+        df_inj = pd.read_csv(inj_path)
+    except Exception as e:
+        print(f"Error loading mlb_injuries.csv from {inj_path}: {e}")
+        return df_stats
+    df_inj["playerName"] = df_inj["playerName"].str.strip()
+    df_inj["playerName_clean"] = df_inj["playerName"].apply(fix_mlb_player_name)
+    injured_names = set(df_inj["playerName_clean"].dropna().unique())
+    healthy_df = df_stats[~df_stats["PLAYER"].isin(injured_names)].copy()
+    healthy_df = update_traded_players(healthy_df, player_col="PLAYER", team_col="TEAM")
+    return healthy_df
+
+def analyze_mlb_pitching_noninteractive_ignore_stat(df, teams):
+    """
+    Non-interactively analyzes MLB pitching stats by simply taking the top 9 rows
+    from the dataset (ignoring the actual stat value) and grouping them into three groups.
+    This is useful when the "SO" column is unreliable because of position players pitching.
+    """
+    if "TEAM" not in df.columns:
+        return "❌ 'TEAM' column not found in the DataFrame."
+    if teams:
+        team_list = ([normalize_team_name(t) for t in teams.split(",") if t.strip()]
+                     if isinstance(teams, str) else [normalize_team_name(t) for t in teams])
+        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+    else:
+        filtered_df = df.copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    # Simply take the first 9 rows.
+    top9 = filtered_df.head(9)
+    players = top9["PLAYER"].tolist()
+    # Divide into three groups.
+    green = players[0:3]
+    yellow = players[3:6]
+    red = players[6:9]
+    output = "🟢 " + ", ".join(green) + "\n"
+    output += "🟡 " + ", ".join(yellow) + "\n"
+    output += "🔴 " + ", ".join(red)
+    return output
+
+def analyze_mlb_pitching_noninteractive_ignore_stat(df, teams):
+    """
+    Non-interactively analyzes MLB pitching stats by simply taking the top 9 rows
+    from the dataset (ignoring the actual stat value) and grouping them into three groups.
+    This is useful when the "SO" column is unreliable because of position players pitching.
+    """
+    if "TEAM" not in df.columns:
+        return "❌ 'TEAM' column not found in the DataFrame."
+    if teams:
+        team_list = ([normalize_team_name(t) for t in teams.split(",") if t.strip()]
+                     if isinstance(teams, str) else [normalize_team_name(t) for t in teams])
+        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+    else:
+        filtered_df = df.copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    # Simply take the first 9 rows.
+    top9 = filtered_df.head(9)
+    players = top9["PLAYER"].tolist()
+    # Divide into three groups.
+    green = players[0:3]
+    yellow = players[3:6]
+    red = players[6:9]
+    output = "🟢 " + ", ".join(green) + "\n"
+    output += "🟡 " + ", ".join(yellow) + "\n"
+    output += "🔴 " + ", ".join(red)
+    return output
 
 # ---------- NHL PSP Analyzer (from Universal file) ----------
 def analyze_nhl_psp(file_path, stat_key):
@@ -531,53 +720,78 @@ def analyze_nhl_psp(file_path, stat_key):
 def analyze_cbb_psp_notion(file_path, stat_key, teams=None):
     """
     Analyze a CBB PSP CSV by reading the file, optionally filtering by team,
-    and then sorting players based on the provided stat.
+    and then grouping players based on the provided stat.
+    
+    If the stat column contains no valid numeric data (all NaN), then load the integrated data
+    from 'cbb_players_stats.csv' and use that for grouping.
     """
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
         return f"Error reading CBB PSP CSV: {e}"
-    
-    # Normalize column names
+
+    # Normalize column names to uppercase.
     df.columns = [col.upper() for col in df.columns]
-    stat_key = stat_key.upper()
-    
-    if stat_key not in df.columns:
-        return f"Error: Column '{stat_key}' not found in CBB PSP CSV."
-    
-    try:
-        df[stat_key] = pd.to_numeric(df[stat_key].replace({',': ''}, regex=True), errors='coerce')
-    except Exception as e:
-        return f"Error converting stat column: {e}"
-    
-    # Optionally filter by teams if TEAM column exists
-    if teams and "TEAM" in df.columns:
-        team_list = [t.strip().upper() for t in teams if t.strip()]
-        df = df[df["TEAM"].apply(lambda x: x.strip().upper() in team_list)]
-    
-    # Sort by the chosen stat in descending order
-    sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
-    
-    # Determine the player column flexibly.
-    if "NAME" in sorted_df.columns:
-        player_col = "NAME"
-    elif "PLAYER" in sorted_df.columns:
+
+    # Determine which column to use for player names.
+    if "PLAYER" in df.columns:
         player_col = "PLAYER"
+    elif "NAME" in df.columns:
+        player_col = "NAME"
     else:
-        return "Player column not found in CSV."
+        return "Error: No player column found in PSP CSV."
+
+    stat_key = stat_key.upper()
+    if stat_key not in df.columns:
+        return f"Error: Column '{stat_key}' not found in CBB PSP CSV. Available columns: {df.columns.tolist()}"
+
+    # Attempt to convert the stat column to numeric.
+    df[stat_key] = pd.to_numeric(df[stat_key].replace({',': ''}, regex=True), errors='coerce')
+
+    # If the stat column is empty (all NaN), fall back to using integrated CBB data.
+    if df[stat_key].dropna().empty:
+        print("DEBUG: Stat column has no valid data. Falling back to integrated CBB data.")
+        try:
+            int_file = os.path.join(BASE_DIR, "cbb_players_stats.csv")
+            df_int = pd.read_csv(int_file)
+            df_int.columns = [col.upper() for col in df_int.columns]
+            # Use the integrated file completely.
+            df = df_int.copy()
+            player_col = "PLAYER"
+        except Exception as e:
+            return f"Error loading integrated CBB data: {e}"
+
+    # If team filtering is requested, ensure we have a TEAM column.
+    if teams:
+        if "TEAM" not in df.columns:
+            try:
+                int_file = os.path.join(BASE_DIR, "cbb_players_stats.csv")
+                df_int = pd.read_csv(int_file)
+                df_int.columns = [col.upper() for col in df_int.columns]
+                if "PLAYER" in df_int.columns and "TEAM" in df_int.columns:
+                    team_map = dict(zip(df_int["PLAYER"].str.upper(), df_int["TEAM"].str.upper()))
+                    df["TEAM"] = df[player_col].apply(lambda x: team_map.get(x.strip().upper(), ""))
+                else:
+                    df["TEAM"] = ""
+            except Exception as e:
+                print(f"Warning: Could not load team mapping: {e}")
+                df["TEAM"] = ""
+        team_list = [t.strip().upper() for t in teams if t.strip()]
+        df = df[df["TEAM"].apply(lambda x: x.strip().upper() if isinstance(x, str) else "")\
+              .isin(team_list)]
     
-    # Debug: Print sorted players for the given stat
-    print(f"--- Sorted by {stat_key} ---")
-    print(sorted_df[[player_col, stat_key]])
-    
-    players = sorted_df[player_col].tolist()
+    if df.empty:
+        return "No players found."
+
+    # For grouping, we will use the order of the rows in the DataFrame.
+    players = df[player_col].tolist()
     if not players:
         return "No players found."
-    
-    # Dynamic grouping using numpy; for small dataset, it may not be as meaningful.
+
+    # Divide players into three groups by row order.
     groups = np.array_split(players, 3)
     green, yellow, red = [list(g) for g in groups]
-    
+
     output = f"🟢 {', '.join(green)}\n"
     output += f"🟡 {', '.join(yellow)}\n"
     output += f"🔴 {', '.join(red)}"
@@ -1155,6 +1369,9 @@ def mark_row_as_processed_sync(page_id):
     except Exception as e:
         print(f"Error marking page {page_id} as processed:", e)
 
+import os
+import pandas as pd
+
 def psp_scrape_main():
     rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
     if not rows:
@@ -1395,8 +1612,23 @@ def run_universal_sports_analyzer_programmatic(row):
             stat_key = row["stat"].upper()
             file_path = os.path.join(PSP_FOLDER, f"cbb_{row['stat'].lower().replace(' ', '_')}_psp_data.csv")
             return analyze_cbb_psp_notion(file_path, stat_key, teams)
-        else:
-            return "PSP processing not configured for this sport."
+        elif sport_upper == "MLB":
+            raw_stat = row["stat"].strip().upper()
+            if raw_stat == "":
+                stat_key = "RBI"  # default batting stat if none provided
+            # If the raw stat indicates strikeouts, use pitcher integration (ignoring the stat value).
+            elif "STRIKEOUT" in raw_stat or raw_stat in {"K", "SO", "STRIKEOUTS"}:
+                stat_key = "SO"
+                df_pitchers = integrate_mlb_pitching_data()
+                # Instead of sorting by the SO column (which may be contaminated by position players pitching),
+                # simply grab the top 9 rows from the pitcher CSV.
+                return analyze_mlb_pitching_noninteractive_ignore_stat(df_pitchers, teams="")
+            else:
+                stat_key = clean_header(raw_stat).upper()
+                if stat_key in {"TB", "TOTAL BASES"}:
+                    stat_key = "OBP"
+                df_batters = integrate_mlb_data()
+                return analyze_mlb_noninteractive(df_batters, teams="", stat_choice=stat_key, banned_stat=stat_key)
     else:
         if sport_upper == "NBA":
             nba_stats_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_player_stats.csv")
