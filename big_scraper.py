@@ -385,7 +385,7 @@ def merge_nba_stats_with_injuries(stats_df, injuries_df):
 # ==============================
 # MLB Scraper
 # ==============================
-BASE_URL_MLB = "https://www.mlb.com/stats/rbi/2024?page={}"
+BASE_URL_MLB = "https://www.mlb.com/stats/rbi/2025?page={}"
 MAX_PAGES = 47
 
 def fetch_raw_table_data():
@@ -434,8 +434,8 @@ def fetch_raw_table_data():
 def save_mlb_stats_csv():
     data = fetch_raw_table_data()
     print("Total MLB stats rows fetched:", len(data))
-    # Save the new 2024 season stats to a separate file.
-    new_file = "mlb_2024_stats.csv"
+    # Save the new 2025 season stats to a separate file.
+    new_file = "mlb_2025_stats.csv"
     with open(new_file, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerows(data)
@@ -489,22 +489,22 @@ def save_mlb_injuries_csv():
         print("No MLB injury data to save.")
 
 # ==============================
-# MLB Spring Training Pitchers Scraper
+# MLB 2025 Regular Season Pitchers Scraper
 # ==============================
-# URL for Spring Training Pitchers
-BASE_URL_MLB_PITCHING_SPRING = "https://www.mlb.com/stats/pitching/spring-training?page={}"
-MAX_PAGES_PITCHING_SPRING = 10  # Adjust if needed
+# URL for 2025 Regular Season Pitchers
+BASE_URL_MLB_PITCHING_2025 = "https://www.mlb.com/stats/pitching/2025?page={}"
+MAX_PAGES_PITCHING_2025 = 50  # Adjust if needed
 
-def fetch_mlb_pitching_spring_stats():
+def fetch_mlb_pitching_2025_stats():
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(20)
     all_rows = []
-    for page in range(1, MAX_PAGES_PITCHING_SPRING + 1):
-        url = BASE_URL_MLB_PITCHING_SPRING.format(page)
-        print("Fetching MLB Spring Training Pitcher stats from:", url)
+    for page in range(1, MAX_PAGES_PITCHING_2025 + 1):
+        url = BASE_URL_MLB_PITCHING_2025.format(page)
+        print("Fetching MLB 2025 Pitcher stats from:", url)
         try:
             driver.get(url)
             WebDriverWait(driver, 15).until(
@@ -512,13 +512,13 @@ def fetch_mlb_pitching_spring_stats():
             )
             time.sleep(3)
         except Exception as e:
-            print("Error loading Spring Training pitcher stats page", page, e)
+            print("Error loading 2025 pitcher stats page", page, e)
             continue
         page_source = driver.page_source
         soup = BeautifulSoup(page_source, "html.parser")
         table = soup.find("table")
         if not table:
-            print("No table found on Spring Training pitcher stats page", page)
+            print("No table found on 2025 pitcher stats page", page)
             continue
         if page == 1:
             thead = table.find("thead")
@@ -533,78 +533,19 @@ def fetch_mlb_pitching_spring_stats():
                 row = [cell.get_text(strip=True) for cell in cells]
                 all_rows.append(row)
         else:
-            print("No table body found on Spring Training pitcher stats page", page)
+            print("No table body found on 2025 pitcher stats page", page)
         time.sleep(1)
     driver.quit()
     return all_rows
 
-def save_mlb_pitching_spring_stats_csv():
-    data = fetch_mlb_pitching_spring_stats()
-    print("Total MLB Spring Training pitcher stats rows fetched:", len(data))
-    csv_path = os.path.join("mlb_pitching_spring_stats.csv")
+def save_mlb_pitching_2025_stats_csv():
+    data = fetch_mlb_pitching_2025_stats()
+    print("Total MLB 2025 pitcher stats rows fetched:", len(data))
+    csv_path = os.path.join("mlb_pitching_2025_stats.csv")
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerows(data)
-    print(f"💾 MLB Spring Training pitcher stats saved to '{csv_path}'!")
-
-# ==============================
-# MLB 2024 Regular Season Pitchers Scraper
-# ==============================
-# URL for 2024 Regular Season Pitchers
-BASE_URL_MLB_PITCHING_2024 = "https://www.mlb.com/stats/pitching/2024?page={}"
-MAX_PAGES_PITCHING_2024 = 50  # Adjust if needed
-
-def fetch_mlb_pitching_2024_stats():
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(options=options)
-    driver.set_page_load_timeout(20)
-    all_rows = []
-    for page in range(1, MAX_PAGES_PITCHING_2024 + 1):
-        url = BASE_URL_MLB_PITCHING_2024.format(page)
-        print("Fetching MLB 2024 Pitcher stats from:", url)
-        try:
-            driver.get(url)
-            WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.TAG_NAME, "table"))
-            )
-            time.sleep(3)
-        except Exception as e:
-            print("Error loading 2024 pitcher stats page", page, e)
-            continue
-        page_source = driver.page_source
-        soup = BeautifulSoup(page_source, "html.parser")
-        table = soup.find("table")
-        if not table:
-            print("No table found on 2024 pitcher stats page", page)
-            continue
-        if page == 1:
-            thead = table.find("thead")
-            if thead:
-                header_cells = thead.find_all(["th", "td"])
-                headers = [cell.get_text(strip=True) for cell in header_cells]
-                all_rows.append(headers)
-        tbody = table.find("tbody")
-        if tbody:
-            for tr in tbody.find_all("tr"):
-                cells = tr.find_all(["td", "th"])
-                row = [cell.get_text(strip=True) for cell in cells]
-                all_rows.append(row)
-        else:
-            print("No table body found on 2024 pitcher stats page", page)
-        time.sleep(1)
-    driver.quit()
-    return all_rows
-
-def save_mlb_pitching_2024_stats_csv():
-    data = fetch_mlb_pitching_2024_stats()
-    print("Total MLB 2024 pitcher stats rows fetched:", len(data))
-    csv_path = os.path.join("mlb_pitching_2024_stats.csv")
-    with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerows(data)
-    print(f"💾 MLB 2024 pitcher stats saved to '{csv_path}'!")
+    print(f"💾 MLB 2025 pitcher stats saved to '{csv_path}'!")
 
 # ==============================
 # Main Function: Run All Scrapers
@@ -642,8 +583,7 @@ def main():
 
     # MLB Pitching Scraper
     print("\n=== MLB Pitching Scraper ===")
-    save_mlb_pitching_spring_stats_csv()
-    save_mlb_pitching_2024_stats_csv()
+    save_mlb_pitching_2025_stats_csv()
 
     print("\nBig Scraper completed.")
 

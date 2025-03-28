@@ -372,11 +372,10 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
 # ---------- MLB Batting Integration ----------
 def load_and_clean_mlb_stats():
     """
-    Loads the new 2024 MLB stats from "mlb_2024_stats.csv", cleans headers and player names,
-    then merges with the spring training stats from "mlb_stats.csv" to supply TEAM data.
+    Loads the new 2025 MLB stats from "mlb_2025_stats.csv", cleans headers and player names.
+    Uses only the new stats without merging spring training data.
     """
-    # Load new season stats.
-    stats_file_path = os.path.join(BASE_DIR, "mlb_2024_stats.csv")
+    stats_file_path = os.path.join(BASE_DIR, "mlb_2025_stats.csv")
     try:
         df_new = pd.read_csv(stats_file_path)
     except Exception as e:
@@ -385,41 +384,25 @@ def load_and_clean_mlb_stats():
     if df_new.empty:
         print(f"Error: The file {stats_file_path} is empty.")
         return pd.DataFrame()
-    # Clean headers.
+    
+    # Clean headers and remove duplicates.
     df_new.columns = [clean_header(col) for col in df_new.columns]
     df_new = df_new.loc[:, ~df_new.columns.duplicated()]
+    
+    # Ensure all desired columns exist.
     for col in DESIRED_MLB_COLS:
         if col not in df_new.columns:
             df_new[col] = None
     df_new = df_new.reindex(columns=DESIRED_MLB_COLS)
-    # Normalize player names using your fix_mlb_player_name function.
+    
+    # Normalize player names.
     df_new["PLAYER"] = df_new["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
     
-    # Load spring training stats to supply TEAM info.
-    spring_file_path = os.path.join(BASE_DIR, "mlb_stats.csv")
-    try:
-        df_spring = pd.read_csv(spring_file_path)
-        df_spring.columns = [clean_header(col) for col in df_spring.columns]
-        df_spring = df_spring.loc[:, ~df_spring.columns.duplicated()]
-    except Exception as e:
-        print(f"Warning: Could not load spring training stats: {e}")
-        return df_new
+    # Ensure the TEAM column exists (or handle accordingly if it’s missing).
+    if "TEAM" not in df_new.columns:
+        df_new["TEAM"] = ""
     
-    if "PLAYER" in df_spring.columns and "TEAM" in df_spring.columns:
-        df_spring["PLAYER"] = df_spring["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
-        df_spring["TEAM"] = df_spring["TEAM"].astype(str).apply(normalize_team_name)
-        # Merge to get TEAM info.
-        df_merged = df_new.merge(df_spring[["PLAYER", "TEAM"]], on="PLAYER", how="left", suffixes=("", "_spring"))
-        # Use TEAM from new stats if present; otherwise, fallback to spring training.
-        df_merged["TEAM"] = df_merged.apply(
-            lambda row: row["TEAM"] if row["TEAM"] not in [None, "", "Unknown"] else row["TEAM_spring"],
-            axis=1
-        )
-        df_merged.drop(columns=["TEAM_spring"], inplace=True)
-        return df_merged
-    else:
-        print("Warning: Spring training stats does not contain PLAYER or TEAM columns.")
-        return df_new
+    return df_new
 
 def integrate_mlb_data():
     """
@@ -520,11 +503,10 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
 # ---------- MLB Pitching Integration ----------
 def load_and_clean_mlb_pitching_stats():
     """
-    Loads MLB pitching stats from "mlb_pitching_2024_stats.csv", cleans headers and player names,
-    then merges with the spring training pitching stats from "mlb_pitching_spring_stats.csv" to supply TEAM data.
+    Loads MLB pitching stats from "mlb_pitching_2025_stats.csv", cleans headers and player names.
+    Uses only the new pitching stats without merging spring training data.
     """
-    # Load new (2024) pitching stats.
-    stats_file_path = os.path.join(BASE_DIR, "mlb_pitching_2024_stats.csv")
+    stats_file_path = os.path.join(BASE_DIR, "mlb_pitching_2025_stats.csv")
     try:
         df_new = pd.read_csv(stats_file_path)
     except Exception as e:
@@ -533,49 +515,26 @@ def load_and_clean_mlb_pitching_stats():
     if df_new.empty:
         print(f"Error: The file {stats_file_path} is empty.")
         return pd.DataFrame()
-    # Clean headers.
+    
+    # Clean headers and remove duplicate columns.
     df_new.columns = [clean_header(col) for col in df_new.columns]
     df_new = df_new.loc[:, ~df_new.columns.duplicated()]
+    
     # Ensure a TEAM column exists.
     if "TEAM" not in df_new.columns:
         df_new["TEAM"] = ""
+    
     # Rename "K" to "SO" if necessary.
     if "K" in df_new.columns and "SO" not in df_new.columns:
         df_new.rename(columns={"K": "SO"}, inplace=True)
+    
     # Normalize player names.
     if "PLAYER" in df_new.columns:
         df_new["PLAYER"] = df_new["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
     else:
         print("Warning: 'PLAYER' column not found in MLB pitching stats.")
-        return df_new
-
-    # Load spring training pitching stats for TEAM mapping.
-    spring_file_path = os.path.join(BASE_DIR, "mlb_pitching_spring_stats.csv")
-    try:
-        df_spring = pd.read_csv(spring_file_path)
-        df_spring.columns = [clean_header(col) for col in df_spring.columns]
-        df_spring = df_spring.loc[:, ~df_spring.columns.duplicated()]
-    except Exception as e:
-        print(f"Warning: Could not load MLB pitching spring stats: {e}")
-        return df_new
-    if "PLAYER" in df_spring.columns and "TEAM" in df_spring.columns:
-        df_spring["PLAYER"] = df_spring["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
-        df_spring["TEAM"] = df_spring["TEAM"].astype(str).apply(normalize_team_name)
-        # If spring training stats use "K" instead of "SO", rename them too.
-        if "K" in df_spring.columns and "SO" not in df_spring.columns:
-            df_spring.rename(columns={"K": "SO"}, inplace=True)
-        # Merge on PLAYER to pull TEAM info.
-        df_merged = df_new.merge(df_spring[["PLAYER", "TEAM"]], on="PLAYER", how="left", suffixes=("", "_spring"))
-        # Use TEAM from new stats if present; otherwise, fallback to spring training.
-        df_merged["TEAM"] = df_merged.apply(
-            lambda row: row["TEAM"] if row["TEAM"] not in [None, "", "Unknown"] else row["TEAM_spring"],
-            axis=1
-        )
-        df_merged.drop(columns=["TEAM_spring"], inplace=True)
-        return df_merged
-    else:
-        print("Warning: Spring training pitching stats does not contain PLAYER or TEAM columns.")
-        return df_new
+    
+    return df_new
 
 def integrate_mlb_pitching_data():
     """

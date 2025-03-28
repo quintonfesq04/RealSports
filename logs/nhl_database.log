@@ -2754,3 +2754,36 @@ Script finished.
 An error occurred: HTTPConnectionPool(host='localhost', port=55948): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
+An error occurred: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: Unable to receive message from renderer
+  (Session info: chrome=134.0.6998.166)
+Stacktrace:
+0   chromedriver                        0x0000000102aff6c8 cxxbridge1$str$ptr + 2791212
+1   chromedriver                        0x0000000102af7c9c cxxbridge1$str$ptr + 2759936
+2   chromedriver                        0x0000000102649e30 cxxbridge1$string$len + 92928
+3   chromedriver                        0x000000010263435c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001026340d4 cxxbridge1$string$len + 3492
+5   chromedriver                        0x0000000102631dec chromedriver + 187884
+6   chromedriver                        0x0000000102632a44 chromedriver + 191044
+7   chromedriver                        0x0000000102640618 cxxbridge1$string$len + 53992
+8   chromedriver                        0x0000000102656334 cxxbridge1$string$len + 143364
+9   chromedriver                        0x0000000102633078 chromedriver + 192632
+10  chromedriver                        0x0000000102655c84 cxxbridge1$string$len + 141652
+11  chromedriver                        0x00000001026d2894 cxxbridge1$string$len + 652644
+12  chromedriver                        0x00000001026852fc cxxbridge1$string$len + 335820
+13  chromedriver                        0x0000000102ac46c4 cxxbridge1$str$ptr + 2549544
+14  chromedriver                        0x0000000102ac7988 cxxbridge1$str$ptr + 2562540
+15  chromedriver                        0x0000000102aa471c cxxbridge1$str$ptr + 2418560
+16  chromedriver                        0x0000000102ac81e8 cxxbridge1$str$ptr + 2564684
+17  chromedriver                        0x0000000102a95750 cxxbridge1$str$ptr + 2357172
+18  chromedriver                        0x0000000102ae7f58 cxxbridge1$str$ptr + 2695100
+19  chromedriver                        0x0000000102ae80e0 cxxbridge1$str$ptr + 2695492
+20  chromedriver                        0x0000000102af7910 cxxbridge1$str$ptr + 2759028
+21  libsystem_pthread.dylib             0x00000001968442e4 _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019683f0fc thread_start + 8
+
+💾 Saved NHL injury report data
+Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=60560): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
