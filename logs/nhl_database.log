@@ -2661,72 +2661,96 @@ Script finished.
 An error occurred: HTTPConnectionPool(host='localhost', port=55481): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=53670): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=62732): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=56037): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=63557): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=59534): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=64049): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=64198): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=64538): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=49272): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=64992): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=51482): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=65459): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=52716): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=49567): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=53675): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=50120): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=54748): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=50578): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=55723): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=51018): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=56652): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=51467): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=57638): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=52036): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=58623): Read timed out. (read timeout=120)
+There was an error managing chromedriver (error decoding response body); using driver found in the cache
+An error occurred: HTTPConnectionPool(host='localhost', port=55286): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=59446): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=56018): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=60309): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=57459): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=61125): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=49311): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=62017): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=50786): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=62874): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=51598): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=63732): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=52613): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=64595): Read timed out. (read timeout=120)
+An error occurred: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: Unable to receive message from renderer
+  (Session info: chrome=134.0.6998.166)
+Stacktrace:
+0   chromedriver                        0x0000000104e736c8 cxxbridge1$str$ptr + 2791212
+1   chromedriver                        0x0000000104e6bc9c cxxbridge1$str$ptr + 2759936
+2   chromedriver                        0x00000001049bde30 cxxbridge1$string$len + 92928
+3   chromedriver                        0x00000001049a835c cxxbridge1$string$len + 4140
+4   chromedriver                        0x00000001049a80d4 cxxbridge1$string$len + 3492
+5   chromedriver                        0x00000001049a70f0 chromedriver + 192752
+6   chromedriver                        0x00000001049c9c84 cxxbridge1$string$len + 141652
+7   chromedriver                        0x0000000104a46894 cxxbridge1$string$len + 652644
+8   chromedriver                        0x00000001049f92fc cxxbridge1$string$len + 335820
+9   chromedriver                        0x0000000104e386c4 cxxbridge1$str$ptr + 2549544
+10  chromedriver                        0x0000000104e3b988 cxxbridge1$str$ptr + 2562540
+11  chromedriver                        0x0000000104e1871c cxxbridge1$str$ptr + 2418560
+12  chromedriver                        0x0000000104e3c1e8 cxxbridge1$str$ptr + 2564684
+13  chromedriver                        0x0000000104e09750 cxxbridge1$str$ptr + 2357172
+14  chromedriver                        0x0000000104e5bf58 cxxbridge1$str$ptr + 2695100
+15  chromedriver                        0x0000000104e5c0e0 cxxbridge1$str$ptr + 2695492
+16  chromedriver                        0x0000000104e6b910 cxxbridge1$str$ptr + 2759028
+17  libsystem_pthread.dylib             0x00000001968442e4 _pthread_start + 136
+18  libsystem_pthread.dylib             0x000000019683f0fc thread_start + 8
+
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=65525): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=54818): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=50081): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=55445): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
-An error occurred: HTTPConnectionPool(host='localhost', port=52785): Read timed out. (read timeout=120)
+An error occurred: HTTPConnectionPool(host='localhost', port=55948): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
