@@ -28,7 +28,6 @@ import pandas as pd
 import requests
 import numpy as np
 import unicodedata
-from datetime import datetime
 
 # Selenium & BeautifulSoup imports for PSP scraping
 from selenium import webdriver
@@ -229,6 +228,7 @@ def fix_mlb_player_name(name):
         if final_tokens[-1].lower() in earlier:
             final_tokens = final_tokens[:-1]
     result = " ".join(final_tokens)
+    # Additional fixes for specific problematic cases:
     result = result.replace("De La CruzDe La Cruz", "De La Cruz")
     result = result.replace("JoJ ", "Jo ")
     result = result.replace("GimenezGiménez", "Gimenez")
@@ -314,6 +314,7 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col, stat
     unique_yellow = [name for name in yellow_list if name not in unique_green]
     unique_red = [name for name in red_list if name not in unique_green and name not in unique_yellow]
     
+    # IMPORTANT: For MLB, output order should be green, then yellow, then red.
     green_output = ", ".join(unique_green) if unique_green else "No Green Plays"
     yellow_output = ", ".join(unique_yellow) if unique_yellow else "No Yellow Plays"
     red_output = ", ".join(unique_red) if unique_red else "No Red Plays"
@@ -322,9 +323,9 @@ def categorize_players(df, stat_choice, target_value, player_col, team_col, stat
     output += f"🔴 {red_output}"
     return output
 
-# ----------------------------
+# ====================================================
 # Integration and Analysis Functions for Each Sport
-# ----------------------------
+# ====================================================
 
 # ---------- NHL Integration ----------
 def load_nhl_player_stats(file_path):
@@ -370,6 +371,10 @@ def integrate_nhl_data(player_stats_file, injury_data_file):
 
 # ---------- MLB Batting Integration ----------
 def load_and_clean_mlb_stats():
+    """
+    Loads the new 2025 MLB stats from "mlb_2025_stats.csv", cleans headers and player names.
+    Uses only the new stats without merging spring training data.
+    """
     stats_file_path = os.path.join(BASE_DIR, "mlb_2025_stats.csv")
     try:
         df_new = pd.read_csv(stats_file_path)
@@ -379,18 +384,31 @@ def load_and_clean_mlb_stats():
     if df_new.empty:
         print(f"Error: The file {stats_file_path} is empty.")
         return pd.DataFrame()
+    
+    # Clean headers and remove duplicates.
     df_new.columns = [clean_header(col) for col in df_new.columns]
     df_new = df_new.loc[:, ~df_new.columns.duplicated()]
+    
+    # Ensure all desired columns exist.
     for col in DESIRED_MLB_COLS:
         if col not in df_new.columns:
             df_new[col] = None
     df_new = df_new.reindex(columns=DESIRED_MLB_COLS)
+    
+    # Normalize player names.
     df_new["PLAYER"] = df_new["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
+    
+    # Ensure the TEAM column exists (or handle accordingly if it’s missing).
     if "TEAM" not in df_new.columns:
         df_new["TEAM"] = ""
+    
     return df_new
 
 def integrate_mlb_data():
+    """
+    Integrates MLB stats and injury data. Injured players (or those on the traded list)
+    are removed, and the resulting DataFrame contains only healthy players.
+    """
     try:
         df_stats = load_and_clean_mlb_stats()
         if "TEAM" not in df_stats.columns:
@@ -413,6 +431,10 @@ def integrate_mlb_data():
     return healthy_df[DESIRED_MLB_COLS]
 
 def analyze_mlb_noninteractive(df, teams, stat_choice, banned_stat=None):
+    """
+    Non-interactively analyze MLB stats by filtering by teams (if provided), sorting by the chosen stat,
+    and grouping players into green, yellow, and red categories.
+    """
     if "TEAM" not in df.columns:
         return "❌ 'TEAM' column not found in the DataFrame."
     if teams:
@@ -444,6 +466,10 @@ def analyze_mlb_noninteractive(df, teams, stat_choice, banned_stat=None):
     return output
 
 def analyze_mlb_by_team_interactive(df, mapped_stat):
+    """
+    Interactive MLB analysis: prompts the user to provide team(s) to filter,
+    then sorts and displays players grouped into green, yellow, and red.
+    """
     if df.empty:
         print("MLB stats CSV not found or empty.")
         return
@@ -476,6 +502,10 @@ def analyze_mlb_by_team_interactive(df, mapped_stat):
 
 # ---------- MLB Pitching Integration ----------
 def load_and_clean_mlb_pitching_stats():
+    """
+    Loads MLB pitching stats from "mlb_pitching_2025_stats.csv", cleans headers and player names.
+    Uses only the new pitching stats without merging spring training data.
+    """
     stats_file_path = os.path.join(BASE_DIR, "mlb_pitching_2025_stats.csv")
     try:
         df_new = pd.read_csv(stats_file_path)
@@ -485,19 +515,32 @@ def load_and_clean_mlb_pitching_stats():
     if df_new.empty:
         print(f"Error: The file {stats_file_path} is empty.")
         return pd.DataFrame()
+    
+    # Clean headers and remove duplicate columns.
     df_new.columns = [clean_header(col) for col in df_new.columns]
     df_new = df_new.loc[:, ~df_new.columns.duplicated()]
+    
+    # Ensure a TEAM column exists.
     if "TEAM" not in df_new.columns:
         df_new["TEAM"] = ""
+    
+    # Rename "K" to "SO" if necessary.
     if "K" in df_new.columns and "SO" not in df_new.columns:
         df_new.rename(columns={"K": "SO"}, inplace=True)
+    
+    # Normalize player names.
     if "PLAYER" in df_new.columns:
         df_new["PLAYER"] = df_new["PLAYER"].apply(lambda x: fix_mlb_player_name(x))
     else:
         print("Warning: 'PLAYER' column not found in MLB pitching stats.")
+    
     return df_new
 
 def integrate_mlb_pitching_data():
+    """
+    Integrates MLB pitching stats and injury data. Injured pitchers (or those on the traded list)
+    are removed, and the resulting DataFrame contains only healthy pitchers.
+    """
     try:
         df_stats = load_and_clean_mlb_pitching_stats()
         if "TEAM" not in df_stats.columns:
@@ -519,56 +562,96 @@ def integrate_mlb_pitching_data():
     healthy_df = update_traded_players(healthy_df, player_col="PLAYER", team_col="TEAM")
     return healthy_df
 
-# ---------- New Helper: Get Next Scheduled Pitcher for MLB -----------
-def get_next_pitcher(team):
+def analyze_mlb_pitching_noninteractive_ignore_stat(df, teams):
     """
-    Placeholder function to determine the next scheduled pitcher for a given MLB team.
-    Ideally, this would scrape a schedule or use an API to get the correct pitcher.
-    For now, we simply filter the pitching stats by team and return the pitcher with the highest SO.
+    Non-interactively analyzes MLB pitching stats by simply taking the top 9 rows
+    from the dataset (ignoring the actual stat value) and grouping them into three groups.
+    This is useful when the "SO" column is unreliable because of position players pitching.
     """
-    df_pitchers = integrate_mlb_pitching_data()
-    if df_pitchers.empty:
-        print("No MLB pitching data available.")
-        return None
-    team_filtered = df_pitchers[df_pitchers["TEAM"].astype(str).apply(normalize_team_name) == normalize_team_name(team)]
-    if team_filtered.empty:
-        print(f"No pitchers found for team {team}.")
-        return None
-    team_filtered = team_filtered.sort_values(by="SO", ascending=False)
-    return team_filtered.iloc[0]["PLAYER"]
+    if "TEAM" not in df.columns:
+        return "❌ 'TEAM' column not found in the DataFrame."
+    if teams:
+        team_list = ([normalize_team_name(t) for t in teams.split(",") if t.strip()]
+                     if isinstance(teams, str) else [normalize_team_name(t) for t in teams])
+        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+    else:
+        filtered_df = df.copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    # Simply take the first 9 rows.
+    top9 = filtered_df.head(9)
+    players = top9["PLAYER"].tolist()
+    # Divide into three groups.
+    green = players[0:3]
+    yellow = players[3:6]
+    red = players[6:9]
+    output = "🟢 " + ", ".join(green) + "\n"
+    output += "🟡 " + ", ".join(yellow) + "\n"
+    output += "🔴 " + ", ".join(red)
+    return output
 
-# ---------- PSP Analyzers ----------
-def analyze_nhl_psp(file_path, stat_key, teams=None):
-    NHL_PSP_COLUMN_MAP = {
-        "SHOTS": "S",
-        "POINTS": "P",
-        "ASSISTS": "A",
-        "GOALS": "G",
-        "HITS": "HIT",
-        "SAVES": "SV"
-    }
-    mapped_stat = NHL_PSP_COLUMN_MAP.get(stat_key.strip().upper(), stat_key.strip().upper())
+def analyze_mlb_pitching_noninteractive_ignore_stat(df, teams):
+    """
+    Non-interactively analyzes MLB pitching stats by simply taking the top 9 rows
+    from the dataset (ignoring the actual stat value) and grouping them into three groups.
+    This is useful when the "SO" column is unreliable because of position players pitching.
+    """
+    if "TEAM" not in df.columns:
+        return "❌ 'TEAM' column not found in the DataFrame."
+    if teams:
+        team_list = ([normalize_team_name(t) for t in teams.split(",") if t.strip()]
+                     if isinstance(teams, str) else [normalize_team_name(t) for t in teams])
+        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+    else:
+        filtered_df = df.copy()
+    if filtered_df.empty:
+        return "❌ No matching teams found."
+    # Simply take the first 9 rows.
+    top9 = filtered_df.head(9)
+    players = top9["PLAYER"].tolist()
+    # Divide into three groups.
+    green = players[0:3]
+    yellow = players[3:6]
+    red = players[6:9]
+    output = "🟢 " + ", ".join(green) + "\n"
+    output += "🟡 " + ", ".join(yellow) + "\n"
+    output += "🔴 " + ", ".join(red)
+    return output
+
+# ---------- NHL PSP Analyzer (from Universal file) ----------
+def analyze_nhl_psp(file_path, stat_key):
+    # Clean and uppercase the incoming stat key.
+    stat_key = stat_key.strip().upper()
+    if stat_key == "POINTS":
+        mapped_stat = "HIT"
+    elif stat_key == "HITS":
+        mapped_stat = "P"
+    elif stat_key == "SHOTS":
+        mapped_stat = "S"
+    elif stat_key == "ASSISTS":
+        mapped_stat = "A"
+    elif stat_key == "GOALS":
+        mapped_stat = "G"
+    elif stat_key == "SAVES":
+        mapped_stat = "SV"
+    else:
+        mapped_stat = stat_key
+
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
         return f"Error reading PSP CSV: {e}"
+    
     df.columns = [col.strip().upper() for col in df.columns]
-    if teams:
-        integrated = integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
-        if "Team" in integrated.columns:
-            mapping = dict(zip(integrated["Player"].str.upper(), integrated["Team"].str.upper()))
-            # Modified lambda: convert x to str first.
-            df["TEAM"] = df["NAME"].apply(lambda x: mapping.get(str(x).strip().upper(), ""))
-            team_list = ([t.strip().upper() for t in teams.split(",") if t.strip()]
-                         if isinstance(teams, str)
-                         else [normalize_team_name(t) for t in teams])
-            df = df[df["TEAM"].apply(lambda x: str(x).strip().upper()).isin(team_list)]
+    
     if mapped_stat not in df.columns:
         return f"Error: Column '{mapped_stat}' not found in PSP CSV. Available columns: {df.columns.tolist()}"
+    
     try:
         df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
     except Exception as e:
         return f"Error converting stat column: {e}"
+    
     sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
     if len(sorted_df) >= 15:
         yellow = sorted_df.iloc[0:3]
@@ -578,43 +661,66 @@ def analyze_nhl_psp(file_path, stat_key, teams=None):
         yellow = sorted_df.iloc[0:3]
         green = sorted_df.iloc[3:6]
         red = sorted_df.iloc[6:9]
+    
     player_col = "NAME" if "NAME" in sorted_df.columns else None
     if player_col is None:
         return "Player column not found in CSV."
+    
     green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
     yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
     red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
+    
     output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
     output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
     output += f"🔴 {', '.join(str(x) for x in red_list)}"
     return output
 
+# ---------- CBB PSP Analyzer (New) ----------
 def analyze_cbb_psp_notion(file_path, stat_key, teams=None):
+    """
+    Analyze a CBB PSP CSV by reading the file, optionally filtering by team,
+    and then grouping players based on the provided stat.
+    
+    If the stat column contains no valid numeric data (all NaN), then load the integrated data
+    from 'cbb_players_stats.csv' and use that for grouping.
+    """
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
         return f"Error reading CBB PSP CSV: {e}"
+
+    # Normalize column names to uppercase.
     df.columns = [col.upper() for col in df.columns]
+
+    # Determine which column to use for player names.
     if "PLAYER" in df.columns:
         player_col = "PLAYER"
     elif "NAME" in df.columns:
         player_col = "NAME"
     else:
         return "Error: No player column found in PSP CSV."
+
     stat_key = stat_key.upper()
     if stat_key not in df.columns:
         return f"Error: Column '{stat_key}' not found in CBB PSP CSV. Available columns: {df.columns.tolist()}"
+
+    # Attempt to convert the stat column to numeric.
     df[stat_key] = pd.to_numeric(df[stat_key].replace({',': ''}, regex=True), errors='coerce')
+
+    # If the stat column is empty (all NaN), fall back to using integrated CBB data.
     if df[stat_key].dropna().empty:
         print("DEBUG: Stat column has no valid data. Falling back to integrated CBB data.")
         try:
             int_file = os.path.join(BASE_DIR, "cbb_players_stats.csv")
             df_int = pd.read_csv(int_file)
             df_int.columns = [col.upper() for col in df_int.columns]
+            # Use the integrated file completely.
             df = df_int.copy()
             player_col = "PLAYER"
         except Exception as e:
             return f"Error loading integrated CBB data: {e}"
+
+    # If team filtering is requested, ensure we have a TEAM column.
     if teams:
         if "TEAM" not in df.columns:
             try:
@@ -623,328 +729,34 @@ def analyze_cbb_psp_notion(file_path, stat_key, teams=None):
                 df_int.columns = [col.upper() for col in df_int.columns]
                 if "PLAYER" in df_int.columns and "TEAM" in df_int.columns:
                     team_map = dict(zip(df_int["PLAYER"].str.upper(), df_int["TEAM"].str.upper()))
-                    # Modified lambda: ensure x is string.
-                    df["TEAM"] = df[player_col].apply(lambda x: team_map.get(str(x).strip().upper(), ""))
+                    df["TEAM"] = df[player_col].apply(lambda x: team_map.get(x.strip().upper(), ""))
                 else:
                     df["TEAM"] = ""
             except Exception as e:
                 print(f"Warning: Could not load team mapping: {e}")
                 df["TEAM"] = ""
-        team_list = ([t.strip().upper() for t in teams.split(",") if t.strip()]
-                     if isinstance(teams, str)
-                     else [normalize_team_name(t) for t in teams])
-        df = df[df["TEAM"].apply(lambda x: str(x).strip().upper()).isin(team_list)]
+        team_list = [t.strip().upper() for t in teams if t.strip()]
+        df = df[df["TEAM"].apply(lambda x: x.strip().upper() if isinstance(x, str) else "")\
+              .isin(team_list)]
+    
     if df.empty:
         return "No players found."
+
+    # For grouping, we will use the order of the rows in the DataFrame.
     players = df[player_col].tolist()
     if not players:
         return "No players found."
+
+    # Divide players into three groups by row order.
     groups = np.array_split(players, 3)
     green, yellow, red = [list(g) for g in groups]
+
     output = f"🟢 {', '.join(green)}\n"
     output += f"🟡 {', '.join(yellow)}\n"
     output += f"🔴 {', '.join(red)}"
     return output
 
-def analyze_nba_psp_notion(file_path, stat_key, teams=None):
-    try:
-        df_psp = pd.read_csv(file_path)
-        df_psp.columns = [col.upper() for col in df_psp.columns]
-    except Exception as e:
-        return f"Error reading PSP CSV: {e}"
-    try:
-        nba_stats_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_player_stats.csv")
-        df_stats = pd.read_csv(nba_stats_path)
-        df_stats.columns = [col.upper() for col in df_stats.columns]
-    except Exception as e:
-        return f"Error reading NBA player stats CSV: {e}"
-    df_merged = pd.merge(df_psp, df_stats[["PLAYER", "TEAM"]], left_on="NAME", right_on="PLAYER", how="left")
-    if teams:
-        team_list = ([t.strip().upper() for t in teams.split(",") if t.strip()]
-                     if isinstance(teams, str)
-                     else [normalize_team_name(t) for t in teams])
-        df_merged = df_merged[df_merged["TEAM"].apply(lambda x: str(x).strip().upper()).isin(team_list)]
-    if stat_key.upper() not in df_merged.columns:
-        return f"Error: Column '{stat_key}' not found in PSP CSV. Available columns: {df_merged.columns.tolist()}"
-    try:
-        df_merged[stat_key.upper()] = pd.to_numeric(
-            df_merged[stat_key.upper()].replace({',': ''}, regex=True), errors='coerce'
-        )
-    except Exception as e:
-        return f"Error converting stat column: {e}"
-    sorted_df = df_merged.sort_values(by=stat_key.upper(), ascending=False).reset_index(drop=True)
-    if len(sorted_df) >= 15:
-        yellow = sorted_df.iloc[0:3]
-        green = sorted_df.iloc[5:8]
-        red = sorted_df.iloc[12:15]
-    else:
-        yellow = sorted_df.iloc[0:3]
-        green = sorted_df.iloc[3:6]
-        red = sorted_df.iloc[6:9]
-    player_col = "NAME" if "NAME" in sorted_df.columns else None
-    if player_col is None:
-        return "Player column not found in CSV."
-    green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
-    yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
-    red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
-    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
-    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
-    output += f"🔴 {', '.join(str(x) for x in red_list)}"
-    return output
-
-# ---------- Notion Database Functions (for Polls) ----------
-PSP_NOTION_TOKEN = "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"
-PSP_DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
-BASE_URL = "https://www.statmuse.com"
-TIME_PERIOD = "past month"
-
-notion = Client(auth=PSP_NOTION_TOKEN)
-
-def build_query_url(query, teams):
-    teams_str = teams.replace(" ", "")
-    full_query = f"{query} {TIME_PERIOD} {teams_str}"
-    encoded_query = urllib.parse.quote_plus(full_query)
-    url = f"{BASE_URL}/ask?q={encoded_query}"
-    return url
-
-def fetch_html(url):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.get(url)
-    try:
-        wait = WebDriverWait(driver, 15)
-        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.flex-1.overflow-x-auto")))
-        print("Data appears to have loaded.")
-    except Exception as e:
-        print("Explicit wait failed:", e)
-    html = driver.page_source
-    driver.quit()
-    return html
-
-def parse_table(html_content):
-    soup = BeautifulSoup(html_content, "html.parser")
-    container = soup.select_one("div.flex-1.overflow-x-auto")
-    if not container:
-        print("Container not found.")
-        return None
-    table = container.find("table")
-    if not table:
-        print("Table element not found.")
-        return None
-    header_row = table.find("thead")
-    if not header_row:
-        print("No table header found.")
-        return None
-    headers = [th.get_text(strip=True) for th in header_row.find_all("th")]
-    body = table.find("tbody")
-    if not body:
-        print("No table body found.")
-        return None
-    rows = []
-    for tr in body.find_all("tr"):
-        cells = [td.get_text(strip=True) for td in tr.find_all("td")]
-        if len(cells) == len(headers):
-            row_dict = dict(zip(headers, cells))
-            if "NAME" in row_dict:
-                row_dict["NAME"] = clean_name(row_dict["NAME"])
-            rows.append(row_dict)
-        else:
-            print("Skipping row with unexpected number of cells:", cells)
-    return rows
-
-def scrape_statmuse_data(sport, stat, teams):
-    query = f"{stat} leaders {sport.lower()}"
-    url = build_query_url(query, teams)
-    html = fetch_html(url)
-    data = parse_table(html)
-    return data
-
-def clean_name(name):
-    name = name.strip()
-    period_index = name.find('.')
-    if period_index != -1 and period_index > 0:
-        return name[:period_index-1].strip()
-    return name
-
-def mark_row_as_processed_sync(page_id):
-    try:
-        notion.pages.update(
-            page_id=page_id,
-            properties={"Processed": {"select": {"name": "Yes"}}}
-        )
-    except Exception as e:
-        print(f"Error marking page {page_id} as processed:", e)
-
-def run_universal_sports_analyzer_programmatic(row):
-    sport_upper = row["sport"].upper()
-    teams = row.get("teams", [])
-    if not teams:
-        teams = [team.strip().upper() for team in [row.get("team1", ""), row.get("team2", "")] if team]
-    def parse_target(target):
-        t = target.strip().lower()
-        if t in ["", "none"]:
-            return None
-        try:
-            return float(t)
-        except Exception:
-            return None
-    target_val = parse_target(row["target"])
-    
-    if row.get("psp", False):
-        if sport_upper == "NHL":
-            stat_key = row["stat"].upper()
-            file_path = os.path.join(PSP_FOLDER, f"nhl_{row['stat'].lower()}_psp_data.csv")
-            return analyze_nhl_psp_notion(file_path, stat_key, teams=",".join(teams))
-        elif sport_upper == "NBA":
-            stat_key = row["stat"].upper()
-            if stat_key == "FG3M":
-                stat_key = "3PM"
-            if stat_key not in STAT_CATEGORIES_NBA:
-                return f"❌ Invalid NBA stat choice."
-            file_path = os.path.join(PSP_FOLDER, f"nba_{row['stat'].lower()}_psp_data.csv")
-            return analyze_nba_psp_notion(file_path, stat_key, teams=",".join(teams))
-        elif sport_upper == "CBB":
-            stat_key = row["stat"].upper()
-            file_path = os.path.join(PSP_FOLDER, f"cbb_{row['stat'].lower().replace(' ', '_')}_psp_data.csv")
-            return analyze_cbb_psp_notion(file_path, stat_key, teams=",".join(teams))
-        elif sport_upper == "MLB":
-            raw_stat = row["stat"].strip().upper()
-            if raw_stat == "":
-                stat_key = "RBI"  # default batting stat if none provided
-                df_batters = integrate_mlb_data()
-                return analyze_mlb_noninteractive(df_batters, teams=",".join(teams), stat_choice=stat_key, banned_stat=stat_key)
-            elif "STRIKEOUT" in raw_stat or raw_stat in {"K", "SO", "STRIKEOUTS"}:
-                stat_key = "SO"
-                pitchers = []
-                for team in teams:
-                    pitcher = get_next_pitcher(team)
-                    if pitcher:
-                        pitchers.append(pitcher)
-                if not pitchers:
-                    return "❌ No scheduled pitchers found for the given teams."
-                # Group pitchers into three groups (green, yellow, red) by order.
-                if len(pitchers) < 9:
-                    ordered_pitchers = pitchers
-                else:
-                    ordered_pitchers = pitchers[:9]
-                green_list = ordered_pitchers[0:3]
-                yellow_list = ordered_pitchers[3:6]
-                red_list = ordered_pitchers[6:9]
-                output = f"🟢 {', '.join(green_list)}\n"
-                output += f"🟡 {', '.join(yellow_list)}\n"
-                output += f"🔴 {', '.join(red_list)}"
-                return output
-            else:
-                stat_key = clean_header(raw_stat).upper()
-                if stat_key in {"TB", "TOTAL BASES"}:
-                    stat_key = "OBP"
-                df_batters = integrate_mlb_data()
-                return analyze_mlb_noninteractive(df_batters, teams=",".join(teams), stat_choice=stat_key, banned_stat=stat_key)
-    else:
-        if sport_upper == "NBA":
-            df = integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
-            used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
-            player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
-            return analyze_sport_noninteractive(
-                df, STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val, used_stat
-            )
-        elif sport_upper == "CBB":
-            player_stats_file = "cbb_players_stats.csv"
-            if not os.path.exists(os.path.join(REALSPORTS_DIR, player_stats_file)):
-                return f"❌ '{player_stats_file}' file not found."
-            try:
-                df = integrate_cbb_data(player_stats_file=player_stats_file)
-            except FileNotFoundError:
-                return f"❌ '{player_stats_file}' file not found."
-            used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
-            return analyze_cbb_noninteractive(
-                df, teams, used_stat, target_val, used_stat
-            )
-        elif sport_upper == "MLB":
-            df = integrate_mlb_data()
-            if df.empty or "TEAM" not in df.columns:
-                return "❌ 'TEAM' column not found in the MLB data."
-            used_stat = row["stat"].upper() if row["stat"].strip() else "RBI"
-            return analyze_mlb_noninteractive(
-                df, teams, used_stat, used_stat
-            )
-        elif sport_upper == "NHL":
-            df = integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
-            nhl_stat = row["stat"].upper() if row["stat"].strip() else "GOALS"
-            return analyze_nhl_noninteractive(df, teams, nhl_stat, target_val, nhl_stat)
-        else:
-            return "Sport not recognized."
-
-async def process_rows():
-    main_rows = fetch_unprocessed_rows(DATABASE_ID)
-    psp_rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
-    all_rows = main_rows + psp_rows
-    
-    poll_entries = []
-    for row in all_rows:
-        result = run_universal_sports_analyzer_programmatic(row)
-        if row.get("psp", False):
-            title = f"{row['sport'].upper()} PSP - {row['stat'].upper()}"
-        else:
-            title = f"Game: {row.get('team1','')} vs {row.get('team2','')} ({row['sport']}, {row['stat']}, Target: {row['target']})"
-        poll_entries.append({
-            "title": title,
-            "output": result
-        })
-        await mark_row_as_processed(row["page_id"])
-    
-    await append_poll_entries_to_page(poll_entries)
-
-async def append_poll_entries_to_page(entries):
-    blocks = []
-    for entry in entries:
-        blocks.append({
-            "object": "block",
-            "type": "paragraph",
-            "paragraph": {
-                "rich_text": [{"type": "text", "text": {"content": entry["title"]}}]
-            }
-        })
-        blocks.append({
-            "object": "block",
-            "type": "paragraph",
-            "paragraph": {
-                "rich_text": [{"type": "text", "text": {"content": entry["output"]}}]
-            }
-        })
-        blocks.append({"object": "block", "type": "divider", "divider": {}})
-    max_blocks = 100
-    def chunk_list(lst, n):
-        for i in range(0, len(lst), n):
-            yield lst[i:i+n]
-    responses = []
-    for block_chunk in chunk_list(blocks, max_blocks):
-        try:
-            response = await asyncio.to_thread(client.blocks.children.append,
-                                               block_id=POLL_PAGE_ID,
-                                               children=block_chunk)
-            responses.append(response)
-        except Exception as e:
-            print(f"Error updating poll page with a block chunk: {e}")
-            return None
-    return responses
-
-async def mark_row_as_processed(page_id):
-    try:
-        await asyncio.to_thread(client.pages.update,
-                                page_id=page_id,
-                                properties={"Processed": {"select": {"name": "Yes"}}})
-    except Exception as e:
-        if "Conflict occurred while saving" in str(e):
-            print(f"Conflict error while marking row {page_id} as processed. Retrying...")
-            await asyncio.sleep(1)
-            await mark_row_as_processed(page_id)
-        else:
-            print(f"Error marking row {page_id} as processed: {e}")
-
+# ---------- Non-interactive Interfaces ----------
 def analyze_sport_noninteractive(df, stat_categories, player_col, team_col, teams, stat_choice, target_value, banned_stat=None):
     if team_col not in df.columns:
         if "Team" in df.columns:
@@ -1142,6 +954,9 @@ def analyze_cbb_noninteractive(df, teams, stat_choice, target_value, banned_stat
     output += f"🔴 {red_output}"
     return output
 
+# ----------------------------
+# Interactive Functions
+# ----------------------------
 def analyze_sport(df, stat_categories, player_col, team_col):
     while True:
         teams_input = input("\nEnter team names separated by commas (or 'exit' to return to main menu): ")
@@ -1325,7 +1140,197 @@ def integrate_cbb_data(player_stats_file="cbb_players_stats.csv", injury_data_fi
     integrated_data = update_traded_players(integrated_data, player_col="Player", team_col="Team")
     return integrated_data
 
-# ---------- PSP Main (Scraping and CSV Writing) ----------
+# ---------- PSP Scraping & Analyzer Functions (from psp_database.py) ----------
+PSP_NOTION_TOKEN = "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"
+PSP_DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
+BASE_URL = "https://www.statmuse.com"
+TIME_PERIOD = "past month"
+
+notion = Client(auth=PSP_NOTION_TOKEN)
+
+def build_query_url(query, teams):
+    teams_str = teams.replace(" ", "")
+    full_query = f"{query} {TIME_PERIOD} {teams_str}"
+    encoded_query = urllib.parse.quote_plus(full_query)
+    url = f"{BASE_URL}/ask?q={encoded_query}"
+    return url
+
+def fetch_html(url):
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.get(url)
+    
+    try:
+        wait = WebDriverWait(driver, 15)
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.flex-1.overflow-x-auto")))
+        print("Data appears to have loaded.")
+    except Exception as e:
+        print("Explicit wait failed:", e)
+    
+    html = driver.page_source
+    driver.quit()
+    return html
+
+def parse_table(html_content):
+    soup = BeautifulSoup(html_content, "html.parser")
+    container = soup.select_one("div.flex-1.overflow-x-auto")
+    if not container:
+        print("Container not found.")
+        return None
+    
+    table = container.find("table")
+    if not table:
+        print("Table element not found.")
+        return None
+    
+    header_row = table.find("thead")
+    if not header_row:
+        print("No table header found.")
+        return None
+    headers = [th.get_text(strip=True) for th in header_row.find_all("th")]
+    
+    body = table.find("tbody")
+    if not body:
+        print("No table body found.")
+        return None
+    rows = []
+    for tr in body.find_all("tr"):
+        cells = [td.get_text(strip=True) for td in tr.find_all("td")]
+        if len(cells) == len(headers):
+            row_dict = dict(zip(headers, cells))
+            if "NAME" in row_dict:
+                row_dict["NAME"] = clean_name(row_dict["NAME"])
+            rows.append(row_dict)
+        else:
+            print("Skipping row with unexpected number of cells:", cells)
+    return rows
+
+def scrape_statmuse_data(sport, stat, teams):
+    query = f"{stat} leaders {sport.lower()}"
+    url = build_query_url(query, teams)
+    html = fetch_html(url)
+    data = parse_table(html)
+    return data
+
+def clean_name(name):
+    name = name.strip()
+    period_index = name.find('.')
+    if period_index != -1 and period_index > 0:
+        return name[:period_index-1].strip()
+    return name
+
+def analyze_nba_psp(file_path, stat_key):
+    try:
+        df_psp = pd.read_csv(file_path)
+        df_psp.columns = [col.upper() for col in df_psp.columns]
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    
+    try:
+        df_stats = pd.read_csv(os.path.join(BASE_DIR, "NBA", "nba_player_stats.csv"))
+        df_stats.columns = [col.upper() for col in df_stats.columns]
+    except Exception as e:
+        return f"Error reading NBA player stats CSV: {e}"
+    
+    try:
+        df_inj = pd.read_csv(os.path.join(BASE_DIR, "NBA", "nba_injury_report.csv"))
+        if "PLAYER" in df_inj.columns:
+            df_inj["PLAYER"] = df_inj["PLAYER"].str.strip()
+        else:
+            df_inj["PLAYER"] = df_inj["playerName"].str.strip()
+        injured_names = set(df_inj["PLAYER"].dropna().unique())
+    except Exception as e:
+        return f"Error loading or processing NBA injuries CSV: {e}"
+    
+    try:
+        df_merged = pd.merge(df_psp, df_stats, left_on="NAME", right_on="PLAYER", how="left", suffixes=('_psp', '_stats'))
+    except Exception as e:
+        return f"Error merging PSP and NBA stats: {e}"
+    
+    df_merged = df_merged[~df_merged["NAME"].isin(injured_names)]
+    
+    if stat_key not in df_merged.columns:
+        return f"Stat column '{stat_key}' not found in CSV."
+    
+    try:
+        df_merged[stat_key] = pd.to_numeric(df_merged[stat_key].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    
+    sorted_df = df_merged.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
+    green = sorted_df.iloc[0:3]
+    yellow = sorted_df.iloc[3:6]
+    red = sorted_df.iloc[6:9]
+    
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    if player_col is None:
+        return "Player column not found in CSV."
+    
+    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
+    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), stat_key))}"
+    return output
+
+def analyze_nhl_psp_notion(file_path, stat_key):
+    NHL_PSP_COLUMN_MAP = {
+        "SHOTS": "S",
+        "POINTS": "P",
+        "ASSISTS": "A",
+        "GOALS": "G",
+        "HITS": "HIT",
+        "SAVES": "SV"
+    }
+    mapped_stat = NHL_PSP_COLUMN_MAP.get(stat_key, stat_key)
+    try:
+        df = pd.read_csv(file_path)
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    df.columns = [col.upper() for col in df.columns]
+    if mapped_stat not in df.columns:
+        return f"Error: Column '{mapped_stat}' not found in PSP CSV."
+    try:
+        df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
+    if len(sorted_df) >= 15:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[5:8]
+        red = sorted_df.iloc[12:15]
+    else:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[3:6]
+        red = sorted_df.iloc[6:9]
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    if player_col is None:
+        return "Player column not found in CSV."
+    green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
+    yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
+    red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
+    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
+    output += f"🔴 {', '.join(str(x) for x in red_list)}"
+    return output
+
+def analyze_nba_psp_notion(file_path, stat_key):
+    return analyze_nba_psp(file_path, stat_key)
+
+def mark_row_as_processed_sync(page_id):
+    try:
+        notion.pages.update(
+            page_id=page_id,
+            properties={"Processed": {"select": {"name": "Yes"}}}
+        )
+    except Exception as e:
+        print(f"Error marking page {page_id} as processed:", e)
+
+import os
+import pandas as pd
+
 def psp_scrape_main():
     rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
     if not rows:
@@ -1348,7 +1353,9 @@ def psp_scrape_main():
         
         mark_row_as_processed_sync(page_id)
 
-# ---------- Notion Database Functions ----------
+# ====================================================
+# Notion Database Functions (for Polls)
+# ====================================================
 NOTION_TOKEN = "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"
 DATABASE_ID = "1aa71b1c-663e-8035-bc89-fb1e84a2d919"
 PSP_DATABASE_ID = "1ac71b1c663e808e9110eee23057de0e"
@@ -1473,10 +1480,177 @@ async def append_poll_entries_to_page(entries):
             return None
     return responses
 
+async def mark_row_as_processed(page_id):
+    try:
+        await asyncio.to_thread(client.pages.update,
+                                page_id=page_id,
+                                properties={"Processed": {"select": {"name": "Yes"}}})
+    except Exception as e:
+        if "Conflict occurred while saving" in str(e):
+            print(f"Conflict error while marking row {page_id} as processed. Retrying...")
+            await asyncio.sleep(1)
+            await mark_row_as_processed(page_id)
+        else:
+            print(f"Error marking row {page_id} as processed: {e}")
+
+def analyze_nhl_psp_notion(file_path, stat_key):
+    NHL_PSP_COLUMN_MAP = {
+        "SHOTS": "S",
+        "POINTS": "P",
+        "ASSISTS": "A",
+        "GOALS": "G",
+        "HITS": "HIT",
+        "SAVES": "SV"
+    }
+    mapped_stat = NHL_PSP_COLUMN_MAP.get(stat_key, stat_key)
+    try:
+        df = pd.read_csv(file_path)
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    df.columns = [col.upper() for col in df.columns]
+    if mapped_stat not in df.columns:
+        return f"Error: Column '{mapped_stat}' not found in PSP CSV."
+    try:
+        df[mapped_stat] = pd.to_numeric(df[mapped_stat].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    sorted_df = df.sort_values(by=mapped_stat, ascending=False).reset_index(drop=True)
+    if len(sorted_df) >= 15:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[5:8]
+        red = sorted_df.iloc[12:15]
+    else:
+        yellow = sorted_df.iloc[0:3]
+        green = sorted_df.iloc[3:6]
+        red = sorted_df.iloc[6:9]
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    if player_col is None:
+        return "Player column not found in CSV."
+    green_list = [x for x in green[player_col].tolist() if not is_banned(str(x), stat_key)]
+    yellow_list = [x for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key)]
+    red_list = [x for x in red[player_col].tolist() if not is_banned(str(x), stat_key)]
+    output = f"🟢 {', '.join(str(x) for x in green_list)}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow_list)}\n"
+    output += f"🔴 {', '.join(str(x) for x in red_list)}"
+    return output
+
+def analyze_nba_psp_notion(file_path, stat_key):
+    return analyze_nba_psp(file_path, stat_key)
+
+def run_universal_sports_analyzer_programmatic(row):
+    sport_upper = row["sport"].upper()
+    teams = row.get("teams", [])
+    if not teams:
+        teams = [team.strip().upper() for team in [row.get("team1", ""), row.get("team2", "")] if team]
+
+    def parse_target(target):
+        t = target.strip().lower()
+        if t in ["", "none"]:
+            return None
+        try:
+            return float(t)
+        except Exception:
+            return None
+
+    target_val = parse_target(row["target"])
+    
+    if row.get("psp", False):
+        if sport_upper == "NHL":
+            stat_key = row["stat"].upper()
+            file_path = os.path.join(PSP_FOLDER, f"nhl_{row['stat'].lower()}_psp_data.csv")
+            return analyze_nhl_psp_notion(file_path, stat_key)
+        elif sport_upper == "NBA":
+            stat_key = row["stat"].upper()
+            if stat_key == "FG3M":
+                stat_key = "3PM"
+            if stat_key not in STAT_CATEGORIES_NBA:
+                return f"❌ Invalid NBA stat choice."
+            file_path = os.path.join(PSP_FOLDER, f"nba_{row['stat'].lower()}_psp_data.csv")
+            return analyze_nba_psp_notion(file_path, stat_key)
+        elif sport_upper == "CBB":
+            stat_key = row["stat"].upper()
+            file_path = os.path.join(PSP_FOLDER, f"cbb_{row['stat'].lower().replace(' ', '_')}_psp_data.csv")
+            return analyze_cbb_psp_notion(file_path, stat_key, teams)
+        elif sport_upper == "MLB":
+            raw_stat = row["stat"].strip().upper()
+            if raw_stat == "":
+                stat_key = "RBI"  # default batting stat if none provided
+            # If the raw stat indicates strikeouts, use pitcher integration (ignoring the stat value).
+            elif "STRIKEOUT" in raw_stat or raw_stat in {"K", "SO", "STRIKEOUTS"}:
+                stat_key = "SO"
+                df_pitchers = integrate_mlb_pitching_data()
+                # Instead of sorting by the SO column (which may be contaminated by position players pitching),
+                # simply grab the top 9 rows from the pitcher CSV.
+                return analyze_mlb_pitching_noninteractive_ignore_stat(df_pitchers, teams="")
+            else:
+                stat_key = clean_header(raw_stat).upper()
+                if stat_key in {"TB", "TOTAL BASES"}:
+                    stat_key = "OBP"
+                df_batters = integrate_mlb_data()
+                return analyze_mlb_noninteractive(df_batters, teams="", stat_choice=stat_key, banned_stat=stat_key)
+    else:
+        if sport_upper == "NBA":
+            nba_stats_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_player_stats.csv")
+            nba_injuries_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_injury_report.csv")
+            df = integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
+            used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
+            player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
+            return analyze_sport_noninteractive(
+                df, STAT_CATEGORIES_NBA, player_col, "TEAM", teams, used_stat, target_val, used_stat
+            )
+        elif sport_upper == "CBB":
+            player_stats_file = "cbb_players_stats.csv"
+            if not os.path.exists(os.path.join(REALSPORTS_DIR, player_stats_file)):
+                return f"❌ '{player_stats_file}' file not found."
+            try:
+                df = integrate_cbb_data(player_stats_file=player_stats_file)
+            except FileNotFoundError:
+                return f"❌ '{player_stats_file}' file not found."
+            used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
+            return analyze_cbb_noninteractive(
+                df, teams, used_stat, target_val, used_stat
+            )
+        elif sport_upper == "MLB":
+            df = integrate_mlb_data()
+            if df.empty or "TEAM" not in df.columns:
+                return "❌ 'TEAM' column not found in the MLB data."
+            used_stat = row["stat"].upper() if row["stat"].strip() else "RBI"
+            return analyze_mlb_noninteractive(
+                df, teams, used_stat, used_stat
+            )
+        elif sport_upper == "NHL":
+            df = integrate_nhl_data("nhl_player_stats.csv", "nhl_injuries.csv")
+            nhl_stat = row["stat"].upper() if row["stat"].strip() else "GOALS"
+            return analyze_nhl_noninteractive(df, teams, nhl_stat, target_val, nhl_stat)
+        else:
+            return "Sport not recognized."
+
+async def process_rows():
+    main_rows = fetch_unprocessed_rows(DATABASE_ID)
+    psp_rows = fetch_unprocessed_rows(PSP_DATABASE_ID)
+    all_rows = main_rows + psp_rows
+    
+    poll_entries = []
+    for row in all_rows:
+        result = run_universal_sports_analyzer_programmatic(row)
+        if row.get("psp", False):
+            title = f"{row['sport'].upper()} PSP - {row['stat'].upper()}"
+        else:
+            title = f"Game: {row.get('team1','')} vs {row.get('team2','')} ({row['sport']}, {row['stat']}, Target: {row['target']})"
+        poll_entries.append({
+            "title": title,
+            "output": result
+        })
+        await mark_row_as_processed(row["page_id"])
+    
+    await append_poll_entries_to_page(poll_entries)
+
 async def notion_main():
     await process_rows()
 
-# ---------- PSP Main Menu ----------
+# ====================================================
+# PSP Main (Scraping and CSV Writing)
+# ====================================================
 def notion_main_menu():
     print("✅ Files loaded successfully")
     while True:
