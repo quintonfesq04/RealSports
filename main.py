@@ -1685,7 +1685,7 @@ def notion_main_menu():
                 if df_mlb.empty:
                     print("MLB stats CSV not found or empty.")
                     continue
-                analyze_mlb_by_team_interactive(df_mlb, mapped_stat="RBI")
+                analyze_mlb_by_team_interactive(df_mlb, mapped_stat="OPS")
             else:
                 print("❌ Invalid sport choice.")
         elif choice == '2':

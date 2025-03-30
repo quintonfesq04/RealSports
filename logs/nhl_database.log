@@ -2868,3 +2868,6 @@ Script finished.
 An error occurred: HTTPConnectionPool(host='localhost', port=58621): Read timed out. (read timeout=120)
 💾 Saved NHL injury report data
 Script finished.
+An error occurred: HTTPConnectionPool(host='localhost', port=58790): Read timed out. (read timeout=120)
+💾 Saved NHL injury report data
+Script finished.
