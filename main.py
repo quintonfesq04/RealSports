@@ -944,6 +944,14 @@ def run_universal_sports_analyzer_programmatic(row):
             nba_stats_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_player_stats.csv")
             nba_injuries_path = os.path.join(REALSPORTS_DIR, "NBA", "nba_injury_report.csv")
             df = integrate_nba_data('nba_player_stats.csv', 'nba_injury_report.csv')
+            # Filter by teams from the Notion row:
+            teams_list = row.get("teams", [])
+            if isinstance(teams_list, str):
+                teams_list = [normalize_team_name(t) for t in teams_list.split(",") if t.strip()]
+            else:
+                teams_list = [normalize_team_name(t) for t in teams_list]
+            if teams_list:
+                df = df[df["TEAM"].apply(normalize_team_name).isin(teams_list)]
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             player_col = "PLAYER" if "PLAYER" in df.columns else "NAME"
             return categorize_players(df, STAT_CATEGORIES_NBA.get(used_stat, used_stat), target_val, player_col, "TEAM", stat_for_ban=used_stat)
@@ -955,6 +963,14 @@ def run_universal_sports_analyzer_programmatic(row):
                 df = integrate_cbb_data(player_stats_file=player_stats_file)
             except FileNotFoundError:
                 return f"❌ '{player_stats_file}' file not found."
+            # Filter by teams from the Notion row:
+            teams_list = row.get("teams", [])
+            if isinstance(teams_list, str):
+                teams_list = [normalize_team_name(t) for t in teams_list.split(",") if t.strip()]
+            else:
+                teams_list = [normalize_team_name(t) for t in teams_list]
+            if teams_list:
+                df = df[df["Team"].apply(normalize_team_name).isin(teams_list)]
             used_stat = row["stat"].upper() if row["stat"].strip() else "PPG"
             return categorize_players(df, STAT_CATEGORIES_CBB.get(used_stat, used_stat), target_val, "Player", "Team", stat_for_ban=used_stat)
         elif sport_upper == "MLB":
