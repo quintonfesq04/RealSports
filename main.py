@@ -1585,7 +1585,7 @@ def run_universal_sports_analyzer_programmatic(row):
             else:
                 stat_key = clean_header(raw_stat).upper()
                 if stat_key in {"TB", "TOTAL BASES"}:
-                    stat_key = "OBP"
+                    stat_key = "OPS"
                 df_batters = integrate_mlb_data()
                 return analyze_mlb_noninteractive(df_batters, teams="", stat_choice=stat_key, banned_stat=stat_key)
     else:
@@ -1685,7 +1685,7 @@ def notion_main_menu():
                 if df_mlb.empty:
                     print("MLB stats CSV not found or empty.")
                     continue
-                analyze_mlb_by_team_interactive(df_mlb, mapped_stat="OPS")
+                analyze_mlb_by_team_interactive(df_mlb, mapped_stat="RBI")
             else:
                 print("❌ Invalid sport choice.")
         elif choice == '2':
