@@ -489,65 +489,6 @@ def save_mlb_injuries_csv():
         print("No MLB injury data to save.")
 
 # ==============================
-# MLB 2025 Regular Season Pitchers Scraper
-# ==============================
-# URL for 2025 Regular Season Pitchers
-BASE_URL_MLB_PITCHING_2025 = "https://www.mlb.com/stats/pitching/2025?page={}"
-MAX_PAGES_PITCHING_2025 = 50  # Adjust if needed
-
-def fetch_mlb_pitching_2025_stats():
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(options=options)
-    driver.set_page_load_timeout(20)
-    all_rows = []
-    for page in range(1, MAX_PAGES_PITCHING_2025 + 1):
-        url = BASE_URL_MLB_PITCHING_2025.format(page)
-        print("Fetching MLB 2025 Pitcher stats from:", url)
-        try:
-            driver.get(url)
-            WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.TAG_NAME, "table"))
-            )
-            time.sleep(3)
-        except Exception as e:
-            print("Error loading 2025 pitcher stats page", page, e)
-            continue
-        page_source = driver.page_source
-        soup = BeautifulSoup(page_source, "html.parser")
-        table = soup.find("table")
-        if not table:
-            print("No table found on 2025 pitcher stats page", page)
-            continue
-        if page == 1:
-            thead = table.find("thead")
-            if thead:
-                header_cells = thead.find_all(["th", "td"])
-                headers = [cell.get_text(strip=True) for cell in header_cells]
-                all_rows.append(headers)
-        tbody = table.find("tbody")
-        if tbody:
-            for tr in tbody.find_all("tr"):
-                cells = tr.find_all(["td", "th"])
-                row = [cell.get_text(strip=True) for cell in cells]
-                all_rows.append(row)
-        else:
-            print("No table body found on 2025 pitcher stats page", page)
-        time.sleep(1)
-    driver.quit()
-    return all_rows
-
-def save_mlb_pitching_2025_stats_csv():
-    data = fetch_mlb_pitching_2025_stats()
-    print("Total MLB 2025 pitcher stats rows fetched:", len(data))
-    csv_path = os.path.join("mlb_pitching_2025_stats.csv")
-    with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerows(data)
-    print(f"💾 MLB 2025 pitcher stats saved to '{csv_path}'!")
-
-# ==============================
 # Main Function: Run All Scrapers
 # ==============================
 def main():
@@ -580,10 +521,6 @@ def main():
     print("\n=== MLB Scraper ===")
     save_mlb_stats_csv()
     save_mlb_injuries_csv()
-
-    # MLB Pitching Scraper
-    print("\n=== MLB Pitching Scraper ===")
-    save_mlb_pitching_2025_stats_csv()
 
     print("\nBig Scraper completed.")
 
