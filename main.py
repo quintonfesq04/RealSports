@@ -1141,6 +1141,48 @@ def analyze_nhl_flow(df):
             result += f"🔴 {', '.join(red)}"
             print("\n" + result)
 
+def analyze_mlb_interactive(df):
+    while True:
+        teams_input = input("\nEnter MLB team names separated by commas (or 'exit' to return to main menu): ")
+        if teams_input.lower() == 'exit':
+            break
+        team_list = [normalize_team_name(t) for t in teams_input.split(",") if t.strip()]
+        filtered_df = df[df["TEAM"].astype(str).apply(normalize_team_name).isin(team_list)].copy()
+        if filtered_df.empty:
+            print("❌ No matching teams found. Please check the team names.")
+            continue
+        stat_choice = input("\nEnter MLB stat to sort by (e.g., RBI, G, AB, R, H, AVG, OBP, OPS, TB, SO): ").strip().upper()
+        # If user types TB or TOTAL BASES, map to OPS and skip target input
+        if stat_choice in {"TB", "TOTAL BASES"}:
+            stat_choice = "OPS"
+            # Call non-interactive MLB analysis to simply get top 9 players
+            result = analyze_mlb_noninteractive(filtered_df, teams_input, stat_choice, banned_stat=stat_choice)
+            print(f"\nMLB Top 9 Players for {stat_choice}:")
+            print(result)
+            continue
+        if stat_choice not in STAT_CATEGORIES_MLB:
+            print("❌ Invalid MLB stat choice. Available options:", ", ".join(STAT_CATEGORIES_MLB.keys()))
+            continue
+        mapped_stat = STAT_CATEGORIES_MLB[stat_choice]
+        df_mode = filtered_df.copy()
+        try:
+            df_mode[mapped_stat] = pd.to_numeric(df_mode[mapped_stat], errors='coerce')
+        except Exception as e:
+            print("Error converting stat column to numeric:", e)
+            continue
+        target_value = input(f"\nEnter target {stat_choice} value (per game): ").strip()
+        if not target_value:
+            print("❌ Target value is required.")
+            continue
+        try:
+            target_value = float(target_value)
+        except Exception as e:
+            print("❌ Invalid target value.", e)
+            continue
+        result = categorize_players(df_mode, mapped_stat, target_value, "PLAYER", "TEAM", stat_for_ban=stat_choice)
+        print(f"\nMLB Player Performance Based on Target {target_value} {stat_choice}:")
+        print(result)
+
 def analyze_mlb_by_team_interactive_wrapper():
     df_mlb = integrate_mlb_data()
     if df_mlb.empty:
@@ -1612,7 +1654,7 @@ def main_menu():
                 if df_mlb.empty:
                     print("MLB stats CSV not found or empty.")
                     continue
-                analyze_mlb_by_team_interactive(df_mlb, mapped_stat="RBI")
+                analyze_mlb_interactive(df_mlb)
             else:
                 print("❌ Invalid sport choice.")
         elif choice == '2':
