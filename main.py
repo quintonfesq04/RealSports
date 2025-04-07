@@ -631,6 +631,42 @@ def analyze_nhl_psp(file_path, stat_key):
     output += f"🔴 {', '.join(str(x) for x in red_list)}"
     return output
 
+def analyze_mlb_psp(file_path, stat_key):
+    """
+    This function reads the scraped StatMuse MLB PSP data from file_path,
+    converts the column indicated by stat_key to numeric, and then
+    slices the data into three groups:
+      - yellow: rows 0–3,
+      - green: rows 3–6,
+      - red: rows 6–9.
+    It then returns the output string.
+    """
+    try:
+        df = pd.read_csv(file_path)
+    except Exception as e:
+        return f"Error reading PSP CSV: {e}"
+    # Standardize column names
+    df.columns = [col.upper() for col in df.columns]
+    if stat_key not in df.columns:
+        return f"Error: Column '{stat_key}' not found in PSP CSV. Available columns: {df.columns.tolist()}"
+    try:
+        df[stat_key] = pd.to_numeric(df[stat_key].replace({',': ''}, regex=True), errors='coerce')
+    except Exception as e:
+        return f"Error converting stat column: {e}"
+    # Sort and slice rows for PSP output ordering:
+    sorted_df = df.sort_values(by=stat_key, ascending=False).reset_index(drop=True)
+    # PSP ordering: yellow: rows 0–3, green: rows 3–6, red: rows 6–9.
+    yellow = sorted_df.iloc[0:3]
+    green = sorted_df.iloc[3:6]
+    red = sorted_df.iloc[6:9]
+    player_col = "NAME" if "NAME" in sorted_df.columns else None
+    if player_col is None:
+        return "Player column not found in CSV."
+    output = f"🟢 {', '.join(str(x) for x in green[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
+    output += f"🟡 {', '.join(str(x) for x in yellow[player_col].tolist() if not is_banned(str(x), stat_key))}\n"
+    output += f"🔴 {', '.join(str(x) for x in red[player_col].tolist() if not is_banned(str(x), stat_key))}"
+    return output
+
 def analyze_nba_psp_notion(file_path, stat_key):
     return analyze_nba_psp(file_path, stat_key)
 
@@ -933,8 +969,9 @@ def run_universal_sports_analyzer_programmatic(row):
                     stat_key = clean_header(raw_stat).upper()
                     if stat_key in {"TB", "TOTAL BASES"}:
                         stat_key = "OPS"
-                    df_batters = integrate_mlb_data()
-                    return analyze_mlb_noninteractive(df_batters, teams="", stat_choice=stat_key, banned_stat=stat_key)
+                # At this point, we have scraped fresh StatMuse data earlier (data variable) and saved it to file_path.
+                # Use the scraped data (file_path) and process it using our new analyze_mlb_psp function.
+                return analyze_mlb_psp(file_path, stat_key)
         else:
             return "PSP processing not configured for this sport."
         # *** PSP Branch End ***
