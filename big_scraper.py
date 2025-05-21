@@ -11,6 +11,9 @@ This file combines the scrapers for:
 It runs each sport’s scraping process and saves the corresponding CSV files.
 """
 
+# Add this right after your module docstring:
+SKIP_CBB = True 
+
 # ==============================
 # Common Imports
 # ==============================
@@ -215,7 +218,7 @@ def save_cbb_players_to_csv():
 # ==============================
 # NHL Scraper
 # ==============================
-base_stats_url = "https://www.nhl.com/stats/skaters?reportName=summary&reportType=season&sort=points,a_gamesPlayed&seasonFrom=20242025&seasonTo=20242025&gameType=2"
+base_stats_url = "https://www.nhl.com/stats/skaters?reportType=season&seasonFrom=20242025&seasonTo=20242025&gameType=3&sort=points,a_gamesPlayed&page=0&pageSize=50"
 injury_url_nhl = "https://www.cbssports.com/nhl/injuries/"
 
 def fetch_nhl_player_stats():
@@ -318,7 +321,7 @@ params_nba = {
     "PerMode": "PerGame",
     "Scope": "S",
     "Season": "2024-25",
-    "SeasonType": "Regular Season",
+    "SeasonType": "Playoffs",
     "StatCategory": "PTS"
 }
 headers_nba = {
@@ -489,14 +492,64 @@ def save_mlb_injuries_csv():
         print("No MLB injury data to save.")
 
 # ==============================
+# WNBA Scraper
+# ==============================
+import pandas as pd
+from main import normalize_team_name  # adjust path if necessary
+
+WNBA_STATS_URL_BR = "https://www.basketball-reference.com/wnba/years/2025_per_game.html"
+WNBA_OUTPUT_CSV   = "wnba_player_stats.csv"
+
+def fetch_wnba_player_stats():
+    print("🚀 Fetching 2025 WNBA per-game stats via Basketball-Reference…")
+    tables = pd.read_html(WNBA_STATS_URL_BR)
+
+    # pick the table that has a Player column
+    for df in tables:
+        if "Player" in df.columns:
+            break
+    else:
+        raise RuntimeError("❌ Could not find a table with 'Player' on BBRef page.")
+
+    # drop the duplicate header rows
+    df = df[df["Player"] != "Player"].copy()
+
+    # rename into your pipeline’s expected schema
+    df = df.rename(columns={
+        "Player": "PLAYER",
+        "Tm":     "TEAM",
+        "Team":   "TEAM"   # <— make sure to catch this one, too
+    })
+
+    # strip & normalize
+    df["PLAYER"] = df["PLAYER"].str.strip()
+    df["TEAM"]   = df["TEAM"].str.strip().apply(normalize_team_name)
+
+    return df
+
+def wnba_save_to_csv(df: pd.DataFrame, path: str = WNBA_OUTPUT_CSV):
+    df.to_csv(path, index=False)
+    print(f"💾 WNBA player stats saved to '{path}'")
+
+def wnba_scraper():
+    print("=== WNBA Scraper ===")
+    df = fetch_wnba_player_stats()
+    wnba_save_to_csv(df)
+    print("✅ WNBA scraping completed.")
+    return df
+
+# ==============================
 # Main Function: Run All Scrapers
 # ==============================
 def main():
     print("Starting Big Scraper...")
 
-    # CBB Scraper
-    print("\n=== CBB Scraper ===")
-    save_cbb_players_to_csv()
+    # CBB Scraper (skip when SKIP_CBB=True)
+    if not SKIP_CBB:
+        print("\n=== CBB Scraper ===")
+        save_cbb_players_to_csv()
+    else:
+        print("\n=== CBB Scraper skipped (season over) ===")
 
     # NHL Scraper
     print("\n=== NHL Scraper ===")
@@ -521,6 +574,9 @@ def main():
     print("\n=== MLB Scraper ===")
     save_mlb_stats_csv()
     save_mlb_injuries_csv()
+
+    # WNBA Scraper
+    wnba_scraper()
 
     print("\nBig Scraper completed.")
 
