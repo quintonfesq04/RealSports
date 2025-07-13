@@ -1,113 +1,85 @@
 teamName,playerName,position,updated,injury,injuryStatus
-Atlanta,Jalen Johnson,SF,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-Atlanta,Kobe Bufkin,SG,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-Atlanta,Clint Capela,C,"Wed, Apr 23",Hand,Expected to be out until at least Oct 1
-Atlanta,Larry Nance Jr.,PF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Boston,Jaylen Brown,SF,"Sat, May 17",Knee,Expected to be out until at least Oct 1
-Boston,Jayson Tatum,PF,"Fri, May 16",Achilles,Expected to be out until at least Feb 1
-Brooklyn,Cam Thomas,SG,"Wed, Apr 23",Hamstring,Expected to be out until at least Oct 1
-Brooklyn,Ziaire Williams,SF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Brooklyn,Day'Ron Sharpe,C,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Brooklyn,Reece Beekman,PG,"Wed, Apr 23",Calf,Expected to be out until at least Oct 1
-Brooklyn,Noah Clowney,PF,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-Brooklyn,Cameron Johnson,SF,"Wed, Apr 23",Back,Expected to be out until at least Oct 1
-Brooklyn,D'Angelo Russell,PG,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-Brooklyn,De'Anthony Melton,SG,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Charlotte,LaMelo Ball,PG,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-Charlotte,Josh Green,SF,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-Charlotte,Tre Mann,PG,"Wed, Apr 23",Back,Expected to be out until at least Oct 1
-Charlotte,Brandon Miller,SG,"Wed, Apr 23",Wrist,Expected to be out until at least Oct 1
-Charlotte,Nick Smith Jr.,PG,"Wed, Apr 23",Groin,Expected to be out until at least Oct 1
-Charlotte,Miles Bridges,PF,"Wed, Apr 23",Hip,Expected to be out until at least Oct 1
-Charlotte,Grant Williams,PF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Chicago,Ayo Dosunmu,PG,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-Chicago,Tre Jones,PG,"Wed, Apr 23",Foot,Expected to be out until at least Oct 1
-Chicago,Lonzo Ball,PG,"Wed, Apr 23",Wrist,Expected to be out until at least Oct 1
-Cleveland,Sam Merrill,SG,"Wed, May 14",Neck,Expected to be out until at least Oct 1
-Dallas,Olivier-Maxence Prosper,SF,"Wed, Apr 23",Wrist,Expected to be out until at least Oct 1
-Dallas,Kyrie Irving,PG,"Sat, Apr 19",Knee,Expected to be out until at least Jan 1
-Denver,DaRon Holmes II,PF,"Mon, May 19",Achilles,Expected to be out until at least Jul 1
-Detroit,Jaden Ivey,SG,"Fri, May 2",Lower Leg,Expected to be out until at least Oct 1
-Detroit,Isaiah Stewart,PF,"Fri, May 2",Knee,Expected to be out until at least Oct 1
-Golden St.,Stephen Curry,PG,"Thu, May 15",Hamstring,Expected to be out until at least Oct 1
-Houston,Jock Landale,C,"Mon, May 5",Knee,Expected to be out until at least Oct 1
-Houston,Jae'Sean Tate,SF,"Mon, May 5",Ankle,Expected to be out until at least Oct 1
-Indiana,Isaiah Jackson,C,"Sat, Nov 2",Achilles,Out for the season
-L.A. Clippers,Seth Lundy,SG,"Sun, May 4",Ankle,Expected to be out until at least Jul 2
-Memphis,Ja Morant,PG,"Sun, Apr 27",Hip,Expected to be out until at least Oct 1
-Memphis,Zyon Pullin,PG,"Wed, Apr 23",Knee,Out for the season
-Memphis,Jaylen Wells,SF,"Fri, Apr 11",Wrist,Out for the season
-Memphis,Brandon Clarke,C,"Sat, Mar 22",Knee,Out for the season
-Miami,Terry Rozier,SG,"Thu, May 1",Ankle,Expected to be out until at least Oct 1
-Miami,Isaiah Stevens,PG,"Tue, Apr 29",Foot,Expected to be out until at least Jul 2
-Miami,Dru Smith,SG,"Tue, Dec 24",Achilles,Out for the season
-Milwaukee,Damian Lillard,PG,"Fri, May 16",Achilles,Expected to be out until at least Feb 1
-Milwaukee,Tyler Smith,PF,"Tue, Apr 29",Ankle,Expected to be out until at least Jul 2
-New Orleans,Brandon Boston Jr.,SG,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-New Orleans,Zion Williamson,PF,"Wed, Apr 23",Back,Expected to be out until at least Oct 1
-New Orleans,Yves Missi,C,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-New Orleans,Karlo Matkovic,PF,"Wed, Apr 23",Hamstring,Expected to be out until at least Oct 1
-New Orleans,Jordan Hawkins,SG,"Wed, Apr 23",Back,Expected to be out until at least Oct 1
-New Orleans,Trey Murphy III,SF,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-New Orleans,Kelly Olynyk,PF,"Wed, Apr 23",Achilles,Expected to be out until at least Oct 1
-New Orleans,CJ McCollum,PG,"Wed, Apr 23",Foot,Expected to be out until at least Oct 1
-New Orleans,Dejounte Murray,PG,"Wed, Apr 23",Achilles,Expected to be out until at least Oct 1
-New Orleans,Bruce Brown,SG,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-New Orleans,Herbert Jones,SG,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-Oklahoma City,Nikola Topic,PG,"Wed, Apr 23",Knee,Out for the season
-Orlando,Jalen Suggs,SG,"Tue, Mar 4",Knee,Out for the season
-Orlando,Moe Wagner,C,"Sun, Dec 22",Knee,Out for the season
-Philadelphia,Tyrese Maxey,PG,"Wed, Apr 23",Finger,Expected to be out until at least Oct 1
-Philadelphia,Kyle Lowry,PG,"Wed, Apr 23",Hip,Expected to be out until at least Oct 1
-Philadelphia,Jared McCain,SG,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Philadelphia,Kelly Oubre Jr.,SG,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Philadelphia,Joel Embiid,C,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Philadelphia,Andre Drummond,C,"Wed, Apr 23",Toe,Expected to be out until at least Oct 1
-Philadelphia,Justin Edwards,SF,"Wed, Apr 23",Ribs,Expected to be out until at least Oct 1
-Philadelphia,Paul George,SF,"Wed, Apr 23",Groin,Expected to be out until at least Oct 1
-Philadelphia,Eric Gordon,SF,"Wed, Apr 23",Wrist,Expected to be out until at least Oct 1
-Philadelphia,Guerschon Yabusele,PF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Phoenix,Devin Booker,SG,"Wed, Apr 23",Calf,Expected to be out until at least Oct 1
-Phoenix,Kevin Durant,PF,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-Phoenix,Nick Richards,C,"Wed, Apr 23",Elbow,Expected to be out until at least Oct 1
-Portland,Deni Avdija,SF,"Wed, Apr 23",Thumb,Expected to be out until at least Oct 1
-Portland,Scoot Henderson,PG,"Wed, Apr 23",Concussion,Expected to be out until at least Oct 1
-Portland,Shaedon Sharpe,SG,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Portland,Bryce McGowens,SF,"Wed, Apr 23",Ribs,Expected to be out until at least Oct 1
-Portland,Jerami Grant,PF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Portland,Anfernee Simons,SG,"Wed, Apr 23",Forearm,Expected to be out until at least Oct 1
-Portland,Deandre Ayton,C,"Wed, Apr 23",Calf,Expected to be out until at least Oct 1
-Portland,Robert Williams III,C,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Sacramento,Jake LaRavia,SF,"Wed, Apr 23",Thumb,Expected to be out until at least Oct 1
-Sacramento,Malik Monk,SG,"Wed, Apr 23",Calf,Expected to be out until at least Oct 1
-San Antonio,Riley Minix,SF,"Wed, Apr 23",Shoulder,Expected to be out until at least Jul 1
-San Antonio,Victor Wembanyama,C,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-San Antonio,Jeremy Sochan,SF,"Wed, Apr 23",Back,Expected to be out until at least Oct 1
-San Antonio,Devin Vassell,SG,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-San Antonio,De'Aaron Fox,PG,"Wed, Apr 23",Finger,Expected to be out until at least Oct 1
-Toronto,Ja'Kobe Walter,SG,"Wed, Apr 23",Hip,Expected to be out until at least Oct 1
-Toronto,Gradey Dick,SG,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Toronto,Jared Rhoden,SG,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-Toronto,Jakob Poeltl,C,"Wed, Apr 23",Hand,Expected to be out until at least Oct 1
-Toronto,Garrett Temple,SF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Toronto,Brandon Ingram,SF,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-Toronto,Ulrich Chomche,C,"Wed, Apr 23",Knee,Expected to be out until at least Jul 1
-Toronto,Chris Boucher,C,"Wed, Apr 23",Illness,Expected to be out until at least Oct 1
-Utah,Walker Kessler,C,"Wed, Apr 23",Concussion,Expected to be out until at least Oct 1
-Utah,Kenyon Martin Jr.,SF,"Wed, Apr 23",Illness,Expected to be out until at least Oct 1
-Utah,Taylor Hendricks,PF,"Wed, Apr 23",Lower Leg,Expected to be out until at least Oct 1
-Utah,Cody Williams,SF,"Wed, Apr 23",Illness,Expected to be out until at least Oct 1
-Utah,Isaiah Collier,PG,"Wed, Apr 23",Hamstring,Expected to be out until at least Oct 1
-Utah,EJ Harkless,SG,"Wed, Apr 23",Groin,Expected to be out until at least Jul 1
-Utah,Jordan Clarkson,PG,"Wed, Apr 23",Foot,Expected to be out until at least Oct 1
-Utah,Lauri Markkanen,PF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Utah,John Collins,C,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-Washington,JT Thor,PF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Washington,Bilal Coulibaly,SF,"Wed, Apr 23",Hamstring,Expected to be out until at least Oct 1
-Washington,Richaun Holmes,C,"Wed, Apr 23",Shoulder,Expected to be out until at least Oct 1
-Washington,Khris Middleton,SF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Washington,Malcolm Brogdon,PG,"Wed, Apr 23",Ankle,Expected to be out until at least Oct 1
-Washington,Anthony Gill,PF,"Wed, Apr 23",Hamstring,Expected to be out until at least Oct 1
-Washington,Saddiq Bey,SF,"Wed, Apr 23",Knee,Expected to be out until at least Oct 1
-Washington,Jordan Poole,SG,"Wed, Apr 23",Elbow,Expected to be out until at least Oct 1
-Washington,Corey Kispert,SG,"Wed, Apr 23",Thumb,Expected to be out until at least Oct 1
+Atlanta,Jalen Johnson,SF,"Tue, Jun 24",Shoulder,Out|Expected to be out until at least Oct 1
+Boston,Jaylen Brown,SF,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Boston,Anfernee Simons,SG,"Tue, Jun 24",Forearm,Out|Expected to be out until at least Oct 1
+Boston,Jayson Tatum,PF,"Fri, May 16",Achilles,Out|Expected to be out until at least Feb 1
+Brooklyn,Nolan Traore,PG,"Thu, Jul 10",Ankle,Out|Expected to be out until at least Jul 13
+Brooklyn,Day'Ron Sharpe,C,"Mon, Jun 30",Knee,Out|Expected to be out until at least Oct 1
+Brooklyn,Ziaire Williams,SF,"Mon, Jun 30",Knee,Out|Expected to be out until at least Oct 1
+Brooklyn,Cam Thomas,SG,"Tue, Jun 24",Hamstring,Out|Expected to be out until at least Oct 1
+Brooklyn,Noah Clowney,PF,"Tue, Jun 24",Ankle,Out|Expected to be out until at least Oct 1
+Charlotte,Brandon Miller,SG,"Tue, Jun 24",Wrist,Out|Expected to be out until at least Oct 1
+Charlotte,Nick Smith Jr.,PG,"Tue, Jun 24",Groin,Out|Expected to be out until at least Oct 1
+Charlotte,LaMelo Ball,PG,"Tue, Jun 24",Ankle,Out|Expected to be out until at least Oct 1
+Charlotte,Josh Green,SF,"Tue, Jun 24",Shoulder,Out|Expected to be out until at least Oct 1
+Charlotte,Grant Williams,PF,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Charlotte,Miles Bridges,PF,"Tue, Jun 24",Hip,Out|Expected to be out until at least Oct 1
+Chicago,Matas Buzelis,SF,"Fri, Jul 11",Rest,Out|Expected to be out until at least Jul 14
+Chicago,Ayo Dosunmu,PG,"Tue, Jun 24",Shoulder,Out|Expected to be out until at least Oct 1
+Cleveland,Craig Porter Jr.,PG,"Fri, Jul 11",Hamstring,Out|Expected to be out until at least Jul 12
+Cleveland,Sam Merrill,SG,"Tue, Jun 24",Neck,Out|Expected to be out until at least Oct 1
+Cleveland,Lonzo Ball,PG,"Tue, Jun 24",Wrist,Out|Expected to be out until at least Oct 1
+Cleveland,Darius Garland,PG,"Mon, Jun 9",Toe,Out|Expected to be out until at least Nov 1
+Dallas,Anthony Davis,C,"Tue, Jul 8",Eye,Out|Expected to be out until at least Oct 1
+Dallas,Olivier-Maxence Prosper,SF,"Tue, Jun 24",Wrist,Out|Expected to be out until at least Oct 1
+Dallas,Kyrie Irving,PG,"Sat, Apr 19",Knee,Out|Expected to be out until at least Jan 1
+Detroit,Jaden Ivey,SG,"Tue, Jun 24",Lower Leg,Out|Expected to be out until at least Oct 1
+Detroit,Isaiah Stewart,PF,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Golden St.,Moses Moody,SF,"Tue, Jun 24",Thumb,Out|Expected to be out until at least Oct 1
+Golden St.,Brandin Podziemski,SG,"Tue, Jun 24",Abdomen,Out|Expected to be out until at least Oct 1
+Golden St.,Stephen Curry,PG,"Tue, Jun 24",Hamstring,Out|Expected to be out until at least Oct 1
+Houston,Dorian Finney-Smith,PF,"Mon, Jun 30",Ankle,Out|Expected to be out until at least Oct 1
+Houston,Kevin Durant,PF,"Tue, Jun 24",Ankle,Out|Expected to be out until at least Oct 1
+Indiana,Tyrese Haliburton,PG,"Wed, Jul 9",Achilles,"Out|Expected to be out until at least Oct 1, 2026"
+Indiana,James Wiseman,C,"Mon, Jul 7",Achilles,Out|Expected to be out until at least Oct 1
+Indiana,Jarace Walker,PF,"Mon, Jun 23",Ankle,Out|Expected to be out until at least Oct 1
+Indiana,Isaiah Jackson,C,"Mon, Jun 23",Achilles,Out|Expected to be out until at least Oct 1
+L.A. Clippers,Kobe Brown,SF,"Sat, Jul 12",Ankle,Out|Expected to be out until at least Jul 13
+L.A. Lakers,Dalton Knecht,SF,"Thu, Jul 10",Calf,Out|Expected to be out until at least Jul 12
+Memphis,Jaren Jackson Jr.,PF,"Tue, Jul 1",Toe,Out|Expected to be out until at least Oct 1
+Memphis,Brandon Clarke,C,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Memphis,Ja Morant,PG,"Tue, Jun 24",Hip,Out|Expected to be out until at least Oct 1
+Memphis,Zach Edey,C,"Wed, Jun 11",Ankle,Out|Expected to be out until at least Nov 1
+Miami,Dru Smith,SG,"Tue, Jun 24",Achilles,Out|Expected to be out until at least Oct 1
+Miami,Terry Rozier,SG,"Tue, Jun 24",Ankle,Out|Expected to be out until at least Oct 1
+New Orleans,Jordan Hawkins,SG,"Tue, Jun 24",Back,Out|Expected to be out until at least Oct 1
+New Orleans,Yves Missi,C,"Tue, Jun 24",Ankle,Out|Expected to be out until at least Oct 1
+New Orleans,Karlo Matkovic,PF,"Tue, Jun 24",Hamstring,Out|Expected to be out until at least Oct 1
+New Orleans,Herbert Jones,SG,"Tue, Jun 24",Shoulder,Out|Expected to be out until at least Oct 1
+New Orleans,Dejounte Murray,PG,"Tue, Jun 24",Achilles,Out|Expected to be out until at least Nov 1
+New Orleans,Zion Williamson,PF,"Tue, Jun 24",Back,Out|Expected to be out until at least Oct 1
+New Orleans,Trey Murphy III,SF,"Tue, Jun 24",Shoulder,Out|Expected to be out until at least Oct 1
+New Orleans,Saddiq Bey,SF,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Oklahoma City,Jalen Williams,SF,"Thu, Jul 3",Wrist,Out|Expected to be out until at least Oct 1
+Orlando,Jalen Suggs,SG,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Philadelphia,Joel Embiid,C,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Philadelphia,Andre Drummond,C,"Tue, Jun 24",Toe,Out|Expected to be out until at least Oct 1
+Philadelphia,Paul George,SF,"Tue, Jun 24",Thigh,Out|Expected to be out until at least Oct 1
+Philadelphia,Jared McCain,SG,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Philadelphia,Tyrese Maxey,PG,"Tue, Jun 24",Finger,Out|Expected to be out until at least Oct 1
+Philadelphia,Kelly Oubre Jr.,SG,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Phoenix,Nick Richards,C,"Tue, Jun 24",Elbow,Out|Expected to be out until at least Oct 1
+Portland,Deni Avdija,SF,"Tue, Jun 24",Thumb,Out|Expected to be out until at least Oct 1
+Portland,Scoot Henderson,PG,"Tue, Jun 24",Concussion,Out|Expected to be out until at least Oct 1
+Portland,Jerami Grant,PF,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Portland,Shaedon Sharpe,SG,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Portland,Robert Williams III,C,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Sacramento,Malik Monk,SG,"Tue, Jun 24",Calf,Out|Expected to be out until at least Oct 1
+San Antonio,Jeremy Sochan,SF,"Tue, Jun 24",Back,Out|Expected to be out until at least Oct 1
+San Antonio,Victor Wembanyama,C,"Tue, Jun 24",Shoulder,Out|Expected to be out until at least Oct 1
+San Antonio,De'Aaron Fox,PG,"Tue, Jun 24",Finger,Out|Expected to be out until at least Oct 1
+San Antonio,Devin Vassell,SG,"Tue, Jun 24",Ankle,Out|Expected to be out until at least Oct 1
+Toronto,Ja'Kobe Walter,SG,"Tue, Jun 24",Hip,Out|Expected to be out until at least Oct 1
+Toronto,Gradey Dick,SG,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Toronto,Brandon Ingram,SF,"Tue, Jun 24",Ankle,Out|Expected to be out until at least Oct 1
+Toronto,Jakob Poeltl,C,"Tue, Jun 24",Hand,Out|Expected to be out until at least Oct 1
+Utah,Brice Sensabaugh,SG,"Fri, Jul 11",Knee,Out|Expected to be out until at least Jul 14
+Utah,Walker Kessler,C,"Tue, Jun 24",Concussion,Out|Expected to be out until at least Oct 1
+Utah,Kenyon Martin Jr.,SF,"Tue, Jun 24",Illness,Out|Expected to be out until at least Oct 1
+Utah,Taylor Hendricks,PF,"Tue, Jun 24",Lower Leg,Out|Expected to be out until at least Oct 1
+Utah,Lauri Markkanen,PF,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Washington,Khris Middleton,SF,"Tue, Jun 24",Knee,Out|Expected to be out until at least Oct 1
+Washington,Bilal Coulibaly,SF,"Tue, Jun 24",Hamstring,Out|Expected to be out until at least Oct 1
+Washington,Richaun Holmes,C,"Tue, Jun 24",Shoulder,Out|Expected to be out until at least Oct 1
+Washington,Corey Kispert,SG,"Tue, Jun 24",Thumb,Out|Expected to be out until at least Oct 1
+Washington,Kelly Olynyk,PF,"Tue, Jun 24",Heel,Out|Expected to be out until at least Oct 1

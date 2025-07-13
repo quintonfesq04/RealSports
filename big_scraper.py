@@ -494,49 +494,92 @@ def save_mlb_injuries_csv():
 # ==============================
 # WNBA Scraper
 # ==============================
-import pandas as pd
-from main import normalize_team_name  # adjust path if necessary
+import pandas as pd  # should already be imported
+import requests
+from bs4 import BeautifulSoup
 
-WNBA_STATS_URL_BR = "https://www.basketball-reference.com/wnba/years/2025_per_game.html"
-WNBA_OUTPUT_CSV   = "wnba_player_stats.csv"
+WNBA_STATS_URL_BR   = "https://www.basketball-reference.com/wnba/years/2025_per_game.html"
+WNBA_OUTPUT_CSV     = "wnba_player_stats.csv"
+INJURY_URL_WNBA     = "https://www.espn.com/wnba/injuries"
+
+def normalize_team_name(team):
+    # make sure you have this utility in scope (or import it)
+    return team.strip().upper()
 
 def fetch_wnba_player_stats():
     print("🚀 Fetching 2025 WNBA per-game stats via Basketball-Reference…")
     tables = pd.read_html(WNBA_STATS_URL_BR)
-
-    # pick the table that has a Player column
     for df in tables:
         if "Player" in df.columns:
             break
     else:
-        raise RuntimeError("❌ Could not find a table with 'Player' on BBRef page.")
-
-    # drop the duplicate header rows
+        raise RuntimeError("❌ Could not find table with 'Player' column on BBRef.")
     df = df[df["Player"] != "Player"].copy()
-
-    # rename into your pipeline’s expected schema
-    df = df.rename(columns={
-        "Player": "PLAYER",
-        "Tm":     "TEAM",
-        "Team":   "TEAM"   # <— make sure to catch this one, too
-    })
-
-    # strip & normalize
+    df = df.rename(columns={"Player":"PLAYER","Tm":"TEAM","Team":"TEAM"})
     df["PLAYER"] = df["PLAYER"].str.strip()
     df["TEAM"]   = df["TEAM"].str.strip().apply(normalize_team_name)
-
     return df
 
-def wnba_save_to_csv(df: pd.DataFrame, path: str = WNBA_OUTPUT_CSV):
-    df.to_csv(path, index=False)
-    print(f"💾 WNBA player stats saved to '{path}'")
+def fetch_wnba_injury_data():
+    """Scrape the ESPN WNBA Injuries overview page for all teams."""
+    print("🔍 Fetching WNBA injury list from ESPN…")
+    try:
+        resp = requests.get(INJURY_URL_WNBA, headers={"User-Agent":"Mozilla/5.0"})
+        resp.raise_for_status()
+    except Exception as e:
+        print(f"❌ Error fetching WNBA injury page: {e}")
+        return pd.DataFrame()
+
+    soup = BeautifulSoup(resp.content, "html.parser")
+    records = []
+    # Each team block is a <section class="Card">
+    for sec in soup.select("section.Card"):
+        team = sec.select_one(".TableBase-title, h2")
+        team_name = team.get_text(strip=True) if team else "Unknown"
+        # rows under the embedded table
+        for tr in sec.select("div.Wrapper.Card__Content table tbody tr"):
+            cols = tr.find_all("td")
+            if len(cols) < 5:
+                continue
+            records.append({
+                "teamName":     team_name,
+                "playerName":   cols[0].get_text(strip=True),
+                "position":     cols[1].get_text(strip=True),
+                "estReturn":    cols[2].get_text(strip=True),
+                "returnDate":   cols[3].get_text(strip=True),
+                "status":       cols[4].get_text(strip=True),
+            })
+
+    df = pd.DataFrame(records)
+    if not df.empty:
+        df.to_csv("wnba_injuries.csv", index=False)
+        print(f"💾 Saved WNBA injury data to 'wnba_injuries.csv' ({len(df)} rows).")
+    else:
+        print("⚠️ No injury rows found on ESPN Injuries page.")
+    return df
 
 def wnba_scraper():
     print("=== WNBA Scraper ===")
-    df = fetch_wnba_player_stats()
-    wnba_save_to_csv(df)
-    print("✅ WNBA scraping completed.")
-    return df
+    # 1) load stats
+    df_stats = fetch_wnba_player_stats()
+
+    # 2) load injuries
+    df_inj = fetch_wnba_injury_data()
+    if not df_inj.empty and "playerName" in df_inj.columns:
+        injured = set(df_inj["playerName"].str.strip())
+        before = len(df_stats)
+        df_stats = df_stats[~df_stats["PLAYER"].isin(injured)]
+        dropped = before - len(df_stats)
+        print(f"🔍 Dropped {dropped} injured WNBA players")
+    else:
+        print("⚠️ Saving all WNBA stats unfiltered (no injuries).")
+
+    # 3) save final CSV
+    df_stats.to_csv(WNBA_OUTPUT_CSV, index=False)
+    print(f"💾 WNBA player stats saved to '{WNBA_OUTPUT_CSV}'")
+    return df_stats
+
+
 
 # ==============================
 # Main Function: Run All Scrapers
@@ -553,8 +596,8 @@ def main():
 
     # NHL Scraper
     print("\n=== NHL Scraper ===")
-    fetch_nhl_player_stats()
-    save_nhl_injuries_csv()
+    #fetch_nhl_player_stats()
+    #save_nhl_injuries_csv()
 
     # NBA Scraper
     print("\n=== NBA Scraper ===")
