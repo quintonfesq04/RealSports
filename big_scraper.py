@@ -31,6 +31,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
+from io import StringIO
 
 # ==============================
 # CBB Scraper (College Basketball)
@@ -579,7 +580,33 @@ def wnba_scraper():
     print(f"💾 WNBA player stats saved to '{WNBA_OUTPUT_CSV}'")
     return df_stats
 
+# ==============================
+# NBA Summer League Scraper
+# ==============================
+SUMMER_URL = "https://basketball.realgm.com/nba/summer/1/NBA-2K26-Summer-League/59/stats"
+HEADERS = {"User-Agent": "Mozilla/5.0"}
 
+def fetch_summer_league_stats():
+    print("🚀 Fetching NBA Summer League stats from RealGM…")
+    resp = requests.get(SUMMER_URL, headers=HEADERS)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, "html.parser")
+    table = soup.find("table", attrs={"data-toggle": "table"})
+    if not table:
+        raise RuntimeError("❌ Could not locate the Summer League stats table on RealGM.")
+    df = pd.read_html(StringIO(str(table)))[0]
+    # drop the rank column if present
+    if "#" in df.columns:
+        df = df.drop(columns=["#"])
+    # normalize your column names
+    df.columns = df.columns.str.strip().str.upper()
+    return df
+
+def save_summer_league_stats_csv():
+    df = fetch_summer_league_stats()
+    out = "summer_league_stats.csv"
+    df.to_csv(out, index=False)
+    print(f"💾 Saved Summer League stats to {out}")
 
 # ==============================
 # Main Function: Run All Scrapers
@@ -601,17 +628,17 @@ def main():
 
     # NBA Scraper
     print("\n=== NBA Scraper ===")
-    stats_df_nba = fetch_nba_player_stats()
-    injuries_df_nba = extract_nba_injury_data()
-    if not injuries_df_nba.empty:
-        injuries_df_nba.to_csv('nba_injury_report.csv', index=False)
-        print("💾 Saved NBA injury report data")
-    else:
-        print("❌ No NBA injury data found")
-    healthy_players_df_nba = merge_nba_stats_with_injuries(stats_df_nba, injuries_df_nba)
-    healthy_output_file = "nba_healthy_player_stats.csv"
-    healthy_players_df_nba.to_csv(healthy_output_file, index=False)
-    print(f"💾 Saved healthy NBA player stats to {healthy_output_file}")
+    #stats_df_nba = fetch_nba_player_stats()
+    #injuries_df_nba = extract_nba_injury_data()
+    #if not injuries_df_nba.empty:
+    #    injuries_df_nba.to_csv('nba_injury_report.csv', index=False)
+    #    print("💾 Saved NBA injury report data")
+    #else:
+    #    print("❌ No NBA injury data found")
+    #healthy_players_df_nba = merge_nba_stats_with_injuries(stats_df_nba, injuries_df_nba)
+    #healthy_output_file = "nba_healthy_player_stats.csv"
+    #healthy_players_df_nba.to_csv(healthy_output_file, index=False)
+    #print(f"💾 Saved healthy NBA player stats to {healthy_output_file}")
 
     # MLB Batting Scraper
     print("\n=== MLB Scraper ===")
@@ -621,7 +648,18 @@ def main():
     # WNBA Scraper
     wnba_scraper()
 
+    # —————————————
+    # Summer League Scraper
+    # —————————————
+    print("\n=== NBA Summer League Scraper ===")
+    try:
+        save_summer_league_stats_csv()
+    except Exception as e:
+        print(f"❌ Summer League scrape failed: {e}")
+
     print("\nBig Scraper completed.")
+
+    
 
 if __name__ == "__main__":
     main()

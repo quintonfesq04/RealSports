@@ -134,12 +134,27 @@ TEAM_ALIASES = {
     "ATH": "OAK"
 }
 
+# ----------------------------
+# SNBA‐specific Team Aliases
+# ----------------------------
+SNBA_TEAM_ALIASES = {
+    "BRK": "BKN",
+    "GOS": "GSW",
+    "PHL": "PHI",
+}
+
+def normalize_snba_team_name(team: str) -> str:
+    """Normalize only SNBA team codes."""
+    t = team.strip().upper()
+    return SNBA_TEAM_ALIASES.get(t, t)
+
 def normalize_team_name(team):
     team = team.strip().upper()
     return TEAM_ALIASES.get(team, team)
 
 TRADED_PLAYERS = {
-    "kyle kuzma": "MIL"
+    "kyle kuzma": "MIL",
+    "julie vanloo": "LAS",
 }
 
 def update_traded_players(df, player_col="PLAYER", team_col="TEAM"):
@@ -164,28 +179,15 @@ PERMANENT_YELLOW_PLAYERS = {
     "Rafael Devers",
     "Vladimir Guerrero Jr",
     "Pete Alonso",
-    "Jonathan Aranda",
-    "Cedric Mullins",
-    "Hunter Goodman",
     "José Ramírez",
-    "Riley Greene",
     "Cal Raleigh",
-    "Isaac Paredes",
     "Pete Crow-Armstrong",
     "Elly De La Cruz",
-    "Wyatt Langford",
-    "Miguel Vargas",
     "Fernando Tatis Jr",
     "Ronald Acuña Jr",
-    "Wilmer Flores",
     "James Wood",
-    "Jackson Chourio",
     "Oneil Cruz",
-    "Gerardo Perdomo",
-    "Lars Nootbaar",
     "Bobby Witt Jr",
-    "Ty France",
-    "Jarren Duran",
     "Bryce Harper",
     "Jacob Wilson",
 }
@@ -204,8 +206,45 @@ GLOBAL_BANNED_PLAYERS = [
     "Aari McDonald",
     "Kayla McBride",
     "Iván Herrera",
-    "Andrew Vaughn",
     "Rowdy Tellez",
+    "Kennedy Chandler",
+    "David Jones",
+    "Jordan Miller",
+    "Mason Jones",
+    "Kira Lewis, Jr.",
+    "Kenny Lofton, Jr.",
+    "Charles Bassey",
+    "M.J. Walker",
+    "Cooper Flagg",
+    "Adam Flagler",
+    "Javon Freeman-liberty",
+    "Phillip Wheeler",
+    "Gabe Mcglothan",
+    "Jordan Hall",
+    "Javonte Cooke",
+    "Boogie Ellis",
+    "Darius Bazley",
+    "Cole Swider",
+    "Sir'jabari Rice",
+    "D.j. Steward",
+    "Zavier Simpson",
+    "Reece Beekman",
+    "Judah Mintz",
+    "Armando Bacot",
+    "Reed Sheppard",
+    "Jack Mcveigh",
+    "Dexter Dennis",
+    "Isaiah Mobley",
+    "D.j. Carton",
+    "Quincy Olivari",
+    "Mark Armstrong"
+    "Josh Jung",
+    "Wendell Moore, Jr.",
+    "Markquis Nowell",
+    "Antonio Reeves",
+    "Jeremy Peña",
+    "Kayla Thornton"
+
 ]
 GLOBAL_BANNED_PLAYERS_SET = {p.strip().lower() for p in GLOBAL_BANNED_PLAYERS}
 
@@ -276,6 +315,31 @@ _MLB_NAME_OVERRIDES = {
     "Zach Mc Kinstry": "Zack McKinstry",
     
     # you can add more exceptions here if they pop up
+}
+
+# ----------------------------
+# SNBA Name Overrides
+# ----------------------------
+_raw_snba_overrides = {
+    # Raw scraped → Desired clean name
+    "Eli N'diaye": "Eli John N'diaye",
+    "K.j. Simpson": "KJ Simpson",
+    "Liam Mcneeley": "Liam McNeeley",
+    "Walter Clayton, Jr.": "Walter Clayton Jr",
+    "Cameron Christie": "Cam Christie",
+    "Ty Johnson": "TY Johnson",
+    "Rayj Dennis": "RayJ Dennis",
+    "A.j. Lawson": "A.J. Lawson",
+    "G.g. Jackson": "GG Jackson II",
+    "Ron Holland": "Ron Holland II",
+    "Bronny James": "Bronny James Jr",
+    "R.j. Davis": "R.J. Davis",
+    "Kevin Mccullar, Jr.": "Kevin McCullar Jr",
+    "Patrick Baldwin, Jr.": "Patrick Baldwin Jr",
+    "Ja'kobe Walter": "Ja'Kobe Walter",
+    "Daron Holmes Ii": "DaRon Holmes II",
+
+    # ... add as you discover more discrepancies
 }
 
 def fix_mlb_player_name(raw: str) -> str:
@@ -636,11 +700,97 @@ def integrate_cbb_data(player_stats_file="cbb_players_stats.csv", injury_data_fi
     integrated_data = update_traded_players(integrated_data, player_col="Player", team_col="Team")
     return integrated_data
 
+# ---------- Summer League Integration ----------
+# normalize the keys once
+_SNBA_NAME_OVERRIDES = {
+    key.lower().replace(".", "").replace("'", "").strip(): val
+    for key, val in _raw_snba_overrides.items()
+}
+
+def fix_snba_player_name(raw: str) -> str:
+    """
+    Normalize and correct raw Summer League player names
+    using _SNBA_NAME_OVERRIDES.
+    """
+    name = raw or ""
+    # build our lookup key: lowercase, drop dots & apostrophes, strip whitespace
+    key = name.lower().replace(".", "").replace("'", "").strip()
+
+    # 1) if we have a manual override, use it
+    if key in _SNBA_NAME_OVERRIDES:
+        return _SNBA_NAME_OVERRIDES[key]
+
+    # 2) otherwise title-case each part
+    return " ".join(part.capitalize() for part in name.split())
+
+def load_summer_league_stats():
+    path = os.path.join(BASE_DIR, "summer_league_stats.csv")
+    try:
+        df = pd.read_csv(path)
+    except FileNotFoundError:
+        print(f"❌ Summer League stats not found at {path}")
+        return pd.DataFrame()
+
+    df.columns = df.columns.str.strip().str.upper()
+    for human, api in STAT_CATEGORIES_NBA.items():
+        if human in df.columns:
+            df = df.rename(columns={human: api})
+
+    if "PLAYER" not in df.columns:
+        for col in df.columns:
+            if "PLAYER" in col:
+                df = df.rename(columns={col: "PLAYER"})
+                break
+    if "TEAM" not in df.columns:
+        df["TEAM"] = ""
+
+    # **NEW: fix SNBA names**
+    df["PLAYER"] = df["PLAYER"].astype(str).apply(fix_snba_player_name)
+
+    df["PLAYER"] = df["PLAYER"].str.strip()
+    df["TEAM"]   = df["TEAM"].str.strip()
+    return df
+
+
+
+def analyze_summer_league_noninteractive(df, stat_choice, target_value):
+    """
+    Exactly like NBA non-interactive, but on the Summer League DataFrame.
+    """
+    if df.empty:
+        return "❌ No Summer League data available."
+
+    # map poll-stat to DataFrame column
+    mapped = STAT_CATEGORIES_NBA.get(stat_choice.upper())
+    if not mapped or mapped not in df.columns:
+        return f"❌ Invalid stat '{stat_choice}'. Choose from {list(STAT_CATEGORIES_NBA)}."
+
+    # numeric + drop NaNs
+    df[mapped] = pd.to_numeric(df[mapped], errors="coerce")
+    df = df.dropna(subset=[mapped])
+
+    # drop duplicates & banned
+    df = df[~df["PLAYER"].apply(lambda x: is_banned(x, stat_choice))]
+    df = df.drop_duplicates(subset=["PLAYER"])
+
+    # pick a valid team_col (we need _something_ to satisfy categorize_players)
+    team_col = "TEAM" if "TEAM" in df.columns else "PLAYER"
+
+    # hand off to your generic categorizer
+    return categorize_players(
+        df,
+        mapped,
+        target_value,
+        player_col="PLAYER",
+        team_col=team_col,
+        stat_for_ban=stat_choice
+    )
+
 # ----------------------------
 # PSP Scraping and Analyzer Functions (PSP Section)
 # ----------------------------
 # Define missing constants for PSP scraping:
-TIME_PERIOD = "past 4 months"  # or "last 7 days", "last 60 days", etc.
+TIME_PERIOD = "last 2 weeks"  # or "last 7 days", "last 60 days", etc.
 BASE_URL    = "https://www.statmuse.com"
 
 def build_query_url(query: str, teams=None) -> str:
@@ -1201,25 +1351,65 @@ def run_universal_sports_analyzer_programmatic(row):
     target_val = parse_target(row["target"])
     
     if row.get("psp", False):
-        # CBB PSP stays the same
-        if sport_upper == "CBB":
-            df = integrate_cbb_data("cbb_players_stats.csv", "cbb_injuries.csv")
-            if df.empty:
-                return "❌ CBB stats not found or empty."
-            teams_list = row.get("teams", [])
-            if isinstance(teams_list, str):
-                teams_list = [normalize_team_name(t) for t in teams_list.split(",") if t.strip()]
-            else:
-                teams_list = [normalize_team_name(t) for t in teams_list]
+        # ─── normalize Notion “teams” into teams_list ────────────────────
+        raw_teams = row.get("teams", [])
+        if isinstance(raw_teams, str):
+            teams_list = [
+                normalize_team_name(t)
+                for t in raw_teams.split(",")
+                if t.strip()
+            ]
+        else:
+            teams_list = [
+                normalize_team_name(t)
+                for t in raw_teams
+            ]
+
+        sport_upper = row["sport"].upper()
+        target_val  = parse_target(row["target"])
+
+        # ─── CBB & SNBA PSP ──────────────────────────
+        if sport_upper in {"CBB", "SNBA"}:
+            if sport_upper == "CBB":
+                df = integrate_cbb_data("cbb_players_stats.csv", "cbb_injuries.csv")
+                if df.empty:
+                    return "❌ CBB stats not found or empty."
+            else:  # SNBA
+                df = load_summer_league_stats()
+                if df.empty:
+                    return "❌ Summer League stats not found."
+
+            # 1) map human‐readable stat to actual column
+            human = row["stat"].strip().upper()
+            mapped = STAT_CATEGORIES_NBA.get(human)
+            if not mapped:
+                return f"❌ Invalid SNBA stat '{human}'. Choose from {list(STAT_CATEGORIES_NBA)}."
+
+            # 2) filter by Notion teams (TEAM column is uppercase)
+            teams_raw = row.get("teams", [])
+            teams_list = (
+                [normalize_team_name(t) for t in teams_raw.split(",")] 
+                if isinstance(teams_raw, str) 
+                else [normalize_team_name(t) for t in teams_raw]
+            )
             if teams_list:
-                df = df[df["Team"].apply(normalize_team_name).isin(teams_list)]
+                df = df[df["TEAM"].apply(normalize_team_name).isin(teams_list)]
+                if df.empty:
+                    return "❌ No SNBA players found for those teams."
+
+            # 3) numeric conversion & generic categorization
+            try:
+                df[mapped] = pd.to_numeric(df[mapped], errors="coerce")
+            except Exception as e:
+                return f"Error converting stat column: {e}"
+
             return categorize_players(
                 df,
-                row["stat"].upper(),
+                mapped,               # e.g. "PTS", "AST", etc.
                 target_val,
-                player_col="Player",
-                team_col="Team",
-                stat_for_ban=row["stat"].upper()
+                player_col="PLAYER",
+                team_col="TEAM",
+                stat_for_ban=human    # still use human for banning logic
             )
 
         elif sport_upper in {"NHL", "NBA", "MLB", "WNBA", "FC"}:
@@ -1355,6 +1545,40 @@ def run_universal_sports_analyzer_programmatic(row):
             team_col="TEAM",
             stat_for_ban=used_stat
         )
+    
+    # ——— Summer League / SNBA ———
+    elif sport_upper in {"SUMMER LEAGUE", "SNBA", "NBA SUMMER LEAGUE"}:
+        # 1) load
+        df_sl = load_summer_league_stats()
+        if df_sl.empty:
+            return "❌ Summer League stats not found."
+
+        # 2) filter to the two teams (using your SNBA normalizer)
+        raw_teams = row.get("teams", [])
+        if isinstance(raw_teams, str):
+            teams_list = [normalize_snba_team_name(t) for t in raw_teams.split(",") if t.strip()]
+        else:
+            teams_list = [normalize_snba_team_name(t) for t in raw_teams]
+        if teams_list:
+            df_sl = df_sl[df_sl["TEAM"].apply(normalize_snba_team_name).isin(teams_list)]
+            if df_sl.empty:
+                return "❌ No SNBA players found for those teams."
+
+        # 2.5) **NEW**: drop anyone with under 4 games played
+        if "G" in df_sl.columns:
+            df_sl["G"] = pd.to_numeric(df_sl["G"], errors="coerce")
+            df_sl = df_sl[df_sl["G"] >= 4]
+            if df_sl.empty:
+                return "❌ No SNBA players with at least 3 games."
+
+        # 3) dispatch to analyzer
+        try:
+            target = float(row["target"])
+        except:
+            return "❌ Invalid target for Summer League."
+        stat = (row["stat"] or "PPG").strip().upper()
+        return analyze_summer_league_noninteractive(df_sl, stat, target)
+    
     else:
         return "Sport not recognized."
 
@@ -1811,6 +2035,7 @@ def main_menu():
             print("3: NHL")
             print("4: MLB")
             print("5: WNBA")
+            print("6: SNBA")
             sport_choice = input("Choose an option (1/2/3/4): ").strip()
             if sport_choice == '1':
                 df_cbb = integrate_cbb_data(player_stats_file="cbb_players_stats.csv", injury_data_file="cbb_injuries.csv")
@@ -1836,6 +2061,13 @@ def main_menu():
                     print("WNBA stats CSV not found or empty.")
                     continue
                 analyze_sport(df_wnba, STAT_CATEGORIES_WNBA, "PLAYER", "TEAM")
+            elif sport_choice == '6':
+                df_sl = load_summer_league_stats()
+                if df_sl.empty:
+                    print("❌ Summer League stats not found.")
+                else:
+                    # Re-use analyze_sport to get buckets by stat and target
+                    analyze_sport(df_sl, STAT_CATEGORIES_NBA, "PLAYER", team_col=None)
             else:
                 print("❌ Invalid sport choice.")
         elif choice == '2':

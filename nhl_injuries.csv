@@ -1,107 +1,94 @@
 teamName,playerName,position,updated,injury,injuryStatus
-Anaheim,Ross Johnston,LW,"Mon, Apr 21",Upper Body,Expected to be out until at least Sep 15
-Anaheim,John Gibson,G,"Wed, Apr 16",Lower Body,Expected to be out until at least Sep 15
-Anaheim,Robby Fabbri,C,"Sat, Mar 29",Hand,IR. Expected to be out until at least Sep 15
-Anaheim,Brock McGinn,LW,"Mon, Jan 27",Lower Body,IR. Expected to be out until at least Sep 15
-Boston,John Beecher,C,"Sat, May 3",Undisclosed,Expected to be out until at least Sep 15
-Boston,Pavel Zacha,C,"Wed, Apr 23",Undisclosed,Expected to be out until at least Sep 15
-Boston,Hampus Lindholm,D,"Mon, Apr 21",Kneecap,IR. Expected to be out until at least Sep 15
-Boston,Charlie McAvoy,D,"Thu, Apr 10",Shoulder,IR. Expected to be out until at least Sep 15
-Boston,Mark Kastelic,C,"Thu, Apr 10",Upper Body,Expected to be out until at least Sep 15
-Buffalo,Josh Norris,C,"Sat, Apr 19",Oblique,Expected to be out until at least Sep 15
-Buffalo,Beck Malenstyn,LW,"Thu, Apr 17",Undisclosed,Expected to be out until at least Sep 15
-Buffalo,Owen Power,D,"Tue, Apr 15",Lower Body,Expected to be out until at least Sep 15
-Buffalo,Jordan Greenway,LW,"Sat, Apr 12",Lower Body,Expected to be out until at least Sep 15
-Calgary,Matthew Coronato,RW,"Mon, Apr 28",Undisclosed,Expected to be out until at least Sep 15
-Calgary,Yegor Sharangovich,C,"Mon, Apr 21",Foot,Expected to be out until at least Sep 15
-Calgary,Connor Zary,C,"Mon, Apr 21",Knee,Expected to be out until at least Sep 15
-Calgary,Justin Kirkland,LW,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 15
-Calgary,Anthony Mantha,RW,"Mon, Jan 27",Knee,IR. Expected to be out until at least Sep 15
-Carolina,Jalen Chatfield,D,"Wed, May 28",Undisclosed,Expected to be out until at least Sep 15
-Carolina,Sean Walker,D,"Wed, May 28",Undisclosed,Expected to be out until at least Sep 15
-Chicago,Lukas Reichel,LW,"Mon, May 19",Undisclosed,Expected to be out until at least Sep 15
-Chicago,Jason Dickinson,C,"Tue, Mar 25",Wrist,Expected to be out until at least Sep 15
-Chicago,Laurent Brossoit,G,"Thu, Mar 6",Knee,IR. Expected to be out until at least Sep 15
-Colorado,Logan O'Connor,RW,"Fri, Jun 6",Hip,Expected to be out until at least Nov 6
-Colorado,Ross Colton,C,"Wed, May 14",Groin,Expected to be out until at least Sep 15
-Columbus,Elvis Merzlikins,G,"Sat, Apr 19",Concussion,Expected to be out until at least Sep 15
-Columbus,Zach Aston-Reese,C,"Thu, Apr 17",Undisclosed,Expected to be out until at least Sep 15
-Columbus,Jake Christiansen,D,"Thu, Apr 17",Upper Body,Expected to be out until at least Sep 15
-Columbus,Kevin Labanc,RW,"Tue, Mar 18",Shoulder,IR. Expected to be out until at least Sep 15
-Dallas,Tyler Seguin,C,"Fri, Jun 6",Shoulder,Expected to be out until at least Sep 15
-Dallas,Roope Hintz,LW,"Sun, Jun 1",Foot,Expected to be out until at least Sep 15
-Detroit,Carter Mazur,LW,"Thu, Apr 17",Upper Body,IR. Expected to be out until at least Sep 15
-Detroit,Andrew Copp,C,"Tue, Feb 25",Pectoral,IR. Expected to be out until at least Sep 15
-Edmonton,Ryan Nugent-Hopkins,C,"Wed, Jun 11",Undisclosed,Day-to-Day
-Edmonton,Zach Hyman,C,"Thu, Jun 5",Wrist,Expected to be out until at least Sep 15
-Edmonton,Alec Regula,D,"Wed, Mar 26",Knee,IR. Expected to be out until at least Sep 15
-Los Angeles,Tanner Jeannot,LW,"Mon, May 5",Groin,Expected to be out until at least Sep 15
-Minnesota,Joel Eriksson Ek,C,"Sun, May 4",Abdomen,Expected to be out until at least Sep 15
-Montreal,Sam Montembeault,G,"Fri, May 2",Groin,Expected to be out until at least Sep 15
-Montreal,Patrik Laine,RW,"Fri, May 2",Finger,Expected to be out until at least Sep 15
-Montreal,Carey Price,G,"Tue, Mar 18",Knee,IR. Expected to be out until at least Sep 15
-Montreal,Kirby Dach,C,"Sun, Mar 2",Knee,IR. Expected to be out until at least Sep 15
-Nashville,Roman Josi,D,"Fri, Apr 18",Concussion,IR. Expected to be out until at least Sep 15
-Nashville,Colton Sissons,C,"Wed, Apr 16",Lower Body,Expected to be out until at least Sep 15
-Nashville,Adam Wilsby,D,"Fri, Feb 21",Upper Body,IR. Expected to be out until at least Sep 15
-Nashville,Jeremy Lauzon,D,"Tue, Feb 18",Lower Body,IR. Expected to be out until at least Sep 15
-New Jersey,Nico Hischier,C,"Fri, May 16",Lower Body,Expected to be out until at least Sep 15
-New Jersey,Johnathan Kovacevic,D,"Thu, May 8",Knee,Expected to be out until at least Oct 3
-New Jersey,Jesper Bratt,LW,"Mon, May 5",Shoulder,Expected to be out until at least Sep 15
-New Jersey,Luke Hughes,D,"Mon, May 5",Shoulder,Expected to be out until at least Sep 15
-New Jersey,Brenden Dillon,D,"Thu, May 1",Neck,Expected to be out until at least Sep 15
-New Jersey,Jack Hughes,C,"Wed, Mar 5",Shoulder,IR. Expected to be out until at least Sep 15
-N.Y. Islanders,Bo Horvat,C,"Thu, May 29",Ankle,Expected to be out until at least Sep 15
-N.Y. Islanders,Semyon Varlamov,G,"Sat, Apr 19",Knee,IR. Expected to be out until at least Sep 15
-N.Y. Islanders,Alexander Romanov,D,"Thu, Apr 17",Illness,Expected to be out until at least Sep 15
-N.Y. Islanders,Mathew Barzal,C,"Thu, Apr 17",Kneecap,IR. Expected to be out until at least Sep 15
-N.Y. Islanders,Ryan Pulock,D,"Thu, Apr 17",Undisclosed,Expected to be out until at least Sep 15
-N.Y. Islanders,Anthony Duclair,LW,"Thu, Apr 17",Personal,Expected to be out until at least Sep 15
-N.Y. Islanders,Adam Pelech,D,"Thu, Apr 17",Undisclosed,Expected to be out until at least Sep 15
-N.Y. Rangers,Brett Berard,LW,"Mon, May 12",Undisclosed,Expected to be out until at least Sep 15
-N.Y. Rangers,K'Andre Miller,D,"Fri, May 9",Upper Body,Expected to be out until at least Oct 6
-N.Y. Rangers,Chris Kreider,LW,"Mon, Apr 21",Hand,Expected to be out until at least Sep 15
-N.Y. Rangers,Braden Schneider,D,"Mon, Apr 21",Shoulder,Expected to be out until at least Sep 15
-N.Y. Rangers,Carson Soucy,D,"Thu, Apr 17",Illness,Expected to be out until at least Sep 15
-N.Y. Rangers,Adam Edstrom,C,"Thu, Apr 17",Lower Body,IR. Expected to be out until at least Sep 15
-N.Y. Rangers,Arthur Kaliyev,RW,"Wed, Mar 19",Upper Body,Expected to be out until at least Sep 15
-Ottawa,Nick Jensen,D,"Mon, May 19",Lower Body,Expected to be out until at least Sep 15
-Ottawa,Brady Tkachuk,LW,"Sat, May 3",Hip,Expected to be out until at least Sep 15
-Ottawa,Hayden Hodgson,RW,"Fri, May 2",Lower Body,Expected to be out until at least Sep 15
-Philadelphia,Rasmus Ristolainen,D,"Thu, Apr 24",Triceps,Expected to be out until at least Oct 22
-Philadelphia,Ryan Ellis,D,"Mon, Jan 27",Back,IR. Expected to be out until at least Sep 15
-Pittsburgh,Kevin Hayes,RW,"Thu, Apr 17",Lower Body,Expected to be out until at least Sep 15
-Pittsburgh,Pierre-Olivier Joseph,D,"Thu, Apr 17",Upper Body,IR. Expected to be out until at least Sep 15
-Pittsburgh,Kris Letang,D,"Wed, Apr 16",Chest,Expected to be out until at least Sep 15
-Pittsburgh,Tommy Novak,C,"Thu, Apr 10",Lower Body,Expected to be out until at least Sep 15
-Pittsburgh,Matt Nieto,LW,"Thu, Apr 10",Undisclosed,Expected to be out until at least Sep 15
-Pittsburgh,Noel Acciari,C,"Thu, Apr 10",Undisclosed,Expected to be out until at least Sep 15
-Pittsburgh,Bokondji Imama,LW,"Wed, Apr 2",Biceps,Expected to be out until at least Sep 15
-San Jose,Thomas Bordeleau,C,"Fri, May 9",Concussion,Expected to be out until at least Sep 15
-San Jose,William Eklund,LW,"Mon, May 5",Wrist,Expected to be out until at least Sep 15
-San Jose,Klim Kostin,C,"Fri, Apr 18",Lower Body,Expected to be out until at least Sep 15
-San Jose,Shakir Mukhamadullin,D,"Thu, Apr 17",Shoulder,Expected to be out until at least Sep 15
-San Jose,Vincent Desharnais,D,"Tue, Apr 15",Upper Body,Expected to be out until at least Sep 15
-San Jose,Mario Ferraro,D,"Fri, Apr 11",Ankle,Expected to be out until at least Sep 15
-Seattle,Jared McCann,C,"Wed, Apr 16",Undisclosed,Expected to be out until at least Sep 15
-St. Louis,Torey Krug,D,"Tue, May 6",Ankle,IR. Expected to be out until at least Sep 15
-St. Louis,Tyler Tucker,D,"Mon, May 5",Lower Body,Expected to be out until at least Sep 15
-St. Louis,Dylan Holloway,C,"Mon, May 5",Lower Body,Expected to be out until at least Sep 15
-Tampa Bay,Oliver Bjorkstrand,RW,"Fri, May 2",Lower Body,Expected to be out until at least Sep 15
-Tampa Bay,Brandon Hagel,LW,"Thu, May 1",Upper Body,Expected to be out until at least Sep 15
-Toronto,Jani Hakanpaa,D,"Sat, May 3",Knee,IR. Expected to be out until at least Sep 15
-Utah,Dylan Guenther,RW,"Wed, Apr 23",Undisclosed,Expected to be out until at least Sep 15
-Utah,John Marino,D,"Sat, Apr 12",Upper Body,Expected to be out until at least Sep 15
-Vancouver,Elias Pettersson,C,"Mon, Apr 21",Oblique,Expected to be out until at least Sep 15
-Vancouver,Tyler Myers,D,"Mon, Apr 21",Undisclosed,Expected to be out until at least Sep 15
-Vancouver,Derek Forbort,D,"Sun, Apr 20",Orbital,Expected to be out until at least Sep 15
-Vancouver,Kevin Lankinen,G,"Sat, Apr 19",Undisclosed,Expected to be out until at least Sep 15
-Vancouver,Nils Aman,C,"Sat, Apr 12",Shoulder,Expected to be out until at least Sep 15
-Vancouver,Noah Juulsen,D,"Thu, Feb 27",Groin,IR. Expected to be out until at least Sep 15
-Vegas,Mark Stone,RW,"Sat, May 17",Upper Body,Expected to be out until at least Sep 15
-Vegas,Brandon Saad,LW,"Thu, May 15",Lower Body,Expected to be out until at least Sep 15
-Vegas,Robin Lehner,G,"Mon, Jan 27",Hip,IR. Expected to be out until at least Sep 15
-Washington,Martin Fehervary,D,"Tue, Apr 22",Knee,Expected to be out until at least Sep 15
-Washington,Sonny Milano,LW,"Thu, Apr 17",Upper Body,IR. Expected to be out until at least Sep 15
-Winnipeg,Adam Lowry,C,"Wed, May 28",Hip,Expected to be out until at least Oct 28
-Winnipeg,Josh Morrissey,D,"Mon, May 19",Knee,Expected to be out until at least Sep 15
+Anaheim,Chris Kreider,LW,"Wed, Jul 16",Hand,Probable for start of season
+Anaheim,Ross Johnston,LW,"Wed, Jul 16",Upper Body,Probable for start of season
+Boston,Mark Kastelic,C,"Wed, Jul 16",Upper Body,Probable for start of season
+Boston,Tanner Jeannot,LW,"Wed, Jul 16",Groin,Probable for start of season
+Boston,Hampus Lindholm,D,"Mon, Apr 21",Kneecap,Probable for start of season
+Buffalo,Jordan Greenway,LW,"Wed, Jul 16",Lower Body,Probable for start of season
+Buffalo,Beck Malenstyn,LW,"Wed, Jul 16",Undisclosed,Probable for start of season
+Buffalo,Josh Norris,C,"Wed, Jul 16",Oblique,Probable for start of season
+Buffalo,Owen Power,D,"Wed, Jul 16",Lower Body,Probable for start of season
+Calgary,Connor Zary,C,"Wed, Jul 16",Knee,Probable for start of season
+Calgary,Matthew Coronato,RW,"Wed, Jul 16",Undisclosed,Probable for start of season
+Calgary,Yegor Sharangovich,C,"Wed, Jul 16",Foot,Probable for start of season
+Calgary,Justin Kirkland,LW,"Wed, Jul 16",Knee,Probable for start of season
+Carolina,Sean Walker,D,"Wed, Jul 16",Shoulder,Probable for start of season
+Carolina,Jalen Chatfield,D,"Wed, Jul 16",Hip,Probable for start of season
+Carolina,K'Andre Miller,D,"Wed, Jul 16",Upper Body,Questionable for start of season
+Chicago,Lukas Reichel,LW,"Wed, Jul 16",Undisclosed,Probable for start of season
+Chicago,Jason Dickinson,C,"Wed, Jul 16",Wrist,Probable for start of season
+Chicago,Laurent Brossoit,G,"Thu, Mar 6",Knee,Probable for start of season
+Colorado,Ross Colton,C,"Wed, Jul 16",Groin,Probable for start of season
+Colorado,Logan O'Connor,RW,"Wed, Jul 16",Hip,Expected to be out until at least Nov 6
+Columbus,Zach Aston-Reese,C,"Wed, Jul 16",Undisclosed,Probable for start of season
+Columbus,Elvis Merzlikins,G,"Wed, Jul 16",Concussion,Probable for start of season
+Columbus,Jake Christiansen,D,"Wed, Jul 16",Upper Body,Probable for start of season
+Dallas,Roope Hintz,LW,"Wed, Jul 16",Foot,Probable for start of season
+Dallas,Tyler Seguin,C,"Wed, Jul 16",Shoulder,Probable for start of season
+Detroit,John Gibson,G,"Wed, Jul 16",Lower Body,Probable for start of season
+Detroit,Andrew Copp,C,"Tue, Feb 25",Pectoral,Probable for start of season
+Edmonton,Alec Regula,D,"Wed, Jul 16",Knee,Probable for start of season
+Edmonton,Ryan Nugent-Hopkins,C,"Wed, Jul 16",Hand,Probable for start of season
+Edmonton,Zach Hyman,C,"Wed, Jul 16",Wrist,Probable for start of season
+Florida,Matthew Tkachuk,LW,"Wed, Jul 16",Groin,Probable for start of season
+Minnesota,Jonas Brodin,D,"Wed, Jul 16",Upper Body,Questionable for start of season
+Minnesota,Joel Eriksson Ek,C,"Wed, Jul 16",Abdomen,Probable for start of season
+Montreal,Sam Montembeault,G,"Wed, Jul 16",Groin,Probable for start of season
+Montreal,Patrik Laine,RW,"Wed, Jul 16",Finger,Probable for start of season
+Montreal,Carey Price,G,"Tue, Mar 18",Knee,Probable for start of season
+Montreal,Kirby Dach,C,"Sun, Mar 2",Knee,Probable for start of season
+Nashville,Roman Josi,D,"Fri, Apr 18",Concussion,Probable for start of season
+Nashville,Adam Wilsby,D,"Fri, Feb 21",Upper Body,Probable for start of season
+New Jersey,Nico Hischier,C,"Wed, Jul 16",Lower Body,Probable for start of season
+New Jersey,Jesper Bratt,LW,"Wed, Jul 16",Shoulder,Probable for start of season
+New Jersey,Luke Hughes,D,"Wed, Jul 16",Shoulder,Probable for start of season
+New Jersey,Johnathan Kovacevic,D,"Wed, Jul 16",Knee,Questionable for start of season
+New Jersey,Brenden Dillon,D,"Wed, Jul 16",Neck,Probable for start of season
+New Jersey,Jack Hughes,C,"Wed, Mar 5",Shoulder,Probable for start of season
+N.Y. Islanders,Bo Horvat,C,"Wed, Jul 16",Ankle,Probable for start of season
+N.Y. Islanders,Ryan Pulock,D,"Wed, Jul 16",Undisclosed,Probable for start of season
+N.Y. Islanders,Adam Pelech,D,"Wed, Jul 16",Undisclosed,Probable for start of season
+N.Y. Islanders,Anthony Duclair,LW,"Wed, Jul 16",Personal,Probable for start of season
+N.Y. Islanders,Semyon Varlamov,G,"Sat, Apr 19",Knee,Probable for start of season
+N.Y. Islanders,Mathew Barzal,C,"Thu, Apr 17",Kneecap,Probable for start of season
+N.Y. Rangers,Carson Soucy,D,"Wed, Jul 16",Illness,Probable for start of season
+N.Y. Rangers,Braden Schneider,D,"Wed, Jul 16",Shoulder,Probable for start of season
+N.Y. Rangers,Arthur Kaliyev,RW,"Wed, Jul 16",Upper Body,Probable for start of season
+N.Y. Rangers,Adam Edstrom,C,"Thu, Jul 3",Lower Body,Probable for start of season
+Ottawa,Brady Tkachuk,LW,"Wed, Jul 16",Hip,Probable for start of season
+Ottawa,Hayden Hodgson,RW,"Wed, Jul 16",Lower Body,Probable for start of season
+Ottawa,Nick Jensen,D,"Wed, Jul 16",Hip,Probable for start of season
+Philadelphia,Noah Juulsen,D,"Thu, Jul 3",Groin,Probable for start of season
+Philadelphia,Ryan Ellis,D,"Mon, Jan 27",Back,Probable for start of season
+Pittsburgh,Kris Letang,D,"Wed, Jul 16",Chest,Probable for start of season
+Pittsburgh,Tommy Novak,C,"Wed, Jul 16",Lower Body,Probable for start of season
+Pittsburgh,Bokondji Imama,LW,"Wed, Jul 16",Biceps,Probable for start of season
+Pittsburgh,Noel Acciari,C,"Wed, Jul 16",Undisclosed,Probable for start of season
+Pittsburgh,Kevin Hayes,RW,"Wed, Jul 16",Lower Body,Probable for start of season
+San Jose,Mario Ferraro,D,"Wed, Jul 16",Ankle,Probable for start of season
+San Jose,Shakir Mukhamadullin,D,"Wed, Jul 16",Shoulder,Probable for start of season
+San Jose,Vincent Desharnais,D,"Wed, Jul 16",Upper Body,Probable for start of season
+San Jose,William Eklund,LW,"Wed, Jul 16",Wrist,Probable for start of season
+Seattle,Jared McCann,C,"Wed, Jul 16",Undisclosed,Probable for start of season
+St. Louis,Tyler Tucker,D,"Wed, Jul 16",Lower Body,Probable for start of season
+St. Louis,Dylan Holloway,C,"Wed, Jul 16",Lower Body,Probable for start of season
+St. Louis,Torey Krug,D,"Tue, May 6",Ankle,"Expected to be out until at least Sep 15, 2026"
+Tampa Bay,Brandon Hagel,LW,"Wed, Jul 16",Upper Body,Probable for start of season
+Tampa Bay,Oliver Bjorkstrand,RW,"Wed, Jul 16",Lower Body,Probable for start of season
+Utah,John Marino,D,"Wed, Jul 16",Upper Body,Probable for start of season
+Utah,Dylan Guenther,RW,"Wed, Jul 16",Undisclosed,Probable for start of season
+Vancouver,Kevin Lankinen,G,"Wed, Jul 16",Undisclosed,Probable for start of season
+Vancouver,Elias Pettersson,C,"Wed, Jul 16",Oblique,Probable for start of season
+Vancouver,Pierre-Olivier Joseph,D,"Wed, Jul 16",Upper Body,Probable for start of season
+Vancouver,Derek Forbort,D,"Wed, Jul 16",Orbital,Probable for start of season
+Vancouver,Tyler Myers,D,"Wed, Jul 16",Undisclosed,Probable for start of season
+Vancouver,Nils Aman,C,"Wed, Jul 16",Shoulder,Probable for start of season
+Vegas,Jeremy Lauzon,D,"Wed, Jul 16",Lower Body,Probable for start of season
+Vegas,Brandon Saad,LW,"Wed, Jul 16",Lower Body,Probable for start of season
+Vegas,Colton Sissons,C,"Wed, Jul 16",Lower Body,Probable for start of season
+Vegas,Mark Stone,RW,"Wed, Jul 16",Upper Body,Probable for start of season
+Vegas,Alex Pietrangelo,D,"Mon, Jun 30",Hip,Expected to be out until at least Jul 1
+Washington,Martin Fehervary,D,"Wed, Jul 16",Knee,Probable for start of season
+Washington,Sonny Milano,LW,"Thu, Apr 17",Upper Body,Probable for start of season
+Winnipeg,Adam Lowry,C,"Wed, Jul 16",Hip,Expected to be out until at least Nov 30
+Winnipeg,Josh Morrissey,D,"Wed, Jul 16",Knee,Probable for start of season
