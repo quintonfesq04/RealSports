@@ -40,9 +40,22 @@ jobs:
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          # If you later add requirements.txt, replace this with:
-          # pip install -r requirements.txt
-          pip install requests pandas beautifulsoup4 notion-client selenium webdriver-manager python-dotenv
+          # Remove the wrong library if it sneaks in
+          pip uninstall -y notion || true
+          # Install the correct Notion SDK + your other deps
+          pip install "notion-client==2.2.1" requests pandas beautifulsoup4 \
+                      selenium "webdriver-manager>=4.0" python-dotenv
+
+      - name: Verify Notion client
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: |
+          python - <<'PY'
+          from notion_client import __version__ as v, Client
+          print("notion_client version:", v)
+          c = Client(auth="${NOTION_TOKEN}")
+          print("has databases.query?", hasattr(c.databases, "query"))
+          PY
 
       - name: Run RealSports script
         env:
