@@ -1,0 +1,54 @@
+name: RealSports
+
+on:
+  workflow_dispatch:           # manual runs from the Actions UI
+  schedule:
+    - cron: "0 14 * * *"       # (optional) auto-run daily 14:00 UTC; adjust or remove
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # Chrome for Selenium (safe if your code falls back to requests)
+      - uses: browser-actions/setup-chrome@v1
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install requests pandas beautifulsoup4 notion-client selenium webdriver-manager python-dotenv
+          fi
+
+      - name: Run RealSports
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+          PSP_DATABASE_ID: ${{ secrets.PSP_DATABASE_ID }}
+          POLL_PAGE_ID: ${{ secrets.POLL_PAGE_ID }}
+          # optional toggles your script understands:
+          VERBOSE: "1"
+          NFL_QUERY_MODE: "SEASON"
+        run: python test2.py
+
+      # Optional: save any logs you write to files as artifacts
+      - name: Upload logs (optional)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: realsports-logs
+          path: |
+            **/*.log
+            *.log
+            !.git/**
