@@ -1,54 +1,67 @@
-name: RealSports
+name: RealSports / StatMuse → Notion
 
 on:
-  workflow_dispatch:           # manual runs from the Actions UI
-  schedule:
-    - cron: "0 14 * * *"       # (optional) auto-run daily 14:00 UTC; adjust or remove
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: "Verbose logs (0/1)"
+        required: false
+        default: "0"
+
+permissions:
+  contents: read
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    timeout-minutes: 30
+    concurrency:
+      group: realsports-main
+      cancel-in-progress: false
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
-      # Chrome for Selenium (safe if your code falls back to requests)
-      - uses: browser-actions/setup-chrome@v1
+      - name: Install Google Chrome (headless)
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Show Chrome version
+        run: google-chrome --version
 
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
-            pip install requests pandas beautifulsoup4 notion-client selenium webdriver-manager python-dotenv
-          fi
+          # If you later add requirements.txt, replace this with:
+          # pip install -r requirements.txt
+          pip install requests pandas beautifulsoup4 notion-client selenium webdriver-manager python-dotenv
 
-      - name: Run RealSports
+      - name: Run RealSports script
         env:
+          # REQUIRED — put these in GitHub Repo → Settings → Secrets and variables → Actions
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           DATABASE_ID: ${{ secrets.DATABASE_ID }}
           PSP_DATABASE_ID: ${{ secrets.PSP_DATABASE_ID }}
           POLL_PAGE_ID: ${{ secrets.POLL_PAGE_ID }}
-          # optional toggles your script understands:
-          VERBOSE: "1"
-          NFL_QUERY_MODE: "SEASON"
-        run: python test2.py
 
-      # Optional: save any logs you write to files as artifacts
-      - name: Upload logs (optional)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: realsports-logs
-          path: |
-            **/*.log
-            *.log
-            !.git/**
+          # OPTIONAL toggles (you can set these as repo secrets, or they default)
+          VERBOSE: ${{ github.event.inputs.verbose || '0' }}
+          USE_INJURIES: ${{ secrets.USE_INJURIES || '1' }}
+          NFL_QUERY_MODE: ${{ secrets.NFL_QUERY_MODE || 'SEASON' }}
+          NFL_SEASON_YEAR: ${{ secrets.NFL_SEASON_YEAR || '' }}
+          NFL_START_DATE: ${{ secrets.NFL_START_DATE || '' }}
+          NFL_END_DATE: ${{ secrets.NFL_END_DATE || '' }}
+          NFL_LAST_N_DAYS: ${{ secrets.NFL_LAST_N_DAYS || '7' }}
+          MLB_SEASON_YEAR: ${{ secrets.MLB_SEASON_YEAR || '' }}
+          MLB_PS_START_DATE: ${{ secrets.MLB_PS_START_DATE || '' }}
+          MLB_PS_END_DATE: ${{ secrets.MLB_PS_END_DATE || '' }}
+        run: |
+          python test2.py
