@@ -1239,7 +1239,7 @@ NAME_OVERRIDES = {
     "Nikola JokićN Jokić": "Nikola Jokić",
     "Da Ron Holmes IID II": "DaRon Holmes II",
     "Jimmy Butler IIIJ III": "Jimmy Butler III",
-
+    "Washington": "P.J. Washington",
 }
 
 def _name_key(s: str) -> str:
