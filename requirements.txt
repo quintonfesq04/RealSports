@@ -1,7 +1,7 @@
-notion-client
-requests
-beautifulsoup4
-selenium>=4.21.0
-webdriver-manager
-pandas
-python-dotenv
+notion-client==2.2.1
+requests>=2.32
+beautifulsoup4>=4.12
+selenium>=4.24
+webdriver-manager>=4.0
+pandas>=2.2
+python-dotenv>=1.0
