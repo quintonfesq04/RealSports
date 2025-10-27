@@ -1,23 +1,21 @@
-name: RealSports / StatMuse → Notion
+name: StatMuse → Notion
 
 on:
   workflow_dispatch:
     inputs:
-      verbose:
+      VERBOSE:
         description: "Verbose logs (0/1)"
-        required: false
+        required: true
         default: "0"
-
-permissions:
-  contents: read
+  # (optional) run every day at 9:00am UTC
+  # schedule:
+  #   - cron: "0 9 * * *"
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    concurrency:
-      group: realsports-main
-      cancel-in-progress: false
+    permissions:
+      contents: read
 
     steps:
       - name: Check out repo
@@ -27,54 +25,54 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip"
 
       - name: Install Google Chrome (headless)
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
 
-      - name: Show Chrome version
-        run: google-chrome --version
-
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          # Remove the wrong library if it sneaks in
+          # Make sure we don't pull the *old* "notion" package by mistake
           pip uninstall -y notion || true
-          # Install the correct Notion SDK + your other deps
-          pip install "notion-client==2.2.1" requests pandas beautifulsoup4 \
-                      selenium "webdriver-manager>=4.0" python-dotenv
+          pip install \
+            notion-client==2.2.1 \
+            requests pandas beautifulsoup4 \
+            selenium webdriver-manager \
+            python-dotenv
 
-      - name: Verify Notion client
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      # ✅ Safe import check (or delete this step entirely)
+      - name: Verify Notion SDK import
         run: |
           python - <<'PY'
-          from notion_client import __version__ as v, Client
-          print("notion_client version:", v)
-          c = Client(auth="${NOTION_TOKEN}")
-          print("has databases.query?", hasattr(c.databases, "query"))
+          from notion_client import Client
+          print("notion_client import OK")
           PY
 
       - name: Run RealSports script
         env:
-          # REQUIRED — put these in GitHub Repo → Settings → Secrets and variables → Actions
+          # --- Secrets ---
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          DATABASE_ID: ${{ secrets.DATABASE_ID }}
-          PSP_DATABASE_ID: ${{ secrets.PSP_DATABASE_ID }}
-          POLL_PAGE_ID: ${{ secrets.POLL_PAGE_ID }}
 
-          # OPTIONAL toggles (you can set these as repo secrets, or they default)
-          VERBOSE: ${{ github.event.inputs.verbose || '0' }}
-          USE_INJURIES: ${{ secrets.USE_INJURIES || '1' }}
-          NFL_QUERY_MODE: ${{ secrets.NFL_QUERY_MODE || 'SEASON' }}
-          NFL_SEASON_YEAR: ${{ secrets.NFL_SEASON_YEAR || '' }}
-          NFL_START_DATE: ${{ secrets.NFL_START_DATE || '' }}
-          NFL_END_DATE: ${{ secrets.NFL_END_DATE || '' }}
-          NFL_LAST_N_DAYS: ${{ secrets.NFL_LAST_N_DAYS || '7' }}
-          MLB_SEASON_YEAR: ${{ secrets.MLB_SEASON_YEAR || '' }}
-          MLB_PS_START_DATE: ${{ secrets.MLB_PS_START_DATE || '' }}
-          MLB_PS_END_DATE: ${{ secrets.MLB_PS_END_DATE || '' }}
+          # --- Repo Variables (Settings → Secrets and variables → Actions → Variables) ---
+          DATABASE_ID:       ${{ vars.DATABASE_ID }}
+          PSP_DATABASE_ID:   ${{ vars.PSP_DATABASE_ID }}
+          POLL_PAGE_ID:      ${{ vars.POLL_PAGE_ID }}
+
+          NFL_QUERY_MODE:    ${{ vars.NFL_QUERY_MODE }}
+          NFL_SEASON_YEAR:   ${{ vars.NFL_SEASON_YEAR }}
+          NFL_START_DATE:    ${{ vars.NFL_START_DATE }}
+          NFL_END_DATE:      ${{ vars.NFL_END_DATE }}
+          NFL_LAST_N_DAYS:   ${{ vars.NFL_LAST_N_DAYS }}
+
+          MLB_SEASON_YEAR:   ${{ vars.MLB_SEASON_YEAR }}
+          MLB_PS_START_DATE: ${{ vars.MLB_PS_START_DATE }}
+          MLB_PS_END_DATE:   ${{ vars.MLB_PS_END_DATE }}
+
+          CFB_SEASON_YEAR:   ${{ vars.CFB_SEASON_YEAR }}
+
+          USE_INJURIES:      ${{ vars.USE_INJURIES }}
+          VERBOSE:           ${{ github.event.inputs.VERBOSE }}
         run: |
           python test2.py
