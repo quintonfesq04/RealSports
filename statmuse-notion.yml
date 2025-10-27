@@ -1,0 +1,116 @@
+name: StatMuse → Notion
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Which part to run (all, games, psp)
+        required: true
+        default: all
+        type: choice
+        options: [all, games, psp]
+      verbose:
+        description: VERBOSE logs (0/1)
+        required: false
+        default: '0'
+      use_injuries:
+        description: USE_INJURIES (1=on,0=off)
+        required: false
+        default: '1'
+      nfl_query_mode:
+        description: NFL_QUERY_MODE (SEASON/DATES/LAST_N_DAYS)
+        required: false
+        default: SEASON
+      nfl_season_year:
+        description: Override NFL_SEASON_YEAR (e.g. 2024)
+        required: false
+        default: ''
+      nfl_start_date:
+        description: NFL_START_DATE (e.g. September 5, 2024)
+        required: false
+        default: ''
+      nfl_end_date:
+        description: NFL_END_DATE (e.g. September 12, 2024)
+        required: false
+        default: ''
+      nfl_last_n_days:
+        description: NFL_LAST_N_DAYS (when mode=LAST_N_DAYS)
+        required: false
+        default: '7'
+      mlb_season_year:
+        description: Override MLB_SEASON_YEAR (e.g. 2024)
+        required: false
+        default: ''
+      mlb_ps_start_date:
+        description: MLB_PS_START_DATE (e.g. October 1, 2024)
+        required: false
+        default: ''
+      mlb_ps_end_date:
+        description: MLB_PS_END_DATE (blank=through today)
+        required: false
+        default: ''
+  schedule:
+    # Daily @ 13:15 UTC (adjust to taste)
+    - cron: '15 13 * * *'
+
+concurrency:
+  group: statmuse-notion
+  cancel-in-progress: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # Install Google Chrome for Selenium (your code uses webdriver_manager for the driver)
+      - name: Install Google Chrome (stable)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable fonts-liberation
+          google-chrome --version || true
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install requests pandas beautifulsoup4 notion-client selenium webdriver-manager python-dotenv
+          fi
+
+      - name: Run test2.py
+        env:
+          # Required secrets
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+          PSP_DATABASE_ID: ${{ secrets.PSP_DATABASE_ID }}
+          POLL_PAGE_ID: ${{ secrets.POLL_PAGE_ID }}
+          # Optional knobs (override from dispatch inputs if provided)
+          VERBOSE: ${{ github.event.inputs.verbose || '0' }}
+          USE_INJURIES: ${{ github.event.inputs.use_injuries || '1' }}
+          NFL_QUERY_MODE: ${{ github.event.inputs.nfl_query_mode || 'SEASON' }}
+          NFL_SEASON_YEAR: ${{ github.event.inputs.nfl_season_year }}
+          NFL_START_DATE: ${{ github.event.inputs.nfl_start_date }}
+          NFL_END_DATE: ${{ github.event.inputs.nfl_end_date }}
+          NFL_LAST_N_DAYS: ${{ github.event.inputs.nfl_last_n_days || '7' }}
+          MLB_SEASON_YEAR: ${{ github.event.inputs.mlb_season_year }}
+          MLB_PS_START_DATE: ${{ github.event.inputs.mlb_ps_start_date }}
+          MLB_PS_END_DATE: ${{ github.event.inputs.mlb_ps_end_date }}
+        run: |
+          python -c "import sys; print('Python:', sys.version)"
+          ls -la
+          python test2.py --mode "${{ github.event.inputs.mode || 'all' }}"

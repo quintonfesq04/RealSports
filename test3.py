@@ -30,82 +30,48 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, WebDriverException
 from webdriver_manager.chrome import ChromeDriverManager
-import unicodedata
+from typing import Iterable 
 
-import argparse
-import logging
+# ---- DK fast HTTP (no retries) ----
+import time as _time
 
-import argparse
-import hashlib
+# ---- User-Agent & DK fast HTTP (no retries) ----
+DEFAULT_UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/124.0.0.0 Safari/537.36"
+)
 
-import json
-from pathlib import Path
+import time as _time
+_RAW = requests.Session()               # no retry adapter, fails fast
+_RAW.headers.update({
+    "User-Agent": DEFAULT_UA,
+    "Accept": "application/json",
+    "Referer": "https://sportsbook.draftkings.com/"
+})
+
+def _fast_get(url: str, t_conn: float, t_read: float):
+    return _RAW.get(url, timeout=(t_conn, t_read))
+
+def make_session() -> requests.Session:
+    s = requests.Session()
+    s.headers.update({
+        "User-Agent": DEFAULT_UA,
+        "Accept": "application/json",
+        "Referer": "https://sportsbook.draftkings.com/"
+    })
 
 _PAGE_CACHE: Dict[str, str] = {}
-
-CACHE_FILE = Path(os.getenv("STATMUSE_CACHE_FILE", ".statmuse_cache.json"))
-CACHE_TTL_SECS = int(os.getenv("STATMUSE_CACHE_TTL_SECS", "21600"))  # 6 hours
-
-# Feature flags (env can override; CLI can toggle too)
-DRY_RUN = os.getenv("DRY_RUN","0").strip().lower() in {"1","true","yes","on"}
-DISABLE_SELENIUM = os.getenv("DISABLE_SELENIUM","0").strip().lower() in {"1","true","yes","on"}
-DISABLE_CACHE = os.getenv("DISABLE_CACHE","0").strip().lower() in {"1","true","yes","on"}
-SAVE_BAD_HTML = os.getenv("SAVE_BAD_HTML","0").strip().lower() in {"1","true","yes","on"}
-SAVE_BAD_HTML_DIR = Path(os.getenv("SAVE_BAD_HTML_DIR",".debug_html"))
-if SAVE_BAD_HTML:
-    SAVE_BAD_HTML_DIR.mkdir(parents=True, exist_ok=True)
-
-# Simple fetch metrics
-METRICS = {
-    "cache_mem_hit": 0, "cache_disk_hit": 0,
-    "requests_ok": 0, "requests_miss": 0,
-    "selenium_ok": 0, "saved_html": 0,
-}
-
 TRY_PSP_STATMUSE = True  # PSP rows are just rollups; skip StatMuse scraping noise unless you set True
+BLANK_NHL_PICKS = int(os.getenv("BLANK_NHL_PICKS", "1"))  # 1 = print colors only for ALL NHL stats
 # How many CFB teams to combine per StatMuse query before chunking
 MAX_CFB_COMBINED_TEAMS = 8
-# How many teams we allow per StatMuse PSP query before chunking
-MAX_PSP_COMBINED_TEAMS = {
-    "NBA": 8,
-    "WNBA": 8,
-    "NHL": 10,
-    "NFL": 10,
-    "MLB": 12,
-    "CBB": 8,
-    "CFB": MAX_CFB_COMBINED_TEAMS,  # already handled specially
-}
-
-# PSP display ordering inside the final Notion post
-_PSP_STAT_ORDER = {
-    "MLB":  ["TB", "RBI", "K"],
-    "WNBA": ["PPG", "APG", "RPG", "3PM"],
-    "CFB":  ["TOTAL SCRIMMAGE YARDS", "RECEPTIONS", "TOTAL TOUCHDOWNS"],
-    "NFL":  ["TOTAL SCRIMMAGE YARDS", "RECEPTIONS", "TOTAL TOUCHDOWNS"],
-    "NBA":  ["PPG", "APG", "RPG", "3PM"],
-    "CBB":  ["PPG", "APG", "RPG", "3PM"],
-    "NHL":  ["SHOTS ON GOAL", "POINTS", "HITS", "SAVES"],
-}
-_PSP_SPORT_ORDER = ["MLB", "WNBA", "CFB", "NFL", "NHL", "NBA", "CBB"]
-
-# Injury helpers (from injuries.py you added)
-try:
-    from injuries import get_injured_players_for_sport, remove_injured_rows
-except Exception:
-    # Fallback no-ops so the script still runs if the module isn't present
-    def get_injured_players_for_sport(*args, **kwargs):
-        return set()
-    def remove_injured_rows(data, *args, **kwargs):
-        return data
-
-def _psp_stat_rank(sport_up: str, stat_up: str) -> int:
-    order = _PSP_STAT_ORDER.get(sport_up, [])
-    try:
-        return order.index(stat_up)
-    except ValueError:
-        return 999
 
 # ============================== ENV / Notion ===============================
+
+NOTION_TOKEN_FALLBACK = "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"
+
+DK_SITE = os.getenv("DK_SITE", "US-OH-SB")
 
 def _load_env_token() -> str:
     tok = os.getenv("NOTION_TOKEN", "").strip()
@@ -119,14 +85,19 @@ def _load_env_token() -> str:
             return tok
     except Exception:
         pass
-    raise RuntimeError("NOTION_TOKEN is not set. Add it to your environment or .env")
+    print("[warn] using fallback NOTION token; set NOTION_TOKEN in your environment.")
+    return NOTION_TOKEN_FALLBACK
+
+if os.getenv("VERBOSE", "0") == "1":
+    print("[env] DK_SITE =", os.getenv("DK_SITE"))
+    print("[env] USE_DK_FOR_NBA =", os.getenv("USE_DK_FOR_NBA"))
+    print("[env] DK_EVENT_GROUP_IDS_NBA =", os.getenv("DK_EVENT_GROUP_IDS_NBA"))
 
 NOTION_TOKEN = _load_env_token()
 client = Client(auth=NOTION_TOKEN)
 
 # Verbose logging: set VERBOSE=1 in env to see mapping warnings, retries, etc.
 VERBOSE = int(os.getenv("VERBOSE", "0"))
-DRY_RUN = False
 
 DATABASE_ID     = os.getenv("DATABASE_ID",  "1aa71b1c-663e-8035-bc89-fb1e84a2d919")
 PSP_DATABASE_ID = os.getenv("PSP_DATABASE_ID","1ac71b1c663e808e9110eee23057de0e")
@@ -136,17 +107,76 @@ BASE_URL                   = "https://www.statmuse.com"
 CBSSPORTS_MLB_INJURIES_URL = "https://www.cbssports.com/mlb/injuries/"
 MLB_TRANSACTIONS_URL       = "https://www.mlb.com/transactions"
 
-DEFAULT_UA = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/124.0.0.0 Safari/537.36"
-)
+
+# --- DraftKings HTTP knobs ---
+# --- DraftKings runtime controls / fallbacks ---
+DK_TIMEOUT = float(os.getenv("DK_TIMEOUT", "5.5"))  # per-request read timeout
+DK_SITES_FALLBACK = [
+    os.getenv("DK_SITE", "US-SB").strip() or "US-SB",
+    "US-SB",       # regionless
+    "US-NJ-SB",    # another common region
+]
+DK_FAIL_LIMIT = int(os.getenv("DK_FAIL_LIMIT", "3"))  # after N consecutive failures, disable DK
+_DK_CONSEC_FAILS = 0
+
+# --- DraftKings runtime controls / fallbacks ---
+DK_TIMEOUT = float(os.getenv("DK_TIMEOUT", "1.8"))          # per-request READ timeout
+DK_SITES_FALLBACK = [
+    (os.getenv("DK_SITE", "US-SB").strip() or "US-SB"),
+    "US-SB",         # regionless
+    "US-NJ-SB",      # another common region
+]
+DK_FAIL_LIMIT = int(os.getenv("DK_FAIL_LIMIT", "1"))         # after N consecutive failures, disable DK
+DK_TOTAL_BUDGET_SEC = float(os.getenv("DK_TOTAL_BUDGET_SEC", "4.0"))  # total budget for ALL DK work
+_DK_CONSEC_FAILS = 0
+_DK_BUDGET_START = None
 
 def football_season_year(today: Optional[date] = None) -> int:
     d = today or date.today()
     return d.year if d.month >= 8 else d.year - 1
 
-SHOW_CFB_DEBUG_LINKS = False
+SHOW_CFB_DEBUG_LINKS = True
+
+# --- DraftKings site + fallbacks (works even if your state site is missing an EG) ---
+DK_SITE = os.getenv("DK_SITE", "US-SB").strip()
+DK_SITE_FALLBACKS = [s.strip() for s in os.getenv("DK_SITE_FALLBACKS", "US-SB,US-OH-SB,US-NJ-SB").split(",") if s.strip()]
+DK_LANG = os.getenv("DK_LANG", "en-us")
+DK_TIMEOUT = float(os.getenv("DK_TIMEOUT", "8"))
+DK_RETRIES = int(os.getenv("DK_RETRIES", "0"))
+
+# ---- DK league switches (env) ----
+USE_DK_FOR_NHL  = int(os.getenv("USE_DK_FOR_NHL",  "1"))
+USE_DK_FOR_NFL  = int(os.getenv("USE_DK_FOR_NFL",  "1"))
+USE_DK_FOR_NBA  = int(os.getenv("USE_DK_FOR_NBA",  "1"))
+USE_DK_FOR_MLB  = int(os.getenv("USE_DK_FOR_MLB",  "1"))
+USE_DK_FOR_WNBA = int(os.getenv("USE_DK_FOR_WNBA", "1"))
+# Optional single-ID env hints (default to 0 == disabled)
+DK_EVENT_GROUP_ID_NFL = int(os.getenv("DK_EVENT_GROUP_ID_NFL", "0") or "0")
+DK_EVENT_GROUP_ID_NHL = int(os.getenv("DK_EVENT_GROUP_ID_NHL", "0") or "0")
+DK_EVENT_GROUP_ID_MLB = int(os.getenv("DK_EVENT_GROUP_ID_MLB", "0") or "0")
+
+# IMPORTANT: don't pre-empt DK by printing blank NHL picks first.
+# Default this to 0; we'll only print blanks if both DK and StatMuse fail.
+BLANK_NHL_PICKS = int(os.getenv("BLANK_NHL_PICKS", "0"))
+
+# StatMuse is only used for the sports listed here.
+# Default now includes MLB so TB/RBI/etc. don’t get blocked.
+STATMUSE_FALLBACK_SPORTS = {
+    s.strip().upper()
+    for s in os.getenv("STATMUSE_FALLBACK_SPORTS", "CFB,MLB").split(",")
+    if s.strip()
+}
+
+def _parse_ids_csv(s: str) -> List[int]:
+    return [int(x) for x in re.findall(r"\d+", s or "")]
+
+# Prefer a CSV list; fall back to single ID if you already set DK_EVENT_GROUP_ID_NBA
+DK_EVENT_GROUP_IDS_NBA = _parse_ids_csv(os.getenv("DK_EVENT_GROUP_IDS_NBA", "")) or \
+                         ([int(os.getenv("DK_EVENT_GROUP_ID_NBA", "0"))] if os.getenv("DK_EVENT_GROUP_ID_NBA") else [])
+
+DK_SITE = os.getenv("DK_SITE", "US-SB")
+DK_LANG = os.getenv("DK_LANG", "en-us")
+
 
 # ============================== NFL controls ===============================
 
@@ -155,34 +185,6 @@ NFL_SEASON_YEAR = int(os.getenv("NFL_SEASON_YEAR") or football_season_year())
 NFL_START_DATE   = os.getenv("NFL_START_DATE", "")  # e.g., "September 5, 2024"
 NFL_END_DATE     = os.getenv("NFL_END_DATE",   "")  # e.g., "September 12, 2024"
 NFL_LAST_N_DAYS  = int(os.getenv("NFL_LAST_N_DAYS", "7"))
-
-# ============================== MLB controls ===============================
-
-def baseball_season_year(today: Optional[date] = None) -> int:
-    d = today or date.today()
-    # MLB generally starts in Mar/Apr
-    return d.year if d.month >= 3 else d.year - 1
-
-MLB_SEASON_YEAR = int(os.getenv("MLB_SEASON_YEAR", str(baseball_season_year())))
-
-# Restrict MLB to *this* postseason; override via .env if needed
-MLB_PS_START_DATE = os.getenv("MLB_PS_START_DATE", f"October 1, {MLB_SEASON_YEAR}")
-MLB_PS_END_DATE   = os.getenv("MLB_PS_END_DATE", "")  # blank -> today
-
-# ============================== Injuries toggle ============================
-# Load .env early (safe to call even if python-dotenv isn't installed)
-try:
-    from dotenv import load_dotenv  # type: ignore
-    load_dotenv()
-except Exception:
-    pass
-
-from typing import Final
-
-# Pylance-visible constant; controlled by .env USE_INJURIES=0/1 (or off/no/false)
-INJURIES_ENABLED: Final[bool] = os.getenv("USE_INJURIES", "1").strip().lower() not in {
-    "0", "false", "no", "off"
-}
 
 # ============================== HTTP session ===============================
 
@@ -195,15 +197,13 @@ except Exception:
 
 def make_session() -> requests.Session:
     s = requests.Session()
-    s.headers.update({
-        "User-Agent": DEFAULT_UA,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Cache-Control": "no-cache",
-    })
+    s.headers.update({"User-Agent": DEFAULT_UA})
     if Retry and HTTPAdapter:
         retry = Retry(
-            total=3, backoff_factor=0.3,
+            total=DK_RETRIES,
+            connect=DK_RETRIES,
+            read=DK_RETRIES,
+            backoff_factor=0.7,  # 0.7, 1.4, 2.1...
             status_forcelist=(429, 500, 502, 503, 504),
             allowed_methods=frozenset(["GET"]),
             raise_on_status=False,
@@ -226,36 +226,7 @@ def week_window(today: Optional[datetime] = None) -> Tuple[datetime, datetime]:
 def _nice_date(d: datetime) -> str:
     return d.strftime("%B %-d, %Y") if os.name != "nt" else d.strftime("%B %#d, %Y")
 
-def _parse_date_any(s: str) -> Optional[datetime]:
-    s = (s or "").strip()
-    for fmt in ("%B %d, %Y", "%Y-%m-%d"):
-        try:
-            dt = datetime.strptime(s, fmt)
-            return datetime(dt.year, dt.month, dt.day)
-        except Exception:
-            pass
-    return None
-
-def _filter_rows_by_year(rows: List[Dict[str, str]], year: int) -> List[Dict[str, str]]:
-    """If the table exposes a season/year column, keep only rows for that year."""
-    if not rows:
-        return rows
-    YEAR_KEYS = {"SEASON", "YEAR", "YR"}
-    year_col = next((k for k in rows[0].keys() if k.strip().upper() in YEAR_KEYS), None)
-    if not year_col:
-        return rows
-    filtered = []
-    for r in rows:
-        val = re.sub(r"[^0-9]", "", str(r.get(year_col, "")))
-        try:
-            y = int(val)
-        except Exception:
-            y = None
-        if y == year:
-            filtered.append(r)
-    return filtered
-
-CFB_SEASON_YEAR = int(os.getenv("CFB_SEASON_YEAR", football_season_year()))
+CFB_SEASON_YEAR = int(os.getenv("CFB_SEASON_YEAR") or football_season_year())
 
 # ============================== Notion input ===============================
 
@@ -352,103 +323,26 @@ class _DriverPool:
 _PAGES_FETCHED = 0
 _RECYCLE_EVERY = 60
 
-def _disk_cache_get(url: str) -> Optional[str]:
-    """Return cached HTML if fresh, else None."""
-    try:
-        if not CACHE_FILE.exists():
-            return None
-        blob = json.loads(CACHE_FILE.read_text("utf-8"))
-        rec = blob.get(url)
-        if not rec:
-            return None
-        # TTL check
-        if time.time() - float(rec.get("ts", 0)) > CACHE_TTL_SECS:
-            return None
-        return rec.get("html") or None
-    except Exception:
-        return None
-
-def _disk_cache_put(url: str, html: str) -> None:
-    """Store HTML on disk with timestamp (best-effort, safe if it fails)."""
-    try:
-        blob = {}
-        if CACHE_FILE.exists():
-            blob = json.loads(CACHE_FILE.read_text("utf-8"))
-        blob[url] = {"ts": time.time(), "html": html}
-
-        # Simple pruning so file doesn’t grow forever
-        if len(blob) > 5000:
-            items = sorted(blob.items(), key=lambda kv: kv[1].get("ts", 0))
-            for k, _ in items[:max(1, len(items)//10)]:
-                blob.pop(k, None)
-
-        CACHE_FILE.write_text(json.dumps(blob), encoding="utf-8")
-    except Exception:
-        pass
-
-def _log(msg: str):
-    if VERBOSE:
-        ts = time.strftime("%H:%M:%S")
-        print(f"[{ts}] {msg}")
-
-def _safe_name_from_url(url: str) -> str:
-    h = hashlib.md5(url.encode("utf-8")).hexdigest()[:10]
-    return re.sub(r"[^A-Za-z0-9]+", "_", url)[:40] + "_" + h + ".html"
-
-def _maybe_save_html(url: str, html: str, reason: str = "no-table"):
-    if not SAVE_BAD_HTML or not html:
-        return
-    try:
-        fname = SAVE_BAD_HTML_DIR / _safe_name_from_url(url)
-        fname.write_text(html, encoding="utf-8")
-        METRICS["saved_html"] += 1
-        _log(f"[debug-html] saved {reason} → {fname}")
-    except Exception:
-        pass
-
 def fetch_html(url: str, wait_css: str = "table", wait_seconds: int = 25) -> str:
     """
-    Order: in-memory cache → disk cache → requests → selenium (unless disabled).
-    Saves non-tabling pages to disk when SAVE_BAD_HTML=1 (or via CLI).
+    Fast path: try requests (server-rendered table).
+    Fallback: Selenium only if no <table> found or non-200.
+    Caches by URL to avoid duplicate hits in the same run.
     """
-    # 0) In-memory cache
-    if not DISABLE_CACHE and url in _PAGE_CACHE:
-        METRICS["cache_mem_hit"] += 1
+    if url in _PAGE_CACHE:
         return _PAGE_CACHE[url]
 
-    # 1) Disk cache (persistent)
-    if not DISABLE_CACHE:
-        cached = _disk_cache_get(url)
-        if cached:
-            METRICS["cache_disk_hit"] += 1
-            _PAGE_CACHE[url] = cached
-            return cached
-
-    # 2) Fast path — requests
+    # --- Fast path: requests ---
     try:
         r = SESSION.get(url, timeout=10)
         r.encoding = "utf-8"
-        if r.ok:
-            html = r.text
-            if "<table" in html or "<TABLE" in html:
-                METRICS["requests_ok"] += 1
-                _PAGE_CACHE[url] = html
-                if not DISABLE_CACHE and html:
-                    _disk_cache_put(url, html)
-                return html
-            else:
-                METRICS["requests_miss"] += 1
-                _maybe_save_html(url, html, reason="requests-no-table")
-        else:
-            METRICS["requests_miss"] += 1
+        if r.ok and ("<table" in r.text or "<TABLE" in r.text):
+            _PAGE_CACHE[url] = r.text
+            return r.text
     except Exception:
-        METRICS["requests_miss"] += 1
+        pass  # fall through to Selenium
 
-    # 3) Selenium (unless disabled)
-    if DISABLE_SELENIUM:
-        _log(f"[selenium] disabled; skipping for {url}")
-        return ""
-
+    # --- Slow path: Selenium (as last resort) ---
     backoffs = [0.0, 1.0, 2.0]
     last_err = None
     for delay in backoffs:
@@ -462,31 +356,13 @@ def fetch_html(url: str, wait_css: str = "table", wait_seconds: int = 25) -> str
                     EC.presence_of_element_located((By.CSS_SELECTOR, wait_css))
                 )
             except TimeoutException:
-                pass  # still try to read page_source
-
+                pass
             html = drv.page_source or ""
             _PAGE_CACHE[url] = html
-            if not DISABLE_CACHE and html:
-                _disk_cache_put(url, html)
-
-            # Metrics + debug save
-            if html:
-                METRICS["selenium_ok"] += 1
-                if "<table" not in html and "<TABLE" not in html:
-                    _maybe_save_html(url, html, reason="selenium-no-table")
-
-            # Recycle the driver every N pages to prevent hangs
-            global _PAGES_FETCHED
-            _PAGES_FETCHED += 1
-            if _PAGES_FETCHED % _RECYCLE_EVERY == 0:
-                _log("[webdriver] recycling chrome driver")
-                _DriverPool.close()
-
             return html
         except WebDriverException as e:
             last_err = e
-            _DriverPool.close()  # force a fresh driver next loop
-
+            _DriverPool.close()
     if VERBOSE and last_err:
         print(f"[webdriver] error for {url}: {last_err}")
     return ""
@@ -494,54 +370,20 @@ def fetch_html(url: str, wait_css: str = "table", wait_seconds: int = 25) -> str
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def fetch_many(urls: List[str]) -> Dict[str, str]:
-    out: Dict[str, str] = {}
-    if not urls:
-        return out
-
-    pending: List[str] = []
-    for u in urls:
-        if not DISABLE_CACHE and u in _PAGE_CACHE:
-            METRICS["cache_mem_hit"] += 1
-            out[u] = _PAGE_CACHE[u]
-        elif not DISABLE_CACHE:
-            cached = _disk_cache_get(u)
-            if cached:
-                METRICS["cache_disk_hit"] += 1
-                _PAGE_CACHE[u] = cached
-                out[u] = cached
-            else:
-                pending.append(u)
-        else:
-            pending.append(u)
-
-    if not pending:
-        return out
-
+    out = {}
+    urls = [u for u in urls if u not in _PAGE_CACHE]
     with ThreadPoolExecutor(max_workers=8) as ex:
-        futs = {ex.submit(SESSION.get, u, timeout=10): u for u in pending}
+        futs = {ex.submit(SESSION.get, u, timeout=10): u for u in urls}
         for fut in as_completed(futs):
             u = futs[fut]
             try:
                 r = fut.result()
                 if r.ok:
                     r.encoding = "utf-8"
-                    html = r.text
-                    if "<table" in html or "<TABLE" in html:
-                        METRICS["requests_ok"] += 1
-                    else:
-                        METRICS["requests_miss"] += 1
-                        _maybe_save_html(u, html, reason="fetch_many-no-table")
-                    _PAGE_CACHE[u] = html
-                    out[u] = html
-                    if not DISABLE_CACHE and html:
-                        _disk_cache_put(u, html)
-                else:
-                    METRICS["requests_miss"] += 1
-                    _PAGE_CACHE[u] = ""
+                    _PAGE_CACHE[u] = r.text
+                    out[u] = r.text
             except Exception:
-                METRICS["requests_miss"] += 1
-                _PAGE_CACHE[u] = ""
-
+                _PAGE_CACHE[u] = ""  # cache failures to avoid retry storms
     return out
 
 # ============================== HTML parse =================================
@@ -788,21 +630,6 @@ def _is_nfl(sport_up: str) -> bool:
 def _quote(s: str) -> str:
     return urllib.parse.quote_plus(s)
 
-# --- small utility used by PSP split/merge across sports ---
-def _chunks(seq, size):
-    """
-    Yield consecutive slices of 'seq' of length 'size'.
-    Safe for None/empty inputs and goofy sizes.
-    """
-    items = list(seq or [])
-    try:
-        n = int(size)
-    except Exception:
-        n = 1
-    n = max(1, n)
-    for i in range(0, len(items), n):
-        yield items[i:i+n]
-
 def build_query_url(
     query: str,
     teams: Optional[List[str]] = None,
@@ -891,6 +718,11 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
                 all_rows.extend(rows)
 
         if len(names_full) >= 2:
+            # PSP / multi-team: combine ALL teams, chunked, and MERGE their rows
+            def _chunks(lst, size):
+                for i in range(0, len(lst), size):
+                    yield lst[i:i+size]
+
             for chunk in _chunks(names_full, MAX_CFB_COMBINED_TEAMS):
                 combined = ", ".join(chunk)
                 q = f"{label} leaders cfb {season} {combined}"
@@ -917,140 +749,44 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
         # IMPORTANT: Do NOT post-filter CFB by team later; we want the union of results.
         return all_rows, True, season, debug_links
 
-        # ----- NFL: separate timeframe controls; league-wide -----
+    # ----- NFL: separate timeframe controls; league-wide -----
     if _is_nfl(sport_up):
-        # decide base query text once
         if NFL_QUERY_MODE == "SEASON":
-            base_q = f"{stat} leaders nfl this season"
-            used_season = True
+            q   = f"{stat} leaders nfl this season"
+            url = build_query_url(q, teams, "NFL", include_dates=False)
         elif NFL_QUERY_MODE == "DATES" and NFL_START_DATE and NFL_END_DATE:
-            base_q = f"{stat} leaders nfl from {NFL_START_DATE} to {NFL_END_DATE}"
-            used_season = False
+            q   = f"{stat} leaders nfl from {NFL_START_DATE} to {NFL_END_DATE}"
+            url = build_query_url(q, teams, "NFL", include_dates=False)
         else:
-            used_season = False
             end = datetime.today()
             start = end - timedelta(days=max(1, NFL_LAST_N_DAYS - 1))
-            # we'll pass dates via build_query_url
-            base_q = f"{stat} leaders nfl"
+            q   = f"{stat} leaders nfl"
+            url = build_query_url(q, teams, "NFL", start, end, include_dates=True)
 
-        # chunk if PSP passed a long team list (len > 2 usually means PSP)
-        limit = MAX_PSP_COMBINED_TEAMS.get("NFL", 10)
-        team_list = teams or []
-        all_rows: List[Dict[str, str]] = []
-        debug_links: List[str] = []
+        debug_links.append(url)
+        html = fetch_html(url)
+        rows = parse_table(html)
+        
+        # Optional: if "this season" ever fails, try explicit year as a fallback
+        if not rows and NFL_QUERY_MODE == "SEASON":
+            q2  = f"{stat} leaders nfl {NFL_SEASON_YEAR}"
+            url2 = build_query_url(q2, teams, "NFL", include_dates=False)
+            debug_links.append(url2)
+            rows = parse_table(fetch_html(url2))
 
-        if team_list and len(team_list) > limit:
-            for chunk in _chunks(team_list, limit):
-                if NFL_QUERY_MODE == "SEASON":
-                    url = build_query_url(base_q, chunk, "NFL", include_dates=False)
-                elif NFL_QUERY_MODE == "DATES" and NFL_START_DATE and NFL_END_DATE:
-                    url = build_query_url(base_q, chunk, "NFL", include_dates=False)
-                else:
-                    end = datetime.today()
-                    start = end - timedelta(days=max(1, NFL_LAST_N_DAYS - 1))
-                    url = build_query_url(base_q, chunk, "NFL", start, end, include_dates=True)
-                debug_links.append(url)
-                html = fetch_html(url)
-                rows = parse_table(html)
-                if rows:
-                    all_rows.extend(rows)
-        else:
-            # normal single query path
-            if NFL_QUERY_MODE == "SEASON":
-                url = build_query_url(base_q, team_list, "NFL", include_dates=False)
-            elif NFL_QUERY_MODE == "DATES" and NFL_START_DATE and NFL_END_DATE:
-                url = build_query_url(base_q, team_list, "NFL", include_dates=False)
-            else:
-                end = datetime.today()
-                start = end - timedelta(days=max(1, NFL_LAST_N_DAYS - 1))
-                url = build_query_url(base_q, team_list, "NFL", start, end, include_dates=True)
-            debug_links.append(url)
-            all_rows = parse_table(fetch_html(url))
+        used_season = (NFL_QUERY_MODE == "SEASON")
+        return rows, used_season, (NFL_SEASON_YEAR if used_season else 0), debug_links
 
-            # explicit-year fallback if season wording fails
-            if not all_rows and NFL_QUERY_MODE == "SEASON":
-                url2 = build_query_url(f"{stat} leaders nfl {NFL_SEASON_YEAR}", team_list, "NFL", include_dates=False)
-                debug_links.append(url2)
-                all_rows = parse_table(fetch_html(url2))
-
-        return all_rows, used_season, (NFL_SEASON_YEAR if used_season else 0), debug_links
-
-        # ----- Others: full-season (or MLB postseason) with teams; chunk & merge -----
-    sport_limit = MAX_PSP_COMBINED_TEAMS.get(sport_up, 8)
-    team_list = teams or []
-    all_rows: List[Dict[str, str]] = []
-    debug_links: List[str] = []
-
-    # Build candidate queries depending on sport/timeframe
-    if sport_up == "MLB":
-        # STRICT: only this postseason
-        # 1) Prefer explicit "this postseason" and "{year} postseason"
-        candidates = [
-            f"{stat} leaders mlb this postseason",
-            f"{stat} leaders mlb postseason {MLB_SEASON_YEAR}",
-        ]
-        include_dates_flag = False
-
-        # 2) Prepare a date-window fallback for *this* postseason only
-        ps_start = _parse_date_any(MLB_PS_START_DATE) or datetime(MLB_SEASON_YEAR, 10, 1)
-        ps_end   = _parse_date_any(MLB_PS_END_DATE) or datetime.today()
-        ps_end   = datetime(ps_end.year, ps_end.month, ps_end.day)  # normalize to midnight
-    else:
-        # Everyone else = this season
-        candidates = [f"{stat} leaders {sport.lower()} this season"]
-        include_dates_flag = False
-
-    # Try each candidate until we get rows
-    for base_q in candidates:
-        attempt_rows: List[Dict[str, str]] = []
-        if team_list and len(team_list) > sport_limit:
-            for chunk in _chunks(team_list, sport_limit):
-                url = build_query_url(base_q, chunk, sport, include_dates=include_dates_flag)
-                debug_links.append(url)
-                html = fetch_html(url)
-                rows = parse_table(html)
-                if rows:
-                    attempt_rows.extend(rows)
-        else:
-            url = build_query_url(base_q, team_list, sport, include_dates=include_dates_flag)
-            debug_links.append(url)
-            html = fetch_html(url)
-            attempt_rows = parse_table(html)
-
-        # For MLB, drop wrong-year rows if the table exposes a season/year column
-        if sport_up == "MLB":
-            attempt_rows = _filter_rows_by_year(attempt_rows, MLB_SEASON_YEAR)
-
-        if attempt_rows:
-            all_rows = attempt_rows
-            break
-
-    # MLB final fallback: explicit date window (no generic "postseason" text!)
-    if sport_up == "MLB" and not all_rows:
-        if team_list and len(team_list) > sport_limit:
-            tmp: List[Dict[str, str]] = []
-            for chunk in _chunks(team_list, sport_limit):
-                url = build_query_url(f"{stat} leaders mlb", chunk, sport, ps_start, ps_end, include_dates=True)
-                debug_links.append(url)
-                html = fetch_html(url)
-                rows = parse_table(html)
-                if rows:
-                    tmp.extend(rows)
-            all_rows = tmp
-        else:
-            url = build_query_url(f"{stat} leaders mlb", team_list, sport, ps_start, ps_end, include_dates=True)
-            debug_links.append(url)
-            html = fetch_html(url)
-            all_rows = parse_table(html)
-
-        # Year filter again if a column exists
-        all_rows = _filter_rows_by_year(all_rows, MLB_SEASON_YEAR)
-
-    if not all_rows and VERBOSE:
-        print(f"[parse] no data for {sport_up} statmuse (season/postseason mode; teams={len(team_list)})")
-
-    # season_year is only meaningful for MLB postseason display here
-    return all_rows, False, (MLB_SEASON_YEAR if sport_up == "MLB" else 0), debug_links
+    # ----- Others: weekly-mode with teams -----
+    start, end = week_window()
+    q   = f"{stat} leaders {sport.lower()}"
+    url = build_query_url(q, teams, sport, start, end, include_dates=True)
+    debug_links.append(url)
+    html = fetch_html(url)
+    rows = parse_table(html)
+    if not rows and VERBOSE:
+        print(f"[parse] no data for statmuse url: {url}")
+    return rows, False, 0, debug_links
 
 # ============================== Name cleaning / stat keys ==================
 
@@ -1190,112 +926,12 @@ NAME_OVERRIDES = {
     "De Vonta Smith": "DeVonta Smith",
     "Richie Anderson IIIR III": "Richie Anderson III",
     "Arnold Barnes IIIA III": "Arnold Barnes III",
-    "DKMetcalf": "DK Metcalf",
-    "Calvin Austin IIIC III": "Calvin Austin III",
-    "Ray-Ray Mc Cloud IIIR III": "Ray-Ray McCloud III",
-    "Ollie Gordon IIO II": "Ollie Gordon II",
-    "Will Mc Donald IVW IV": "Will McDonald IV",
-    "Tre Veyon Henderson": "TreVeyon Henderson",
-    "De Mario Douglas": "DeMario Douglas",
-    "Tetairoa Mc Millan": "Tetairoa McMillan",
-    "DJMoore": "DJ Moore",
-    "Luther Burden IIIL III": "Luther Burden III",
-    "Stroud": "C.J. Stroud",
-    "Cee Dee Lamb": "CeeDee Lamb",
-    "RJHarvey": "RJ Harvey",
-    "Ka Vontae Turpin": "KaVontae Turpin",
-    "Dobbins": "J.K. Dobbins",
-    "Chig Okonkwo": "Chigoziem Okonkwo",
-    "Kenny Moore IIK II": "Kenny Moore II",
-    "John Fitz Patrick": "John FitzPatrick",
-    "Ronald Holland IIR II": "Ronald Holland II",
-    "Caris Le Vert": "Caris LeVert",
-    "AJGreen": "AJ Green",
-    "OGAnunoby": "OG Anunoby",
-    "Nikola JovićN Jović": "Nikola Jović",
-    "Miles Mc Bride": "Miles McBride",
-    "La Melo Ball": "LaMelo Ball",
-    "Jaden Mc Daniels": "Jaden McDaniels",
-    "Donte Di Vincenzo": "Donte DiVincenzo",
-    "RJBarrett": "RJ Barrett",
-    "Gradey Dick": "Gradey D.",
-    "Dereck Lively IID II": "Dereck Lively II",
-    "Luka DončićL Dončić": "Luka Dončić",
-    "Zach La Vinet": "Zach LaVine",
-    "Jake La Ravia": "Jake LaRavia",
-    "Dario ŠarićD Šarić": "Dario Šarić",
-    "CJMc Collum": "CJ McCollum",
-    "Nathan Mac Kinnon": "Nathan MacKinnon",
-    "Ryan Mc Donagh": "Ryan McDonagh",
-    "Zach La Vine": "Zach LaVine",
-    "De Mar Rozan": "DeMar DeRozan",
-    "Terry Mc Laurin": "Terry McLaurin",
-    "Jeremy Mc Nichols": "Jeremy McNichols",
-    "Luke Mc Caffrey": "Luke McCaffrey",
-    "VJEdgecombe": "VJ Edgecombe",
-    "Nikola VučevićN Vučević": "Nikola Vučević",
-    "Trey Murphy IIIT III": "Trey Murphy III",
-    "Jusuf NurkićJ Nurkić": "Jusuf Nurkić",
-    "Nikola JokićN Jokić": "Nikola Jokić",
-    "Da Ron Holmes IID II": "DaRon Holmes II",
-    "Jimmy Butler IIIJ III": "Jimmy Butler III",
 
 }
-
-def _name_key(s: str) -> str:
-    """
-    Canonical key for name matching: case/diacritic/punct/space-insensitive,
-    and ignores common suffixes like Jr/Sr/II/III/IV/V.
-    """
-    if not s:
-        return ""
-    # Remove accents (Dončić -> Doncic)
-    s = unicodedata.normalize("NFKD", s)
-    s = "".join(ch for ch in s if not unicodedata.combining(ch))
-    s = s.lower()
-
-    # Normalize punctuation/spaces (incl. curly apostrophes & HTML '&apos;')
-    s = (s.replace("&apos;", "")
-           .replace("’", "")
-           .replace("'", "")
-           .replace(".", "")
-           .replace("-", " "))
-
-    # Drop common suffixes
-    s = re.sub(r"\b(jr|sr|ii|iii|iv|v)\b", "", s)
-
-    # Strip all non-alphanumerics and collapse
-    s = re.sub(r"[^a-z0-9]+", "", s)
-    return s
 
 BANNED_PLAYERS = {
-    "Ray-Ray Mc Cloud III",
-    "K'Lavon Chaisson",
-    "Marcus Jones",
-    "Jalyx Hunt",
-    "Jordan Davis",
-    "Sydney Brown",
-    "Ja'Tavion Sanders",
-    "Brycen Tremayne",
-    "Tommy Tremble",
-    "Jimmy Horn Jr",
-    "Mitchell Evans",
-    "Nahshon Wright",
-    "Tylan Wallace",
-    "Luke Farrell",
-    "Will Anderson Jr",
-    "Jaylin Noel",
-    "Devaughn Vele",
-    "Jack Stoll",
-    "Jordan Howden",
-    "Taysom Hill",
-    "Ryan Flournoy",
-    "Tyler Lockett",
-    "David Martin-Robinson",
-    "Connor Heyward",
+    "James Conner",
 }
-
-
 
 def clean_name(raw: str) -> str:
     s = (raw or "").replace(".", " ")
@@ -1409,33 +1045,15 @@ def dedupe_by_player(rows: List[Dict[str, str]]) -> List[Dict[str, str]]:
     if not rows:
         return rows
     name_col = "NAME" if "NAME" in rows[0] else "PLAYER" if "PLAYER" in rows[0] else list(rows[0].keys())[0]
-    seen, out = set(), []
-    for rec in rows:
-        key = _name_key(rec.get(name_col, ""))
-        if not key or key in seen:
-            continue
-        seen.add(key)
-        out.append(rec)
-    return out
-
-def remove_banned_rows(rows: List[Dict[str, str]], banned: set) -> List[Dict[str, str]]:
-    if not rows or not banned:
-        return rows
-
-    # Build ban keys from both raw and cleaned variants
-    ban_keys = {_name_key(n) for n in banned}
-    ban_keys |= {_name_key(clean_name(n)) for n in banned}
-
-    name_col = "NAME" if "NAME" in rows[0] else "PLAYER" if "PLAYER" in rows[0] else list(rows[0].keys())[0]
+    seen = set()
     out = []
     for rec in rows:
-        nm = rec.get(name_col, "")
-        k1 = _name_key(nm)
-        k2 = _name_key(clean_name(nm))
-        if k1 in ban_keys or k2 in ban_keys:
-            if VERBOSE:
-                print(f"[ban-final] {nm}")
+        nm = clean_name(rec.get(name_col, ""))
+        if not nm:
             continue
+        if nm in seen:
+            continue
+        seen.add(nm)
         out.append(rec)
     return out
 
@@ -1539,48 +1157,27 @@ def filter_traded_banned_and_teams(
     traded_players: Optional[Dict[str, str]] = None,
     banned_players: Optional[set] = None
 ) -> List[Dict[str, str]]:
-    teams_set = set(_normalize_abbr(t) for t in (teams or []))
-
-    # Normalize keys once for speed
-    traded_key_map = { _name_key(k): _normalize_abbr(v)
-                       for k, v in (traded_players or {}).items() }
-    banned_keys = { _name_key(n) for n in (banned_players or set()) }
-
+    teams_set = set(_normalize_abbr(t) for t in (teams or []))  # <— normalize inputs
+    traded_clean = {clean_name(k): _normalize_abbr(v) for k, v in (traded_players or {}).items()}
+    banned_clean = {clean_name(n) for n in (banned_players or set())}
     out = []
     for rec in data:
-        # choose name column
-        name_col = "NAME" if "NAME" in rec else "PLAYER" if "PLAYER" in rec else list(rec.keys())[0]
-        nm_raw = rec.get(name_col, "")
-        key    = _name_key(nm_raw)
-        key_c  = _name_key(clean_name(nm_raw))
-        if key in banned_keys or key_c in banned_keys:
-            if VERBOSE:
-                print(f"[filter] banned: {nm_raw}")
+        name_col  = "NAME" if "NAME" in rec else "PLAYER" if "PLAYER" in rec else list(rec.keys())[0]
+        nm        = clean_name(rec.get(name_col, ""))
+        team_code = _normalize_abbr(_get_team_from_row(rec))      # <— normalize table code
+        if nm in banned_clean: 
             continue
-
-        # row's team code
-        team_code = _normalize_abbr(_get_team_from_row(rec))
-
-        # traded team mismatch? (only if we know both)
-        mapped_team = traded_key_map.get(key)
-        if mapped_team and team_code and team_code != mapped_team:
-            if VERBOSE:
-                print(f"[filter] traded-mismatch: {nm_raw} row_team={team_code} mapped={mapped_team}")
+        mapped = traded_clean.get(nm)
+        if mapped and team_code and team_code != mapped: 
             continue
-
-        # explicit team filter (if provided)
-        if teams_set and team_code and team_code not in teams_set:
+        if teams_set and team_code and team_code not in teams_set: 
             continue
-
         out.append(rec)
     return out
 
 # ============================== Notion helpers =============================
 
 def notion_append_blocks(blocks: List[Dict]):
-    if DRY_RUN:
-        _log(f"[dry-run] would append {len(blocks)} blocks to poll page {POLL_PAGE_ID}")
-        return
     for attempt in range(3):
         try:
             client.blocks.children.append(block_id=POLL_PAGE_ID, children=blocks); return
@@ -1591,9 +1188,6 @@ def notion_append_blocks(blocks: List[Dict]):
             print(f"[notion] append error: {e}"); return
 
 def notion_update_page(page_id: str, props: Dict):
-    if DRY_RUN:
-        _log(f"[dry-run] would update page {page_id} props={list(props.keys())}")
-        return
     for attempt in range(3):
         try:
             client.pages.update(page_id=page_id, properties=props); return
@@ -1618,17 +1212,6 @@ def _post_colors_only_block(page_id: str, heading_text: str):
     ])
     notion_update_page(page_id, {"Processed":{"select":{"name":"Yes"}}})
 
-def post_run_log(message: str):
-    if not os.getenv("POST_RUN_LOG", "0").strip() in {"1","true","yes","on"}:
-        return
-    notion_append_blocks([
-        {
-          "object":"block","type":"callout",
-          "callout":{"icon":{"emoji":"🧪"},"rich_text":[{"type":"text","text":{"content":message}}]}
-        },
-        {"object":"block","type":"divider","divider":{}}
-    ])
-
 # ============================== Core flows =================================
 
 # --- New helpers for grouping + Heading 3 ---
@@ -1649,6 +1232,521 @@ def _canon_game_key(sport: str, teams: List[str]) -> Tuple[str, Tuple[str, str]]
     else:
         pair = ("", "")
     return (sport.strip().upper(), pair)
+
+# --- DK: lean v5 category fetch (lighter + faster) ---
+
+_DK_JSON_CACHE = {}  # (url)->json cache for this run
+
+def _dk_get_json(url: str, t_conn: float = 1.2, t_read: float = DK_TIMEOUT) -> dict:
+    try:
+        r = _fast_get(url, t_conn=t_conn, t_read=t_read)
+        if r.status_code == 404:
+            return {}
+        r.raise_for_status()
+        r.encoding = "utf-8"
+        return r.json() or {}
+    except Exception:
+        return {}
+
+def _dk_fetch_eventgroup_v5(eg_id: int) -> dict:
+    if not eg_id:
+        return {}
+    # Try a couple of regional sites quickly
+    for site in _dk_sites_to_try():
+        url = f"https://sportsbook.draftkings.com//sites/{site}/api/v5/eventgroups/{eg_id}/?format=json&language={DK_LANG}"
+        if url in _DK_JSON_CACHE:
+            js = _DK_JSON_CACHE[url]
+        else:
+            js = _dk_get_json(url, t_conn=1.0, t_read=DK_TIMEOUT)
+            _DK_JSON_CACHE[url] = js
+        if js:
+            return js
+    return {}
+
+def _dk_fetch_category_v5(eg_id: int, cat_id: int) -> dict:
+    for site in _dk_sites_to_try():
+        url = f"https://sportsbook.draftkings.com//sites/{site}/api/v5/eventgroups/{eg_id}/categories/{cat_id}?format=json&language={DK_LANG}"
+        if url in _DK_JSON_CACHE:
+            js = _DK_JSON_CACHE[url]
+        else:
+            js = _dk_get_json(url, t_conn=1.0, t_read=DK_TIMEOUT)
+            _DK_JSON_CACHE[url] = js
+        if js:
+            return js
+    return {}
+
+def _dk_fetch_subcategory_v5(eg_id: int, cat_id: int, subcat_id: int) -> dict:
+    for site in _dk_sites_to_try():
+        url = f"https://sportsbook.draftkings.com//sites/{site}/api/v5/eventgroups/{eg_id}/categories/{cat_id}/subcategories/{subcat_id}?format=json&language={DK_LANG}"
+        if url in _DK_JSON_CACHE:
+            js = _DK_JSON_CACHE[url]
+        else:
+            js = _dk_get_json(url, t_conn=1.0, t_read=DK_TIMEOUT)
+            _DK_JSON_CACHE[url] = js
+        if js:
+            return js
+    return {}
+
+def _dk_wanted_market_names(sport: str, stat: str) -> List[str]:
+    s  = _league_canonical(sport)
+    st = (stat or "").strip().upper()
+
+    # NBA & WNBA
+    if s in {"NBA","WNBA"}:
+        if st in {"3P","3PM","3-PT","3PT"} or "THREE" in st:
+            return ["3-Point Field Goals", "3-Point Field Goals Made", "3PT Made", "3-Pointers Made"]
+        if st in {"AST","APG"} or "ASSIST" in st:
+            return ["Player Assists", "Assists"]
+        if st in {"REB","RPG"} or "REBOUND" in st:
+            return ["Player Rebounds", "Rebounds"]
+        if st in {"PTS","PPG"} or "POINT" in st:
+            return ["Player Points", "Points"]
+
+    # NHL
+    if s == "NHL":
+        if "GOAL" in st:
+            return ["Anytime Goal Scorer", "To Score a Goal"]
+        if "SHOT" in st:
+            return ["Player Shots On Goal"]
+        if "POINT" in st:
+            return ["Player Points"]
+
+    # NFL
+    if s == "NFL":
+        if "RECEPTION" in st or st == "REC":
+            return ["Receptions"]
+        if "SCRIMMAGE" in st:
+            return ["Rushing + Receiving Yards", "Total Rushing + Receiving Yards"]
+        if "YARD" in st or st == "YDS":
+            return ["Total Receiving Yards", "Total Rushing Yards", "Rushing + Receiving Yards"]
+        if "TD" in st or "TOUCHDOWN" in st:
+            return ["Anytime Touchdown Scorer", "Player Total Touchdowns"]
+
+    # MLB
+    if s == "MLB":
+        if st in {"TB","TOTAL BASES"} or "BASES" in st:
+            return ["Player Total Bases", "Total Bases"]
+        if "RBI" in st:
+            return ["Player RBI", "RBI"]
+        if st in {"HR","HOMERS","HOME RUNS"} or "HOME RUN" in st:
+            return ["To Hit a Home Run", "Player to Hit a Home Run"]
+        if st in {"H","HITS"} or "HIT" in st:
+            return ["Player Hits", "Hits"]
+
+    return []
+
+def _dk_market_name_matches(name: str, wanted: Iterable[str]) -> bool:
+    n = (name or "").lower()
+    return any(w.lower() in n for w in wanted)
+
+def _dk_extract_event_props_v5(eg_json: dict, ev_id: int, sport: str, stat: str) -> List[dict]:
+    """
+    Pull only the subcategories we care about via /categories and /subcategories.
+    """
+    wanted = _dk_wanted_market_names(sport, stat)
+    out: List[dict] = []
+
+    eg = (eg_json.get("eventGroup") or {})
+    cats = eg.get("offerCategories") or []
+    # Find the parent "Player Props" (or similar) categories first
+    for cat in cats:
+        cat_id = cat.get("offerCategoryId") or cat.get("id")
+        cat_name = (cat.get("name") or "").strip()
+        if not cat_id:
+            continue
+
+        cat_json = _dk_fetch_category_v5(eg.get("eventGroupId") or eg.get("id") or 0, cat_id)
+        descs = (cat_json.get("eventGroup") or {}).get("offerCategories") or []
+        # Flatten subcategory descriptors
+        subdescs = []
+        for d in descs:
+            subdescs.extend(d.get("offerSubcategoryDescriptors") or [])
+
+        for sd in subdescs:
+            sub_name = sd.get("name") or sd.get("subcategoryName") or ""
+            sub_id   = sd.get("subcategoryId") or sd.get("offerSubcategoryId")
+            if not sub_id or not _dk_market_name_matches(sub_name, wanted):
+                continue
+
+            # Some categories already include "offers"; otherwise fetch subcategory
+            offers_blob = sd.get("offers")
+            if not offers_blob:
+                sub_json = _dk_fetch_subcategory_v5(eg.get("eventGroupId") or 0, cat_id, sub_id)
+                sub_cats = (sub_json.get("eventGroup") or {}).get("offerCategories") or []
+                # try to locate the subcategory again and grab its offers
+                for sc in sub_cats:
+                    for sdesc in sc.get("offerSubcategoryDescriptors") or []:
+                        if (sdesc.get("subcategoryId") or sdesc.get("offerSubcategoryId")) == sub_id:
+                            offers_blob = sdesc.get("offers")
+                            if offers_blob:
+                                break
+
+            if not offers_blob:
+                continue
+
+            # offers is a list of lists; outcomes inside each offer
+            for offer_list in offers_blob or []:
+                for offer in offer_list or []:
+                    if offer.get("eventId") != ev_id:
+                        continue
+                    for outcome in offer.get("outcomes") or []:
+                        player = outcome.get("participant") or outcome.get("label") or ""
+                        side   = (outcome.get("label") or outcome.get("description") or "").title()
+                        odds   = (outcome.get("oddsAmerican") or
+                                  (outcome.get("odds", {}) or {}).get("american") or
+                                  outcome.get("americanOdds") or "")
+                        line   = outcome.get("line") if outcome.get("line") is not None else offer.get("line")
+                        out.append({
+                            "market": sub_name,
+                            "player": player,
+                            "side": side,
+                            "line": line,
+                            "odds": str(odds),
+                            "prob": _implied_prob_from_american(str(odds)),
+                        })
+    return out
+
+def _dk_fetch_eventgroup_v4(eg_id: int) -> dict:
+    if not eg_id:
+        return {}
+    for site in _dk_sites_to_try():
+        url = f"https://sportsbook.draftkings.com//sites/{site}/api/v4/eventgroup/{eg_id}?format=json&language={DK_LANG}"
+        try:
+            r = _fast_get(url, t_conn=1.0, t_read=DK_TIMEOUT)
+            if r.status_code == 404:
+                continue
+            r.raise_for_status()
+            r.encoding = "utf-8"
+            return r.json() or {}
+        except Exception:
+            continue
+    return {}
+
+def _dk_extract_event_props_v4(eg_json: dict, ev_id: int, sport: str, stat: str) -> List[dict]:
+    wanted = _dk_wanted_market_names(sport, stat)
+    out = []
+    eg = (eg_json.get("eventGroup") or {})
+    for cat in eg.get("offerCategories", []) or []:
+        for sub in cat.get("offerSubcategoryDescriptors", []) or []:
+            sub_name = sub.get("name") or sub.get("subcategoryName") or ""
+            if not _dk_market_name_matches(sub_name, wanted):
+                continue
+            for offer_list in sub.get("offers") or []:
+                for offer in offer_list or []:
+                    if offer.get("eventId") != ev_id:
+                        continue
+                    for outcome in offer.get("outcomes") or []:
+                        player = outcome.get("participant") or outcome.get("label") or ""
+                        side   = (outcome.get("label") or outcome.get("description") or "").title()
+                        odds   = (outcome.get("oddsAmerican")
+                                  or (outcome.get("odds", {}) or {}).get("american")
+                                  or outcome.get("americanOdds") or "")
+                        line   = outcome.get("line") if outcome.get("line") is not None else offer.get("line")
+                        out.append({
+                            "market": sub_name,
+                            "player": player,
+                            "side": side,
+                            "line": line,
+                            "odds": str(odds),
+                            "prob": _implied_prob_from_american(str(odds)),
+                        })
+    return out
+
+def dk_top12_summary_for_game(sport: str, stat: str, teams: List[str]) -> Tuple[str, List[str]]:
+    canon = _league_canonical(sport)
+    # respect per-league switches
+    if (canon == "NBA"  and not USE_DK_FOR_NBA) or \
+       (canon == "WNBA" and not USE_DK_FOR_WNBA) or \
+       (canon == "NHL"  and not USE_DK_FOR_NHL) or \
+       (canon == "NFL"  and not USE_DK_FOR_NFL) or \
+       (canon == "MLB"  and not USE_DK_FOR_MLB):
+        return "", []
+
+    if len(teams) < 2:
+        return "", []
+
+    eg_ids = _dk_eventgroup_ids_for_sport(canon)
+    if not eg_ids:
+        if VERBOSE:
+            print(f"[dk] no EG ids discovered for {canon}")
+        return "", []
+
+    if VERBOSE:
+        print(f"[dk] trying DK for {canon}/{stat} with teams={teams} (EGs {eg_ids[:3]}...)")
+
+    for eg_id in eg_ids[:4]:  # limit time spent
+        # v5 route
+        eg_v5 = _dk_fetch_eventgroup_v5(eg_id)
+        ev_id = None
+        if eg_v5:
+            ev_id = _dk_find_event_id_by_teams_v5(eg_v5, canon, teams[0], teams[1])
+            if ev_id and VERBOSE:
+                gid = (eg_v5.get("eventGroup") or {}).get("eventGroupId") or eg_id
+                print(f"[dk] v5 matched event {ev_id} in EG {gid} for {teams}")
+        rows = []
+        if ev_id and eg_v5:
+            rows = _dk_extract_event_props_v5(eg_v5, ev_id, canon, stat)
+
+        # v4 fallback (if no rows yet)
+        if not rows:
+            eg_v4 = _dk_fetch_eventgroup_v4(eg_id)
+            if eg_v4 and not ev_id:
+                ev_id = _dk_find_event_id_by_teams_v4(eg_v4, canon, teams[0], teams[1])
+                if ev_id and VERBOSE:
+                    gid = (eg_v4.get("eventGroup") or {}).get("eventGroupId") or eg_id
+                    print(f"[dk] v4 matched event {ev_id} in EG {gid} for {teams}")
+            if eg_v4 and ev_id:
+                rows = _dk_extract_event_props_v4(eg_v4, ev_id, canon, stat)
+
+        if not rows:
+            continue
+
+        # Decide preferred side
+        mkts = [(r.get("market") or "").lower() for r in rows]
+        is_yes_no = any(("anytime" in m) or ("to score" in m) or ("to hit a home run" in m) for m in mkts)
+        prefer_side = "Yes" if is_yes_no else "Over"
+
+        # merge to one outcome per player, pick by preferred side / highest prob
+        rows = _choose_one_outcome_per_player(rows, prefer_side)
+        rows.sort(key=lambda r: r.get("prob", 0.0), reverse=True)
+
+        # Top 12 names only
+        names = [clean_name(r.get("player","")) for r in rows[:12] if r.get("player")]
+        if not names:
+            continue
+
+        if VERBOSE:
+            print(f"[dk] using {len(names)} DK props for {teams}: first={names[:3]}")
+
+        return _summary_from_names(names), [f"https://sportsbook.draftkings.com/event/{ev_id}"]
+
+    if VERBOSE:
+        print(f"[dk] props unavailable for {canon}/{stat} {teams} (no offers or endpoints empty)")
+    return "", []
+
+# --- FIX: imports needed by hints below ---
+from typing import Iterable
+
+# --- FIX: keep only ONE _fast_get; delete the duplicate earlier in your file. ---
+# def _fast_get(url: str, t_conn: float, t_read: float):
+#     return _RAW.get(url, timeout=(t_conn, t_read))
+
+# --- FIX: make DK timeouts & budget less brutal (overrides earlier values) ---
+DK_TIMEOUT = float(os.getenv("DK_TIMEOUT", "6.0"))             # per-request READ timeout
+DK_FAIL_LIMIT = int(os.getenv("DK_FAIL_LIMIT", "3"))           # allow a couple of misses
+DK_TOTAL_BUDGET_SEC = float(os.getenv("DK_TOTAL_BUDGET_SEC", "12.0"))
+
+def _league_canonical(s: str) -> str:
+    up = (s or "").strip().upper()
+    if up.startswith("NBA"):  return "NBA"
+    if up.startswith("NHL"):  return "NHL"
+    if up.startswith("NFL"):  return "NFL"
+    if up.startswith("MLB"):  return "MLB"
+    if up.startswith("WNBA"): return "WNBA"
+    if up in {"CFB","NCAAF","COLLEGE FOOTBALL"}: return "CFB"
+    return up
+
+def _dk_sites_to_try() -> List[str]:
+    """Dedup preferred DK sites: primary + fallbacks."""
+    seen, out = set(), []
+    for s in [os.getenv("DK_SITE", "US-SB")] + [
+        s.strip() for s in os.getenv("DK_SITE_FALLBACKS", "US-SB,US-NJ-SB,US-OH-SB").split(",")
+        if s.strip()
+    ]:
+        if s and s not in seen:
+            seen.add(s); out.append(s)
+    return out
+
+def _dk_team_search_strings(sport: str, team_code_or_name: str) -> List[str]:
+    """Tokens we expect to appear in DK event names."""
+    out = set()
+    raw = (team_code_or_name or "").strip()
+    if raw:
+        out.add(raw.lower())
+        # expand to nickname words when we know the league map
+        m = TEAM_NAME_MAPS.get(_league_canonical(sport), {})
+        nick = m.get(raw.upper())
+        if nick:
+            out.add(nick.lower())
+            for w in nick.split():
+                out.add(w.lower())
+        # split a code like 'LAK' or 'NYG' into letters too, just in case
+        for w in re.split(r"[\s.-]+", raw.replace("/", " ")):
+            if w:
+                out.add(w.lower())
+    return [x for x in out if x]
+
+def _dk_find_event_id_by_teams_v4(eg_json: dict, sport: str, teamA: str, teamB: str) -> Optional[int]:
+    if not eg_json:
+        return None
+    A_tokens = _dk_team_search_strings(sport, teamA)
+    B_tokens = _dk_team_search_strings(sport, teamB)
+    for ev in (eg_json.get("eventGroup") or {}).get("events", []) or []:
+        name = (ev.get("name") or "").lower()
+        if any(t in name for t in A_tokens) and any(t in name for t in B_tokens):
+            return ev.get("eventId")
+    return None
+
+def _dk_find_event_id_by_teams_v5(eg_json: dict, sport: str, teamA: str, teamB: str) -> Optional[int]:
+    """
+    Find the DraftKings eventId in a v5 eventgroup payload by matching team tokens in the event name.
+    Looks in eventGroup.events first, then (rare) offer descriptors.
+    """
+    if not eg_json:
+        return None
+
+    A_tokens = _dk_team_search_strings(sport, teamA)
+    B_tokens = _dk_team_search_strings(sport, teamB)
+
+    eg = eg_json.get("eventGroup") or {}
+    events = eg.get("events") or eg_json.get("events") or []
+
+    # Primary: events list
+    for ev in events:
+        name = (ev.get("name") or "").lower()
+        if not name:
+            continue
+        if any(t in name for t in A_tokens) and any(t in name for t in B_tokens):
+            return ev.get("eventId") or ev.get("id")
+
+    # Secondary: sometimes only present in category offers (rare)
+    for cat in (eg.get("offerCategories") or []):
+        for sub in (cat.get("offerSubcategoryDescriptors") or []):
+            for offer_list in (sub.get("offers") or []):
+                for offer in (offer_list or []):
+                    evid = offer.get("eventId") or offer.get("event_id") or offer.get("eventid")
+                    evname = (offer.get("eventName") or "").lower()
+                    if not evid or not evname:
+                        continue
+                    if any(t in evname for t in A_tokens) and any(t in evname for t in B_tokens):
+                        return evid
+
+    return None
+
+_DK_DISCOVER_CACHE: Dict[Tuple[str,str], List[int]] = {}
+
+def _dk_discover_eventgroups_for_sport(sport_up: str) -> List[int]:
+    """Hit /api/v4/sports and find eventGroupId(s) that match the league name."""
+    sport_up = (sport_up or "").upper()
+    key = (sport_up, ",".join(_dk_sites_to_try()))
+    if key in _DK_DISCOVER_CACHE:
+        return _DK_DISCOVER_CACHE[key]
+
+    found: List[int] = []
+    for site in _dk_sites_to_try():
+        url = f"https://sportsbook.draftkings.com//sites/{site}/api/v4/sports?format=json&language={DK_LANG}"
+        try:
+            r = SESSION.get(url, timeout=float(os.getenv("DK_TIMEOUT", "6.0")))
+            if not r.ok:
+                continue
+            js = r.json() or {}
+        except Exception:
+            continue
+
+        for sp in (js.get("sports") or []):
+            for lg in (sp.get("leagues") or []):
+                name = (lg.get("name") or "").strip().upper()
+                if name == sport_up:
+                    eg = lg.get("eventGroupId") or lg.get("eventGroupIds") or []
+                    eg_list = eg if isinstance(eg, list) else [eg]
+                    for e in eg_list:
+                        try:
+                            found.append(int(e))
+                        except Exception:
+                            pass
+        if found:
+            break
+
+    # dedupe, preserve order
+    seen, out = set(), []
+    for eid in found:
+        if eid and eid not in seen:
+            seen.add(eid); out.append(eid)
+
+    _DK_DISCOVER_CACHE[key] = out
+    return out
+
+def _dk_eventgroup_ids_for_sport(sport_up: str) -> List[int]:
+    """
+    Resolve DK eventGroup ids for a league.
+    - Prefer env hints when set (kept first).
+    - Always include discovered ids so we never depend on manual values.
+    """
+    s = _league_canonical(sport_up)
+    preferred: List[int] = []
+
+    # 1) Env "hints" first (optional)
+    if s == "NBA":
+        hints = [int(x) for x in re.findall(r"\d+", os.getenv("DK_EVENT_GROUP_IDS_NBA", ""))]
+        preferred.extend([h for h in hints if h])
+        try:
+            single = int(os.getenv("DK_EVENT_GROUP_ID_NBA", "0"))
+            if single:
+                preferred.append(single)
+        except Exception:
+            pass
+    else:
+        try:
+            single = int(os.getenv(f"DK_EVENT_GROUP_ID_{s}", "0"))
+            if single:
+                preferred.append(single)
+        except Exception:
+            pass
+
+    # 2) Always merge in discovered ids
+    discovered = _dk_discover_eventgroups_for_sport(s)
+    if VERBOSE:
+        print(f"[dk] discovered EGs for {s}: {discovered}")
+
+    # 3) Merge + dedupe (env first)
+    out, seen = [], set()
+    for v in preferred + discovered:
+        if v and v not in seen:
+            seen.add(v); out.append(v)
+    return out
+
+def _implied_prob_from_american(odds_str: str) -> float:
+    """American odds -> implied probability (0..1)."""
+    try:
+        s = str(odds_str).strip()
+        neg = s.startswith("-")
+        v = int(s.replace("+", "").replace("-", ""))
+    except Exception:
+        return 0.0
+    if neg:
+        return v / (v + 100.0)
+    return 100.0 / (v + 100.0)
+
+def _choose_one_outcome_per_player(rows: List[dict], prefer_side: str) -> List[dict]:
+    """
+    Keep a single outcome per player:
+      - prefer prefer_side ("Over" or "Yes")
+      - otherwise keep the highest implied probability.
+    """
+    best: Dict[str, dict] = {}
+    pref = (prefer_side or "").lower()
+    for r in rows:
+        key = (r.get("player") or "").strip()
+        if not key:
+            continue
+        score = (1 if (r.get("side","").lower() == pref) else 0, r.get("prob", 0.0))
+        cur = best.get(key)
+        cur_score = (1 if (cur and cur.get("side","").lower() == pref) else 0, (cur or {}).get("prob", 0.0))
+        if (cur is None) or (score > cur_score):
+            best[key] = r
+    return list(best.values())
+
+def _summary_from_names(names: List[str]) -> str:
+    g  = names[0:3]
+    y  = names[3:6]
+    rd = names[6:9]
+    p  = names[9:12]
+    parts = []
+    if g:  parts.append(f"🟢 {', '.join(g)}")
+    if y:  parts.append(f"🟡 {', '.join(y)}")
+    if rd: parts.append(f"🔴 {', '.join(rd)}")
+    if p:  parts.append(f"🟣 {', '.join(p)}")
+    return "\n".join(parts)
 
 
 # --- Replacement for process_games() ---
@@ -1722,74 +1820,87 @@ def process_games():
             stat_up = (stat or "").strip().upper()
             sport_up_local = (sport or "").strip().upper()
 
-            # Colors-only for strikeouts
-            if stat_up in {"K", "SO", "STRIKEOUTS"}:
-                # section header line (season/postseason wording)
-                _when = "this postseason" if sport_up_local == "MLB" else "this season"
+                        # 1) Colors-only for MLB strikeouts (leave as-is if you want this rule)
+            if stat_up in {"K", "SO", "STRIKEOUTS"} and sport_up_local == "MLB":
                 blocks_for_game.append({
                     "object":"block","type":"paragraph",
-                    "paragraph":{"rich_text":[{"type":"text","text":{"content":f"{stat} — {_when}"}}]}
+                    "paragraph":{"rich_text":[{"type":"text","text":{"content":f"{stat} — past week"}}]}
                 })
-                # colors-only grid
                 blocks_for_game.append({
                     "object":"block","type":"paragraph",
                     "paragraph":{"rich_text":[{"type":"text","text":{"content":_colors_only_summary()}}]}
                 })
-                
                 blocks_for_game.append({"object":"block","type":"divider","divider":{}})
                 pages_to_mark.append(page_id)
                 continue
 
+            # 2) DraftKings branch (ALWAYS TRY FIRST; short-circuit on success)
+            canon = _league_canonical(sport_up_local)
+            dk_enabled = (
+                (canon == "NHL"  and USE_DK_FOR_NHL)  or
+                (canon == "NFL"  and USE_DK_FOR_NFL)  or
+                (canon == "NBA"  and USE_DK_FOR_NBA)  or
+                (canon == "WNBA" and USE_DK_FOR_WNBA) or
+                (canon == "MLB"  and USE_DK_FOR_MLB)
+            )
+
+            dk_summary, dk_links = ("", [])
+            if dk_enabled:
+                if VERBOSE:
+                    print(f"[dk] trying DK for {canon}/{stat} with teams={teams}")
+                dk_summary, dk_links = dk_top12_summary_for_game(sport_up_local, stat, teams)
+                if dk_summary:
+                    blocks_for_game.append({
+                        "object":"block","type":"paragraph",
+                        "paragraph":{"rich_text":[{"type":"text","text":{"content":f"{stat} — DraftKings"}}]}
+                    })
+                    blocks_for_game.append({
+                        "object":"block","type":"paragraph",
+                        "paragraph":{"rich_text":[{"type":"text","text":{"content":dk_summary}}]}
+                    })
+                    if dk_links:
+                        blocks_for_game.append(_link_para("View market (DK)", dk_links[0]))
+                    blocks_for_game.append({"object":"block","type":"divider","divider":{}})
+                    pages_to_mark.append(page_id)
+                    continue  # DK success → next stat
+
+            # 3) If DK failed: optional NHL "blank" section (only if you want it)
+            if sport_up_local == "NHL" and BLANK_NHL_PICKS:
+                blocks_for_game.append({
+                    "object":"block","type":"paragraph",
+                    "paragraph":{"rich_text":[{"type":"text","text":{"content":f"{stat} — (no props posted yet)"}}]}
+                })
+                blocks_for_game.append({
+                    "object":"block","type":"paragraph",
+                    "paragraph":{"rich_text":[{"type":"text","text":{"content":_colors_only_summary()}}]}
+                })
+                blocks_for_game.append({"object":"block","type":"divider","divider":{}})
+                pages_to_mark.append(page_id)
+                continue
+
+            # 4) StatMuse fallback (all sports)
             traded_players = {}
             if sport_up_local == "MLB":
                 traded_players = fetch_trades_past_week()
 
-            # Scrape StatMuse (regular games always scrape)
             data, used_season_mode, season_year, debug_links = scrape_statmuse_data(stat, sport, teams)
 
-            # Post-filters (with centralized injury filter)
-            injured = get_injured_players_for_sport(
-                sport_up_local, session=SESSION, verbose=bool(VERBOSE), clean_name_fn=clean_name
-            ) if INJURIES_ENABLED else set()
-
             if sport_up_local == "MLB":
-                data = filter_traded_banned_and_teams(
-                    data, teams, traded_players=traded_players, banned_players=BANNED_PLAYERS
-                )
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
+                data = filter_traded_banned_and_teams(data, teams, traded_players=traded_players, banned_players=BANNED_PLAYERS)
+                injured = get_mlb_injured_players()
                 if data:
                     data = dedupe_by_player(data)
-
-            elif sport_up_local == "NFL":
-                data = filter_traded_banned_and_teams(data, teams, banned_players=BANNED_PLAYERS)
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
-
+                    name_col = "NAME" if "NAME" in data[0] else "PLAYER"
+                    data = [rec for rec in data if clean_name(rec.get(name_col, "")) not in injured]
+            elif sport_up_local == "NFL" and teams:
+                data = filter_traded_banned_and_teams(data, teams)
             elif sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
-                # keep union; optional injury drop
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
-
+                pass
             else:
-                data = filter_traded_banned_and_teams(data, teams, banned_players=BANNED_PLAYERS)
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
-                if data:
-                    data = dedupe_by_player(data)
+                if data and teams:
+                    data = filter_traded_banned_and_teams(data, teams)
 
-            # Final safety sweep: drop anything still matching the ban list
-            data = remove_banned_rows(data, BANNED_PLAYERS)
-
-            # Build summary
+            # Build StatMuse summary
             if not data:
                 summary = _colors_only_summary()
             else:
@@ -1797,12 +1908,10 @@ def process_games():
                 desired_key = "TD" if (sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"} and stat_up in {"TD","TDS","TOUCHDOWNS"}) else stat
                 stat_key    = pick_stat_key(data, desired_key)
                 g, y, rd, p = bucket_top12(data, stat_key)
-                if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
-                    summary = _format_buckets_cfb(g, y, rd, p) or "(no qualifying leaders found)"
-                else:
-                    summary = _format_buckets_default(g, y, rd, p)
+                summary = (_format_buckets_cfb(g, y, rd, p) if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}
+                        else _format_buckets_default(g, y, rd, p)) or "(no qualifying leaders found)"
 
-            # Suffix
+            # Suffix for StatMuse
             if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"} and used_season_mode:
                 suffix = f"{season_year}"
             elif sport_up_local == "NFL":
@@ -1812,12 +1921,9 @@ def process_games():
                     suffix = f"{NFL_START_DATE} → {NFL_END_DATE}"
                 else:
                     suffix = f"last {NFL_LAST_N_DAYS} days"
-            elif sport_up_local == "MLB":
-                suffix = f"this postseason {MLB_SEASON_YEAR}"
             else:
-                suffix = "this season"
+                suffix = "past week"
 
-            # Section blocks for this stat
             blocks_for_game.append({
                 "object":"block","type":"paragraph",
                 "paragraph":{"rich_text":[{"type":"text","text":{"content":f"{stat} — {suffix}"}}]}
@@ -1826,23 +1932,15 @@ def process_games():
                 "object":"block","type":"paragraph",
                 "paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}
             })
-
-            # After blocks_for_game.append(...) that writes the summary
             if SHOW_CFB_DEBUG_LINKS and debug_links:
-                # Dedup & cap to something reasonable
-                seen = set()
-                shown = 0
+                seen=set(); shown=0
                 for u in debug_links:
-                    if not u or u in seen:
-                        continue
-                    seen.add(u)
-                    shown += 1
+                    if not u or u in seen: continue
+                    seen.add(u); shown += 1
                     blocks_for_game.append(_link_para(f"View query {shown}", u))
-                    if shown >= 6:  # cap so the post doesn't get too long
-                        break
+                    if shown >= 6: break
 
             blocks_for_game.append({"object":"block","type":"divider","divider":{}})
-
             pages_to_mark.append(page_id)
 
         # Push one append per game
@@ -1859,229 +1957,113 @@ def process_games():
             print(f"✅ Posted grouped game: {sport_up} ({len(game_rows)} stats)")
 
 def process_psp_rows():
-    # Pull all unprocessed PSP rows (already sorted in the DB is fine; we regroup here anyway)
     resp = client.databases.query(
         database_id=PSP_DATABASE_ID,
         filter={"property":"Processed","select":{"equals":"no"}},
-        page_size=100,
+        sort=[{"property":"Order","direction":"ascending"}]
     )
     rows = resp.get("results", [])
-    if not rows:
-        return
-
-    # group PSP rows by sport so they post contiguously
-    by_sport: Dict[str, List[Dict]] = {}
+    rows.reverse()
     for r in rows:
-        props = r.get("properties", {})
+        pid   = r["id"]
+        props = r["properties"]
         sport = props["Sport"]["select"]["name"].strip()
-        by_sport.setdefault(sport.upper(), []).append(r)
+        st = props["Stat"]
+        if st["type"] == "select":
+            stat = st["select"]["name"].strip()
+        else:
+            stat = "".join(t["plain_text"] for t in st.get("rich_text", [])).strip()
+        tp = props.get("Teams", {})
+        if tp.get("type") == "multi_select":
+            teams = [o["name"] for o in tp["multi_select"]] or None
+        elif tp.get("type") in ("rich_text","title"):
+            raw = "".join(t["plain_text"] for t in tp.get(tp["type"], []))
+            teams = [x.strip() for x in raw.split(",") if x.strip()]
+        else:
+            teams = None
 
-    # process sport groups in your preferred order
-    for sport_up in _PSP_SPORT_ORDER:
-        group = by_sport.get(sport_up)
-        if not group:
+        sport_up = sport.upper()
+        stat_up  = stat.upper()
+
+        # Colors-only for ALL NHL PSP rows when enabled
+        if sport_up == "NHL" and BLANK_NHL_PICKS:
+            _post_colors_only_block(pid, f"{sport_up} PSP - {stat_up}")
+            print(f"✅ PSP updated for {sport}/{stat} (blank NHL picks)")
             continue
 
-        # sort inside sport by our stat order map
-        def _stat_text(props: dict) -> str:
-            """Best-effort: read 'Stat' from props (select/rich_text/title)."""
-            st = props.get("Stat")
-            if not isinstance(st, dict):
-                return ""
-            typ = st.get("type")
-            if typ == "select" and st.get("select"):
-                return (st["select"].get("name") or "").strip()
-            if typ == "rich_text" and st.get("rich_text"):
-                return "".join(x.get("plain_text", "") for x in st["rich_text"]).strip()
-            if typ == "title" and st.get("title"):
-                return "".join(x.get("plain_text", "") for x in st["title"]).strip()
-            return ""
+        # Strikeouts -> colors-only
+        if stat_up in {"K","SO","STRIKEOUTS"}:
+            _post_colors_only_block(pid, f"{sport_up} PSP - {stat_up}")
+            print(f"✅ PSP updated for {sport}/{stat} (colors only for K)")
+            continue
 
-        # Sort inside the sport by our configured stat order; missing Stat -> end
-        group.sort(
-            key=lambda row: _psp_stat_rank(
-                sport_up,
-                _stat_text(row.get("properties", {})).upper()
-            )
-        )
+        if TRY_PSP_STATMUSE:
+            data, used_season_mode, season_year, debug_links = scrape_statmuse_data(stat, sport, teams)
+        else:
+            # skip scraping noise; just make a minimal section
+            data, used_season_mode, season_year, debug_links = [], False, 0, []
 
-        # Build one append batch per sport to keep them contiguous in the poll post
-        blocks_for_sport: List[Dict] = []
-        pages_to_mark: List[str] = []
-
-        for r in group:
-            pid   = r["id"]
-            props = r["properties"]
-
-            sport = props["Sport"]["select"]["name"].strip()
-            st    = props["Stat"]
-            if st["type"] == "select":
-                stat = st["select"]["name"].strip()
-            else:
-                stat = "".join(t["plain_text"] for t in st.get("rich_text", [])).strip()
-
-            teams_prop = props.get("Teams", {})
-            if teams_prop.get("type") == "multi_select":
-                teams = [o["name"] for o in teams_prop["multi_select"]] or None
-            elif teams_prop.get("type") in ("rich_text","title"):
-                raw = "".join(t["plain_text"] for t in teams_prop.get(teams_prop["type"], []))
-                teams = [x.strip() for x in raw.split(",") if x.strip()]
-            else:
-                teams = None
-
-            sport_up_local = sport_up  # already upper
-            stat_up        = (stat or "").strip().upper()
-
-            # Strikeouts PSP → colors only
-            if sport_up_local == "MLB" and stat_up in {"K","SO","STRIKEOUTS"}:
-                heading = f"{sport_up_local} PSP - {stat_up} leaders (this postseason)"
-                blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":heading}}]}})
-                blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":_colors_only_summary()}}]}})
-                pages_to_mark.append(pid)
-                continue
-
-            # Scrape (chunk if team list is long)
-            if TRY_PSP_STATMUSE:
-                data, used_season_mode, season_year, debug_links = scrape_statmuse_data(stat, sport, teams)
-            else:
-                data, used_season_mode, season_year, debug_links = [], False, 0, []
-
-            # Post-filters (with centralized injury filter)
-            injured = get_injured_players_for_sport(
-                sport_up_local, session=SESSION, verbose=bool(VERBOSE), clean_name_fn=clean_name
-            ) if INJURIES_ENABLED else set()
-
-            if sport_up_local == "MLB":
-                if data:
-                    data = dedupe_by_player(data)
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
-                data = filter_traded_banned_and_teams(
-                    data, teams, traded_players=fetch_trades_past_week(), banned_players=BANNED_PLAYERS
-                )
-
-            elif sport_up_local == "NFL":
-                data = filter_traded_banned_and_teams(data, teams, banned_players=BANNED_PLAYERS)
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
-
-            elif sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
-
-            else:
-                data = filter_traded_banned_and_teams(data, teams, banned_players=BANNED_PLAYERS)
-                if data and injured:
-                    data = remove_injured_rows(
-                        data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
-                    )
-                if data:
-                    data = dedupe_by_player(data)
-
-            # Summary
-            if not data:
-                summary = _colors_only_summary()
-            else:
+        if sport_up == "MLB":
+            injured = get_mlb_injured_players()
+            if data:
                 data = dedupe_by_player(data)
-                desired_key = "TD" if (sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"} and stat_up in {"TD","TDS","TOUCHDOWNS"}) else stat_up
-                stat_key = pick_stat_key(data, desired_key)
-                g, y, rd, p = bucket_top12(data, stat_key)
-                if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
-                    summary = _format_buckets_cfb(g, y, rd, p) or "(no qualifying leaders found)"
-                else:
-                    summary = _format_buckets_default(g, y, rd, p)
+                name_col = "NAME" if "NAME" in data[0] else "PLAYER"
+                data = [rec for rec in data if clean_name(rec.get(name_col, "")) not in injured]
+        elif sport_up == "NFL" and teams:
+            data = filter_traded_banned_and_teams(data, teams)
+        # CFB: no post-filter
 
-            # Suffix
-            if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"} and used_season_mode:
-                suffix = f"{season_year}"
-            elif sport_up_local == "NFL":
-                if NFL_QUERY_MODE == "SEASON":
-                    suffix = f"{NFL_SEASON_YEAR}"
-                elif NFL_QUERY_MODE == "DATES" and NFL_START_DATE and NFL_END_DATE:
-                    suffix = f"{NFL_START_DATE} → {NFL_END_DATE}"
-                else:
-                    suffix = "past week" if NFL_LAST_N_DAYS >= 7 else f"last {NFL_LAST_N_DAYS} days"
-            elif sport_up_local == "MLB":
-                suffix = f"this postseason {MLB_SEASON_YEAR}"
+        if not data:
+            summary = _colors_only_summary()
+        else:
+            data = dedupe_by_player(data)
+            desired_key = "TD" if (sport_up in {"CFB","NCAAF","COLLEGE FOOTBALL"} and stat_up in {"TD","TDS","TOUCHDOWNS"}) else stat_up
+            stat_key = pick_stat_key(data, desired_key)
+            g, y, rd, p = bucket_top12(data, stat_key)
+            if sport_up in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
+                summary = _format_buckets_cfb(g, y, rd, p) or "(no qualifying leaders found)"
             else:
-                suffix = "this season"
+                summary = _format_buckets_default(g, y, rd, p)
 
-            heading = f"{sport_up_local} PSP - {stat_up} leaders ({suffix})"
-            blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":heading}}]}})
-            blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}})
+        if sport_up in {"CFB","NCAAF","COLLEGE FOOTBALL"} and used_season_mode:
+            suffix = f"{season_year}"
+        elif sport_up == "NFL":
+            if NFL_QUERY_MODE == "SEASON":
+                suffix = f"{NFL_SEASON_YEAR}"
+            elif NFL_QUERY_MODE == "DATES" and NFL_START_DATE and NFL_END_DATE:
+                suffix = f"{NFL_START_DATE} → {NFL_END_DATE}"
+            else:
+                suffix = f"last {NFL_LAST_N_DAYS} days"
+        else:
+            suffix = "past week"
 
-            # debug links (cap to 6)
-            if SHOW_CFB_DEBUG_LINKS and debug_links:
-                seen = set(); shown = 0
-                for u in debug_links:
-                    if not u or u in seen: continue
-                    seen.add(u); shown += 1
-                    blocks_for_sport.append(_link_para(f"View query {shown}", u))
-                    if shown >= 6: break
+        heading = f"{sport_up} PSP - {stat_up} leaders ({suffix})"
+        blocks = [
+            {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":heading}}]}},
+            {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}},
+        ]
 
-            pages_to_mark.append(pid)
+        if SHOW_CFB_DEBUG_LINKS and debug_links:
+            seen = set()
+            shown = 0
+            for u in debug_links:
+                if not u or u in seen:
+                    continue
+                seen.add(u)
+                shown += 1
+                blocks.append(_link_para(f"View query {shown}", u))
+                if shown >= 6:
+                    break
 
-        # one append per sport to keep them contiguous
-        if blocks_for_sport:
-            notion_append_blocks(blocks_for_sport)
-
-        for pid in pages_to_mark:
-            notion_update_page(pid, {"Processed":{"select":{"name":"Yes"}}})
-
-        print(f"✅ PSP updated (grouped) for {sport_up}")
+        notion_append_blocks(blocks)
+        notion_update_page(pid, {"Processed":{"select":{"name":"Yes"}}})
+        print(f"✅ PSP updated for {sport}/{stat} ({suffix})")
 
 # ============================== Main =======================================
 
-def process_all(only: str = "both"):
-    if only in ("both", "games"):
-        process_games()
-    if only in ("both", "psp"):
-        process_psp_rows()
-
-def reset_cache():
-    try:
-        if CACHE_FILE.exists():
-            CACHE_FILE.unlink()
-            _log("[cache] reset cache file")
-    except Exception as e:
-        _log(f"[cache] reset failed: {e}")
-
-def _cli():
-    parser = argparse.ArgumentParser(description="StatMuse → Notion updater")
-    parser.add_argument("--games-only", action="store_true", help="Process regular game rows only")
-    parser.add_argument("--psp-only", action="store_true", help="Process PSP rows only")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose logs")
-    parser.add_argument("--dry-run", action="store_true", help="Do not write to Notion")
-    parser.add_argument("--no-selenium", action="store_true", help="Skip Selenium fallback")
-    parser.add_argument("--no-cache", action="store_true", help="Ignore disk/memory cache")
-    parser.add_argument("--save-html", action="store_true", help="Save non-tabling HTML to .debug_html/")
-    parser.add_argument("--reset-cache", action="store_true", help="Delete the disk cache file")
-
-    args = parser.parse_args()
-
-    # Apply flags to globals
-    global VERBOSE, DRY_RUN, DISABLE_SELENIUM, DISABLE_CACHE, SAVE_BAD_HTML
-    if args.verbose: VERBOSE = 1
-    if args.dry_run: DRY_RUN = True
-    if args.no_selenium: DISABLE_SELENIUM = True
-    if args.no_cache: DISABLE_CACHE = True
-    if args.save_html: SAVE_BAD_HTML = True
-    if args.reset_cache: reset_cache()
-
-    t0 = time.time()
-    if args.games_only:
-        process_games()
-    elif args.psp_only:
-        process_psp_rows()
-    else:
-        process_all()
-    _log(f"[done] {time.time()-t0:.1f}s | metrics={METRICS}")
+def process_all():
+    process_games()
+    process_psp_rows()
 
 if __name__ == "__main__":
-    _cli()
+    process_all()
