@@ -125,7 +125,7 @@ NOTION_TOKEN = _load_env_token()
 client = Client(auth=NOTION_TOKEN)
 
 # Verbose logging: set VERBOSE=1 in env to see mapping warnings, retries, etc.
-VERBOSE = int(os.getenv("VERBOSE", "0"))
+VERBOSE = int(os.getenv("VERBOSE") or "0")
 DRY_RUN = False
 
 DATABASE_ID     = os.getenv("DATABASE_ID",  "1aa71b1c-663e-8035-bc89-fb1e84a2d919")
@@ -154,7 +154,7 @@ NFL_QUERY_MODE   = os.getenv("NFL_QUERY_MODE", "SEASON").upper()   # "SEASON" | 
 NFL_SEASON_YEAR = int(os.getenv("NFL_SEASON_YEAR") or football_season_year())
 NFL_START_DATE   = os.getenv("NFL_START_DATE", "")  # e.g., "September 5, 2024"
 NFL_END_DATE     = os.getenv("NFL_END_DATE",   "")  # e.g., "September 12, 2024"
-NFL_LAST_N_DAYS  = int(os.getenv("NFL_LAST_N_DAYS", "7"))
+NFL_LAST_N_DAYS  = int(os.getenv("NFL_LAST_N_DAYS") or "7")
 
 # ============================== MLB controls ===============================
 
@@ -163,7 +163,7 @@ def baseball_season_year(today: Optional[date] = None) -> int:
     # MLB generally starts in Mar/Apr
     return d.year if d.month >= 3 else d.year - 1
 
-MLB_SEASON_YEAR = int(os.getenv("MLB_SEASON_YEAR", str(baseball_season_year())))
+MLB_SEASON_YEAR = int(os.getenv("MLB_SEASON_YEAR") or baseball_season_year())
 
 # Restrict MLB to *this* postseason; override via .env if needed
 MLB_PS_START_DATE = os.getenv("MLB_PS_START_DATE", f"October 1, {MLB_SEASON_YEAR}")
@@ -255,7 +255,7 @@ def _filter_rows_by_year(rows: List[Dict[str, str]], year: int) -> List[Dict[str
             filtered.append(r)
     return filtered
 
-CFB_SEASON_YEAR = int(os.getenv("CFB_SEASON_YEAR", football_season_year()))
+CFB_SEASON_YEAR = int(os.getenv("CFB_SEASON_YEAR") or football_season_year())
 
 # ============================== Notion input ===============================
 
