@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RealSports Picks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+{% set cbb_payload = initial_data.get('cbb', {}) %}
+{% set test_payload = initial_data.get('test2', {}) %}
+{% set cbb_count = (cbb_payload.get('data') or [])|length %}
+{% set test_count = (test_payload.get('data') or [])|length %}
+{% set total_count = cbb_count + test_count %}
+<main class="layout">
+    <nav class="site-nav">
+        <div class="brand">
+            <span class="badge">RealSports</span>
+            <strong>Picks Control Room</strong>
+        </div>
+        <div class="nav-links">
+            <a href="/picks/test2">Test2 Picks</a>
+            <a href="/picks/cbb">CBB Picks</a>
+            <a class="active" href="/settings">Settings</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="title-block">
+            <p class="eyebrow">RealSports Picks Hub</p>
+            <h1>Live pick cache</h1>
+            <p>Run schedule seeding, injuries, and pick generation without touching your local scripts.</p>
+        </div>
+        <div class="control-panel">
+            <p class="muted">Workflow shortcuts</p>
+            <p>Refresh feeds or run the full automation pipeline (schedule → injuries → picks) with one tap.</p>
+            <div class="control-actions">
+                <button class="btn primary" id="refresh-all-btn" type="button">Refresh Both Feeds</button>
+                <button class="btn outline" id="pipeline-btn" type="button">Run Full Pipeline</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="utility-bar">
+        <div class="search">
+            <label for="search-input">Search players, stats, or teams</label>
+            <div class="search-box">
+                <span>🔍</span>
+                <input id="search-input" type="text" placeholder="Start typing to filter cards...">
+            </div>
+        </div>
+        <div class="status" id="status-banner" hidden></div>
+    </section>
+
+    <section class="metrics-bar" id="guide">
+        <article class="metric">
+            <p>Total cached picks</p>
+            <h3>{{ total_count }}</h3>
+            <small>Across both feeds</small>
+        </article>
+        <article class="metric">
+            <p>CBB cards</p>
+            <h3>{{ cbb_count }}</h3>
+            <small>Last sync: {{ cbb_payload.get('updated_at') or "never" }}</small>
+        </article>
+        <article class="metric">
+            <p>Test2 cards</p>
+            <h3>{{ test_count }}</h3>
+            <small>Last sync: {{ test_payload.get('updated_at') or "never" }}</small>
+        </article>
+        <article class="metric">
+            <p>Automation</p>
+            <h3>30 min cadence</h3>
+            <small>GitHub Action hits refresh-all</small>
+        </article>
+    </section>
+
+    <section class="picks-section" data-kind="cbb" id="cbb">
+        <div class="section-header">
+            <div>
+                <h2>CBB Picks</h2>
+                <p class="meta">Last updated <span data-updated="cbb">never</span></p>
+            </div>
+            <div class="section-actions">
+                <button class="btn ghost" data-refresh="cbb">Refresh CBB</button>
+                <button class="btn ghost" data-copy="cbb">Copy feed</button>
+                <button class="btn ghost" data-download="cbb">Download JSON</button>
+                <a class="btn outline" href="/picks/cbb">Open details</a>
+            </div>
+        </div>
+        <div class="card-grid" id="cbb-cards">
+            <p class="empty">No cached data yet. Run a refresh to populate this feed.</p>
+        </div>
+    </section>
+
+    <section class="picks-section" data-kind="test2" id="test2">
+        <div class="section-header">
+            <div>
+                <h2>Test2 Picks</h2>
+                <p class="meta">Last updated <span data-updated="test2">never</span></p>
+            </div>
+            <div class="section-actions">
+                <button class="btn ghost" data-refresh="test2">Refresh Test2</button>
+                <button class="btn ghost" data-copy="test2">Copy feed</button>
+                <button class="btn ghost" data-download="test2">Download JSON</button>
+                <a class="btn outline" href="/picks/test2">Open details</a>
+            </div>
+        </div>
+        <div class="card-grid" id="test2-cards">
+            <p class="empty">No cached data yet. Run a refresh to populate this feed.</p>
+        </div>
+    </section>
+
+    <section class="info-grid">
+        <article class="info-card">
+            <h3>How to use this hub</h3>
+            <ol>
+                <li>Open this page (no token needed) and hit <strong>Refresh</strong> for any feed.</li>
+                <li>Run utility scripts or the full pipeline when new games drop.</li>
+                <li>Filter by team/player, open any card, and copy to clipboard.</li>
+                <li>Share the Download JSON output or the clipboard payload with editors.</li>
+            </ol>
+        </article>
+        <article class="info-card">
+            <h3>Tips for sharing</h3>
+            <ul>
+                <li>Use the feed-level <em>Copy</em> button to grab formatted summaries.</li>
+                <li>Download JSON and drop it into Slack/Discord when collaborating.</li>
+                <li>Bookmark <code>/api/picks</code> for a machine-readable feed.</li>
+                <li>Leverage the GitHub Action to keep cache warm every 30 minutes.</li>
+            </ul>
+        </article>
+        <article class="info-card">
+            <h3>Deployment cues</h3>
+            <p>Env vars required:</p>
+            <ul>
+                <li><code>APP_URL</code> (for GitHub Actions)</li>
+                <li><code>NOTION_TOKEN</code>, <code>DATABASE_ID</code>, <code>PSP_DATABASE_ID</code> — only if you still post back to Notion.</li>
+            </ul>
+            <p>Procfile command:</p>
+            <pre>web: uvicorn app.main:app --host 0.0.0.0 --port $PORT</pre>
+        </article>
+    </section>
+
+    <section class="api-panel" id="api">
+        <div class="api-text">
+            <h3>API reference</h3>
+            <p>Every interaction on this page calls the FastAPI endpoints below. You can wire these into automation, Zapier, or any other scheduling layer.</p>
+            <ul>
+                <li><code>GET /api/picks</code> – combined cache snapshot.</li>
+                <li><code>GET /api/picks/&lt;kind&gt;</code> – single feed data.</li>
+                <li><code>POST /admin/refresh/&lt;kind&gt;</code> – rerun one script.</li>
+                <li><code>POST /admin/refresh-all</code> – rerun both scripts.</li>
+                <li><code>GET /admin/refresh-all</code> – same as above, returns a redirect.</li>
+            </ul>
+        </div>
+        <div class="api-cta">
+            <p class="eyebrow">Automation idea</p>
+            <h4>Let GitHub Actions keep the cache fresh</h4>
+            <p>Add <code>APP_URL</code> + <code>ADMIN_TOKEN</code> repository secrets and enable the bundled workflow to hit refresh-all every 30 minutes.</p>
+            <a class="btn primary" href="https://github.com/{{ github_repo | default('') }}/actions" target="_blank" rel="noreferrer">View workflows</a>
+        </div>
+    </section>
+
+    <section class="jobs-panel" id="jobs">
+        <div class="section-header">
+            <div>
+                <h2>Utility scripts</h2>
+                <p class="meta">Run the same seeding/scraping helpers that used to live only on your laptop.</p>
+            </div>
+        </div>
+        <div class="job-grid">
+            {% for job in job_metadata %}
+                {% set state = (initial_jobs.get(job.key) if initial_jobs else None) %}
+                <article class="job-card" data-job="{{ job.key }}">
+                    <header>
+                        <div>
+                            <p class="eyebrow">{{ job.label }}</p>
+                            <p class="muted">{{ job.description }}</p>
+                        </div>
+                        <div class="job-actions">
+                            <button class="btn ghost" data-run="{{ job.key }}">Run</button>
+                            <button class="btn tiny" data-copy-log="{{ job.key }}">Copy log</button>
+                        </div>
+                    </header>
+                    <p class="meta">Last run: <span data-job-updated="{{ job.key }}">{{ state.ran_at if state else "never" }}</span>, exit code <span data-job-exit="{{ job.key }}">{{ state.exit_code if state else "–" }}</span></p>
+                    <details>
+                        <summary>Logs</summary>
+                        <pre data-job-stdout="{{ job.key }}">{{ state.stdout if state else "No runs yet." }}</pre>
+                        <pre data-job-stderr="{{ job.key }}" class="stderr">{{ state.stderr if state and state.stderr else "" }}</pre>
+                    </details>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>Built for the RealSports.io workflow. Replace the Notion view with this dashboard once you’re ready.</p>
+        <p class="muted">Need tweaks? Fork the repo, edit the FastAPI routes, or drop new visualizations in <code>app/static/app.js</code>.</p>
+    </footer>
+</main>
+<script id="initial-payload" type="application/json">{{ initial_data | tojson | safe }}</script>
+<script id="initial-jobs" type="application/json">{{ initial_jobs | tojson | safe }}</script>
+<script id="job-metadata" type="application/json">{{ job_metadata | tojson | safe }}</script>
+<script>
+    const initialPayloadNode = document.getElementById("initial-payload");
+    const initialJobsNode = document.getElementById("initial-jobs");
+    const jobMetadataNode = document.getElementById("job-metadata");
+    window.initialPicks = initialPayloadNode ? JSON.parse(initialPayloadNode.textContent || "{}") : {};
+    window.initialJobs = initialJobsNode ? JSON.parse(initialJobsNode.textContent || "{}") : {};
+    window.jobMetadata = jobMetadataNode ? JSON.parse(jobMetadataNode.textContent || "[]") : [];
+</script>
+<script src="{{ url_for('static', path='app.js') }}" defer></script>
+</body>
+</html>

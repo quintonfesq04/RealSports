@@ -1,0 +1,17 @@
+name: refresh-picks
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run full pipeline
+        env:
+          APP_URL: ${{ secrets.APP_URL }}
+        run: |
+          set -euo pipefail
+          curl -sSf -X POST "$APP_URL/admin/run-all"

@@ -1,0 +1,17 @@
+# Environment & secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Local data/cache artifacts
+data/picks.db
+.statmuse_cache.json
+
+# OS cruft
+.DS_Store
+

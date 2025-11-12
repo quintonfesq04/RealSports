@@ -11,9 +11,10 @@ StatMuse → Notion updater
 
 import os
 import re
+import sys
 import time
 import urllib.parse
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from datetime import datetime, timedelta, date
 
 import requests
@@ -45,6 +46,28 @@ _PAGE_CACHE: Dict[str, str] = {}
 
 CACHE_FILE = Path(os.getenv("STATMUSE_CACHE_FILE", ".statmuse_cache.json"))
 CACHE_TTL_SECS = int(os.getenv("STATMUSE_CACHE_TTL_SECS", "21600"))  # 6 hours
+DATA_DIR = Path(__file__).resolve().parent / "data"
+DATA_DIR.mkdir(exist_ok=True)
+TEST2_CACHE = DATA_DIR / "test2.json"
+SCHEDULE_JSON = Path(os.getenv("SCHEDULE_JSON", DATA_DIR / "schedule.json"))
+PICKS_DATE = os.getenv("PICKS_DATE") or datetime.utcnow().strftime("%Y%m%d")
+PickRecord = Dict[str, Any]
+
+USE_NOTION_SOURCE = os.getenv("USE_NOTION_SOURCE", "0").strip().lower() in {"1", "true", "yes", "on"}
+USE_LOCAL_SCHEDULE = not USE_NOTION_SOURCE
+
+def _record_pick(collector: Optional[List[PickRecord]], entry: PickRecord) -> None:
+    if collector is not None:
+        collector.append(entry)
+
+def _write_cache(payload: List[PickRecord], date: Optional[str] = None) -> None:
+    try:
+        TEST2_CACHE.write_text(json.dumps(payload), encoding="utf-8")
+        if date:
+            dated = DATA_DIR / f"picks_test2_{date}.json"
+            dated.write_text(json.dumps(payload), encoding="utf-8")
+    except Exception as exc:
+        print(f"[cache] failed to write test2 picks cache: {exc}", file=sys.stderr)
 
 # Feature flags (env can override; CLI can toggle too)
 DRY_RUN = os.getenv("DRY_RUN","0").strip().lower() in {"1","true","yes","on"}
@@ -121,8 +144,12 @@ def _load_env_token() -> str:
         pass
     raise RuntimeError("NOTION_TOKEN is not set. Add it to your environment or .env")
 
-NOTION_TOKEN = _load_env_token()
-client = Client(auth=NOTION_TOKEN)
+if USE_NOTION_SOURCE:
+    NOTION_TOKEN = _load_env_token()
+    client = Client(auth=NOTION_TOKEN)
+else:
+    NOTION_TOKEN = ""
+    client = None
 
 # Verbose logging: set VERBOSE=1 in env to see mapping warnings, retries, etc.
 VERBOSE = int(os.getenv("VERBOSE") or "0")
@@ -260,6 +287,8 @@ CFB_SEASON_YEAR = int(os.getenv("CFB_SEASON_YEAR") or football_season_year())
 # ============================== Notion input ===============================
 
 def fetch_unprocessed_rows(db_id: str) -> List[Dict]:
+    if client is None:
+        return []
     results: List[Dict] = []
     cursor = None
     while True:
@@ -308,6 +337,125 @@ def fetch_unprocessed_rows(db_id: str) -> List[Dict]:
         cursor = resp.get("next_cursor")
 
     return results
+
+def _schedule_file_for_date(date_str: str) -> Path:
+    candidate = DATA_DIR / f"schedule_{date_str}.json"
+    if candidate.exists():
+        return candidate
+    return SCHEDULE_JSON
+
+
+def load_schedule_rows_from_json(date: str) -> List[Dict]:
+    path = _schedule_file_for_date(date)
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text())
+    except Exception:
+        return []
+    rows: List[Dict] = []
+    for idx, entry in enumerate(data):
+        sport = (entry.get("sport") or "").strip().upper()
+        stat = (entry.get("stat") or "").strip()
+        teams = entry.get("teams") or []
+        rows.append({
+            "page_id": entry.get("page_id") or f"{sport}-{entry.get('event_id')}-{stat}-{idx}",
+            "sport": sport,
+            "stat": stat,
+            "teams": teams,
+            "order": idx,
+            "start_time": entry.get("start_time"),
+            "psp": bool(entry.get("psp")),
+        })
+    return rows
+
+
+def load_game_rows() -> List[Dict]:
+    if USE_LOCAL_SCHEDULE:
+        rows = load_schedule_rows_from_json(PICKS_DATE)
+    else:
+        rows = fetch_unprocessed_rows(DATABASE_ID)
+    return [r for r in rows if not r.get("psp")]
+
+
+def load_psp_rows_from_json() -> List[Dict]:
+    rows = load_schedule_rows_from_json(PICKS_DATE)
+    return [r for r in rows if r.get("psp")]
+
+
+def fetch_psp_rows_from_notion() -> List[Dict]:
+    if client is None:
+        return []
+    resp = client.databases.query(
+        database_id=PSP_DATABASE_ID,
+        filter={"property":"Processed","select":{"equals":"no"}},
+        page_size=100,
+    )
+    rows = resp.get("results", [])
+    if not rows:
+        return []
+
+    by_sport: Dict[str, List[Dict]] = {}
+    for r in rows:
+        props = r.get("properties", {})
+        sport = props["Sport"]["select"]["name"].strip()
+        by_sport.setdefault(sport.upper(), []).append(r)
+
+    ordered_rows: List[Dict] = []
+
+    def _stat_text(props: dict) -> str:
+        st = props.get("Stat")
+        if not isinstance(st, dict):
+            return ""
+        typ = st.get("type")
+        if typ == "select" and st.get("select"):
+            return (st["select"].get("name") or "").strip()
+        if typ == "rich_text" and st.get("rich_text"):
+            return "".join(x.get("plain_text", "") for x in st["rich_text"]).strip()
+        if typ == "title" and st.get("title"):
+            return "".join(x.get("plain_text", "") for x in st["title"]).strip()
+        return ""
+
+    for sport_up in _PSP_SPORT_ORDER:
+        group = by_sport.get(sport_up)
+        if not group:
+            continue
+        def _stat_rank(row):
+            return _psp_stat_rank(sport_up, _stat_text(row.get("properties", {})).upper())
+        group.sort(key=_stat_rank)
+        for r in group:
+            props = r["properties"]
+            sport = props["Sport"]["select"]["name"].strip()
+            st = props["Stat"]
+            if st["type"] == "select":
+                stat = st["select"]["name"].strip()
+            else:
+                stat = "".join(t["plain_text"] for t in st.get("rich_text", [])).strip()
+
+            teams_prop = props.get("Teams", {})
+            if teams_prop.get("type") == "multi_select":
+                teams = [o["name"] for o in teams_prop["multi_select"]] or None
+            elif teams_prop.get("type") in ("rich_text","title"):
+                raw = "".join(t["plain_text"] for t in teams_prop.get(teams_prop["type"], []))
+                teams = [x.strip() for x in raw.split(",") if x.strip()]
+            else:
+                teams = None
+
+            ordered_rows.append({
+                "page_id": r["id"],
+                "sport": sport.strip().upper(),
+                "stat": stat,
+                "teams": teams or [],
+                "start_time": None,
+                "psp": True,
+            })
+    return ordered_rows
+
+
+def load_psp_rows() -> List[Dict]:
+    if USE_LOCAL_SCHEDULE:
+        return load_psp_rows_from_json()
+    return fetch_psp_rows_from_notion()
 
 # ============================== Selenium (pooled) ===========================
 class _DriverPool:
@@ -389,7 +537,7 @@ def _disk_cache_put(url: str, html: str) -> None:
 def _log(msg: str):
     if VERBOSE:
         ts = time.strftime("%H:%M:%S")
-        print(f"[{ts}] {msg}")
+        print(f"[{ts}] {msg}", file=sys.stderr)
 
 def _safe_name_from_url(url: str) -> str:
     h = hashlib.md5(url.encode("utf-8")).hexdigest()[:10]
@@ -488,7 +636,7 @@ def fetch_html(url: str, wait_css: str = "table", wait_seconds: int = 25) -> str
             _DriverPool.close()  # force a fresh driver next loop
 
     if VERBOSE and last_err:
-        print(f"[webdriver] error for {url}: {last_err}")
+        print(f"[webdriver] error for {url}: {last_err}", file=sys.stderr)
     return ""
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -647,7 +795,7 @@ TEAM_NAME_MAPS = {
         "CAL": "California", "TXST": "Texas State", "ASU": "Arizona State",
         "BC": "Boston College", "STAN": "Stanford", "PRST": "Portland State",
         "HAW": "Hawaii", "OKST": "Oklahoma State", "WOFF": "Wofford", "KU": "Kansas",
-        "UCF": "UCF", "M-OH": "Miami (OH)", "FSU": "Florida State", "LOU": "Louisville",
+        "UCF": "UCF", "M-OH": "RedHawks", "FSU": "Florida State", "LOU": "Louisville",
         "UL": "UL Monroe", "UVA": "Virginia", "BYU": "BYU", "WAG": "Wagner",
         "NIU": "Northern Illinois", "IDHO": "Idaho", "SJSU": "San Jose State",
         "DUQ": "Duquesne", "WKU": "Western Kentucky", "MEM": "Maine",
@@ -835,7 +983,7 @@ def build_query_url(
                     if VERBOSE and key.isalpha() and len(key) <= 4:
                         unmapped.append(t)
         if VERBOSE and unmapped:
-            print(f"[warn] Team(s) not mapped for {sport_up}: {', '.join(unmapped)}")
+            print(f"[warn] Team(s) not mapped for {sport_up}: {', '.join(unmapped)}", file=sys.stderr)
         base += f" {','.join(mapped)}"
 
     return f"{BASE_URL}/ask?q={_quote(base)}"
@@ -849,6 +997,7 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
     """
     sport_up = (sport or "").strip().upper()
     stat_up  = (stat  or "").strip().upper()
+    stat_query = STAT_QUERY_OVERRIDES.get((sport_up, stat_up)) or stat
     debug_links: List[str] = []
 
     # ----- CFB: season-mode; prefer COMBINED team queries (TeamA, TeamB) -----
@@ -861,11 +1010,11 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
         # Map inputs to StatMuse-friendly full names (don’t filter by team later!)
         mapped_full, unmapped = map_cfb_teams_for_statmuse(teams)
         if unmapped and VERBOSE:
-            print(f"[warn] Team(s) not mapped for CFB: {', '.join(unmapped)}")
+            print(f"[warn] Team(s) not mapped for CFB: {', '.join(unmapped)}", file=sys.stderr)
 
         # Label wording: TDs need the special phrase
         def _stat_label() -> str:
-            return "total touchdowns" if stat_up in {"TD","TDS","TOUCHDOWNS","TOTAL TOUCHDOWNS"} else stat
+            return "total touchdowns" if stat_up in {"TD","TDS","TOUCHDOWNS","TOTAL TOUCHDOWNS"} else stat_query
 
         label = _stat_label()
 
@@ -912,7 +1061,7 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
                 _ask_and_merge(f"{label} leaders cfb {season} for {names_full[0]}")
 
         if not all_rows and VERBOSE:
-            print("[parse] no CFB rows for:", debug_links)
+            print("[parse] no CFB rows for:", debug_links, file=sys.stderr)
 
         # IMPORTANT: Do NOT post-filter CFB by team later; we want the union of results.
         return all_rows, True, season, debug_links
@@ -921,17 +1070,17 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
     if _is_nfl(sport_up):
         # decide base query text once
         if NFL_QUERY_MODE == "SEASON":
-            base_q = f"{stat} leaders nfl this season"
+            base_q = f"{stat_query} leaders nfl this season"
             used_season = True
         elif NFL_QUERY_MODE == "DATES" and NFL_START_DATE and NFL_END_DATE:
-            base_q = f"{stat} leaders nfl from {NFL_START_DATE} to {NFL_END_DATE}"
+            base_q = f"{stat_query} leaders nfl from {NFL_START_DATE} to {NFL_END_DATE}"
             used_season = False
         else:
             used_season = False
             end = datetime.today()
             start = end - timedelta(days=max(1, NFL_LAST_N_DAYS - 1))
             # we'll pass dates via build_query_url
-            base_q = f"{stat} leaders nfl"
+            base_q = f"{stat_query} leaders nfl"
 
         # chunk if PSP passed a long team list (len > 2 usually means PSP)
         limit = MAX_PSP_COMBINED_TEAMS.get("NFL", 10)
@@ -969,7 +1118,7 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
 
             # explicit-year fallback if season wording fails
             if not all_rows and NFL_QUERY_MODE == "SEASON":
-                url2 = build_query_url(f"{stat} leaders nfl {NFL_SEASON_YEAR}", team_list, "NFL", include_dates=False)
+                url2 = build_query_url(f"{stat_query} leaders nfl {NFL_SEASON_YEAR}", team_list, "NFL", include_dates=False)
                 debug_links.append(url2)
                 all_rows = parse_table(fetch_html(url2))
 
@@ -986,8 +1135,8 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
         # STRICT: only this postseason
         # 1) Prefer explicit "this postseason" and "{year} postseason"
         candidates = [
-            f"{stat} leaders mlb this postseason",
-            f"{stat} leaders mlb postseason {MLB_SEASON_YEAR}",
+            f"{stat_query} leaders mlb this postseason",
+            f"{stat_query} leaders mlb postseason {MLB_SEASON_YEAR}",
         ]
         include_dates_flag = False
 
@@ -997,7 +1146,7 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
         ps_end   = datetime(ps_end.year, ps_end.month, ps_end.day)  # normalize to midnight
     else:
         # Everyone else = this season
-        candidates = [f"{stat} leaders {sport.lower()} this season"]
+        candidates = [f"{stat_query} leaders {sport.lower()} this season"]
         include_dates_flag = False
 
     # Try each candidate until we get rows
@@ -1030,7 +1179,7 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
         if team_list and len(team_list) > sport_limit:
             tmp: List[Dict[str, str]] = []
             for chunk in _chunks(team_list, sport_limit):
-                url = build_query_url(f"{stat} leaders mlb", chunk, sport, ps_start, ps_end, include_dates=True)
+                url = build_query_url(f"{stat_query} leaders mlb", chunk, sport, ps_start, ps_end, include_dates=True)
                 debug_links.append(url)
                 html = fetch_html(url)
                 rows = parse_table(html)
@@ -1038,7 +1187,7 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
                     tmp.extend(rows)
             all_rows = tmp
         else:
-            url = build_query_url(f"{stat} leaders mlb", team_list, sport, ps_start, ps_end, include_dates=True)
+            url = build_query_url(f"{stat_query} leaders mlb", team_list, sport, ps_start, ps_end, include_dates=True)
             debug_links.append(url)
             html = fetch_html(url)
             all_rows = parse_table(html)
@@ -1047,7 +1196,7 @@ def scrape_statmuse_data(stat: str, sport: str, teams=None) -> Tuple[List[Dict[s
         all_rows = _filter_rows_by_year(all_rows, MLB_SEASON_YEAR)
 
     if not all_rows and VERBOSE:
-        print(f"[parse] no data for {sport_up} statmuse (season/postseason mode; teams={len(team_list)})")
+        print(f"[parse] no data for {sport_up} statmuse (season/postseason mode; teams={len(team_list)})", file=sys.stderr)
 
     # season_year is only meaningful for MLB postseason display here
     return all_rows, False, (MLB_SEASON_YEAR if sport_up == "MLB" else 0), debug_links
@@ -1238,8 +1387,28 @@ NAME_OVERRIDES = {
     "Jusuf NurkićJ Nurkić": "Jusuf Nurkić",
     "Nikola JokićN Jokić": "Nikola Jokić",
     "Da Ron Holmes IID II": "DaRon Holmes II",
-    "Jimmy Butler IIIJ III": "Jimmy Butler III",
+    "Jimmy Butler IIIJ III": "Jimmy Butler",
     "Washington": "P.J. Washington",
+    "Connor Mc David": "Connor McDavid",
+    "Devin Mc Cuinnn": "Devin McCuinn",
+    "Ray JDennis Dennis": "RayJ Dennis",
+    "Alex De Brincat": "Alex DeBrincat",
+    "Michael Mc Carron": "Michael McCarron",
+    "Bobby Mc Mannion": "Bobby McMann",
+    "Jake De Brusk": "Jake DeBrusk",
+    "Greer": "A.J. Greer",
+    "Jake Mc Connachie": "Jake McConnachie",
+    "Israel Polk": "I. Polk", 
+    "JJPeterka": "JJ Peterka",
+    "Ryan Mc Leod": "Ryan McLeod",
+    "Tony De Angelo": "Tony DeAngelo",
+    "Charlie Mc Avoy": "Charlie McAvoy",
+    "Miller": "J.T. Miller",
+    "Dylan De Melo": "Dylan DeMelo",
+    "Marvin Bagley IIIM III": "Marvin Bagley III",
+    "Joseph Himon IIJ II": "Joseph Himon II",
+    "Hayden Eligon IIH II": "Hayden Eligon II",
+    "Lake Mc Ree": "Lake McRee",
 }
 
 def _name_key(s: str) -> str:
@@ -1328,6 +1497,20 @@ STAT_ALIASES = {
     "RECEPTIONS": {"RECEPTIONS", "REC"},
     "TOTAL TOUCHDOWNS": {"TOTAL TOUCHDOWNS", "TD", "TDS", "TOUCHDOWNS"},
     "TOTAL SCRIMMAGE YARDS": {"TOTAL SCRIMMAGE YARDS", "SCRIMMAGE YDS", "SCRIMMAGE YARDS", "YDS"},
+    "TOTAL GOALS": {"TOTAL GOALS", "GOALS"},
+    "SHOTS ON GOAL": {"SHOTS ON GOAL", "SHOTS"},
+    "SHOTS": {"SHOTS", "SHOTS ON GOAL"},
+    "HITS": {"HITS"},
+    "SAVES": {"SAVES"},
+}
+
+STAT_QUERY_OVERRIDES = {
+    ("NHL", "TOTAL GOALS"): "goals",
+    ("NHL", "SHOTS ON GOAL"): "shots on goal",
+    ("NHL", "SHOTS"): "shots on goal",
+    ("NHL", "POINTS"): "points",
+    ("NHL", "HITS"): "hits",
+    ("NHL", "SAVES"): "saves",
 }
 
 def pick_stat_key(data: List[Dict[str, str]], desired: str) -> str:
@@ -1434,7 +1617,7 @@ def remove_banned_rows(rows: List[Dict[str, str]], banned: set) -> List[Dict[str
         k2 = _name_key(clean_name(nm))
         if k1 in ban_keys or k2 in ban_keys:
             if VERBOSE:
-                print(f"[ban-final] {nm}")
+                print(f"[ban-final] {nm}", file=sys.stderr)
             continue
         out.append(rec)
     return out
@@ -1449,7 +1632,7 @@ def get_mlb_injured_players() -> set:
         r.raise_for_status()
     except Exception as e:
         if VERBOSE:
-            print(f"[injuries-mlb] fetch error: {e}")
+            print(f"[injuries-mlb] fetch error: {e}", file=sys.stderr)
         return set()
     soup = BeautifulSoup(r.text, "html.parser")
     injured = set()
@@ -1487,7 +1670,7 @@ def fetch_trades_past_week() -> Dict[str, str]:
         r.raise_for_status()
     except Exception as e:
         if VERBOSE:
-            print(f"[trades-web] fetch error: {e}")
+            print(f"[trades-web] fetch error: {e}", file=sys.stderr)
         return trades
     soup = BeautifulSoup(r.text, "html.parser")
     table = soup.find("table")
@@ -1555,7 +1738,7 @@ def filter_traded_banned_and_teams(
         key_c  = _name_key(clean_name(nm_raw))
         if key in banned_keys or key_c in banned_keys:
             if VERBOSE:
-                print(f"[filter] banned: {nm_raw}")
+                print(f"[filter] banned: {nm_raw}", file=sys.stderr)
             continue
 
         # row's team code
@@ -1565,7 +1748,7 @@ def filter_traded_banned_and_teams(
         mapped_team = traded_key_map.get(key)
         if mapped_team and team_code and team_code != mapped_team:
             if VERBOSE:
-                print(f"[filter] traded-mismatch: {nm_raw} row_team={team_code} mapped={mapped_team}")
+                print(f"[filter] traded-mismatch: {nm_raw} row_team={team_code} mapped={mapped_team}", file=sys.stderr)
             continue
 
         # explicit team filter (if provided)
@@ -1578,6 +1761,8 @@ def filter_traded_banned_and_teams(
 # ============================== Notion helpers =============================
 
 def notion_append_blocks(blocks: List[Dict]):
+    if client is None:
+        return
     if DRY_RUN:
         _log(f"[dry-run] would append {len(blocks)} blocks to poll page {POLL_PAGE_ID}")
         return
@@ -1588,9 +1773,11 @@ def notion_append_blocks(blocks: List[Dict]):
             msg = str(e)
             if "Rate limited" in msg or "429" in msg:
                 time.sleep(2 ** attempt); continue
-            print(f"[notion] append error: {e}"); return
+            print(f"[notion] append error: {e}", file=sys.stderr); return
 
 def notion_update_page(page_id: str, props: Dict):
+    if client is None:
+        return
     if DRY_RUN:
         _log(f"[dry-run] would update page {page_id} props={list(props.keys())}")
         return
@@ -1601,7 +1788,7 @@ def notion_update_page(page_id: str, props: Dict):
             msg = str(e)
             if "Rate limited" in msg or "429" in msg:
                 time.sleep(2 ** attempt); continue
-            print(f"[notion] update error: {e}"); return
+            print(f"[notion] update error: {e}", file=sys.stderr); return
 
 def _link_para(text: str, url: str) -> Dict:
     return {
@@ -1611,6 +1798,8 @@ def _link_para(text: str, url: str) -> Dict:
 
 def _post_colors_only_block(page_id: str, heading_text: str):
     summary = _colors_only_summary()
+    if client is None:
+        return
     notion_append_blocks([
         {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":heading_text}}]}},
         {"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}},
@@ -1619,6 +1808,8 @@ def _post_colors_only_block(page_id: str, heading_text: str):
     notion_update_page(page_id, {"Processed":{"select":{"name":"Yes"}}})
 
 def post_run_log(message: str):
+    if client is None:
+        return
     if not os.getenv("POST_RUN_LOG", "0").strip() in {"1","true","yes","on"}:
         return
     notion_append_blocks([
@@ -1653,7 +1844,7 @@ def _canon_game_key(sport: str, teams: List[str]) -> Tuple[str, Tuple[str, str]]
 
 # --- Replacement for process_games() ---
 
-def process_games():
+def process_games(collector: Optional[List[PickRecord]] = None):
     """
     Groups rows by (sport, team1+team2) so each game prints once as:
       H3: "<Team 1> vs <Team 2> — <SPORT>"
@@ -1664,7 +1855,7 @@ def process_games():
       ...
     Marks every included Notion row as Processed=Yes.
     """
-    rows = fetch_unprocessed_rows(DATABASE_ID)
+    rows = load_game_rows()
     if not rows:
         return
 
@@ -1711,6 +1902,7 @@ def process_games():
 
         blocks_for_game: List[Dict] = []
         blocks_for_game.append(_heading3(heading_text))
+        game_entries: List[Dict[str, Any]] = []
 
         # We’ll mark Processed for each row we actually handle
         pages_to_mark: List[str] = []
@@ -1726,6 +1918,7 @@ def process_games():
             if stat_up in {"K", "SO", "STRIKEOUTS"}:
                 # section header line (season/postseason wording)
                 _when = "this postseason" if sport_up_local == "MLB" else "this season"
+                summary = _colors_only_summary()
                 blocks_for_game.append({
                     "object":"block","type":"paragraph",
                     "paragraph":{"rich_text":[{"type":"text","text":{"content":f"{stat} — {_when}"}}]}
@@ -1733,11 +1926,26 @@ def process_games():
                 # colors-only grid
                 blocks_for_game.append({
                     "object":"block","type":"paragraph",
-                    "paragraph":{"rich_text":[{"type":"text","text":{"content":_colors_only_summary()}}]}
+                    "paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}
                 })
-                
+
                 blocks_for_game.append({"object":"block","type":"divider","divider":{}})
                 pages_to_mark.append(page_id)
+                game_entries.append({
+                    "stat": stat,
+                    "suffix": _when,
+                    "summary": summary,
+                    "teams": teams,
+                    "sport": sport_up_local,
+                    "generated_at": datetime.utcnow().isoformat(),
+                    "debug_links": [],
+                    "buckets": {
+                        "green": [],
+                        "yellow": [],
+                        "red": [],
+                        "purple": [],
+                    },
+                })
                 continue
 
             traded_players = {}
@@ -1792,11 +2000,16 @@ def process_games():
             # Build summary
             if not data:
                 summary = _colors_only_summary()
+                g_list: List[str] = []
+                y_list: List[str] = []
+                rd_list: List[str] = []
+                p_list: List[str] = []
             else:
                 data = dedupe_by_player(data)
                 desired_key = "TD" if (sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"} and stat_up in {"TD","TDS","TOUCHDOWNS"}) else stat
                 stat_key    = pick_stat_key(data, desired_key)
                 g, y, rd, p = bucket_top12(data, stat_key)
+                g_list, y_list, rd_list, p_list = g, y, rd, p
                 if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
                     summary = _format_buckets_cfb(g, y, rd, p) or "(no qualifying leaders found)"
                 else:
@@ -1826,6 +2039,16 @@ def process_games():
                 "object":"block","type":"paragraph",
                 "paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}
             })
+            sampled_links: List[str] = []
+            if SHOW_CFB_DEBUG_LINKS and debug_links:
+                seen = set()
+                for u in debug_links:
+                    if not u or u in seen:
+                        continue
+                    seen.add(u)
+                    sampled_links.append(u)
+                    if len(sampled_links) >= 6:
+                        break
 
             # After blocks_for_game.append(...) that writes the summary
             if SHOW_CFB_DEBUG_LINKS and debug_links:
@@ -1844,109 +2067,97 @@ def process_games():
             blocks_for_game.append({"object":"block","type":"divider","divider":{}})
 
             pages_to_mark.append(page_id)
+            game_entries.append({
+                "stat": stat,
+                "suffix": suffix,
+                "summary": summary,
+                "teams": teams,
+                "sport": sport_up_local,
+                "generated_at": datetime.utcnow().isoformat(),
+                "debug_links": sampled_links,
+                "buckets": {
+                    "green": g_list,
+                    "yellow": y_list,
+                    "red": rd_list,
+                    "purple": p_list,
+                },
+            })
 
-        # Push one append per game
-        notion_append_blocks(blocks_for_game)
-
-        # Mark all rows from this game as processed
-        for pid in pages_to_mark:
-            notion_update_page(pid, {"Processed": {"select": {"name": "Yes"}}})
+        # Push one append per game (Notion only)
+        if client is not None:
+            notion_append_blocks(blocks_for_game)
+            for pid in pages_to_mark:
+                notion_update_page(pid, {"Processed": {"select": {"name": "Yes"}}})
 
         # Console
         try:
-            print(f"✅ Posted grouped game: {heading_text} ({len(game_rows)} stats)")
+            print(f"[refresh] ✅ Posted grouped game: {heading_text} ({len(game_rows)} stats)", file=sys.stderr)
         except Exception:
-            print(f"✅ Posted grouped game: {sport_up} ({len(game_rows)} stats)")
+            print(f"[refresh] ✅ Posted grouped game: {sport_up} ({len(game_rows)} stats)", file=sys.stderr)
+        _record_pick(collector, {
+            "category": "game",
+            "sport": sport_up,
+            "heading": heading_text,
+            "matchup": {"team1": t1, "team2": t2},
+            "teams": game_rows[0]["teams"] if game_rows and game_rows[0].get("teams") else [],
+            "entries": game_entries,
+            "generated_at": datetime.utcnow().isoformat(),
+        })
 
-def process_psp_rows():
-    # Pull all unprocessed PSP rows (already sorted in the DB is fine; we regroup here anyway)
-    resp = client.databases.query(
-        database_id=PSP_DATABASE_ID,
-        filter={"property":"Processed","select":{"equals":"no"}},
-        page_size=100,
-    )
-    rows = resp.get("results", [])
+def process_psp_rows(collector: Optional[List[PickRecord]] = None):
+    rows = load_psp_rows()
     if not rows:
         return
 
-    # group PSP rows by sport so they post contiguously
-    by_sport: Dict[str, List[Dict]] = {}
+    rows_by_sport: Dict[str, List[Dict]] = {}
     for r in rows:
-        props = r.get("properties", {})
-        sport = props["Sport"]["select"]["name"].strip()
-        by_sport.setdefault(sport.upper(), []).append(r)
+        rows_by_sport.setdefault((r.get("sport") or "").strip().upper(), []).append(r)
 
-    # process sport groups in your preferred order
+    notion_enabled = client is not None and USE_NOTION_SOURCE
+
     for sport_up in _PSP_SPORT_ORDER:
-        group = by_sport.get(sport_up)
+        group = rows_by_sport.get(sport_up)
         if not group:
             continue
 
-        # sort inside sport by our stat order map
-        def _stat_text(props: dict) -> str:
-            """Best-effort: read 'Stat' from props (select/rich_text/title)."""
-            st = props.get("Stat")
-            if not isinstance(st, dict):
-                return ""
-            typ = st.get("type")
-            if typ == "select" and st.get("select"):
-                return (st["select"].get("name") or "").strip()
-            if typ == "rich_text" and st.get("rich_text"):
-                return "".join(x.get("plain_text", "") for x in st["rich_text"]).strip()
-            if typ == "title" and st.get("title"):
-                return "".join(x.get("plain_text", "") for x in st["title"]).strip()
-            return ""
+        group.sort(key=lambda row: _psp_stat_rank(sport_up, (row.get("stat") or "").strip().upper()))
 
-        # Sort inside the sport by our configured stat order; missing Stat -> end
-        group.sort(
-            key=lambda row: _psp_stat_rank(
-                sport_up,
-                _stat_text(row.get("properties", {})).upper()
-            )
-        )
-
-        # Build one append batch per sport to keep them contiguous in the poll post
         blocks_for_sport: List[Dict] = []
         pages_to_mark: List[str] = []
 
         for r in group:
-            pid   = r["id"]
-            props = r["properties"]
+            pid = r.get("page_id")
+            sport_up_local = (r.get("sport") or "").strip().upper()
+            stat = r.get("stat") or ""
+            stat_up = stat.strip().upper()
+            teams = r.get("teams") or []
 
-            sport = props["Sport"]["select"]["name"].strip()
-            st    = props["Stat"]
-            if st["type"] == "select":
-                stat = st["select"]["name"].strip()
-            else:
-                stat = "".join(t["plain_text"] for t in st.get("rich_text", [])).strip()
-
-            teams_prop = props.get("Teams", {})
-            if teams_prop.get("type") == "multi_select":
-                teams = [o["name"] for o in teams_prop["multi_select"]] or None
-            elif teams_prop.get("type") in ("rich_text","title"):
-                raw = "".join(t["plain_text"] for t in teams_prop.get(teams_prop["type"], []))
-                teams = [x.strip() for x in raw.split(",") if x.strip()]
-            else:
-                teams = None
-
-            sport_up_local = sport_up  # already upper
-            stat_up        = (stat or "").strip().upper()
-
-            # Strikeouts PSP → colors only
             if sport_up_local == "MLB" and stat_up in {"K","SO","STRIKEOUTS"}:
                 heading = f"{sport_up_local} PSP - {stat_up} leaders (this postseason)"
+                summary = _colors_only_summary()
                 blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":heading}}]}})
-                blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":_colors_only_summary()}}]}})
-                pages_to_mark.append(pid)
+                blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}})
+                if pid:
+                    pages_to_mark.append(pid)
+                _record_pick(collector, {
+                    "category": "psp",
+                    "sport": sport_up_local,
+                    "heading": heading,
+                    "stat": stat_up,
+                    "teams": teams,
+                    "summary": summary,
+                    "suffix": "this postseason",
+                    "generated_at": datetime.utcnow().isoformat(),
+                    "debug_links": [],
+                    "buckets": {"green": [], "yellow": [], "red": [], "purple": []},
+                })
                 continue
 
-            # Scrape (chunk if team list is long)
             if TRY_PSP_STATMUSE:
-                data, used_season_mode, season_year, debug_links = scrape_statmuse_data(stat, sport, teams)
+                data, used_season_mode, season_year, debug_links = scrape_statmuse_data(stat, sport_up_local, teams)
             else:
                 data, used_season_mode, season_year, debug_links = [], False, 0, []
 
-            # Post-filters (with centralized injury filter)
             injured = get_injured_players_for_sport(
                 sport_up_local, session=SESSION, verbose=bool(VERBOSE), clean_name_fn=clean_name
             ) if INJURIES_ENABLED else set()
@@ -1961,20 +2172,17 @@ def process_psp_rows():
                 data = filter_traded_banned_and_teams(
                     data, teams, traded_players=fetch_trades_past_week(), banned_players=BANNED_PLAYERS
                 )
-
             elif sport_up_local == "NFL":
                 data = filter_traded_banned_and_teams(data, teams, banned_players=BANNED_PLAYERS)
                 if data and injured:
                     data = remove_injured_rows(
                         data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
                     )
-
             elif sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
                 if data and injured:
                     data = remove_injured_rows(
                         data, injured, clean_name_fn=clean_name, name_key_fn=_name_key, verbose=bool(VERBOSE)
                     )
-
             else:
                 data = filter_traded_banned_and_teams(data, teams, banned_players=BANNED_PLAYERS)
                 if data and injured:
@@ -1984,20 +2192,23 @@ def process_psp_rows():
                 if data:
                     data = dedupe_by_player(data)
 
-            # Summary
             if not data:
                 summary = _colors_only_summary()
+                g_list: List[str] = []
+                y_list: List[str] = []
+                rd_list: List[str] = []
+                p_list: List[str] = []
             else:
                 data = dedupe_by_player(data)
                 desired_key = "TD" if (sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"} and stat_up in {"TD","TDS","TOUCHDOWNS"}) else stat_up
                 stat_key = pick_stat_key(data, desired_key)
                 g, y, rd, p = bucket_top12(data, stat_key)
+                g_list, y_list, rd_list, p_list = g, y, rd, p
                 if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"}:
                     summary = _format_buckets_cfb(g, y, rd, p) or "(no qualifying leaders found)"
                 else:
                     summary = _format_buckets_default(g, y, rd, p)
 
-            # Suffix
             if sport_up_local in {"CFB","NCAAF","COLLEGE FOOTBALL"} and used_season_mode:
                 suffix = f"{season_year}"
             elif sport_up_local == "NFL":
@@ -2015,8 +2226,16 @@ def process_psp_rows():
             heading = f"{sport_up_local} PSP - {stat_up} leaders ({suffix})"
             blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":heading}}]}})
             blocks_for_sport.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":summary}}]}})
-
-            # debug links (cap to 6)
+            sampled_links: List[str] = []
+            if SHOW_CFB_DEBUG_LINKS and debug_links:
+                seen = set()
+                for u in debug_links:
+                    if not u or u in seen:
+                        continue
+                    seen.add(u)
+                    sampled_links.append(u)
+                    if len(sampled_links) >= 6:
+                        break
             if SHOW_CFB_DEBUG_LINKS and debug_links:
                 seen = set(); shown = 0
                 for u in debug_links:
@@ -2025,24 +2244,42 @@ def process_psp_rows():
                     blocks_for_sport.append(_link_para(f"View query {shown}", u))
                     if shown >= 6: break
 
-            pages_to_mark.append(pid)
+            if pid:
+                pages_to_mark.append(pid)
+            _record_pick(collector, {
+                "category": "psp",
+                "sport": sport_up_local,
+                "heading": heading,
+                "stat": stat_up,
+                "teams": teams,
+                "summary": summary,
+                "suffix": suffix,
+                "generated_at": datetime.utcnow().isoformat(),
+                "debug_links": sampled_links,
+                "buckets": {
+                    "green": g_list,
+                    "yellow": y_list,
+                    "red": rd_list,
+                    "purple": p_list,
+                },
+            })
 
-        # one append per sport to keep them contiguous
-        if blocks_for_sport:
+        if blocks_for_sport and notion_enabled:
             notion_append_blocks(blocks_for_sport)
 
-        for pid in pages_to_mark:
-            notion_update_page(pid, {"Processed":{"select":{"name":"Yes"}}})
+        if notion_enabled:
+            for pid in pages_to_mark:
+                notion_update_page(pid, {"Processed":{"select":{"name":"Yes"}}})
 
-        print(f"✅ PSP updated (grouped) for {sport_up}")
+        print(f"[refresh] ✅ PSP updated (grouped) for {sport_up}", file=sys.stderr)
 
 # ============================== Main =======================================
 
-def process_all(only: str = "both"):
+def process_all(only: str = "both", collector: Optional[List[PickRecord]] = None):
     if only in ("both", "games"):
-        process_games()
+        process_games(collector=collector)
     if only in ("both", "psp"):
-        process_psp_rows()
+        process_psp_rows(collector=collector)
 
 def reset_cache():
     try:
@@ -2075,13 +2312,21 @@ def _cli():
     if args.reset_cache: reset_cache()
 
     t0 = time.time()
+    only = "both"
     if args.games_only:
-        process_games()
+        only = "games"
     elif args.psp_only:
-        process_psp_rows()
-    else:
-        process_all()
+        only = "psp"
+
+    picks = build_picks(only=only)
     _log(f"[done] {time.time()-t0:.1f}s | metrics={METRICS}")
+    print(json.dumps(picks))
+
+def build_picks(only: str = "both") -> List[PickRecord]:
+    picks: List[PickRecord] = []
+    process_all(only=only, collector=picks)
+    _write_cache(picks, date=PICKS_DATE)
+    return picks
 
 if __name__ == "__main__":
     _cli()

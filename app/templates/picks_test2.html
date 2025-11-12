@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-sport Picks • RealSports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+<nav class="site-nav">
+    <div class="brand">
+        <span class="badge">RealSports</span>
+        <strong>Picks Hub</strong>
+    </div>
+    <div class="nav-links">
+        <a class="active" href="/picks/test2">Test2 Picks</a>
+        <a href="/picks/cbb">CBB Picks</a>
+        <a href="/settings">Settings</a>
+    </div>
+</nav>
+<main class="layout picks-page">
+    <header class="page-header">
+        <div class="title-block">
+            <p class="eyebrow">Multi-sport</p>
+            <h1>Daily picks cache</h1>
+            <p>Select a date to view the cached StatMuse output. Refreshing pulls from the background scrape (no live StatMuse wait).</p>
+        </div>
+        <div class="control-panel">
+            <p class="muted">Select date</p>
+            <div class="date-picker">
+                <select name="date" id="date-select">
+                    {% for d in available_dates %}
+                        <option value="{{ d }}" {% if d == selected_date %}selected{% endif %}>
+                            {{ d[:4] }}-{{ d[4:6] }}-{{ d[6:8] }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="control-actions">
+                <button class="btn outline" id="copy-all-btn" type="button">Copy All</button>
+            </div>
+            <p class="meta">Automations run daily at 5 AM ET. If a date shows no games yet, they haven’t posted or the slate is off.</p>
+        </div>
+    </header>
+    <div class="status" id="status-banner" hidden></div>
+
+    {% set dataset = payload.data or [] %}
+    <div class="card-grid picks-grid" data-empty-message="No picks cached for this date yet. Results refresh every morning at 5 AM ET.">
+        {% if dataset %}
+            {% for block in dataset %}
+                <article class="card picks-card" data-entry="{{ loop.index0 }}">
+                    <header>
+                        <div>
+                            <p class="eyebrow">{{ block.sport or block.category }}</p>
+                            <h3>{{ block.heading or "Matchup" }}</h3>
+                            <p class="meta">
+                                {% if block.entries %}{{ block.entries|length }} stats · {% endif %}
+                                Generated {{ block.generated_at or selected_date }}
+                            </p>
+                        </div>
+                        <button class="btn tiny" type="button" data-copy-entry="{{ loop.index0 }}">Copy group</button>
+                    </header>
+                    {% if block.entries %}
+                        <ul class="entry-list">
+                            {% for entry in block.entries %}
+                                <li>
+                                    <strong>{{ entry.stat }} — {{ entry.suffix or "this season" }}</strong>
+                                    <pre>{{ entry.summary }}</pre>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <pre>{{ block.summary }}</pre>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        {% else %}
+            <p class="empty">No picks cached for {{ selected_date }} yet. Results refresh every morning at 5 AM ET.</p>
+        {% endif %}
+    </div>
+</main>
+<script id="picks-data" type="application/json">{{ dataset | tojson | safe }}</script>
+<script id="picks-kind" type="application/json">{{ "test2" | tojson | safe }}</script>
+<script id="selected-date" type="application/json">{{ selected_date | tojson | safe }}</script>
+<script src="{{ url_for('static', path='picks.js') }}" defer></script>
+</body>
+</html>

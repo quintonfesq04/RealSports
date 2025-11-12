@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Status • RealSports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+<nav class="site-nav">
+    <div class="brand">
+        <span class="badge">RealSports</span>
+        <strong>Picks Hub</strong>
+    </div>
+    <div class="nav-links">
+        <a href="/picks/test2">Test2 Picks</a>
+        <a href="/picks/cbb">CBB Picks</a>
+        <a class="active" href="/settings">Settings</a>
+    </div>
+</nav>
+<main class="layout settings-page">
+    <header class="page-header">
+        <div class="title-block">
+            <p class="eyebrow">Job status</p>
+            <h1>Recent automation runs</h1>
+            <p>Last 50 entries from <code>script_runs</code>.</p>
+        </div>
+        <div class="control-panel">
+            <p class="muted">Back</p>
+            <div class="control-actions">
+                <a class="btn primary" href="/settings">Back to settings</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="task-log">
+        <table class="job-table">
+            <thead>
+                <tr>
+                    <th>When</th>
+                    <th>Job</th>
+                    <th>Exit</th>
+                    <th>Stdout</th>
+                    <th>Stderr</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in history %}
+                    <tr>
+                        <td>{{ row.ran_at }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.exit_code }}</td>
+                        <td><pre>{{ row.stdout or "(empty)" }}</pre></td>
+                        <td><pre>{{ row.stderr or "" }}</pre></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

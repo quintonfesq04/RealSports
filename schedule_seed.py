@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# 
-# -- set Date command
 """
 Schedule → Notion seeder (ESPN, one day)
 - REGULAR: one Notion row per game per configured stat (see SPORT_STATS)
@@ -14,7 +12,7 @@ Env / flags:
   DATABASE_ID         (required)  -> regular games DB
   PSP_DATABASE_ID     (required)  -> PSP DB
   DATE=YYYYMMDD       (default: today)
-  SPORTS              (comma list; default: MLB,WNBA,CFB,NFL,NBA,NHL,CBB)
+  SPORTS              (comma list; default: NHL,NFL,NBA,CFB,MLB,WNBA)
   VERBOSE=0|1         (default: 0)
 """
 
@@ -30,38 +28,40 @@ from datetime import timedelta
 
 MLB_TEAM_COUNT = 30
 
-# PSP display order (top-to-bottom): MLB, WNBA, CFB, NFL
-PSP_ORDER = ["MLB", "WNBA", "CFB", "NFL", "NHL", "NBA"]
-PSP_SPORT_RANK = {"MLB": 1, "WNBA": 2, "CFB": 3, "NFL": 4, "NHL": 5, "NBA": 6}
+# PSP display order (top-to-bottom)
+PSP_ORDER = ["NHL", "NFL", "NBA", "CFB", "MLB", "WNBA"]
+
+PSP_SPORT_RANK = {
+    "MLB": 6, "WNBA": 7, "CFB": 4, "NFL": 2, "NHL": 1, "NBA": 3
+}
+
 PSP_STAT_RANK: Dict[str, Dict[str, int]] = {
-    "MLB": {"TB": 1, "RBI": 2, "K": 3},
-    "WNBA": {"PPG": 1, "APG": 2, "RPG": 3, "3PM": 4},
-    "CFB": {"Total Scrimmage Yards": 1, "Receptions": 2, "Total Touchdowns": 3},
-    "NFL": {"Total Scrimmage Yards": 1, "Receptions": 2, "Total Touchdowns": 3},
     "NHL": {"Shots on Goal": 1, "Points": 2, "Hits": 3, "Saves": 4},
+    "NFL": {"Total Scrimmage Yards": 1, "Receptions": 2, "Rushing TD, Receiving TD": 3},
     "NBA": {"PPG": 1, "APG": 2, "RPG": 3, "3PM": 4},
+    #"MLB": {"TB": 1, "RBI": 2, "K": 3},
+    #"WNBA": {"PPG": 1, "APG": 2, "RPG": 3, "3PM": 4},
+    "CFB": {"Total Scrimmage Yards": 1, "Receptions": 2, "Rushing TD, Receiving TD": 3},
 }
 
 # Per-sport REGULAR stat menus
 SPORT_STATS: Dict[str, List[str]] = {
-    "MLB": ["TB", "RBI"],
-    "WNBA": ["PPG", "APG", "RPG", "3PM"],
-    "CFB": ["Total Scrimmage Yards", "Receptions", "Total Touchdowns"],
-    "NFL": ["Total Scrimmage Yards", "Receptions", "Total Touchdowns"],
+    "NHL": ["Total Goals", "Shots", "Points"],
+    "NFL": ["Total Scrimmage Yards", "Receptions", "Rushing TD, Receiving TD"],
     "NBA": ["PPG", "APG", "RPG", "3PM"],
-    "NHL": ["Total Goals"],
-    "CBB": ["PPG", "APG", "RPG", "3PM"],
+    #"MLB": ["TB", "RBI"],
+    #"WNBA": ["PPG", "APG", "RPG", "3PM"],
+    "CFB": ["Total Scrimmage Yards", "Receptions", "Rushing TD, Receiving TD"],
 }
 
 # Per-sport PSP stat menus
 PSP_SPORT_STATS: Dict[str, List[str]] = {
-    "MLB": ["TB", "RBI", "K"],
-    "WNBA": ["PPG", "APG", "RPG", "3PM"],
-    "CFB": ["Total Scrimmage Yards", "Receptions", "Total Touchdowns"],
-    "NFL": ["Total Scrimmage Yards", "Receptions", "Total Touchdowns"],
-    "NBA": ["PPG", "APG", "RPG", "3PM"],
-    "CBB": ["PPG", "APG", "RPG", "3PM"],
     "NHL": ["Shots on Goal", "Points", "Hits", "Saves"],
+    "NFL": ["Total Scrimmage Yards", "Receptions", "Rushing TD, Receiving TD"],
+    "NBA": ["PPG", "APG", "RPG", "3PM"],
+    #"MLB": ["TB", "RBI", "K"],
+    #"WNBA": ["PPG", "APG", "RPG", "3PM"],
+    "CFB": ["Total Scrimmage Yards", "Receptions", "Rushing TD, Receiving TD"],
 }
 
 # ESPN scoreboard endpoints
@@ -72,7 +72,6 @@ ESPN_ENDPOINT: Dict[str, str] = {
     "NFL": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
     "NBA": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
     "NHL": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
-    "CBB": "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
 }
 
 TEAM_NAME_MAPS = {
@@ -148,7 +147,7 @@ TEAM_NAME_MAPS = {
         "CAL": "California", "TXST": "Texas State", "ASU": "Arizona State",
         "BC": "Boston College", "STAN": "Stanford", "PRST": "Portland State",
         "HAW": "Hawaii", "OKST": "Oklahoma State", "WOFF": "Wofford", "KU": "Kansas",
-        "UCF": "UCF", "M-OH": "Miami (OH)", "FSU": "Florida State", "LOU": "Louisville",
+        "UCF": "UCF", "M-OH": "RedHawks", "FSU": "Florida State", "LOU": "Louisville",
         "UL": "UL Monroe", "UVA": "Virginia", "BYU": "BYU", "WAG": "Wagner",
         "NIU": "Northern Illinois", "IDHO": "Idaho", "SJSU": "San Jose State",
         "DUQ": "Duquesne", "WKU": "Western Kentucky", "MEM": "Maine",
@@ -217,14 +216,16 @@ def _name_to_abbr(sport: str, display_name: str) -> str:
 
 # ---------- Env ----------
 
-NOTION_TOKEN = os.getenv("NOTION_TOKEN", "").strip() or \
-               "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"
-DATABASE_ID     = os.getenv("DATABASE_ID",  "1aa71b1c-663e-8035-bc89-fb1e84a2d919")
-PSP_DATABASE_ID = os.getenv("PSP_DATABASE_ID","1ac71b1c663e808e9110eee23057de0e")
+NOTION_TOKEN = os.getenv("NOTION_TOKEN", "").strip()
+DATABASE_ID     = os.getenv("DATABASE_ID",  "").strip()
+PSP_DATABASE_ID = os.getenv("PSP_DATABASE_ID","").strip()
 DATE_STR = os.getenv("DATE", "").strip()  # YYYYMMDD
-SPORTS = [s.strip().upper() for s in (os.getenv("SPORTS", "MLB,WNBA,CFB,NFL,NBA,NHL,CBB").split(",")) if s.strip()]
+SPORTS = [s.strip().upper() for s in (os.getenv("SPORTS", "NHL,NFL,NBA,CFB,MLB,WNBA").split(",")) if s.strip()]
 VERBOSE = int(os.getenv("VERBOSE", "0"))
 TEAMS_AS_ABBR = int(os.getenv("TEAMS_AS_ABBR", "1"))  # 1 = use abbreviations, 0 = full names
+
+if not (NOTION_TOKEN and DATABASE_ID and PSP_DATABASE_ID):
+    raise SystemExit("Missing Notion configuration. Set NOTION_TOKEN, DATABASE_ID, and PSP_DATABASE_ID.")
 
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
@@ -242,11 +243,12 @@ def _iso_utc_start_of_day(yyyymmdd: str) -> str:
 def _fetch_scoreboard(sport: str, yyyymmdd: str) -> Dict:
     url = ESPN_ENDPOINT[sport]
     params = {"dates": yyyymmdd}
+
     hdrs = {"User-Agent": UA, "Referer": "https://www.espn.com/"}
     for attempt in range(4):
         try:
             r = requests.get(url, params=params, headers=hdrs, timeout=20)
-            r.encoding = "utf-8"     # 👈 add this
+            r.encoding = "utf-8"
             r.raise_for_status()
             return r.json()
         except Exception as e:

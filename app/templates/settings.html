@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings • RealSports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+<nav class="site-nav">
+    <div class="brand">
+        <span class="badge">RealSports</span>
+        <strong>Picks Hub</strong>
+    </div>
+    <div class="nav-links">
+        <a href="/picks/test2">Test2 Picks</a>
+        <a href="/picks/cbb">CBB Picks</a>
+        <a class="active" href="/settings">Settings</a>
+    </div>
+</nav>
+<main class="layout settings-page">
+    <header class="page-header">
+        <div class="title-block">
+            <p class="eyebrow">Automation</p>
+            <h1>Background jobs & utilities</h1>
+            <p>Daily runs happen at 5 AM ET. Use these controls only when you need to rerun something manually.</p>
+        </div>
+        <div class="control-panel">
+            <p class="muted">Full pipeline</p>
+            <div class="control-actions">
+                <button class="btn primary" data-run-pipeline type="button">Run Full Pipeline</button>
+                <a class="btn outline" href="/dashboard" target="_blank" rel="noreferrer">Open legacy dashboard</a>
+                <a class="btn ghost" href="/settings/jobs">View job status</a>
+            </div>
+        </div>
+    </header>
+    <div class="status" id="status-banner" hidden></div>
+
+    <section class="settings-grid">
+        <article class="info-card">
+            <h3>Manual runs</h3>
+            <button class="btn ghost" data-run-job="schedule_fetch" type="button">Run Schedule Fetch</button>
+            <button class="btn ghost" data-run-job="injuries" type="button">Run Injuries Cache</button>
+            <button class="btn ghost" data-run-job="cbb_scraper" type="button">Run CBB Scraper</button>
+        </article>
+
+        <article class="info-card">
+            <h3>Refresh Test2 for a date</h3>
+            <form id="refresh-test2-form">
+                <label for="manual-date">Date</label>
+                <select id="manual-date" name="date">
+                    {% for d in available_dates %}
+                        <option value="{{ d }}">{{ d[:4] }}-{{ d[4:6] }}-{{ d[6:8] }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn primary" type="submit">Refresh Selected Date</button>
+            </form>
+        </article>
+
+        <article class="info-card">
+            <h3>Latest job runs</h3>
+            <ul class="job-list">
+                {% for name, job in job_state.items() %}
+                    <li>
+                        <strong>{{ job_labels.get(name, name) }}</strong>
+                        <div>{{ (job and job.ran_at) or "never" }} — exit {{ (job and job.exit_code) or "-" }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </article>
+    </section>
+</main>
+<script src="{{ url_for('static', path='settings.js') }}" defer></script>
+</body>
+</html>

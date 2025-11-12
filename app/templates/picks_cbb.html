@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CBB Picks • RealSports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+<nav class="site-nav">
+    <div class="brand">
+        <span class="badge">RealSports</span>
+        <strong>Picks Hub</strong>
+    </div>
+    <div class="nav-links">
+        <a href="/picks/test2">Test2 Picks</a>
+        <a class="active" href="/picks/cbb">CBB Picks</a>
+        <a href="/settings">Settings</a>
+    </div>
+</nav>
+<main class="layout picks-page">
+    <header class="page-header">
+        <div class="title-block">
+            <p class="eyebrow">College basketball</p>
+            <h1>CBB picks + custom queries</h1>
+            <p>View the cached output from <code>picks_cbb.py</code>, run ad-hoc matchups, or rerun the scraper if your CSV is stale.</p>
+        </div>
+        <div class="control-panel">
+            <p class="muted">Automation</p>
+            <div class="control-actions">
+                <button class="btn outline" id="copy-all-btn" type="button">Copy All</button>
+            </div>
+            {% if scraper_job %}
+                <p class="meta">Last scraper run: {{ scraper_job.ran_at }} (exit {{ scraper_job.exit_code }})</p>
+            {% else %}
+                <p class="meta">CBB scraper will run with the 5 AM pipeline. Use Settings → CBB Scraper if you need a manual refresh.</p>
+            {% endif %}
+        </div>
+    </header>
+    <div class="status" id="status-banner" hidden></div>
+
+    {% set dataset = payload.data or [] %}
+    <div class="card-grid picks-grid" data-empty-message="No CBB picks cached yet. They refresh daily at 5 AM ET.">
+        {% if dataset %}
+            {% for block in dataset %}
+                <article class="card picks-card" data-entry="{{ loop.index0 }}">
+                    <header>
+                        <div>
+                            <p class="eyebrow">{{ block.sport or block.category }}</p>
+                            <h3>{{ block.heading or "Matchup" }}</h3>
+                            <p class="meta">Generated {{ block.generated_at or "recently" }}</p>
+                        </div>
+                        <button class="btn tiny" type="button" data-copy-entry="{{ loop.index0 }}">Copy group</button>
+                    </header>
+                    {% if block.entries %}
+                        <ul class="entry-list">
+                            {% for entry in block.entries %}
+                                <li>
+                                    <strong>{{ entry.stat }} — {{ entry.suffix or "this season" }}</strong>
+                                    <pre>{{ entry.summary }}</pre>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <pre>{{ block.summary }}</pre>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        {% else %}
+            <p class="empty">No cached CBB picks yet. They refresh daily at 5 AM ET.</p>
+        {% endif %}
+    </div>
+
+    <section class="cbb-tool">
+        <h2>Custom query</h2>
+        <form id="cbb-form">
+            <div class="form-group">
+                <label for="team1">Team 1</label>
+                <input id="team1" name="team1" placeholder="e.g. UCONN" required>
+            </div>
+            <div class="form-group">
+                <label for="team2">Team 2 (optional)</label>
+                <input id="team2" name="team2" placeholder="e.g. PURDUE">
+            </div>
+            <div class="form-group">
+                <label for="stat">Stat</label>
+                <select id="stat" name="stat">
+                    <option value="PPG">PPG</option>
+                    <option value="APG">APG</option>
+                    <option value="RPG">RPG</option>
+                    <option value="3PM">3PM</option>
+                </select>
+            </div>
+            <button class="btn primary" type="submit">Fetch</button>
+        </form>
+        <div class="cbb-result" id="cbb-result">
+            <p>Awaiting your query…</p>
+        </div>
+    </section>
+</main>
+<script id="picks-data" type="application/json">{{ dataset | tojson | safe }}</script>
+<script id="picks-kind" type="application/json">{{ "cbb" | tojson | safe }}</script>
+<script src="{{ url_for('static', path='picks.js') }}" defer></script>
+<script src="{{ url_for('static', path='cbb.js') }}" defer></script>
+</body>
+</html>
