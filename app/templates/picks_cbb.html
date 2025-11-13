@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>CBB Picks • RealSports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <nav class="site-nav">
@@ -13,8 +13,8 @@
         <strong>Picks Hub</strong>
     </div>
     <div class="nav-links">
-        <a href="/picks/test2">Test2 Picks</a>
-        <a class="active" href="/picks/cbb">CBB Picks</a>
+        <a href="/picks/test2">Picks</a>
+        <a class="active" href="/picks/cbb">CBB</a>
         <a href="/settings">Settings</a>
     </div>
 </nav>
@@ -97,10 +97,28 @@
             <p>Awaiting your query…</p>
         </div>
     </section>
+
+    <section class="cbb-tool">
+        <h2>PSP query (multi-team)</h2>
+        <form id="cbb-psp-form">
+            <div class="form-group">
+                <label for="psp-teams">Teams (comma separated)</label>
+                <input id="psp-teams" name="teams" placeholder="e.g. UCONN, PURDUE, HOU">
+            </div>
+            <div class="form-group">
+                <label for="psp-stats">Stats (comma separated)</label>
+                <input id="psp-stats" name="stats" placeholder="e.g. PPG, APG" required>
+            </div>
+            <button class="btn primary" type="submit">Run PSP Query</button>
+        </form>
+        <div class="cbb-result" id="cbb-psp-result">
+            <p>Enter teams/stats to see PSP-style outputs.</p>
+        </div>
+    </section>
 </main>
 <script id="picks-data" type="application/json">{{ dataset | tojson | safe }}</script>
 <script id="picks-kind" type="application/json">{{ "cbb" | tojson | safe }}</script>
-<script src="{{ url_for('static', path='picks.js') }}" defer></script>
-<script src="{{ url_for('static', path='cbb.js') }}" defer></script>
+<script src="/static/picks.js" defer></script>
+<script src="/static/cbb.js" defer></script>
 </body>
 </html>

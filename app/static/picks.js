@@ -6,6 +6,9 @@
   const statusBanner = document.getElementById("status-banner");
   const copyAllBtn = document.getElementById("copy-all-btn");
   const dateSelect = document.getElementById("date-select");
+  const manualForm = document.getElementById("multi-form");
+  const manualResult = document.getElementById("multi-result");
+  const manualDateLabel = document.getElementById("multi-date-label");
 
   if (!datasetNode || !kindNode || !container) {
     return;
@@ -15,6 +18,10 @@
   const kind = JSON.parse(kindNode.textContent || "\"test2\"");
   const emptyTemplate = container.dataset.emptyMessage || "No picks available for DATE.";
   const getSelectedDate = () => (dateSelect ? dateSelect.value : dateNode ? JSON.parse(dateNode.textContent || "\"\"") : "");
+  const humanizeDate = (value) => {
+    if (!value || value.length !== 8) return value || "";
+    return `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}`;
+  };
 
   const showStatus = (msg, type = "info") => {
     if (!statusBanner) return;
@@ -45,6 +52,9 @@
   };
 
   const render = () => {
+    if (manualDateLabel) {
+      manualDateLabel.textContent = `Queries use the currently selected date (${humanizeDate(getSelectedDate())}). Change the dropdown above to switch days.`;
+    }
     if (!data.length) {
       const msg = emptyTemplate.replace("DATE", getSelectedDate());
       container.innerHTML = `<p class="empty">${msg}</p>`;
@@ -116,6 +126,9 @@
       const payload = await res.json();
       data = payload.data || [];
       render();
+      if (manualForm && manualResult) {
+        manualResult.innerHTML = "<p>Date updated. Run another lookup to see the new slate.</p>";
+      }
       showStatus("", "info");
     } catch (err) {
       showStatus(`Failed to load picks: ${err.message}`, "error");
@@ -125,4 +138,99 @@
   if (dateSelect && kind === "test2") {
     dateSelect.addEventListener("change", (event) => fetchDate(event.target.value));
   }
+
+  const normalize = (value, { strict = false } = {}) => {
+    if (!value) return "";
+    const upper = value.toString().trim().toUpperCase();
+    return strict ? upper : upper.replace(/[^A-Z0-9]/g, "");
+  };
+
+  const matchesTeam = (block, team) => {
+    if (!team) return true;
+    const target = normalize(team);
+    if (!target) return true;
+    const teams = (block.teams || []).map((t) => normalize(t));
+    if (teams.some((entry) => entry.includes(target) || target.includes(entry))) {
+      return true;
+    }
+    const heading = normalize(block.heading || "");
+    return heading.includes(target);
+  };
+
+  const matchesSport = (block, sport) => {
+    if (!sport) return true;
+    const blockSport = normalize(block.sport || block.category, { strict: true });
+    return blockSport === sport;
+  };
+
+  const matchesStat = (entry, stat) => {
+    if (!stat) return true;
+    const entryStat = normalize(entry.stat, { strict: true });
+    return entryStat.includes(stat);
+  };
+
+  const searchPicks = (criteria) => {
+    const results = [];
+    data.forEach((block) => {
+      if (!matchesSport(block, criteria.sport)) return;
+      if (!matchesTeam(block, criteria.team1)) return;
+      if (criteria.team2 && !matchesTeam(block, criteria.team2)) return;
+      if (!Array.isArray(block.entries)) return;
+      block.entries.forEach((entry) => {
+        if (!matchesStat(entry, criteria.stat)) return;
+        results.push({
+          heading: block.heading || "Matchup",
+          sport: block.sport || block.category || "",
+          stat: entry.stat,
+          summary: entry.summary,
+          suffix: entry.suffix || "this season",
+        });
+      });
+    });
+    return results;
+  };
+
+  const renderManualResults = (results, criteria) => {
+    if (!manualResult) return;
+    if (!results.length) {
+      manualResult.innerHTML = `<p>No picks found for ${criteria.stat || "that stat"} on ${humanizeDate(
+        getSelectedDate()
+      )}. Try adjusting the filters.</p>`;
+      return;
+    }
+    manualResult.innerHTML = results
+      .map(
+        (item) => `
+        <article class="card">
+            <header>
+                <p class="eyebrow">${item.sport}</p>
+                <strong>${item.heading}</strong>
+                <p class="meta">${item.stat} — ${item.suffix}</p>
+            </header>
+            <pre>${item.summary}</pre>
+        </article>
+      `
+      )
+      .join("");
+  };
+
+  manualForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!data.length) {
+      manualResult.innerHTML = "<p>No cached picks for this date yet. Refresh the slate and try again.</p>";
+      return;
+    }
+    const formData = new FormData(manualForm);
+    const criteria = {
+      team1: formData.get("team1"),
+      team2: formData.get("team2"),
+      sport: normalize(formData.get("sport"), { strict: true }),
+      stat: normalize(formData.get("stat"), { strict: true }),
+    };
+    if (!criteria.stat) {
+      manualResult.innerHTML = "<p>Please provide a stat to filter by.</p>";
+      return;
+    }
+    renderManualResults(searchPicks(criteria), criteria);
+  });
 })();

@@ -206,6 +206,14 @@ body {
     gap: 0.5rem;
 }
 
+.job-controls .job-control {
+    margin-bottom: 1rem;
+}
+
+.job-control .btn {
+    margin-bottom: 0.4rem;
+}
+
 .job-table {
     width: 100%;
     border-collapse: collapse;
@@ -287,7 +295,30 @@ body {
     border-color: rgba(99, 102, 241, 0.3);
 }
 
-.cbb-tool {
+.pipeline-log {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.pipeline-log li {
+    display: flex;
+    gap: 0.35rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    padding: 0.25rem 0;
+}
+
+.pipeline-log li span {
+    color: #cbd5f5;
+    font-family: "Space Grotesk", monospace;
+}
+
+.cbb-tool,
+.multi-tool {
     border: 1px solid var(--border);
     border-radius: 1.2rem;
     padding: 1.5rem;
@@ -297,7 +328,8 @@ body {
     gap: 1.25rem;
 }
 
-#cbb-form {
+#cbb-form,
+#multi-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
@@ -318,7 +350,8 @@ body {
     color: inherit;
 }
 
-.cbb-result {
+.cbb-result,
+.multi-result {
     border: 1px solid rgba(148, 163, 184, 0.3);
     border-radius: 1rem;
     padding: 1rem;
@@ -326,7 +359,8 @@ body {
     min-height: 120px;
 }
 
-.cbb-result pre {
+.cbb-result pre,
+.multi-result pre {
     margin: 0;
     white-space: pre-wrap;
 }

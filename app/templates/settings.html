@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Settings • RealSports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <nav class="site-nav">
@@ -13,8 +13,8 @@
         <strong>Picks Hub</strong>
     </div>
     <div class="nav-links">
-        <a href="/picks/test2">Test2 Picks</a>
-        <a href="/picks/cbb">CBB Picks</a>
+        <a href="/picks/test2">Picks</a>
+        <a href="/picks/cbb">CBB</a>
         <a class="active" href="/settings">Settings</a>
     </div>
 </nav>
@@ -29,47 +29,116 @@
             <p class="muted">Full pipeline</p>
             <div class="control-actions">
                 <button class="btn primary" data-run-pipeline type="button">Run Full Pipeline</button>
-                <a class="btn outline" href="/dashboard" target="_blank" rel="noreferrer">Open legacy dashboard</a>
                 <a class="btn ghost" href="/settings/jobs">View job status</a>
             </div>
+            <p class="meta" id="pipeline-status" aria-live="polite" hidden>Pipeline status…</p>
+            <ul class="pipeline-log" id="pipeline-log" hidden></ul>
         </div>
     </header>
     <div class="status" id="status-banner" hidden></div>
 
     <section class="settings-grid">
-        <article class="info-card">
+        <article class="info-card job-controls">
             <h3>Manual runs</h3>
-            <button class="btn ghost" data-run-job="schedule_fetch" type="button">Run Schedule Fetch</button>
-            <button class="btn ghost" data-run-job="injuries" type="button">Run Injuries Cache</button>
-            <button class="btn ghost" data-run-job="cbb_scraper" type="button">Run CBB Scraper</button>
-        </article>
-
-        <article class="info-card">
-            <h3>Refresh Test2 for a date</h3>
-            <form id="refresh-test2-form">
-                <label for="manual-date">Date</label>
-                <select id="manual-date" name="date">
-                    {% for d in available_dates %}
-                        <option value="{{ d }}">{{ d[:4] }}-{{ d[4:6] }}-{{ d[6:8] }}</option>
-                    {% endfor %}
-                </select>
-                <button class="btn primary" type="submit">Refresh Selected Date</button>
-            </form>
+            {% set runtime = job_runtime or {} %}
+            <div class="job-control">
+                <button class="btn ghost" data-run-job="schedule_fetch" type="button">Run Schedule Fetch</button>
+                {% set state = runtime.get("schedule_fetch") %}
+                <p class="meta" data-job-status="schedule_fetch" {% if not (state and (state.running or state.last_error)) %}hidden{% endif %}>
+                    {% if state %}
+                        {% if state.running %}
+                            {{ state.last_message or "Running…" }}
+                        {% elif state.last_error %}
+                            Error: {{ state.last_error }}
+                        {% endif %}
+                    {% endif %}
+                </p>
+                <ul class="pipeline-log" data-job-log="schedule_fetch" {% if not state or not state.running %}hidden{% endif %}>
+                    {% if state and state.log %}
+                        {% for entry in state.log[:5] %}
+                            <li><span>{{ entry.timestamp }}</span> — {{ entry.message }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="job-control">
+                <button class="btn ghost" data-run-job="injuries" type="button">Run Injuries Cache</button>
+                {% set state = runtime.get("injuries") %}
+                <p class="meta" data-job-status="injuries" {% if not (state and (state.running or state.last_error)) %}hidden{% endif %}>
+                    {% if state %}
+                        {% if state.running %}
+                            {{ state.last_message or "Running…" }}
+                        {% elif state.last_error %}
+                            Error: {{ state.last_error }}
+                        {% endif %}
+                    {% endif %}
+                </p>
+                <ul class="pipeline-log" data-job-log="injuries" {% if not state or not state.running %}hidden{% endif %}>
+                    {% if state and state.log %}
+                        {% for entry in state.log[:5] %}
+                            <li><span>{{ entry.timestamp }}</span> — {{ entry.message }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="job-control">
+                <button class="btn ghost" data-run-job="cbb_scraper" type="button">Run CBB Scraper</button>
+                {% set state = runtime.get("cbb_scraper") %}
+                <p class="meta" data-job-status="cbb_scraper" {% if not (state and (state.running or state.last_error)) %}hidden{% endif %}>
+                    {% if state %}
+                        {% if state.running %}
+                            {{ state.last_message or "Running…" }}
+                        {% elif state.last_error %}
+                            Error: {{ state.last_error }}
+                        {% endif %}
+                    {% endif %}
+                </p>
+                <ul class="pipeline-log" data-job-log="cbb_scraper" {% if not state or not state.running %}hidden{% endif %}>
+                    {% if state and state.log %}
+                        {% for entry in state.log[:5] %}
+                            <li><span>{{ entry.timestamp }}</span> — {{ entry.message }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="job-control">
+                <button class="btn ghost" data-refresh-test2-all type="button">Refresh All Picks Dates</button>
+                {% set state = runtime.get("picks_refresh") %}
+                <p class="meta" data-job-status="picks_refresh" {% if not (state and (state.running or state.last_error)) %}hidden{% endif %}>
+                    {% if state %}
+                        {% if state.running %}
+                            {{ state.last_message or "Running…" }}
+                        {% elif state.last_error %}
+                            Error: {{ state.last_error }}
+                        {% endif %}
+                    {% endif %}
+                </p>
+                <ul class="pipeline-log" data-job-log="picks_refresh" {% if not state or not state.running %}hidden{% endif %}>
+                    {% if state and state.log %}
+                        {% for entry in state.log[:5] %}
+                            <li><span>{{ entry.timestamp }}</span> — {{ entry.message }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
         </article>
 
         <article class="info-card">
             <h3>Latest job runs</h3>
-            <ul class="job-list">
+            <ul class="job-list" data-job-latest>
                 {% for name, job in job_state.items() %}
-                    <li>
+                    <li data-job-latest-item="{{ name }}">
                         <strong>{{ job_labels.get(name, name) }}</strong>
-                        <div>{{ (job and job.ran_at) or "never" }} — exit {{ (job and job.exit_code) or "-" }}</div>
+                        <div>
+                            <span data-job-latest-ran="{{ name }}">{{ (job and job.ran_at) or "never" }}</span>
+                            — exit <span data-job-latest-exit="{{ name }}">{{ (job and job.exit_code) or "-" }}</span>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>
         </article>
     </section>
 </main>
-<script src="{{ url_for('static', path='settings.js') }}" defer></script>
+<script src="/static/settings.js" defer></script>
 </body>
 </html>

@@ -70,10 +70,25 @@ def _write_cache(payload: List[PickRecord], date: Optional[str] = None) -> None:
         print(f"[cache] failed to write test2 picks cache: {exc}", file=sys.stderr)
 
 # Feature flags (env can override; CLI can toggle too)
-DRY_RUN = os.getenv("DRY_RUN","0").strip().lower() in {"1","true","yes","on"}
-DISABLE_SELENIUM = os.getenv("DISABLE_SELENIUM","0").strip().lower() in {"1","true","yes","on"}
-DISABLE_CACHE = os.getenv("DISABLE_CACHE","0").strip().lower() in {"1","true","yes","on"}
-SAVE_BAD_HTML = os.getenv("SAVE_BAD_HTML","0").strip().lower() in {"1","true","yes","on"}
+def _env_flag(name: str, default: str = "0") -> bool:
+    return os.getenv(name, default).strip().lower() in {"1", "true", "yes", "on"}
+
+
+HEADLESS_ENV = any(
+    os.getenv(flag)
+    for flag in (
+        "CI",
+        "CODESPACES",
+        "SPACE_ID",
+        "HF_TOKEN",
+        "HF_HOME",
+    )
+)
+
+DRY_RUN = _env_flag("DRY_RUN", "0")
+DISABLE_SELENIUM = _env_flag("DISABLE_SELENIUM", "1" if HEADLESS_ENV else "0")
+DISABLE_CACHE = _env_flag("DISABLE_CACHE", "0")
+SAVE_BAD_HTML = _env_flag("SAVE_BAD_HTML", "0")
 SAVE_BAD_HTML_DIR = Path(os.getenv("SAVE_BAD_HTML_DIR",".debug_html"))
 if SAVE_BAD_HTML:
     SAVE_BAD_HTML_DIR.mkdir(parents=True, exist_ok=True)

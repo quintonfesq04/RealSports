@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Multi-sport Picks • RealSports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <nav class="site-nav">
@@ -13,8 +13,8 @@
         <strong>Picks Hub</strong>
     </div>
     <div class="nav-links">
-        <a class="active" href="/picks/test2">Test2 Picks</a>
-        <a href="/picks/cbb">CBB Picks</a>
+        <a class="active" href="/picks/test2">Picks</a>
+        <a href="/picks/cbb">CBB</a>
         <a href="/settings">Settings</a>
     </div>
 </nav>
@@ -78,10 +78,47 @@
             <p class="empty">No picks cached for {{ selected_date }} yet. Results refresh every morning at 5 AM ET.</p>
         {% endif %}
     </div>
+
+    <section class="multi-tool">
+        <h2>Quick lookup</h2>
+        <p class="meta" id="multi-date-label">
+            Queries use the currently selected date ({{ selected_date[:4] }}-{{ selected_date[4:6] }}-{{ selected_date[6:8] }}). Change the dropdown above to switch days.
+        </p>
+        <form id="multi-form">
+            <div class="form-group">
+                <label for="multi-team1">Team 1</label>
+                <input id="multi-team1" name="team1" placeholder="e.g. NYR" required>
+            </div>
+            <div class="form-group">
+                <label for="multi-team2">Team 2 (optional)</label>
+                <input id="multi-team2" name="team2" placeholder="e.g. TBL">
+            </div>
+            <div class="form-group">
+                <label for="multi-sport">Sport</label>
+                <select id="multi-sport" name="sport">
+                    <option value="">Any sport</option>
+                    <option value="NHL">NHL</option>
+                    <option value="NBA">NBA</option>
+                    <option value="NFL">NFL</option>
+                    <option value="MLB">MLB</option>
+                    <option value="WNBA">WNBA</option>
+                    <option value="CFB">CFB</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="multi-stat">Stat</label>
+                <input id="multi-stat" name="stat" placeholder="e.g. PPG" required>
+            </div>
+            <button class="btn primary" type="submit">Find picks</button>
+        </form>
+        <div class="cbb-result multi-result" id="multi-result">
+            <p>Enter teams + stat to search this date’s cached picks.</p>
+        </div>
+    </section>
 </main>
 <script id="picks-data" type="application/json">{{ dataset | tojson | safe }}</script>
 <script id="picks-kind" type="application/json">{{ "test2" | tojson | safe }}</script>
 <script id="selected-date" type="application/json">{{ selected_date | tojson | safe }}</script>
-<script src="{{ url_for('static', path='picks.js') }}" defer></script>
+<script src="/static/picks.js" defer></script>
 </body>
 </html>

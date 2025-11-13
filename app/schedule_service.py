@@ -14,7 +14,7 @@ DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(exist_ok=True)
 SCHEDULE_JSON = DATA_DIR / "schedule.json"
 SCHEDULE_CACHE_JSON = DATA_DIR / "schedule_cache.json"
-HORIZON_DAYS = int(os.getenv("SCHEDULE_HORIZON_DAYS", "4"))
+HORIZON_DAYS = int(os.getenv("SCHEDULE_HORIZON_DAYS", "5"))
 
 DEFAULT_SPORTS = ["NHL", "NFL", "NBA", "CFB", "MLB", "WNBA"]
 
@@ -205,7 +205,10 @@ def build_schedule_for_date(
         if not stats:
             continue
         payload = _fetch_scoreboard(sport, date_str)
-        for game in _extract_games(payload, sport):
+        games = list(_extract_games(payload, sport))
+        if not games:
+            continue
+        for game in games:
             for stat in stats:
                 schedule.append(
                     {

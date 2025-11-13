@@ -101,3 +101,43 @@ def compute_cbb_summary(team1: str, team2: Optional[str], stat: str) -> Dict[str
         "buckets": buckets,
         "generated_at": datetime.utcnow().isoformat() + "Z",
     }
+
+
+def _parse_list(value: str) -> List[str]:
+    return [item.strip().upper() for item in (value or "").split(",") if item.strip()]
+
+
+def compute_cbb_psp(teams_csv: str, stats_csv: str) -> Dict[str, object]:
+    df = _load_dataframe()
+    teams = _parse_list(teams_csv)
+    stats = _parse_list(stats_csv)
+    if not stats:
+        raise ValueError("Provide at least one stat (e.g., PPG, APG).")
+    stat_keys: List[str] = []
+    for stat in stats:
+        mapped = STAT_MAP.get(stat.upper(), stat.upper())
+        if mapped not in df.columns:
+            raise ValueError(f"Unknown stat {stat}. Available: PPG, APG, RPG, 3PM")
+        stat_keys.append(mapped)
+    filtered = df[df["Team"].isin(teams)] if teams else df
+    if filtered.empty:
+        raise ValueError("No players found for the provided team list.")
+    results: List[Dict[str, object]] = []
+    heading = ", ".join(teams) if teams else "All Teams"
+    for stat in stat_keys:
+        green, yellow, red, purple = _bucket_top12(filtered, stat)
+        buckets = {"green": green, "yellow": yellow, "red": red, "purple": purple}
+        results.append(
+            {
+                "stat": stat,
+                "heading": f"{heading} — {stat}",
+                "summary": _format_summary(buckets),
+                "buckets": buckets,
+            }
+        )
+    return {
+        "teams": teams or ["ALL"],
+        "stats": stat_keys,
+        "results": results,
+        "generated_at": datetime.utcnow().isoformat() + "Z",
+    }

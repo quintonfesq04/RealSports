@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Job Status • RealSports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <nav class="site-nav">
@@ -13,8 +13,8 @@
         <strong>Picks Hub</strong>
     </div>
     <div class="nav-links">
-        <a href="/picks/test2">Test2 Picks</a>
-        <a href="/picks/cbb">CBB Picks</a>
+        <a href="/picks/test2">Picks</a>
+        <a href="/picks/cbb">CBB</a>
         <a class="active" href="/settings">Settings</a>
     </div>
 </nav>
@@ -23,7 +23,7 @@
         <div class="title-block">
             <p class="eyebrow">Job status</p>
             <h1>Recent automation runs</h1>
-            <p>Last 50 entries from <code>script_runs</code>.</p>
+            <p>Last 50 entries from <code>script_runs</code>. Newest entries appear first.</p>
         </div>
         <div class="control-panel">
             <p class="muted">Back</p>
@@ -32,6 +32,68 @@
             </div>
         </div>
     </header>
+
+    <section class="info-card" data-pipeline-card>
+        <h3>Pipeline status</h3>
+        <p class="meta" data-pipeline-state>
+            {% if pipeline.running %}
+                Running — stage <strong>{{ pipeline.stage }}</strong>
+                {% if pipeline.current_date %}
+                    (processing {{ pipeline.current_date[:4] }}-{{ pipeline.current_date[4:6] }}-{{ pipeline.current_date[6:8] }})
+                {% endif %}
+            {% else %}
+                Idle since {{ pipeline.last_finished_at or "n/a" }}
+            {% endif %}
+        </p>
+        <p class="muted" data-pipeline-processed>
+            {% if pipeline.processed_dates %}
+                Processed dates: {{ pipeline.processed_dates | join(", ") }}
+            {% else %}
+                No dates processed yet this run.
+            {% endif %}
+        </p>
+        {% if pipeline.last_error %}
+            <p class="status" data-type="error" data-pipeline-error>Last error: {{ pipeline.last_error }}</p>
+        {% else %}
+            <p class="status" data-type="error" data-pipeline-error hidden></p>
+        {% endif %}
+        {% if pipeline_log %}
+            <ul class="pipeline-log" id="history-pipeline-log">
+                {% for entry in pipeline_log[:8] %}
+                    <li><span>{{ entry.timestamp }}</span> — {{ entry.message }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <ul class="pipeline-log" id="history-pipeline-log" hidden></ul>
+        {% endif %}
+    </section>
+
+    <section class="info-card job-controls">
+        <h3>Manual job status</h3>
+        {% set runtime = job_runtime or {} %}
+        {% for job in ["schedule_fetch", "injuries", "cbb_scraper", "picks_refresh"] %}
+            {% set state = runtime.get(job) %}
+            <div class="job-control">
+                <p class="eyebrow">{{ job_labels.get(job, job.replace("_", " ").title()) }}</p>
+                <p class="meta" data-job-status="{{ job }}" {% if not (state and (state.running or state.last_error)) %}hidden{% endif %}>
+                    {% if state %}
+                        {% if state.running %}
+                            {{ state.last_message or "Running…" }}
+                        {% elif state.last_error %}
+                            Error: {{ state.last_error }}
+                        {% endif %}
+                    {% endif %}
+                </p>
+                <ul class="pipeline-log" data-job-log="{{ job }}" {% if not state or not state.running %}hidden{% endif %}>
+                    {% if state and state.log %}
+                        {% for entry in state.log[:6] %}
+                            <li><span>{{ entry.timestamp }}</span> — {{ entry.message }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
 
     <section class="task-log">
         <table class="job-table">
@@ -44,7 +106,7 @@
                     <th>Stderr</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-history-body>
                 {% for row in history %}
                     <tr>
                         <td>{{ row.ran_at }}</td>
@@ -58,5 +120,6 @@
         </table>
     </section>
 </main>
+<script src="/static/jobs.js" defer></script>
 </body>
 </html>
