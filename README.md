@@ -54,8 +54,10 @@ What’s included in the new UI:
 - Settings page keeps the manual tools + job logs; job history now lives at `/settings/jobs` (legacy dashboard removed).
 - Picks refreshes now process today plus the upcoming schedule window, and the UI defaults to tomorrow’s slate (while keeping today’s plays one click away).
 - A “Quick lookup” form on the Picks page lets you filter the cached picks by sport/stat/teams without leaving the browser.
-- The CBB page includes both the single-matchup query and a PSP query that takes comma-separated teams/stats for multi-school pulls.
+- A PSP lookup block on the Picks page surfaces the cached PSP rows by sport/stat if you need to grab them manually.
+- The CBB page includes both the single-matchup query and a PSP query that takes comma-separated teams/stats (including combo stats like `PRA` or `PPG+RPG+APG`) for multi-school pulls.
 - Set `APP_TIMEZONE` (default `US/Eastern`) if you need the “today/tomorrow” logic to align with a different local day boundary.
+- Use `PIPELINE_INCLUDE_CBB=1` only if your environment has the Notion credentials required by `picks_cbb.py`; it defaults to off so HF runs don’t error.
 - Set `AUTO_REFRESH_ENABLED=1` (plus optional `AUTO_REFRESH_HOUR` / `AUTO_REFRESH_MINUTE`) to let the server kick off the full pipeline daily without GitHub Actions.
 - Selenium is disabled automatically in headless runtimes (`DISABLE_SELENIUM=1`); set it back to `0` locally if you rely on browser scraping.
 

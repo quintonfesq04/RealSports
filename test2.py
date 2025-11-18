@@ -385,6 +385,61 @@ def load_schedule_rows_from_json(date: str) -> List[Dict]:
     return rows
 
 
+def scheduled_teams_by_sport(date_str: str) -> Dict[str, set]:
+    rows = load_schedule_rows_from_json(date_str)
+    mapping: Dict[str, set] = {}
+    for entry in rows:
+        sport = (entry.get("sport") or "").strip().upper()
+        teams = entry.get("teams") or []
+        if not isinstance(teams, list):
+            continue
+        mapping.setdefault(sport, set())
+        for team in teams:
+            if isinstance(team, str) and team.strip():
+                mapping[sport].add(team.strip().upper())
+    return mapping
+
+
+PSP_STAT_ALIAS = {
+    "PRA": ["PPG", "RPG", "APG"],
+    "PR": ["PPG", "RPG"],
+    "PA": ["PPG", "APG"],
+    "RA": ["RPG", "APG"],
+}
+
+
+def _resolve_psp_stat_column(df: pd.DataFrame, stat_expr: str) -> Tuple[str, str]:
+    expr = (stat_expr or "").strip().upper()
+    if not expr:
+        raise ValueError("Stat is required.")
+    if expr in PSP_STAT_ALIAS:
+        components = PSP_STAT_ALIAS[expr]
+    elif "+" in expr:
+        components = [part.strip().upper() for part in expr.split("+") if part.strip()]
+    else:
+        components = [expr]
+    resolved: List[str] = []
+    for comp in components:
+        mapped = comp
+        if mapped not in df.columns:
+            candidates = [k for k in df.columns if k.strip().upper() == mapped]
+            if candidates:
+                mapped = candidates[0]
+        if mapped not in df.columns:
+            raise ValueError(f"Unknown stat {comp}. Available: {', '.join(sorted(set(df.columns)))}")
+        resolved.append(mapped)
+    if len(resolved) == 1:
+        return resolved[0], expr
+    total_key = "_SUM_" + "_".join(resolved)
+    if total_key not in df.columns:
+        total_series = None
+        for key in resolved:
+            series = pd.to_numeric(df[key], errors="coerce").fillna(0.0)
+            total_series = series if total_series is None else total_series.add(series, fill_value=0)
+        df[total_key] = total_series
+    return total_key, expr
+
+
 def load_game_rows() -> List[Dict]:
     if USE_LOCAL_SCHEDULE:
         rows = load_schedule_rows_from_json(PICKS_DATE)
@@ -2124,6 +2179,7 @@ def process_psp_rows(collector: Optional[List[PickRecord]] = None):
     if not rows:
         return
 
+    scheduled_map = scheduled_teams_by_sport(PICKS_DATE)
     rows_by_sport: Dict[str, List[Dict]] = {}
     for r in rows:
         rows_by_sport.setdefault((r.get("sport") or "").strip().upper(), []).append(r)
@@ -2146,6 +2202,10 @@ def process_psp_rows(collector: Optional[List[PickRecord]] = None):
             stat = r.get("stat") or ""
             stat_up = stat.strip().upper()
             teams = r.get("teams") or []
+            if not teams:
+                allowed = sorted(scheduled_map.get(sport_up_local, []))
+                if allowed:
+                    teams = allowed
 
             if sport_up_local == "MLB" and stat_up in {"K","SO","STRIKEOUTS"}:
                 heading = f"{sport_up_local} PSP - {stat_up} leaders (this postseason)"

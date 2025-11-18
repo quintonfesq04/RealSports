@@ -115,6 +115,32 @@
             <p>Enter teams + stat to search this date’s cached picks.</p>
         </div>
     </section>
+
+    <section class="multi-tool">
+        <h2>Manual PSP lookup</h2>
+        <form id="psp-form">
+            <div class="form-group">
+                <label for="psp-sport">Sport</label>
+                <select id="psp-sport" name="sport">
+                    <option value="">Any sport</option>
+                    <option value="NHL">NHL</option>
+                    <option value="NBA">NBA</option>
+                    <option value="NFL">NFL</option>
+                    <option value="MLB">MLB</option>
+                    <option value="WNBA">WNBA</option>
+                    <option value="CFB">CFB</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="psp-stats">Stats (comma separated, supports combos like PRA)</label>
+                <input id="psp-stats" name="stats" placeholder="e.g. PPG, PRA" required>
+            </div>
+            <button class="btn primary" type="submit">Filter PSP picks</button>
+        </form>
+        <div class="cbb-result multi-result" id="psp-result">
+            <p>Use this to filter existing PSP entries if the daily job hasn’t finished.</p>
+        </div>
+    </section>
 </main>
 <script id="picks-data" type="application/json">{{ dataset | tojson | safe }}</script>
 <script id="picks-kind" type="application/json">{{ "test2" | tojson | safe }}</script>

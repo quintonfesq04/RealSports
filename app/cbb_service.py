@@ -27,6 +27,13 @@ STAT_MAP = {
     "3PT": "3PM",
 }
 
+STAT_ALIAS_COMBOS = {
+    "PRA": ["PPG", "RPG", "APG"],
+    "PR": ["PPG", "RPG"],
+    "PA": ["PPG", "APG"],
+    "RA": ["RPG", "APG"],
+}
+
 
 def _ensure_csv() -> None:
     if CSV_PATH.exists():
@@ -83,9 +90,7 @@ def _format_summary(buckets: Dict[str, List[str]]) -> str:
 def compute_cbb_summary(team1: str, team2: Optional[str], stat: str) -> Dict[str, object]:
     df = _load_dataframe()
     teams = [t.strip().upper() for t in [team1 or "", team2 or ""] if t and t.strip()]
-    stat_key = STAT_MAP.get((stat or "").upper(), (stat or "").upper())
-    if stat_key not in df.columns:
-        raise ValueError(f"Unknown stat {stat}. Available: PPG, APG, RPG, 3PM")
+    stat_key, stat_label = _ensure_stat_column(df, stat)
     filtered = df if not teams else df[df["Team"].isin(teams)]
     if filtered.empty:
         raise ValueError("No players found for the provided team(s).")
@@ -95,7 +100,7 @@ def compute_cbb_summary(team1: str, team2: Optional[str], stat: str) -> Dict[str
     heading = f"{team1.upper()} vs {team2.upper()}" if len(teams) == 2 else (team1.upper() if teams else "All Teams")
     return {
         "heading": heading,
-        "stat": stat_key,
+        "stat": stat_label,
         "teams": teams or ["ALL"],
         "summary": summary,
         "buckets": buckets,
@@ -113,31 +118,62 @@ def compute_cbb_psp(teams_csv: str, stats_csv: str) -> Dict[str, object]:
     stats = _parse_list(stats_csv)
     if not stats:
         raise ValueError("Provide at least one stat (e.g., PPG, APG).")
-    stat_keys: List[str] = []
+    stat_pairs: List[Tuple[str, str]] = []
     for stat in stats:
-        mapped = STAT_MAP.get(stat.upper(), stat.upper())
-        if mapped not in df.columns:
-            raise ValueError(f"Unknown stat {stat}. Available: PPG, APG, RPG, 3PM")
-        stat_keys.append(mapped)
+        stat_pairs.append(_ensure_stat_column(df, stat))
     filtered = df[df["Team"].isin(teams)] if teams else df
     if filtered.empty:
         raise ValueError("No players found for the provided team list.")
     results: List[Dict[str, object]] = []
     heading = ", ".join(teams) if teams else "All Teams"
-    for stat in stat_keys:
-        green, yellow, red, purple = _bucket_top12(filtered, stat)
+    for stat_key, label in stat_pairs:
+        green, yellow, red, purple = _bucket_top12(filtered, stat_key)
         buckets = {"green": green, "yellow": yellow, "red": red, "purple": purple}
         results.append(
             {
-                "stat": stat,
-                "heading": f"{heading} — {stat}",
+                "stat": label,
+                "heading": f"{heading} — {label}",
                 "summary": _format_summary(buckets),
                 "buckets": buckets,
             }
         )
     return {
         "teams": teams or ["ALL"],
-        "stats": stat_keys,
+        "stats": [label for _, label in stat_pairs],
         "results": results,
         "generated_at": datetime.utcnow().isoformat() + "Z",
     }
+
+
+def _ensure_stat_column(df: pd.DataFrame, stat: str) -> Tuple[str, str]:
+    raw = (stat or "").strip().upper()
+    if not raw:
+        raise ValueError("Stat is required.")
+    if raw in STAT_ALIAS_COMBOS:
+        components = STAT_ALIAS_COMBOS[raw]
+    elif "+" in raw:
+        components = []
+        for part in raw.split("+"):
+            token = part.strip()
+            if not token:
+                continue
+            components.append(STAT_MAP.get(token, token))
+    else:
+        mapped = STAT_MAP.get(raw, raw)
+        components = [mapped]
+    resolved_cols: List[str] = []
+    for comp in components:
+        comp = STAT_MAP.get(comp, comp)
+        if comp not in df.columns:
+            raise ValueError(f"Unknown stat {comp}. Available: PPG, APG, RPG, 3PM")
+        resolved_cols.append(comp)
+    if len(resolved_cols) == 1:
+        return resolved_cols[0], raw
+    new_col = "_SUM_" + "_".join(resolved_cols)
+    if new_col not in df.columns:
+        total = None
+        for comp in resolved_cols:
+            series = pd.to_numeric(df[comp], errors="coerce").fillna(0.0)
+            total = series if total is None else total.add(series, fill_value=0)
+        df[new_col] = total
+    return new_col, raw

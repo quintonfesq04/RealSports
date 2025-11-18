@@ -9,6 +9,8 @@
   const manualForm = document.getElementById("multi-form");
   const manualResult = document.getElementById("multi-result");
   const manualDateLabel = document.getElementById("multi-date-label");
+  const pspForm = document.getElementById("psp-form");
+  const pspResult = document.getElementById("psp-result");
 
   if (!datasetNode || !kindNode || !container) {
     return;
@@ -190,6 +192,41 @@
     return results;
   };
 
+  const renderPspResults = (sport, statsRaw) => {
+    if (!pspResult) return;
+    const statList = (statsRaw || "")
+      .split(",")
+      .map((s) => s.trim().toUpperCase())
+      .filter(Boolean);
+    if (!statList.length) {
+      pspResult.innerHTML = "<p>Please enter at least one stat.</p>";
+      return;
+    }
+    const filtered = data.filter((block) => {
+      if ((block.category || "").toUpperCase() !== "PSP") return false;
+      if (sport && (block.sport || "").toUpperCase() !== sport) return false;
+      return statList.includes((block.stat || "").toUpperCase());
+    });
+    if (!filtered.length) {
+      pspResult.innerHTML = "<p>No PSP entries match those filters in the current cache.</p>";
+      return;
+    }
+    pspResult.innerHTML = filtered
+      .map(
+        (block) => `
+        <article class="card">
+            <header>
+                <p class="eyebrow">${block.sport || "PSP"}</p>
+                <strong>${block.heading || block.stat}</strong>
+                <p class="meta">${block.stat || ""}</p>
+            </header>
+            <pre>${block.summary || ""}</pre>
+        </article>
+      `
+      )
+      .join("");
+  };
+
   const renderManualResults = (results, criteria) => {
     if (!manualResult) return;
     if (!results.length) {
@@ -232,5 +269,13 @@
       return;
     }
     renderManualResults(searchPicks(criteria), criteria);
+  });
+
+  pspForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(pspForm);
+    const sport = (formData.get("sport") || "").toString().toUpperCase();
+    const stats = (formData.get("stats") || "").toString();
+    renderPspResults(sport, stats);
   });
 })();

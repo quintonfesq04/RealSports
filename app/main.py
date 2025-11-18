@@ -519,7 +519,7 @@ def _run_full_pipeline(progress: Optional[Callable[[str, Optional[str], Optional
         except Exception as exc:
             report("test2_error", date, f"Failed picks for {date}: {exc}")
             results[f"test2_{date}_error"] = str(exc)
-    include_cbb = os.getenv("PIPELINE_INCLUDE_CBB", "1").strip().lower() in {"1", "true", "yes"}
+    include_cbb = os.getenv("PIPELINE_INCLUDE_CBB", "0").strip().lower() in {"1", "true", "yes"}
     if include_cbb:
         report("cbb", message="Refreshing CBB picks…")
         try:
